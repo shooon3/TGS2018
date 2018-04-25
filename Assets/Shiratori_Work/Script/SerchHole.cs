@@ -30,5 +30,5 @@ public class SerchHole : MonoBehaviour {
 
         //前方に進む
         transform.Translate(Vector3.forward * speed * timeScale);
-	}
+    }
 }
