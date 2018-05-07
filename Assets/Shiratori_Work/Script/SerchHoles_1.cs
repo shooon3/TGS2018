@@ -15,6 +15,7 @@ public class SerchHoles_1 : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
 
+        //プレイヤータグとホールタグを探す
         nearHole = serchTag(gameObject, "Hole");
     }
 
@@ -42,7 +43,6 @@ public class SerchHoles_1 : MonoBehaviour
             if (nearDis == 0 || nearDis > posDis)
             {
                 nearDis = posDis;
-                //nearObjName = obs.name;
                 targetObj = obs;
             }
         }
