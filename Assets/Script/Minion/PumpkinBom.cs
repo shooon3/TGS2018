@@ -8,11 +8,14 @@ public class PumpkinBom : MonoBehaviour {
     [Header("射出するオブジェクトをここに割り当てる")]
     public GameObject ThrowingObject;
 
-    [Header("Player")]
-    public MinionCreate minionCreate;
+    //[Header("Player")]
+    //public MinionCreate minionCreate;
 
     [Header("射出する角度"), Range(0F, 90F)]
     public float ThrowingAngle;
+
+    //// 標的の座標
+    //Vector3 targetPosition;
 
     void Start()
     {
@@ -21,25 +24,27 @@ public class PumpkinBom : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetButtonUp("Fire1"))
-        {
-            // マウス左クリックでボールを射出する
-            ThrowingBall();
-        }
+        //// 標的の座標
+        //targetPosition = minionCreate.CreatePos;
+
+        //Debug.Log(targetPosition);
+
+        //if (Input.GetButtonUp("Fire1"))
+        //{
+        //    // マウス左クリックでボールを射出する
+        //    ThrowingBall();
+        //}
     }
 
     /// <summary>
     /// ボールを射出する
     /// </summary>
-    void ThrowingBall()
+    public void ThrowingBall(Vector3 targetPosition)
     {
         if (ThrowingObject == null) return;
 
         // Ballオブジェクトの生成
         GameObject ball = Instantiate(ThrowingObject, this.transform.position, Quaternion.identity);
-
-        // 標的の座標
-        Vector3 targetPosition = minionCreate.CreatePos;
 
         // 射出角度
         float angle = ThrowingAngle;

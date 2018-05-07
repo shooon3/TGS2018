@@ -27,6 +27,9 @@ public class MinionCreate : MonoBehaviour {
     [Header("パンプ菌集団の親オブジェクト")]
     public GameObject massParentPre;
 
+    [Header("パンプキング")]
+    public PumpkinBom pumpkinBom;
+
     //-------------------------------------
     // private
     //-------------------------------------
@@ -48,13 +51,6 @@ public class MinionCreate : MonoBehaviour {
     Ray ray;
     RaycastHit hit;
 
-    //-------------------------------------
-    // プロパティ
-    //-------------------------------------
-
-    public Vector3 CreatePos { get; private set;}
-    public bool CreateFlg { get; set; }
-
     // Use this for initialization
     void Start () {
 
@@ -75,7 +71,7 @@ public class MinionCreate : MonoBehaviour {
         GetTouchPos();
         Flick();
         DisplayPampking();
-        PumpkinCreate();
+        CreatePos();
 
     }
 
@@ -166,31 +162,48 @@ public class MinionCreate : MonoBehaviour {
         }
     }
 
-    void PumpkinCreate()
+    /// <summary>
+    /// パンプ菌を生成する場所を取得
+    /// </summary>
+    void CreatePos()
     {
         if (Input.GetButtonUp("Fire1"))
         {
+            //rayの生成
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             hit = new RaycastHit();
 
+            //rayと衝突していなかったら以降の処理をしない
             if (Physics.Raycast(ray, out hit) == false) return;
 
-            CreatePos = new Vector3(hit.point.x, 0, hit.point.z);
+            Vector3 createPos = new Vector3(hit.point.x, 0, hit.point.z);
 
-            GameObject parentObj = Instantiate(massParentPre, CreatePos, Quaternion.identity);
+            GameObject parentObj = Instantiate(massParentPre, createPos, Quaternion.identity);
 
-            CreateFlg = true;
+            MinionManager minionMar = parentObj.GetComponent<MinionManager>();
 
-            for (int i = 0; i < createCount + 1; i++)
-            {
-                Vector3 position = parentObj.transform.position;
-                Vector2 size = new Vector2(4.0f, 4.0f);
+            //パンプキングからパンプ菌を発射
+            pumpkinBom.ThrowingBall(createPos);
 
-                float x = Random.Range(position.x - size.x / 2, position.x + size.x / 2);
-                float z = Random.Range(position.z - size.y / 2, position.z + size.y / 2);
+            MinionsCreate(parentObj);
+        }
+    }
 
-                Instantiate(pumpkinPre, new Vector3(x, 0, z), Quaternion.identity, parentObj.transform);
-            }
+    /// <summary>
+    /// パンプ菌を作る
+    /// </summary>
+    /// <param name="parentObj"></param>
+    void MinionsCreate(GameObject parentObj)
+    {
+        for (int i = 0; i < createCount + 1; i++)
+        {
+            Vector3 position = parentObj.transform.position;
+            Vector2 size = new Vector2(4.0f, 4.0f);
+
+            float x = Random.Range(position.x - size.x / 2, position.x + size.x / 2);
+            float z = Random.Range(position.z - size.y / 2, position.z + size.y / 2);
+
+            Instantiate(pumpkinPre, new Vector3(x, 0, z), Quaternion.identity, parentObj.transform);
         }
     }
 }

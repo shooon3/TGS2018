@@ -21,8 +21,10 @@ GameObject:
   - component: {fileID: 4689837166043392}
   - component: {fileID: 33211459266826806}
   - component: {fileID: 23762930975985304}
+  - component: {fileID: 195580785277917626}
+  - component: {fileID: 114028541874292254}
   m_Layer: 0
-  m_Name: PumpkinPre
+  m_Name: MinionPre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,3 +84,36 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1556728868120442}
   m_Mesh: {fileID: 4300000, guid: 970333818516e2c4aaf03e51b4c32a55, type: 3}
+--- !u!114 &114028541874292254
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1556728868120442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47e110370eab4b44697f58278c774b9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nearHole: {fileID: 0}
+--- !u!195 &195580785277917626
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1556728868120442}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 7
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

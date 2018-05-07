@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 33573034965303922}
   - component: {fileID: 23153939759862542}
   - component: {fileID: 54201948930209972}
+  - component: {fileID: 135328937333133724}
+  - component: {fileID: 114881999464989352}
   m_Layer: 0
   m_Name: BomPre
   m_TagString: Untagged
@@ -98,3 +100,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &114881999464989352
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1574450810251262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4914de1299051144ca4a6c3284325600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!135 &135328937333133724
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1574450810251262}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.9644658
+  m_Center: {x: -0.0000001192093, y: 0, z: 0}
