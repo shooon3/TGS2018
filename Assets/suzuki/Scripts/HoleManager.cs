@@ -6,14 +6,53 @@ public class HoleManager : MonoBehaviour
 {
     Hole[] hole;
     [SerializeField]
-    float TimeLag;
+    int hp = 1000;
     [SerializeField]
-    float radius;
-    
-	void Start ()
-    {
-        
+    int decreaseHP = 50;            //ダメージ数
+    [SerializeField]
+    float flashTime = 0.1f;         //点滅時間
+    [SerializeField]
+    float invincibleTime = 0.5f;    //無敵時間
+    [SerializeField]
+    float TimeLag = 0.2f;
+    [SerializeField]
+    float radius = 0.1f;
 
+    [SerializeField]
+    Material nextColor;     //変更色(仮)
+
+    public int HP
+    {
+        get { return hp; }
+        private set { hp = value; }
+    }
+
+    public int DecreaseHP
+    {
+        get { return decreaseHP; }
+        private set { decreaseHP = value; }
+    }
+
+    public float FlashTime
+    {
+        get { return flashTime; }
+        private set { flashTime = value; }
+    }
+
+    public float InvincibleTime
+    {
+        get { return invincibleTime; }
+        private set { invincibleTime = value; }
+    }
+
+    public Material NextColor
+    {
+        get { return nextColor; }
+        private set { nextColor = value; }
+    }
+
+    void Start ()
+    {
         //子オブジェクトの穴を取得
         hole = new Hole[transform.childCount];
         for (int i = 0; i < hole.Length; i++)

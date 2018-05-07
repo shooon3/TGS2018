@@ -9,14 +9,13 @@ public class Hole : MonoBehaviour
     [SerializeField]
     bool infection;         //感染
     [SerializeField]
-    int HP;
-    [SerializeField]
-    int DecreaseHP;
-    [SerializeField]
+    int hp;
+    int decreaseHP;
+    float flashTime;        //点滅時間
     float invincibleTime;   //無敵時間
+
     [SerializeField]
     CapsuleCollider col;    //判定
-    [SerializeField]
     Material nextColor;     //変更色(仮)
     Material defaultColor;  //変更色(仮)
 
@@ -24,14 +23,17 @@ public class Hole : MonoBehaviour
 
 	void Start ()
     {
+        manager = transform.root.GetComponent<HoleManager>();
+
         //初期値
         invincible = false;
         infection = false;
-        HP = 1000;
-        DecreaseHP = 50;
-        invincibleTime = 0.5f;
+        hp = manager.HP;
+        decreaseHP = manager.DecreaseHP;
+        flashTime = manager.FlashTime;
+        invincibleTime = manager.InvincibleTime;
+        nextColor = manager.NextColor;
         defaultColor = gameObject.GetComponent<Renderer>().material;
-        manager = transform.root.GetComponent<HoleManager>();
     }
 
     /// <summary>
@@ -52,12 +54,11 @@ public class Hole : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// 同レーンの穴も感染状態にする
     /// </summary>
     /// <param name="f"></param>
     public void Invasion(float f)
     {
-        infection = true;
         StartCoroutine(Chain(f));
     }
 
@@ -76,17 +77,17 @@ public class Hole : MonoBehaviour
     {
         if (infection == false && collider.tag == "Player")
         {
-            if (invincible == false && HP > 0)
+            if (invincible == false && hp > 0)
             {
                 //耐久値減少
-                HP -= DecreaseHP;
+                hp -= decreaseHP;
 
-                if (HP <= 0)//感染
+                if (hp <= 0)//感染
                 {
                     infection = true;
 
                     //感染をHoleManagerに伝える
-                    manager.Unification(gameObject.GetComponent<Hole>(), HP);
+                    manager.Unification(gameObject.GetComponent<Hole>(), hp);
                 }
                 else//通常
                 {
@@ -94,26 +95,32 @@ public class Hole : MonoBehaviour
                     StartCoroutine(InvincibleTime());
 
                     //感染をHoleManagerに伝える
-                    manager.Unification(gameObject.GetComponent<Hole>(), HP);
+                    manager.Unification(gameObject.GetComponent<Hole>(), hp);
                 }
             }
         }
     }
 
+    /// <summary>
+    /// ダメージの可視化
+    /// </summary>
+    /// <param name="f"></param>
+    /// <returns></returns>
     IEnumerator FlashCoroutine(float f)
     {
         yield return new WaitForSeconds(f);
         gameObject.GetComponent<Renderer>().material = nextColor;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(flashTime);
         gameObject.GetComponent<Renderer>().material = defaultColor;
     }
 
     /// <summary>
-    /// 無敵時間(invincibleTime秒ダメージを受けない)
+    /// 無敵時間
     /// </summary>
     /// <returns></returns>
     IEnumerator InvincibleTime()
     {
+        //invincibleTime秒ダメージを受けない
         invincible = true;
         yield return new WaitForSeconds(invincibleTime);
         invincible = false;
@@ -123,7 +130,7 @@ public class Hole : MonoBehaviour
     {
         yield return new WaitForSeconds(f);
 
-        //色変え(仮)
+        //感染を可視化(仮)
         gameObject.GetComponent<Renderer>().material = nextColor;
     }
 }
