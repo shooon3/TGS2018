@@ -37,19 +37,21 @@ public class MinionCreate : MonoBehaviour {
     List<GameObject> pumpkinSp = new List<GameObject>(); //パンプキンImage
 
     GameObject pumpkinParent; //吹き出し(各パンプキンの親)オブジェクト
+    GameObject parentObj;
+
+    MinionManager minionMar;
 
     float touchNowPosX; //現在のタッチポジション
     float startFlickX; //タッチした直後のポジション(タッチ直後にフリック判定にならないようにするための除外用変数)
     float memoryPos; //1フレーム前の位置を記憶する
 
     int flickCount; //フリックした回数
-    int createCount = 0; //パンプキンを出す数
+    int createCount; //パンプキンを出す数
+
+    bool createMinionFlg = true;
 
     FlickState flickState; //フリックされた方向
     FlickState nextFlickState; //次にフリックする方向
-
-    Ray ray;
-    RaycastHit hit;
 
     // Use this for initialization
     void Start () {
@@ -73,6 +75,12 @@ public class MinionCreate : MonoBehaviour {
         DisplayPampking();
         CreatePos();
 
+        if(minionMar != null && minionMar.CreateFlg)
+        {
+            MinionsCreate(parentObj);
+            createMinionFlg = true;
+            minionMar.CreateFlg = false;
+        }
     }
 
     /// <summary>
@@ -167,25 +175,27 @@ public class MinionCreate : MonoBehaviour {
     /// </summary>
     void CreatePos()
     {
+        if (createMinionFlg == false) return;
+
         if (Input.GetButtonUp("Fire1"))
         {
             //rayの生成
-            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            hit = new RaycastHit();
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit = new RaycastHit();
 
             //rayと衝突していなかったら以降の処理をしない
             if (Physics.Raycast(ray, out hit) == false) return;
 
             Vector3 createPos = new Vector3(hit.point.x, 0, hit.point.z);
 
-            GameObject parentObj = Instantiate(massParentPre, createPos, Quaternion.identity);
+            parentObj = Instantiate(massParentPre, createPos, Quaternion.identity);
 
-            MinionManager minionMar = parentObj.GetComponent<MinionManager>();
+            minionMar = parentObj.GetComponent<MinionManager>();
 
             //パンプキングからパンプ菌を発射
             pumpkinBom.ThrowingBall(createPos);
 
-            MinionsCreate(parentObj);
+            createMinionFlg = false;
         }
     }
 
