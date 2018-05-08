@@ -46,7 +46,7 @@ public class MinionCreate : MonoBehaviour {
     float memoryPos; //1フレーム前の位置を記憶する
 
     int flickCount; //フリックした回数
-    int createCount; //パンプキンを出す数
+    int displayCount; //パンプキンを出す数
 
     bool createMinionFlg = true;
 
@@ -69,17 +69,36 @@ public class MinionCreate : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        FlickInitialize();
         GetTouchPos();
         Flick();
         DisplayPampking();
         CreatePos();
 
-        if(minionMar != null && minionMar.CreateFlg)
+        if (minionMar != null && minionMar.CreateFlg)
         {
             MinionsCreate(parentObj);
             createMinionFlg = true;
             minionMar.CreateFlg = false;
+        }
+    }
+
+    /// <summary>
+    /// 初期化
+    /// </summary>
+    void FlickInitialize()
+    {
+        memoryPos = touchNowPosX;
+        startFlickX = Input.mousePosition.x;
+
+        flickCount = 0;
+        displayCount = 0;
+
+        flickState = FlickState.Filst;
+        nextFlickState = FlickState.Filst;
+
+        foreach (Transform obj in pumpkinParent.transform)
+        {
+            obj.gameObject.SetActive(false);
         }
     }
 
@@ -94,41 +113,6 @@ public class MinionCreate : MonoBehaviour {
         {
             FlickSide();
         }
-    }
-
-    /// <summary>
-    /// パンプキンを表示する
-    /// </summary>
-    /// <param name="count">表示するパンプキンの数</param>
-    void DisplayPampking()
-    {
-        if (createCount == bafferCount.Length || flickCount != bafferCount[createCount]) return;
-
-        pumpkinSp[createCount].SetActive(true);
-        createCount++;
-    }
-
-    /// <summary>
-    /// 初期化
-    /// </summary>
-    void FlickInitialize()
-    {
-        if (Input.GetButtonDown("Fire1") == false) return;
-
-        memoryPos = touchNowPosX;
-        startFlickX = Input.mousePosition.x;
-
-        flickCount = 0;
-        createCount = 0;
-
-        flickState = FlickState.Filst;
-        nextFlickState = FlickState.Filst;
-
-        foreach(Transform obj in pumpkinParent.transform)
-        {
-            obj.gameObject.SetActive(false);
-        }
-
     }
 
     /// <summary>
@@ -171,6 +155,18 @@ public class MinionCreate : MonoBehaviour {
     }
 
     /// <summary>
+    /// パンプキンを表示する
+    /// </summary>
+    /// <param name="count">表示するパンプキンの数</param>
+    void DisplayPampking()
+    {
+        if (displayCount == bafferCount.Length || flickCount != bafferCount[displayCount]) return;
+
+        pumpkinSp[displayCount].SetActive(true);
+        displayCount++;
+    }
+
+    /// <summary>
     /// パンプ菌を生成する場所を取得
     /// </summary>
     void CreatePos()
@@ -205,7 +201,7 @@ public class MinionCreate : MonoBehaviour {
     /// <param name="parentObj"></param>
     void MinionsCreate(GameObject parentObj)
     {
-        for (int i = 0; i < createCount + 1; i++)
+        for (int i = 0; i < displayCount + 1; i++)
         {
             Vector3 position = parentObj.transform.position;
             Vector2 size = new Vector2(4.0f, 4.0f);
@@ -215,5 +211,7 @@ public class MinionCreate : MonoBehaviour {
 
             Instantiate(pumpkinPre, new Vector3(x, 0, z), Quaternion.identity, parentObj.transform);
         }
+
+        FlickInitialize();
     }
 }
