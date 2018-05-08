@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Material.meta
 guid: f63e04033342e2943837194695f7dcb3
 folderAsset: yes
 timeCreated: 1525655755
+=======
+guid: b3d93256ccc798f43bfc1eff827d7a45
+folderAsset: yes
+timeCreated: 1525654419
+>>>>>>> Suzuki:Assets/suzuki/Material.meta
 licenseType: Free
 DefaultImporter:
   externalObjects: {}

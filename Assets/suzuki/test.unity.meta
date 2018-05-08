@@ -1,4 +1,5 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Script.meta
 <<<<<<< HEAD
 guid: e0b30a65150d51d42b3d4df815f69905
 folderAsset: yes
@@ -8,6 +9,10 @@ guid: a18210c825a1ff542a74510ce4bced21
 folderAsset: yes
 timeCreated: 1524203881
 >>>>>>> aa596a9fe14d5b0157feaf4c2acd47b20e00affc
+=======
+guid: 6013ca8ccdc83284e9bab34f96d13f4c
+timeCreated: 1524203898
+>>>>>>> Suzuki:Assets/suzuki/test.unity.meta
 licenseType: Free
 DefaultImporter:
   externalObjects: {}
