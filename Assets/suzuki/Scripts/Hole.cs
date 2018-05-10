@@ -128,6 +128,8 @@ public class Hole : MonoBehaviour
 
     IEnumerator Chain(float f)
     {
+        infection = true;
+        hp = 0;
         yield return new WaitForSeconds(f);
 
         //感染を可視化(仮)
