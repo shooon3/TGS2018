@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 33211459266826806}
   - component: {fileID: 23762930975985304}
   - component: {fileID: 195580785277917626}
-  - component: {fileID: 114028541874292254}
   - component: {fileID: 54020026109413486}
   - component: {fileID: 135636351708485720}
+  - component: {fileID: 114414779440746780}
   m_Layer: 0
   m_Name: MinionPre
   m_TagString: Player
@@ -101,7 +101,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114028541874292254
+--- !u!114 &114414779440746780
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -109,10 +109,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1556728868120442}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47e110370eab4b44697f58278c774b9f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5553ca7a8a748a54bb7811c62c69c639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nearHole: {fileID: 0}
 --- !u!135 &135636351708485720
 SphereCollider:
   m_ObjectHideFlags: 1
