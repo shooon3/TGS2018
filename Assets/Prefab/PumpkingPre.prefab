@@ -96,5 +96,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ThrowingObject: {fileID: 1574450810251262, guid: 3175ac93e4b6bb348b2cfc2012d33764,
     type: 2}
-  minionCreate: {fileID: 0}
-  ThrowingAngle: 30
+  ThrowingAngle: 20
