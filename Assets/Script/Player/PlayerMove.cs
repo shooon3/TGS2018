@@ -55,7 +55,7 @@ public class PlayerMove : MonoBehaviour {
             childObj.SetActive(true);
         }
         //押していない間は非表示
-        else if (Input.GetButtonUp("Fire1")) childObj.SetActive(false);
+        else if (Input.GetButton("Fire1") == false) childObj.SetActive(false);
     }
 
     /// <summary>
