@@ -28,7 +28,7 @@ public class MinionCreate : MonoBehaviour {
     public GameObject massParentPre;
 
     [Header("パンプキング")]
-    public PumpkinBom pumpkinBom;
+    public ThrowBom throwBom;
 
     //-------------------------------------
     // private
@@ -191,7 +191,7 @@ public class MinionCreate : MonoBehaviour {
             minionMar = parentObj.GetComponent<MinionManager>();
 
             //パンプキングからパンプ菌を発射
-            pumpkinBom.ThrowingBall(createPos);
+            throwBom.ThrowingBall(createPos);
 
             createMinionFlg = false;
         }
@@ -217,6 +217,9 @@ public class MinionCreate : MonoBehaviour {
         FlickInitialize();
     }
 
+    /// <summary>
+    /// パンプ菌が全部消えたら、制御していた親オブジェクトも消える
+    /// </summary>
     void MinionDestroy()
     {
         if (createMinionFlg == false || parentObj == null) return;

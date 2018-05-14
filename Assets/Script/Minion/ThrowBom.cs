@@ -2,20 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PumpkinBom : MonoBehaviour {
+public class ThrowBom : MonoBehaviour {
 
 
     [Header("射出するオブジェクトをここに割り当てる")]
     public GameObject ThrowingObject;
 
-    //[Header("Player")]
-    //public MinionCreate minionCreate;
-
     [Header("射出する角度"), Range(0F, 90F)]
     public float ThrowingAngle;
-
-    //// 標的の座標
-    //Vector3 targetPosition;
 
     void Start()
     {
@@ -24,16 +18,7 @@ public class PumpkinBom : MonoBehaviour {
 
     void Update()
     {
-        //// 標的の座標
-        //targetPosition = minionCreate.CreatePos;
 
-        //Debug.Log(targetPosition);
-
-        //if (Input.GetButtonUp("Fire1"))
-        //{
-        //    // マウス左クリックでボールを射出する
-        //    ThrowingBall();
-        //}
     }
 
     /// <summary>
