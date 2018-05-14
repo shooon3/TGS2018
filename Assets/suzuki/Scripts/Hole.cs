@@ -75,7 +75,7 @@ public class Hole : MonoBehaviour
     /// <param name="collider"></param>
     void OnTriggerStay(Collider collider)
     {
-        if (!infection && collider.tag == "Player") //パンプ菌
+        if (!infection && collider.tag == "Minion") //パンプ菌
         {
             if (!invincible && hp > 0)
             {
