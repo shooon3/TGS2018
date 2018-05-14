@@ -2,16 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SerchHoles : MonoBehaviour
+public class SerchNearObj : MonoBehaviour
 {
-    [SerializeField, Header("穴")]
-    private GameObject nearHole;
-
     // Use this for initialization
     void Start()
     {
-        //プレイヤータグとホールタグを探す
-        nearHole = serchTag(transform.position, "Hole");
+
     }
 
     // Update is called once per frame

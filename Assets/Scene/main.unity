@@ -1336,6 +1336,7 @@ GameObject:
   - component: {fileID: 881540601}
   - component: {fileID: 881540600}
   - component: {fileID: 881540606}
+  - component: {fileID: 881540607}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -1455,6 +1456,17 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &881540607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 881540599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47e110370eab4b44697f58278c774b9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &934026871
 GameObject:
   m_ObjectHideFlags: 0
@@ -1858,7 +1870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 1000
+  MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
   invincibleTime: 0.5
@@ -1992,7 +2004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 1000
+  MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
   invincibleTime: 0.5
@@ -2169,7 +2181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 1000
+  MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
   invincibleTime: 0.5

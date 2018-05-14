@@ -5,7 +5,10 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    public GameObject target;
+    GameObject nearObj;
+
+    SerchNearObj serchNearObj;
+
     NavMeshAgent agent;
 
     private Transform MinionPre;
@@ -14,11 +17,15 @@ public class EnemyAI : MonoBehaviour
     {
         // Navigationで追尾
         agent = GetComponent<NavMeshAgent>();
+
+        serchNearObj = GetComponent<SerchNearObj>();
+
+        nearObj = serchNearObj.serchTag(transform.position,"Minion");
     }
 
     private void Update()
     {
         // Playerの座標に移動
-        agent.destination = target.transform.position;
+        agent.destination = nearObj.transform.position;
     }
 }

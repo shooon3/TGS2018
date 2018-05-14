@@ -8,7 +8,7 @@ public class PumpkinMove : MonoBehaviour {
     NavMeshAgent agent;
 
     //SerchHolesスクリプトが取得した位置を取得するための変数
-    SerchHoles serchHoles;
+    SerchNearObj serchNearObj;
 
     //近い穴の位置を格納する変数
     GameObject nerHole;
@@ -22,13 +22,13 @@ public class PumpkinMove : MonoBehaviour {
         agent = GetComponent<NavMeshAgent>();
 
         //SerchHolesスクリプトを取得
-        serchHoles = gameObject.GetComponentInParent<SerchHoles>();
+        serchNearObj = gameObject.GetComponentInParent<SerchNearObj>();
 
         //親のオブジェクトの位置を取得
         parentPos = transform.parent.transform.position;
 
         //親のオブジェクトとHoleタグを探す
-        nerHole = serchHoles.serchTag(parentPos, "Hole");
+        nerHole = serchNearObj.serchTag(parentPos, "Hole");
     }
 	
 	// Update is called once per frame

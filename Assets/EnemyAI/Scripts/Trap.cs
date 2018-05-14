@@ -8,7 +8,7 @@ public class Trap : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Minion"))
         {
             Enemy.SetActive(true);
 
