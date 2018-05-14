@@ -8,7 +8,7 @@ public class EnemyAI : MonoBehaviour
     public GameObject target;
     NavMeshAgent agent;
 
-    private Transform Player;
+    private Transform MinionPre;
 
     private void Start()
     {
