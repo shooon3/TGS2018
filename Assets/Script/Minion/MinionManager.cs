@@ -14,8 +14,8 @@ public class MinionManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+
+    }
 
     void OnTriggerEnter(Collider col)
     {
@@ -25,4 +25,5 @@ public class MinionManager : MonoBehaviour {
 
         CreateFlg = true;
     }
+
 }

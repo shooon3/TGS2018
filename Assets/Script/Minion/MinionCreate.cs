@@ -80,6 +80,8 @@ public class MinionCreate : MonoBehaviour {
             createMinionFlg = true;
             minionMar.CreateFlg = false;
         }
+
+        MinionDestroy();
     }
 
     /// <summary>
@@ -213,5 +215,12 @@ public class MinionCreate : MonoBehaviour {
         }
 
         FlickInitialize();
+    }
+
+    void MinionDestroy()
+    {
+        if (createMinionFlg == false || parentObj == null) return;
+
+        if (parentObj.transform.childCount <= 0) Destroy(parentObj);
     }
 }
