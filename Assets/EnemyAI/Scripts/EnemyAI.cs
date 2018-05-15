@@ -25,7 +25,10 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        // Playerの座標に移動
-        agent.destination = nearObj.transform.position;
+        if (nearObj != null)
+        {
+            // Playerの座標に移動
+            agent.destination = nearObj.transform.position;
+        }
     }
 }

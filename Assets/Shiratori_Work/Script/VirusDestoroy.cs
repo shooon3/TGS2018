@@ -21,10 +21,10 @@ public class VirusDestoroy : MonoBehaviour {
     void OnTriggerStay(Collider other)
     {
         //プレイヤータグを検知
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Minion")
         {
             //パンプ菌を削除
-            Destroy(other.gameObject, dethTime);
+            Destroy(other.transform.parent.gameObject, dethTime);
         }
     }
 }
