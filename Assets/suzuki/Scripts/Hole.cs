@@ -6,8 +6,8 @@ public class Hole : MonoBehaviour
 {
     [SerializeField]
     bool invincible;        //無敵
-    [SerializeField]
-    bool infection;         //感染
+    //[SerializeField]
+    //bool infection;         //感染
     [SerializeField]
     int hp;
     int MaxHp;
@@ -22,14 +22,17 @@ public class Hole : MonoBehaviour
 
     HoleManager manager;    //マネジメントスクリプト
 
+    //感染
+    public bool Infection { get; private set; }
+
 	void Start ()
     {
         //親ブジェクトのHoleManagerを取得
-        manager = transform.root.GetComponent<HoleManager>();
+        manager = transform.parent.GetComponent<HoleManager>();
 
         //初期値
         invincible = false;
-        infection = false;
+        Infection = false;
         MaxHp = manager.MaxHP;
         hp = MaxHp;
         decreaseHP = manager.DecreaseHP;
@@ -75,7 +78,7 @@ public class Hole : MonoBehaviour
     /// <param name="collider"></param>
     void OnTriggerStay(Collider collider)
     {
-        if (!infection && collider.tag == "Minion") //パンプ菌
+        if (!Infection && collider.tag == "Minion") //パンプ菌
         {
             if (!invincible && hp > 0)
             {
@@ -97,7 +100,7 @@ public class Hole : MonoBehaviour
                 }
             }
         }
-        else if (infection && collider.tag == "Enemy")  //敵
+        else if (Infection && collider.tag == "Enemy")  //敵
         {
             if (!invincible && hp < MaxHp)
             {
@@ -131,7 +134,7 @@ public class Hole : MonoBehaviour
         //HoleManagerのflashTime秒だけ色を変える
         //fは時差
 
-        if (!infection)
+        if (!Infection)
         {
             yield return new WaitForSeconds(f);
             gameObject.GetComponent<Renderer>().material = nextColor;
@@ -168,9 +171,9 @@ public class Hole : MonoBehaviour
     {
         //fは時差
 
-        if (!infection)
+        if (!Infection)
         {
-            infection = true;
+            Infection = true;
             hp = 0;
             yield return new WaitForSeconds(f);
 
@@ -179,7 +182,7 @@ public class Hole : MonoBehaviour
         }
         else
         {
-            infection = false;
+            Infection = false;
             hp = MaxHp;
             yield return new WaitForSeconds(f);
 
