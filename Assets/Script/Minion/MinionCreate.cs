@@ -28,7 +28,7 @@ public class MinionCreate : MonoBehaviour {
     public GameObject massParentPre;
 
     [Header("パンプキング")]
-    public PumpkinBom pumpkinBom;
+    public ThrowBom throwBom;
 
     //-------------------------------------
     // private
@@ -37,19 +37,21 @@ public class MinionCreate : MonoBehaviour {
     List<GameObject> pumpkinSp = new List<GameObject>(); //パンプキンImage
 
     GameObject pumpkinParent; //吹き出し(各パンプキンの親)オブジェクト
+    GameObject parentObj;
+
+    MinionManager minionMar;
 
     float touchNowPosX; //現在のタッチポジション
     float startFlickX; //タッチした直後のポジション(タッチ直後にフリック判定にならないようにするための除外用変数)
     float memoryPos; //1フレーム前の位置を記憶する
 
     int flickCount; //フリックした回数
-    int createCount = 0; //パンプキンを出す数
+    int displayCount; //パンプキンを出す数
+
+    bool createMinionFlg = true;
 
     FlickState flickState; //フリックされた方向
     FlickState nextFlickState; //次にフリックする方向
-
-    Ray ray;
-    RaycastHit hit;
 
     // Use this for initialization
     void Start () {
@@ -67,12 +69,37 @@ public class MinionCreate : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        FlickInitialize();
         GetTouchPos();
         Flick();
         DisplayPampking();
         CreatePos();
 
+        if (minionMar != null && minionMar.CreateFlg)
+        {
+            MinionsCreate(parentObj);
+            createMinionFlg = true;
+            minionMar.CreateFlg = false;
+        }
+    }
+
+    /// <summary>
+    /// 初期化
+    /// </summary>
+    void FlickInitialize()
+    {
+        memoryPos = touchNowPosX;
+        startFlickX = Input.mousePosition.x;
+
+        flickCount = 0;
+        displayCount = 0;
+
+        flickState = FlickState.Filst;
+        nextFlickState = FlickState.Filst;
+
+        foreach (Transform obj in pumpkinParent.transform)
+        {
+            obj.gameObject.SetActive(false);
+        }
     }
 
     /// <summary>
@@ -86,41 +113,6 @@ public class MinionCreate : MonoBehaviour {
         {
             FlickSide();
         }
-    }
-
-    /// <summary>
-    /// パンプキンを表示する
-    /// </summary>
-    /// <param name="count">表示するパンプキンの数</param>
-    void DisplayPampking()
-    {
-        if (createCount == bafferCount.Length || flickCount != bafferCount[createCount]) return;
-
-        pumpkinSp[createCount].SetActive(true);
-        createCount++;
-    }
-
-    /// <summary>
-    /// 初期化
-    /// </summary>
-    void FlickInitialize()
-    {
-        if (Input.GetButtonDown("Fire1") == false) return;
-
-        memoryPos = touchNowPosX;
-        startFlickX = Input.mousePosition.x;
-
-        flickCount = 0;
-        createCount = 0;
-
-        flickState = FlickState.Filst;
-        nextFlickState = FlickState.Filst;
-
-        foreach(Transform obj in pumpkinParent.transform)
-        {
-            obj.gameObject.SetActive(false);
-        }
-
     }
 
     /// <summary>
@@ -163,29 +155,43 @@ public class MinionCreate : MonoBehaviour {
     }
 
     /// <summary>
+    /// パンプキンを表示する
+    /// </summary>
+    /// <param name="count">表示するパンプキンの数</param>
+    void DisplayPampking()
+    {
+        if (displayCount == bafferCount.Length || flickCount != bafferCount[displayCount]) return;
+
+        pumpkinSp[displayCount].SetActive(true);
+        displayCount++;
+    }
+
+    /// <summary>
     /// パンプ菌を生成する場所を取得
     /// </summary>
     void CreatePos()
     {
+        if (createMinionFlg == false) return;
+
         if (Input.GetButtonUp("Fire1"))
         {
             //rayの生成
-            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            hit = new RaycastHit();
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit = new RaycastHit();
 
             //rayと衝突していなかったら以降の処理をしない
             if (Physics.Raycast(ray, out hit) == false) return;
 
             Vector3 createPos = new Vector3(hit.point.x, 0, hit.point.z);
 
-            GameObject parentObj = Instantiate(massParentPre, createPos, Quaternion.identity);
+            parentObj = Instantiate(massParentPre, createPos, Quaternion.identity);
 
-            MinionManager minionMar = parentObj.GetComponent<MinionManager>();
+            minionMar = parentObj.GetComponent<MinionManager>();
 
             //パンプキングからパンプ菌を発射
-            pumpkinBom.ThrowingBall(createPos);
+            throwBom.ThrowingBall(createPos);
 
-            MinionsCreate(parentObj);
+            createMinionFlg = false;
         }
     }
 
@@ -195,7 +201,7 @@ public class MinionCreate : MonoBehaviour {
     /// <param name="parentObj"></param>
     void MinionsCreate(GameObject parentObj)
     {
-        for (int i = 0; i < createCount + 1; i++)
+        for (int i = 0; i < displayCount + 1; i++)
         {
             Vector3 position = parentObj.transform.position;
             Vector2 size = new Vector2(4.0f, 4.0f);
@@ -205,5 +211,7 @@ public class MinionCreate : MonoBehaviour {
 
             Instantiate(pumpkinPre, new Vector3(x, 0, z), Quaternion.identity, parentObj.transform);
         }
+
+        FlickInitialize();
     }
 }

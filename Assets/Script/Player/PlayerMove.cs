@@ -25,8 +25,6 @@ public class PlayerMove : MonoBehaviour {
    [Header("移動スピードの調整"), Range(1, 20)]
     float speed;
 
-
-
     // Use this for initialization
     void Start () {
         //hit = new RaycastHit();
@@ -57,7 +55,7 @@ public class PlayerMove : MonoBehaviour {
             childObj.SetActive(true);
         }
         //押していない間は非表示
-        else if (Input.GetButtonUp("Fire1")) childObj.SetActive(false);
+        else if (Input.GetButton("Fire1") == false) childObj.SetActive(false);
     }
 
     /// <summary>
@@ -91,5 +89,18 @@ public class PlayerMove : MonoBehaviour {
         Vector3 touchWorldPosition = gameCamera.ScreenToWorldPoint(touchScreenPosition);
         
         transform.position = touchWorldPosition;
+    }
+
+    bool Interver()
+    {
+        int count = 0;
+
+        while(count > 1.0f)
+        {
+            count++;
+        }
+
+        if (count <= 1.0f) return false;
+        else return true;
     }
 }

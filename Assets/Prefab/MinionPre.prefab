@@ -22,10 +22,12 @@ GameObject:
   - component: {fileID: 33211459266826806}
   - component: {fileID: 23762930975985304}
   - component: {fileID: 195580785277917626}
-  - component: {fileID: 114028541874292254}
+  - component: {fileID: 54020026109413486}
+  - component: {fileID: 135636351708485720}
+  - component: {fileID: 114414779440746780}
   m_Layer: 0
   m_Name: MinionPre
-  m_TagString: Untagged
+  m_TagString: Minion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,7 +86,22 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1556728868120442}
   m_Mesh: {fileID: 4300000, guid: 970333818516e2c4aaf03e51b4c32a55, type: 3}
---- !u!114 &114028541874292254
+--- !u!54 &54020026109413486
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1556728868120442}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &114414779440746780
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -92,10 +109,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1556728868120442}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47e110370eab4b44697f58278c774b9f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5553ca7a8a748a54bb7811c62c69c639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nearHole: {fileID: 0}
+--- !u!135 &135636351708485720
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1556728868120442}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.9644658
+  m_Center: {x: -0.0000001192093, y: 0, z: 0}
 --- !u!195 &195580785277917626
 NavMeshAgent:
   m_ObjectHideFlags: 1

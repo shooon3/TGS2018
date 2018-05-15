@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PumpkinBom : MonoBehaviour {
+public class ThrowBom : MonoBehaviour {
 
 
     [Header("射出するオブジェクトをここに割り当てる")]
