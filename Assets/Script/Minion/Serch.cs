@@ -2,26 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SerchHoles : MonoBehaviour
+public class Serch : MonoBehaviour
 {
-    [SerializeField, Header("穴")]
-    private GameObject nearHole;
 
     // Use this for initialization
     void Start()
     {
-        //プレイヤータグとホールタグを探す
-        nearHole = serchTag(transform.position, "Hole");
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
     }
 
+    //指定されたタグの中で最も近いタグを取得
     public GameObject serchTag(Vector3 nowPos, string tagName)
     {
-        float posDis = 0;  //一時変数
+        float posDis = 0;  //距離用一時変数
         float nearDis = 0; //最も近いオブジェクトの距離
 
         GameObject targetObj = null;

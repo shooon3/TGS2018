@@ -425,6 +425,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bafferCount: 0a0000000f000000140000001e0000002d0000003c00000046000000500000005f000000
+  pumpkinPre: {fileID: 0}
+  massParentPre: {fileID: 0}
+  pumpkinBom: {fileID: 0}
 --- !u!114 &114306866384890872
 MonoBehaviour:
   m_ObjectHideFlags: 1
