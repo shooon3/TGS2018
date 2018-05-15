@@ -28,7 +28,7 @@ public class MinionCreate : MonoBehaviour {
     public GameObject massParentPre;
 
     [Header("パンプキング")]
-    public PumpkinBom pumpkinBom;
+    public ThrowBom throwBom;
 
     //-------------------------------------
     // private
@@ -189,7 +189,7 @@ public class MinionCreate : MonoBehaviour {
             minionMar = parentObj.GetComponent<MinionManager>();
 
             //パンプキングからパンプ菌を発射
-            pumpkinBom.ThrowingBall(createPos);
+            throwBom.ThrowingBall(createPos);
 
             createMinionFlg = false;
         }

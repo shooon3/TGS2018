@@ -6,7 +6,7 @@ public class HoleManager : MonoBehaviour
 {
     Hole[] hole;
     [SerializeField]
-    int hp = 1000;
+    int MaxHp = 1000;
     [SerializeField]
     int decreaseHP = 50;            //ダメージ数
     [SerializeField]
@@ -14,17 +14,17 @@ public class HoleManager : MonoBehaviour
     [SerializeField]
     float invincibleTime = 0.5f;    //無敵時間
     [SerializeField]
-    float TimeLag = 0.2f;
+    float TimeLag = 0.2f;           //隣との時間差
     [SerializeField]
-    float radius = 0.1f;
+    float radius = 0.1f;            //判定範囲の大きさ
 
     [SerializeField]
     Material nextColor;     //変更色(仮)
 
-    public int HP
+    public int MaxHP
     {
-        get { return hp; }
-        private set { hp = value; }
+        get { return MaxHp;}
+        private set { MaxHp = value; }
     }
 
     public int DecreaseHP
@@ -62,6 +62,11 @@ public class HoleManager : MonoBehaviour
         }
 	}
 
+    /// <summary>
+    /// 演出の時間差を計算
+    /// </summary>
+    /// <param name="obj_hole"></param>
+    /// <param name="hp"></param>
     public void Unification(Hole obj_hole, int hp)
     {
         int num = 0;
@@ -80,7 +85,7 @@ public class HoleManager : MonoBehaviour
         for (int i = num; i < hole.Length; i++)
         {
             //時間差を渡す(右方向)
-            if (hp > 0)
+            if (hp > 0 && MaxHp > hp)
             {
                 hole[i].Flash(f);
             }
@@ -94,7 +99,7 @@ public class HoleManager : MonoBehaviour
         for (int i = num - 1; i >= 0; i--)
         {
             //時間差を渡す(左方向)
-            if (hp > 0)
+            if (hp > 0 && MaxHp > hp)
             {
                 hole[i].Flash(f);
             }
