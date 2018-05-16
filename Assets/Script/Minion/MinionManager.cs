@@ -5,16 +5,29 @@ using UnityEngine;
 public class MinionManager : MonoBehaviour {
 
     public bool CreateFlg { get; set; }
-    
+
+    GameObject parentCollider;
+
+    int childCount;
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+
+        parentCollider = transform.GetChild(0).gameObject;
+
+        childCount = transform.childCount;
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
 		
+        //子オブジェクトが増えたら
+        if(childCount < transform.childCount)
+        {
+            parentCollider.transform.parent = transform.GetChild(1);
+        }
+
 	}
 
     void OnTriggerEnter(Collider col)

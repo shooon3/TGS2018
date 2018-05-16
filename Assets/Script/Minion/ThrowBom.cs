@@ -24,16 +24,7 @@ public class ThrowBom : MonoBehaviour {
 
     void Update()
     {
-        //// 標的の座標
-        //targetPosition = minionCreate.CreatePos;
 
-        //Debug.Log(targetPosition);
-
-        //if (Input.GetButtonUp("Fire1"))
-        //{
-        //    // マウス左クリックでボールを射出する
-        //    ThrowingBall();
-        //}
     }
 
     /// <summary>

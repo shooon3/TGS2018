@@ -19,8 +19,7 @@ public class EnemyAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
 
         serchNearObj = GetComponent<SerchNearObj>();
-
-        nearObj = serchNearObj.serchTag(transform.position,"Minion");
+        if(serchNearObj != null) nearObj = serchNearObj.serchTag(transform.position,"Minion");
     }
 
     private void Update()

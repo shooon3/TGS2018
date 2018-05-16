@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class VirusDestoroy : MonoBehaviour {
 
-    [SerializeField, Header("消滅するまでの時間")]
-    private float dethTime;
+    Hole hole;
 
 	// Use this for initialization
 	void Start () {
-        
-	}
+
+    }
 
     // Update is called once per frame
     void Update()
@@ -20,11 +19,23 @@ public class VirusDestoroy : MonoBehaviour {
 
     void OnTriggerStay(Collider other)
     {
-        //プレイヤータグを検知
-        if (other.gameObject.tag == "Minion")
+        Debug.Log("ok");
+        hole = other.GetComponent<Hole>();
+
+
+        if (hole != null)
         {
-            //パンプ菌を削除
-            Destroy(other.transform.parent.gameObject, dethTime);
+            if (isDestroy())
+            {
+                Destroy(transform.root.gameObject);
+            }
         }
+    }
+
+    bool isDestroy()
+    {
+        PumpkinMove destroy = transform.root.GetChild(0).GetComponent<PumpkinMove>();
+        if (hole.Infection == true && destroy != null) return true;
+        return false;
     }
 }
