@@ -5,6 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/Shiratori_Work/Scene/main.unity
+    guid: 6761dd2d5fecb2e4eb165ed19083749c
   - enabled: 1
     path: Assets/Scene/main.unity
-    guid: 6761dd2d5fecb2e4eb165ed19083749c
+    guid: eced2e96f491f9b439ad19618dff8c0e

@@ -19,13 +19,15 @@ public class EnemyAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
 
         serchNearObj = GetComponent<SerchNearObj>();
-
-        nearObj = serchNearObj.serchTag(transform.position,"Minion");
+        if(serchNearObj != null) nearObj = serchNearObj.serchTag(transform.position,"Minion");
     }
 
     private void Update()
     {
-        // Playerの座標に移動
-        agent.destination = nearObj.transform.position;
+        if (nearObj != null)
+        {
+            // Playerの座標に移動
+            agent.destination = nearObj.transform.position;
+        }
     }
 }
