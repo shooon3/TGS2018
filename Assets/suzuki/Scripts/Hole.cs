@@ -72,13 +72,64 @@ public class Hole : MonoBehaviour
         StartCoroutine(Chain(f));
     }
 
+    ///// <summary>
+    ///// 接触判定
+    ///// </summary>
+    ///// <param name="collider"></param>
+    //void OnTriggerStay(Collider collider)
+    //{
+    //    if (!Infection && collider.tag == "Minion") //パンプ菌
+    //    {
+    //        if (!invincible && hp > 0)
+    //        {
+    //            //耐久値減少
+    //            hp -= decreaseHP;
+
+    //            if (hp <= 0)//感染
+    //            {
+    //                //感染をHoleManagerに伝える
+    //                manager.Unification(gameObject.GetComponent<Hole>(), hp);
+    //            }
+    //            else//通常
+    //            {
+    //                //無敵時間
+    //                StartCoroutine(InvincibleTime());
+
+    //                //被ダメージをHoleManagerに伝える
+    //                manager.Unification(gameObject.GetComponent<Hole>(), hp);
+    //            }
+    //        }
+    //    }
+    //    else if (Infection && collider.tag == "Enemy")  //敵
+    //    {
+    //        if (!invincible && hp < MaxHp)
+    //        {
+    //            //耐久値上昇
+    //            hp += decreaseHP;
+
+    //            if (hp >= MaxHp)//感染解除
+    //            {
+    //                //除染完了をHoleManagerに伝える
+    //                manager.Unification(gameObject.GetComponent<Hole>(), hp);
+    //            }
+    //            else//通常
+    //            {
+    //                //無敵時間
+    //                StartCoroutine(InvincibleTime());
+
+    //                //回復をHoleManagerに伝える
+    //                manager.Unification(gameObject.GetComponent<Hole>(), hp);
+    //            }
+    //        }
+    //    }
+    //}
+
     /// <summary>
-    /// 接触判定
+    /// 感染
     /// </summary>
-    /// <param name="collider"></param>
-    void OnTriggerStay(Collider collider)
+    public void Infectious()
     {
-        if (!Infection && collider.tag == "Minion") //パンプ菌
+        if (!Infection)
         {
             if (!invincible && hp > 0)
             {
@@ -100,7 +151,14 @@ public class Hole : MonoBehaviour
                 }
             }
         }
-        else if (Infection && collider.tag == "Enemy")  //敵
+    }
+
+    /// <summary>
+    /// 除染
+    /// </summary>
+    public void Decontamination()
+    {
+        if (Infection)
         {
             if (!invincible && hp < MaxHp)
             {
