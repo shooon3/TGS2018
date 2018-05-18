@@ -38,4 +38,15 @@ public class SerchNearObj : MonoBehaviour
         }
         return targetObj;
     }
+
+    /// <summary>
+    /// 探したオブジェクトが１体でも残っているかどうか
+    /// </summary>
+    /// <param name="tagName"></param>
+    /// <returns></returns>
+    public bool IsTargetAlive(string tagName)
+    {
+        if (GameObject.FindGameObjectWithTag(tagName) == null) return false; 
+        return true;
+    }
 }

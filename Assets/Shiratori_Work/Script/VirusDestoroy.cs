@@ -19,9 +19,7 @@ public class VirusDestoroy : MonoBehaviour {
 
     void OnTriggerStay(Collider other)
     {
-        Debug.Log("ok");
         hole = other.GetComponent<Hole>();
-
 
         if (hole != null)
         {

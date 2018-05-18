@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Trap : MonoBehaviour
 {
-    public GameObject enemy;
+    public GameObject enemyPre;
 
     public Transform spawnFarmPos;
 
@@ -17,7 +17,10 @@ public class Trap : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Minion"))
         {
-            Instantiate(enemy, spawnFarmPos.position, Quaternion.identity);
+            GameObject enemy = Instantiate(enemyPre, spawnFarmPos.position, Quaternion.identity);
+
+            enemy.GetComponent<BaseVegetable>().NearTarget = other.gameObject;
+            
         }
     }
 }

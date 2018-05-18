@@ -188,10 +188,10 @@ GameObject:
   m_Component:
   - component: {fileID: 364308172}
   - component: {fileID: 364308176}
-  - component: {fileID: 364308175}
   - component: {fileID: 364308174}
   - component: {fileID: 364308173}
   - component: {fileID: 364308178}
+  - component: {fileID: 364308175}
   m_Layer: 0
   m_Name: Hole
   m_TagString: Hole
@@ -206,8 +206,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 364308171}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.6, y: 0.6, z: 10}
-  m_LocalScale: {x: 4, y: 0.1, z: 4}
+  m_LocalPosition: {x: 21.7, y: 0.6, z: 10}
+  m_LocalScale: {x: 6.0382957, y: 0.15095745, z: 6.038298}
   m_Children: []
   m_Father: {fileID: 1771126413}
   m_RootOrder: 2
@@ -225,7 +225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  col: {fileID: 0}
+  nextColor: {fileID: 0}
 --- !u!23 &364308174
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -260,8 +260,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &364308175
-CapsuleCollider:
+--- !u!135 &364308175
+SphereCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -269,10 +269,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.1
-  m_Height: 32
-  m_Direction: 1
-  m_Center: {x: 0, y: 13, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
 --- !u!33 &364308176
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -291,7 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db5b5210bf708f479def78c934dfc27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 1565356066768350, guid: cb50cfc3b8853fc429c6553a16fda072, type: 2}
+  enemyPre: {fileID: 1362501248493902, guid: 22ab9607d85656545bddbd61bb95ffea, type: 2}
   spawnFarmPos: {fileID: 1255289389}
 --- !u!1 &411747120
 GameObject:
@@ -375,10 +374,10 @@ GameObject:
   m_Component:
   - component: {fileID: 430954224}
   - component: {fileID: 430954228}
-  - component: {fileID: 430954227}
   - component: {fileID: 430954226}
   - component: {fileID: 430954225}
   - component: {fileID: 430954230}
+  - component: {fileID: 430954227}
   m_Layer: 0
   m_Name: Hole
   m_TagString: Hole
@@ -393,8 +392,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 430954223}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.4, y: 0.6, z: 0}
-  m_LocalScale: {x: 4, y: 0.1, z: 4}
+  m_LocalPosition: {x: -20, y: 0.6, z: 0}
+  m_LocalScale: {x: 6.0382957, y: 0.15095745, z: 6.038298}
   m_Children: []
   m_Father: {fileID: 1891682802}
   m_RootOrder: 0
@@ -412,7 +411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  col: {fileID: 0}
+  nextColor: {fileID: 0}
 --- !u!23 &430954226
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -447,8 +446,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &430954227
-CapsuleCollider:
+--- !u!135 &430954227
+SphereCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -456,10 +455,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.1
-  m_Height: 32
-  m_Direction: 1
-  m_Center: {x: 0, y: 13, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
 --- !u!33 &430954228
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -478,7 +476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db5b5210bf708f479def78c934dfc27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 1362501248493902, guid: 22ab9607d85656545bddbd61bb95ffea, type: 2}
+  enemyPre: {fileID: 1362501248493902, guid: 22ab9607d85656545bddbd61bb95ffea, type: 2}
   spawnFarmPos: {fileID: 1867910589}
 --- !u!1 &523005692
 GameObject:
@@ -489,10 +487,10 @@ GameObject:
   m_Component:
   - component: {fileID: 523005693}
   - component: {fileID: 523005697}
-  - component: {fileID: 523005696}
   - component: {fileID: 523005695}
   - component: {fileID: 523005694}
   - component: {fileID: 523005699}
+  - component: {fileID: 523005696}
   m_Layer: 0
   m_Name: Hole
   m_TagString: Hole
@@ -507,8 +505,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 523005692}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.5, y: 0.6, z: 0}
-  m_LocalScale: {x: 4, y: 0.1, z: 4}
+  m_LocalPosition: {x: 21.6, y: 0.6, z: 0}
+  m_LocalScale: {x: 6.0382957, y: 0.15095745, z: 6.038298}
   m_Children: []
   m_Father: {fileID: 1891682802}
   m_RootOrder: 2
@@ -526,7 +524,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  col: {fileID: 0}
+  nextColor: {fileID: 0}
 --- !u!23 &523005695
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -561,8 +559,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &523005696
-CapsuleCollider:
+--- !u!135 &523005696
+SphereCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -570,10 +568,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.1
-  m_Height: 32
-  m_Direction: 1
-  m_Center: {x: 0, y: 13, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
 --- !u!33 &523005697
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -592,7 +589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db5b5210bf708f479def78c934dfc27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 1362501248493902, guid: 22ab9607d85656545bddbd61bb95ffea, type: 2}
+  enemyPre: {fileID: 1362501248493902, guid: 22ab9607d85656545bddbd61bb95ffea, type: 2}
   spawnFarmPos: {fileID: 1867910589}
 --- !u!1 &537125657
 GameObject:
@@ -902,10 +899,10 @@ GameObject:
   m_Component:
   - component: {fileID: 757959992}
   - component: {fileID: 757959996}
-  - component: {fileID: 757959995}
   - component: {fileID: 757959994}
   - component: {fileID: 757959993}
   - component: {fileID: 757959998}
+  - component: {fileID: 757959995}
   m_Layer: 0
   m_Name: Hole
   m_TagString: Hole
@@ -920,8 +917,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 757959991}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.4, y: 0.6, z: 10}
-  m_LocalScale: {x: 4, y: 0.1, z: 4}
+  m_LocalPosition: {x: -20, y: 0.6, z: 10}
+  m_LocalScale: {x: 6.0382957, y: 0.15095745, z: 6.038298}
   m_Children: []
   m_Father: {fileID: 1771126413}
   m_RootOrder: 0
@@ -939,7 +936,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  col: {fileID: 0}
+  nextColor: {fileID: 0}
 --- !u!23 &757959994
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -974,8 +971,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &757959995
-CapsuleCollider:
+--- !u!135 &757959995
+SphereCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -983,10 +980,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.1
-  m_Height: 32
-  m_Direction: 1
-  m_Center: {x: 0, y: 13, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
 --- !u!33 &757959996
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1005,7 +1001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db5b5210bf708f479def78c934dfc27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 1565356066768350, guid: cb50cfc3b8853fc429c6553a16fda072, type: 2}
+  enemyPre: {fileID: 1362501248493902, guid: 22ab9607d85656545bddbd61bb95ffea, type: 2}
   spawnFarmPos: {fileID: 1255289389}
 --- !u!1 &1097635428
 GameObject:
@@ -1147,10 +1143,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1255289389}
   - component: {fileID: 1255289393}
-  - component: {fileID: 1255289392}
   - component: {fileID: 1255289391}
   - component: {fileID: 1255289390}
   - component: {fileID: 1255289395}
+  - component: {fileID: 1255289392}
   m_Layer: 0
   m_Name: Hole
   m_TagString: Hole
@@ -1166,7 +1162,7 @@ Transform:
   m_GameObject: {fileID: 1255289388}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.6, z: 10}
-  m_LocalScale: {x: 4, y: 0.1, z: 4}
+  m_LocalScale: {x: 6.0382957, y: 0.15095745, z: 6.038298}
   m_Children: []
   m_Father: {fileID: 1771126413}
   m_RootOrder: 1
@@ -1184,7 +1180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  col: {fileID: 0}
+  nextColor: {fileID: 0}
 --- !u!23 &1255289391
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1219,8 +1215,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &1255289392
-CapsuleCollider:
+--- !u!135 &1255289392
+SphereCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -1228,10 +1224,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.1
-  m_Height: 32
-  m_Direction: 1
-  m_Center: {x: 0, y: 13, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
 --- !u!33 &1255289393
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1250,7 +1245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db5b5210bf708f479def78c934dfc27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 1565356066768350, guid: cb50cfc3b8853fc429c6553a16fda072, type: 2}
+  enemyPre: {fileID: 1132124505041826, guid: cc921012361ab8f41996242e6f0dbdbf, type: 2}
   spawnFarmPos: {fileID: 757959992}
 --- !u!1 &1307144243
 GameObject:
@@ -1261,10 +1256,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1307144244}
   - component: {fileID: 1307144249}
-  - component: {fileID: 1307144248}
   - component: {fileID: 1307144247}
   - component: {fileID: 1307144246}
   - component: {fileID: 1307144245}
+  - component: {fileID: 1307144248}
   m_Layer: 0
   m_Name: Hole
   m_TagString: Hole
@@ -1280,7 +1275,7 @@ Transform:
   m_GameObject: {fileID: 1307144243}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.2, y: 0.6, z: 0}
-  m_LocalScale: {x: 4, y: 0.1, z: 4}
+  m_LocalScale: {x: 6.0382957, y: 0.15095745, z: 6.038298}
   m_Children: []
   m_Father: {fileID: 1195606344}
   m_RootOrder: 1
@@ -1296,7 +1291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db5b5210bf708f479def78c934dfc27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 1132124505041826, guid: cc921012361ab8f41996242e6f0dbdbf, type: 2}
+  enemyPre: {fileID: 1362501248493902, guid: 22ab9607d85656545bddbd61bb95ffea, type: 2}
   spawnFarmPos: {fileID: 1831414149}
 --- !u!114 &1307144246
 MonoBehaviour:
@@ -1311,7 +1306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  col: {fileID: 0}
+  nextColor: {fileID: 0}
 --- !u!23 &1307144247
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1346,8 +1341,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &1307144248
-CapsuleCollider:
+--- !u!135 &1307144248
+SphereCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -1355,10 +1350,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.1
-  m_Height: 32
-  m_Direction: 1
-  m_Center: {x: 0, y: 13, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
 --- !u!33 &1307144249
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1459,10 +1453,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1665871857}
   - component: {fileID: 1665871862}
-  - component: {fileID: 1665871861}
   - component: {fileID: 1665871860}
   - component: {fileID: 1665871859}
   - component: {fileID: 1665871858}
+  - component: {fileID: 1665871861}
   m_Layer: 0
   m_Name: Hole
   m_TagString: Hole
@@ -1477,8 +1471,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1665871856}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.5, y: 0.6, z: 0}
-  m_LocalScale: {x: 4, y: 0.1, z: 4}
+  m_LocalPosition: {x: 21.6, y: 0.6, z: 0}
+  m_LocalScale: {x: 6.0382957, y: 0.15095745, z: 6.038298}
   m_Children: []
   m_Father: {fileID: 1195606344}
   m_RootOrder: 2
@@ -1494,7 +1488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db5b5210bf708f479def78c934dfc27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 1132124505041826, guid: cc921012361ab8f41996242e6f0dbdbf, type: 2}
+  enemyPre: {fileID: 1362501248493902, guid: 22ab9607d85656545bddbd61bb95ffea, type: 2}
   spawnFarmPos: {fileID: 1307144244}
 --- !u!114 &1665871859
 MonoBehaviour:
@@ -1509,7 +1503,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  col: {fileID: 0}
+  nextColor: {fileID: 0}
 --- !u!23 &1665871860
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1544,8 +1538,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &1665871861
-CapsuleCollider:
+--- !u!135 &1665871861
+SphereCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -1553,10 +1547,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.1
-  m_Height: 32
-  m_Direction: 1
-  m_Center: {x: 0, y: 13, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
 --- !u!33 &1665871862
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1623,10 +1616,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1831414149}
   - component: {fileID: 1831414154}
-  - component: {fileID: 1831414153}
   - component: {fileID: 1831414152}
   - component: {fileID: 1831414151}
   - component: {fileID: 1831414150}
+  - component: {fileID: 1831414153}
   m_Layer: 0
   m_Name: Hole
   m_TagString: Hole
@@ -1641,8 +1634,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1831414148}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.4, y: 0.6, z: 0}
-  m_LocalScale: {x: 4, y: 0.1, z: 4}
+  m_LocalPosition: {x: -20, y: 0.6, z: 0}
+  m_LocalScale: {x: 6.0382957, y: 0.15095745, z: 6.038298}
   m_Children: []
   m_Father: {fileID: 1195606344}
   m_RootOrder: 0
@@ -1658,7 +1651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db5b5210bf708f479def78c934dfc27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 1132124505041826, guid: cc921012361ab8f41996242e6f0dbdbf, type: 2}
+  enemyPre: {fileID: 1362501248493902, guid: 22ab9607d85656545bddbd61bb95ffea, type: 2}
   spawnFarmPos: {fileID: 1307144244}
 --- !u!114 &1831414151
 MonoBehaviour:
@@ -1673,7 +1666,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  col: {fileID: 0}
+  nextColor: {fileID: 0}
 --- !u!23 &1831414152
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1708,8 +1701,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &1831414153
-CapsuleCollider:
+--- !u!135 &1831414153
+SphereCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -1717,10 +1710,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.1
-  m_Height: 32
-  m_Direction: 1
-  m_Center: {x: 0, y: 13, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
 --- !u!33 &1831414154
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1737,10 +1729,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1867910589}
   - component: {fileID: 1867910593}
-  - component: {fileID: 1867910592}
   - component: {fileID: 1867910591}
   - component: {fileID: 1867910590}
   - component: {fileID: 1867910595}
+  - component: {fileID: 1867910592}
   m_Layer: 0
   m_Name: Hole
   m_TagString: Hole
@@ -1756,7 +1748,7 @@ Transform:
   m_GameObject: {fileID: 1867910588}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.2, y: 0.6, z: 0}
-  m_LocalScale: {x: 4, y: 0.1, z: 4}
+  m_LocalScale: {x: 6.0382957, y: 0.15095745, z: 6.038298}
   m_Children: []
   m_Father: {fileID: 1891682802}
   m_RootOrder: 1
@@ -1774,7 +1766,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  col: {fileID: 0}
+  nextColor: {fileID: 0}
 --- !u!23 &1867910591
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1809,8 +1801,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &1867910592
-CapsuleCollider:
+--- !u!135 &1867910592
+SphereCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -1818,10 +1810,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.1
-  m_Height: 32
-  m_Direction: 1
-  m_Center: {x: 0, y: 13, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
 --- !u!33 &1867910593
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1840,7 +1831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db5b5210bf708f479def78c934dfc27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 1362501248493902, guid: 22ab9607d85656545bddbd61bb95ffea, type: 2}
+  enemyPre: {fileID: 1362501248493902, guid: 22ab9607d85656545bddbd61bb95ffea, type: 2}
   spawnFarmPos: {fileID: 430954224}
 --- !u!1 &1891682800
 GameObject:

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4061175283162540}
   - component: {fileID: 33427439534885182}
   - component: {fileID: 23901984195388436}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy_jagaimo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,13 +37,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4321563923479472}
   - component: {fileID: 54840421858508944}
-  - component: {fileID: 114597743400392740}
   - component: {fileID: 135056000499899472}
   - component: {fileID: 195589511756884038}
-  - component: {fileID: 114651304410219466}
-  m_Layer: 0
-  m_Name: Enemy_jagaimo
-  m_TagString: Untagged
+  - component: {fileID: 114804062583028030}
+  - component: {fileID: 114325187783539982}
+  m_Layer: 8
+  m_Name: Enemy_Potato
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 4809420655895732}
   - component: {fileID: 33488303156363566}
   - component: {fileID: 23369155842693104}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy_jagaimo (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 4408801809760094}
   - component: {fileID: 33875110171503198}
   - component: {fileID: 23131803129375888}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy_jagaimo (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 4017769173114176}
   - component: {fileID: 33703476457087152}
   - component: {fileID: 23467602110441400}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy_jagaimo (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -347,7 +347,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114597743400392740
+--- !u!114 &114325187783539982
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -355,10 +355,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1362501248493902}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7f85616bc283c04a8575e77c5b52bdd, type: 3}
+  m_Script: {fileID: 11500000, guid: a4ccb990a7c91e840a28e83b28bfe92c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114651304410219466
+  attackInterver: 5
+  status: {fileID: 11400000, guid: c2e2f89f7bdf52e45a3da16494eba64f, type: 2}
+--- !u!114 &114804062583028030
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -376,7 +378,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1362501248493902}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1.6

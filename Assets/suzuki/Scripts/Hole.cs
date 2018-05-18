@@ -16,7 +16,7 @@ public class Hole : MonoBehaviour
     float invincibleTime;   //無敵時間
 
     [SerializeField]
-    CapsuleCollider col;    //判定
+    //CapsuleCollider col;    //判定
     Material nextColor;     //変更色(仮)
     Material defaultColor;  //変更色(仮)
 
@@ -46,13 +46,13 @@ public class Hole : MonoBehaviour
     /// 判定範囲調整
     /// </summary>
     /// <param name="f"></param>
-    public void SetColider(float f)
-    {
-        col = GetComponent<CapsuleCollider>();
-        col.radius = f;
-        col.height = col.radius * 100 + 22;
-        col.center = new Vector3(0, 12 + col.radius * 10, 0);
-    }
+    //public void SetColider(float f)
+    //{
+    //    col = GetComponent<CapsuleCollider>();
+    //    col.radius = f;
+    //    col.height = col.radius * 100 + 22;
+    //    col.center = new Vector3(0, 12 + col.radius * 10, 0);
+    //}
 
     /// <summary>
     /// 被ダメージ・を可視化

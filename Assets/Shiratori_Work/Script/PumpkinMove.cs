@@ -11,7 +11,13 @@ public class PumpkinMove : MonoBehaviour {
     SerchNearObj serchNearObj;
 
     //近い穴の位置を格納する変数
-    GameObject nerHole;
+    GameObject nearHole;
+
+    //近い敵の位置を格納する変数
+    GameObject nearEnemy;
+
+    //移動するポイント
+    GameObject moveTarget;
 
     //親の位置を取得する変数
     Vector3 parentPos;
@@ -27,12 +33,37 @@ public class PumpkinMove : MonoBehaviour {
         //親のオブジェクトの位置を取得
         parentPos = transform.parent.transform.position;
 
-        //親のオブジェクトとHoleタグを探す
-        nerHole = serchNearObj.serchTag(parentPos, "Hole");
+        SerchMovePoint();
     }
-	
+
 	// Update is called once per frame
 	void Update () {
-        agent.destination = nerHole.transform.position;
+
+        agent.destination = moveTarget.transform.position;
+    }
+
+    /// <summary>
+    /// 移動する場所を決める
+    /// </summary>
+    void SerchMovePoint()
+    {
+        //親のオブジェクトとHoleタグを探す
+        nearHole = serchNearObj.serchTag(parentPos, "Hole");
+
+        nearEnemy = serchNearObj.serchTag(parentPos, "Enemy");
+
+        Vector3 nearHolePos = nearHole.transform.position;
+
+        if (nearEnemy != null)
+        {
+            Vector3 nearEnemyPos = nearEnemy.transform.position;
+
+            float holeDis = Vector3.Distance(transform.position, nearHolePos);
+            float enemyDis = Vector3.Distance(transform.position, nearEnemyPos);
+
+            if (holeDis <= enemyDis) moveTarget = nearHole;
+            else if (holeDis > enemyDis) moveTarget = nearEnemy;
+        }
+        else moveTarget = nearHole;
     }
 }

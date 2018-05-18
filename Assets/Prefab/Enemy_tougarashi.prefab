@@ -22,11 +22,11 @@ GameObject:
   - component: {fileID: 65343024853330802}
   - component: {fileID: 54758294177556948}
   - component: {fileID: 195750523167383880}
-  - component: {fileID: 114527256587558238}
-  - component: {fileID: 114143600152140976}
-  m_Layer: 0
+  - component: {fileID: 114301233131533692}
+  - component: {fileID: 114097585189525770}
+  m_Layer: 8
   m_Name: Enemy_tougarashi
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 4788955274162732}
   - component: {fileID: 33413317425542244}
   - component: {fileID: 23956985619736554}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy_tougarashi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +143,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.5, y: 5, z: 6.5}
   m_Center: {x: 0, y: -2, z: 0.44}
---- !u!114 &114143600152140976
+--- !u!114 &114097585189525770
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1132124505041826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4ccb990a7c91e840a28e83b28bfe92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackInterver: 5
+  status: {fileID: 11400000, guid: c2e2f89f7bdf52e45a3da16494eba64f, type: 2}
+--- !u!114 &114301233131533692
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -152,17 +165,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47e110370eab4b44697f58278c774b9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114527256587558238
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1132124505041826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7f85616bc283c04a8575e77c5b52bdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!195 &195750523167383880

@@ -58,7 +58,7 @@ public class HoleManager : MonoBehaviour
         for (int i = 0; i < hole.Length; i++)
         {
             hole[i] = transform.GetChild(i).GetComponent<Hole>();
-            hole[i].SetColider(radius);
+            //hole[i].SetColider(radius);
         }
 	}
 
