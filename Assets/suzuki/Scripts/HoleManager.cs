@@ -21,6 +21,10 @@ public class HoleManager : MonoBehaviour
     [SerializeField]
     Material nextColor;     //変更色(仮)
 
+    [SerializeField]
+    SpriteRenderer hatake;
+    int OverallHP;
+
     public int MaxHP
     {
         get { return MaxHp;}
@@ -53,6 +57,10 @@ public class HoleManager : MonoBehaviour
 
     void Start ()
     {
+        //初期値
+        OverallHP = MaxHp;
+        hatake.color = new Color(1, 1, 1, 0);
+
         //子オブジェクトの穴を取得
         hole = new Hole[transform.childCount];
         for (int i = 0; i < hole.Length; i++)
@@ -108,6 +116,29 @@ public class HoleManager : MonoBehaviour
                 hole[i].Invasion(f);
             }
             f += TimeLag;
+        }
+
+        if (!obj_hole.Infection)
+        {
+            //感染率を可視化
+            if (OverallHP > hp)
+            {
+                OverallHP = hp;
+                float overallHP = OverallHP;
+                f = 1 - overallHP / MaxHP;
+                hatake.color = new Color(1, 1, 1, f);
+            }
+        }
+        else
+        {
+            //除染率を可視化
+            if (OverallHP < hp)
+            {
+                OverallHP = hp;
+                float overallHP = OverallHP;
+                f = 1 - overallHP / MaxHP;
+                hatake.color = new Color(1, 1, 1, f);
+            }
         }
     }
 }
