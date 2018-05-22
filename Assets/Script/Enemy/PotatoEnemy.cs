@@ -39,7 +39,6 @@ public class PotatoEnemy : BaseVegetable {
 
         if(timer <= 0.0f)
         {
-            Debug.Log("ok");
             //target.AddDamage(NearTarget);
             timer = attackInterver;
         }

@@ -54,6 +54,7 @@ public class PumpkinMove : MonoBehaviour {
 
         Vector3 nearHolePos = nearHole.transform.position;
 
+        //近くに敵がいた場合は穴と敵を比べて、近いほうに行く
         if (nearEnemy != null)
         {
             Vector3 nearEnemyPos = nearEnemy.transform.position;
@@ -64,6 +65,7 @@ public class PumpkinMove : MonoBehaviour {
             if (holeDis <= enemyDis) moveTarget = nearHole;
             else if (holeDis > enemyDis) moveTarget = nearEnemy;
         }
+        //いない場合は穴に行く
         else moveTarget = nearHole;
     }
 }

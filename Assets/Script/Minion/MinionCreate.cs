@@ -48,7 +48,7 @@ public class MinionCreate : MonoBehaviour {
     int flickCount; //フリックした回数
     int displayCount; //パンプキンを出す数
 
-    bool createMinionFlg = true;
+    bool isCreateBom = true; //パンプ菌爆弾を作れるかどうか
 
     FlickState flickState; //フリックされた方向
     FlickState nextFlickState; //次にフリックする方向
@@ -74,11 +74,12 @@ public class MinionCreate : MonoBehaviour {
         DisplayPampking();
         CreatePos();
 
-        if (minionMar != null && minionMar.CreateFlg)
+        //パンプ菌が生成できるようになったら(爆弾が地面に衝突してたら)
+        if (minionMar != null && minionMar.IsMinionCreate)
         {
             MinionsCreate(parentObj);
-            createMinionFlg = true;
-            minionMar.CreateFlg = false;
+            isCreateBom = true;
+            minionMar.IsMinionCreate = false;
         }
     }
 
@@ -171,7 +172,10 @@ public class MinionCreate : MonoBehaviour {
     /// </summary>
     void CreatePos()
     {
-        if (createMinionFlg == false) return;
+        Debug.Log("a");
+        if (isCreateBom == false) return;
+
+        Debug.Log("通った");
 
         if (Input.GetButtonUp("Fire1"))
         {
@@ -191,7 +195,8 @@ public class MinionCreate : MonoBehaviour {
             //パンプキングからパンプ菌を発射
             throwBom.ThrowingBall(createPos);
 
-            createMinionFlg = false;
+            //一回のみ生成
+            isCreateBom = false;
         }
     }
 

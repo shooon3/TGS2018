@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class MinionManager : MonoBehaviour {
 
-    public bool CreateFlg { get; set; }
+    /// <summary>
+    /// 爆弾が地面に衝突したら、パンプ菌を生成する
+    /// </summary>
+    public bool IsMinionCreate { get; set; }
 
     GameObject parentCollider;
 
@@ -25,6 +28,7 @@ public class MinionManager : MonoBehaviour {
         //子オブジェクトが増えたら
         if(childCount < transform.childCount)
         {
+            //菌の当たり判定を、一番最初に生成された菌に追従させる
             parentCollider.transform.parent = transform.GetChild(1);
         }
 
@@ -36,6 +40,6 @@ public class MinionManager : MonoBehaviour {
         BomManager bomMar = col.GetComponent<BomManager>();
         if (bomMar == null) return;
 
-        CreateFlg = true;
+        IsMinionCreate = true;
     }
 }
