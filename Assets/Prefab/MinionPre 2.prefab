@@ -21,7 +21,8 @@ GameObject:
   - component: {fileID: 4382320175581132}
   - component: {fileID: 195106634208665084}
   - component: {fileID: 54402365331052220}
-  - component: {fileID: 114249761892937474}
+  - component: {fileID: 114300429675126676}
+  - component: {fileID: 114101975845886986}
   m_Layer: 0
   m_Name: MinionPre 2
   m_TagString: Untagged
@@ -39,6 +40,7 @@ GameObject:
   - component: {fileID: 4829003505772836}
   - component: {fileID: 33016305080392836}
   - component: {fileID: 23877462834571112}
+  - component: {fileID: 114675892320921314}
   m_Layer: 0
   m_Name: MinionPre 1
   m_TagString: Untagged
@@ -129,7 +131,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114249761892937474
+--- !u!114 &114101975845886986
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -137,7 +139,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 1119420090396028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5553ca7a8a748a54bb7811c62c69c639, type: 3}
+  m_Script: {fileID: 11500000, guid: 33e8f49b0461cab4eab78de06da77150, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackInterver: 1
+  status: {fileID: 11400000, guid: d1577a069608411448d588058dcd0328, type: 2}
+--- !u!114 &114300429675126676
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1119420090396028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47e110370eab4b44697f58278c774b9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114675892320921314
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1958954985899946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47e110370eab4b44697f58278c774b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!195 &195106634208665084
