@@ -6,13 +6,12 @@ public class ThrowBom : MonoBehaviour {
 
 
     [Header("射出するオブジェクトをここに割り当てる")]
-    public GameObject ThrowingObject;
+    public GameObject throwingObject;
 
     [Header("射出する角度"), Range(0F, 90F)]
-    public float ThrowingAngle;
+    public float throwingAngle;
 
-    //// 標的の座標
-    //Vector3 targetPosition;
+    GameObject ball;
 
     void Start()
     {
@@ -27,15 +26,30 @@ public class ThrowBom : MonoBehaviour {
     /// <summary>
     /// ボールを射出する
     /// </summary>
-    public void ThrowingBall(Vector3 targetPosition)
+    public void ThrowingBall(Vector3 targetPosition,BomType type)
     {
-        if (ThrowingObject == null) return;
+        if (throwingObject == null) return;
 
-        // Ballオブジェクトの生成
-        GameObject ball = Instantiate(ThrowingObject, this.transform.position, Quaternion.identity);
+        
+        Vector3 transformPos = transform.position;
+
+        //ノーマルボムの生成
+        if (type == BomType.normal)
+        {
+            // Ballオブジェクトの生成
+            ball = Instantiate(throwingObject, transformPos, Quaternion.identity);
+        }
+        //スペシャルボムの生成
+        else if(type == BomType.special)
+        {
+            ball = Instantiate(throwingObject, transformPos, Quaternion.identity);
+        }
+
+        //ボムをキングの子オブジェクトで管理
+        ball.transform.parent = transform;
 
         // 射出角度
-        float angle = ThrowingAngle;
+        float angle = throwingAngle;
 
         // 射出速度を算出
         Vector3 velocity = CalculateVelocity(this.transform.position, targetPosition, angle);

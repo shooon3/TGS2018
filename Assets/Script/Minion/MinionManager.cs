@@ -31,15 +31,16 @@ public class MinionManager : MonoBehaviour {
             //菌の当たり判定を、一番最初に生成された菌に追従させる
             parentCollider.transform.parent = transform.GetChild(1);
         }
-
 	}
 
     void OnTriggerEnter(Collider col)
     {
         //衝突したオブジェクトがカボチャ爆弾だったら
         BomManager bomMar = col.GetComponent<BomManager>();
-        if (bomMar == null) return;
 
-        IsMinionCreate = true;
+        if (bomMar != null)
+        {
+            IsMinionCreate = true;
+        }
     }
 }
