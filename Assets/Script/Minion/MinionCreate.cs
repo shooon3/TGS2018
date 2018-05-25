@@ -173,7 +173,6 @@ public class MinionCreate : MonoBehaviour {
     /// <param name="count">表示するパンプキンの数</param>
     void DisplayPampking()
     {
-        Debug.Log(displayCount);
         if (flickIndex == bafferCount.Length || flickCount != bafferCount[flickIndex]) return;
 
         if (displayCount <= 0) displayCount = 1;

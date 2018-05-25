@@ -53,22 +53,26 @@ public class PumpAI : BaseVegetable
     // Update is called once per frame
     protected override void DoUpdate()
     {
-        if(IsDestroyEnemy())
+        if (IsDestroyEnemy())
         {
             Destroy(gameObject);
         }
 
-        Debug.Log("ぱんぷ菌" + HP);
-
         ActionState();
     }
 
+    /// <summary>
+    /// 感染と敵の攻撃処理を分ける
+    /// </summary>
     void ActionState()
     {
         if (isEnemyCollision) Attack();
         if (isHoleCollision) HoleInfection();
     }
 
+    /// <summary>
+    /// 攻撃処理
+    /// </summary>
     public override void Attack()
     {
         timer -= Time.deltaTime;
@@ -80,12 +84,16 @@ public class PumpAI : BaseVegetable
         }
     }
 
+    /// <summary>
+    /// 感染させる
+    /// </summary>
     void HoleInfection()
     {
         if (hole != null)
         {
             hole.Infectious();
 
+            //畑が感染したらパンプ菌も消える
             if (hole.Infection) Destroy(gameObject);
         }
     }
@@ -97,18 +105,25 @@ public class PumpAI : BaseVegetable
 
         nearEnemy = serchTarget.serchTag(parentPos, "Enemy");
 
+        //近い穴の距離を取得
         Vector3 nearHolePos = nearHole.transform.position;
 
+        //敵が存在していたら
         if (nearEnemy != null)
         {
+            //敵の位置を取得
             Vector3 nearEnemyPos = nearEnemy.transform.position;
 
+            //穴と自分の距離を測る
             float holeDis = Vector3.Distance(transform.position, nearHolePos);
+            //敵と自分の距離をはかる
             float enemyDis = Vector3.Distance(transform.position, nearEnemyPos);
 
+            //二つを比べて近いほうをNearTarget(攻撃対象)とする
             if (holeDis <= enemyDis) NearTarget = nearHole;
             else if (holeDis > enemyDis) NearTarget = nearEnemy;
         }
+        //敵が存在していなかったら近い穴へ
         else NearTarget = nearHole;
     }
 
@@ -124,18 +139,10 @@ public class PumpAI : BaseVegetable
         else if (hole != null) isHoleCollision = true;
     }
 
-    //void OnTriggerStay(Collider col)
-    //{
-    //    if (target != null)
-    //    {
-    //        Debug.Log("しらとり");
-    //        NearTarget = target.gameObject;
-    //        Attack();
-    //    }
-
-
-    //}
-
+    /// <summary>
+    /// Enemyが死ぬかどうか
+    /// </summary>
+    /// <returns></returns>
     bool IsDestroyEnemy()
     {
         if (HP <= 0 || NearTarget == null) return true;

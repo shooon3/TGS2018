@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PotatoEnemy : BaseVegetable {
+public class PotatoEnemy : BaseVegetable
+{
 
     [Header("攻撃時間間隔")]
     public float attackInterver;
@@ -11,7 +12,7 @@ public class PotatoEnemy : BaseVegetable {
 
     SerchNearObj serchTarget;
 
-    VirusDestoroy target;
+    PumpAI target;
 
     float timer; //攻撃間隔を確認するための変数
 
@@ -24,6 +25,7 @@ public class PotatoEnemy : BaseVegetable {
 
         HP = status.hp;
         POW = status.pow;
+
     }
 
     protected override void DoUpdate()
@@ -37,10 +39,11 @@ public class PotatoEnemy : BaseVegetable {
     {
         timer -= Time.deltaTime;
 
-        if(timer <= 0.0f)
+        if (timer <= 0.0f)
         {
-            //target.AddDamage(NearTarget);
+            AddDamage(target.gameObject);
             timer = attackInterver;
+            ; ;
         }
     }
 
@@ -60,21 +63,27 @@ public class PotatoEnemy : BaseVegetable {
 
     void OnTriggerEnter(Collider col)
     {
-        //ターゲットにダメージを与える
-        target = col.GetComponent<VirusDestoroy>();
 
-        if (target != null)
-        {
-            NearTarget = target.gameObject;
-            Attack();
-        }
     }
 
     void OnTriggerStay(Collider col)
     {
+        Transform targetTransform = col.transform;
+
+        if (targetTransform != null)
+        {
+            //ターゲットにダメージを与える
+            target = targetTransform.GetComponent<PumpAI>();
+
+            if (target != null)
+            {
+                NearTarget = target.gameObject;
+                Attack();
+            }
+        }
+
         if (IsDestroyEnemy(col))
         {
-            Debug.Log("ok");
             Destroy(gameObject);
         }
     }
@@ -82,8 +91,9 @@ public class PotatoEnemy : BaseVegetable {
     bool IsDestroyEnemy(Collider col)
     {
         Hole hole = col.GetComponent<Hole>();
-        
+
         if (isTargetAlive == false && hole != null) return true;
+        else if (HP <= 0) return true;
         else return false;
     }
 }

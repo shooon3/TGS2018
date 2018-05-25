@@ -656,7 +656,7 @@ Prefab:
     - target: {fileID: 114197603843563242, guid: fddc77c35582a21498bcbabda2a03a3d,
         type: 2}
       propertyPath: bafferCount.Array.size
-      value: 9
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4835319298909054, guid: fddc77c35582a21498bcbabda2a03a3d, type: 2}
       propertyPath: m_LocalPosition.x
@@ -776,7 +776,7 @@ Prefab:
     - target: {fileID: 114197603843563242, guid: fddc77c35582a21498bcbabda2a03a3d,
         type: 2}
       propertyPath: bafferCount.Array.data[2]
-      value: 30
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 114197603843563242, guid: fddc77c35582a21498bcbabda2a03a3d,
         type: 2}
