@@ -7,14 +7,32 @@ using UnityEngine.UI;
 public class Pose : MonoBehaviour
 {
     [SerializeField]
-    Image filterImage;
+    Image filterImage;  //フィルター
     [SerializeField]
-    Button poseButton;
+    Button poseButton;  //ボタン本体
 
 	void Start ()
     {
-        filterImage.gameObject.SetActive(false);
+        //ポーズメニューのボタンたちを非表示
+        for (int i = 0; i < (filterImage.gameObject.transform.childCount); i++)
+        {
+            filterImage.gameObject.transform.GetChild(i).gameObject.SetActive(false);
+        }
 	}
+
+    /// <summary>
+    /// ポーズ解放
+    /// </summary>
+    public void GameStart()
+    {
+        //ポーズメニューのボタンたちを表示
+        for (int i = 0; i < (filterImage.gameObject.transform.childCount); i++)
+        {
+            filterImage.gameObject.transform.GetChild(i).gameObject.SetActive(true);
+        }
+        filterImage.color = new Color(0, 0, 0, 0.5f);   //フィルターの色と透明度を調整
+        filterImage.gameObject.SetActive(false);        //フィルターを非表示
+    }
 
     /// <summary>
     /// ポーズ
