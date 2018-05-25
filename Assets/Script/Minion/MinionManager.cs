@@ -9,14 +9,12 @@ public class MinionManager : MonoBehaviour {
     /// </summary>
     public bool IsMinionCreate { get; set; }
 
-    GameObject parentCollider;
+    bool isFirstAttach = true;
 
     int childCount;
 
 	// Use this for initialization
 	void Start () {
-
-        parentCollider = transform.GetChild(0).gameObject;
 
         childCount = transform.childCount;
 
@@ -26,13 +24,16 @@ public class MinionManager : MonoBehaviour {
 	void Update () {
 		
         //子オブジェクトが増えたら
-        if(childCount < transform.childCount)
+        if(childCount < transform.childCount && isFirstAttach)
         {
             //菌の当たり判定を、一番最初に生成された菌に追従させる
-            parentCollider.transform.parent = transform.GetChild(1);
+            BoxCollider collider = transform.GetChild(0).gameObject.AddComponent<BoxCollider>();
+            collider.isTrigger = true;
+
+            isFirstAttach = false;
         }
 
-	}
+    }
 
     void OnTriggerEnter(Collider col)
     {

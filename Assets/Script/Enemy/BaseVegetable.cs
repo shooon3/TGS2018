@@ -74,5 +74,7 @@ public abstract class BaseVegetable : MonoBehaviour {
     {
         int targetHP = target.GetComponent<BaseVegetable>().HP;
         targetHP -= POW;
+
+        target.GetComponent<BaseVegetable>().HP = targetHP;
     }
 }

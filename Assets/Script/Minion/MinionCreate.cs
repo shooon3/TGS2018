@@ -172,10 +172,7 @@ public class MinionCreate : MonoBehaviour {
     /// </summary>
     void CreatePos()
     {
-        Debug.Log("a");
         if (isCreateBom == false) return;
-
-        Debug.Log("通った");
 
         if (Input.GetButtonUp("Fire1"))
         {
