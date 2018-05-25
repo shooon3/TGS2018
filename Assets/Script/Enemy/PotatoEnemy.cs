@@ -11,7 +11,7 @@ public class PotatoEnemy : BaseVegetable {
 
     SerchNearObj serchTarget;
 
-    VirusDestoroy target;
+    PumpAI target;
 
     float timer; //攻撃間隔を確認するための変数
 
@@ -24,6 +24,7 @@ public class PotatoEnemy : BaseVegetable {
 
         HP = status.hp;
         POW = status.pow;
+
     }
 
     protected override void DoUpdate()
@@ -31,6 +32,9 @@ public class PotatoEnemy : BaseVegetable {
         isTargetAlive = serchTarget.IsTargetAlive("Minion");
 
         SerchTarget();
+
+
+        Debug.Log("じゃがいも" + HP);
     }
 
     public override void Attack()
@@ -39,9 +43,9 @@ public class PotatoEnemy : BaseVegetable {
 
         if(timer <= 0.0f)
         {
-            //target.AddDamage(NearTarget);
+            AddDamage(target.gameObject);
             timer = attackInterver;
-        }
+; ;        }
     }
 
     void SerchTarget()
@@ -60,22 +64,27 @@ public class PotatoEnemy : BaseVegetable {
 
     void OnTriggerEnter(Collider col)
     {
-        //ターゲットにダメージを与える
-        target = col.GetComponent<VirusDestoroy>();
-
-        if (target != null)
-        {
-            NearTarget = target.gameObject;
-            Attack();
-        }
+ 
     }
 
     void OnTriggerStay(Collider col)
     {
-        Debug.Log(NearTarget);
+        Transform targetTransform = col.transform;
+
+        if (targetTransform != null)
+        {
+            //ターゲットにダメージを与える
+            target = targetTransform.GetComponent<PumpAI>();
+
+            if (target != null)
+            {
+                NearTarget = target.gameObject;
+                Attack();
+            }
+        }
+
         if (IsDestroyEnemy(col))
         {
-            Debug.Log("ok");
             Destroy(gameObject);
         }
     }
@@ -85,6 +94,7 @@ public class PotatoEnemy : BaseVegetable {
         Hole hole = col.GetComponent<Hole>();
         
         if (isTargetAlive == false && hole != null) return true;
+        else if (HP <= 0) return true;
         else return false;
     }
 }

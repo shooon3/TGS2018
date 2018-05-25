@@ -12,7 +12,6 @@ enum FlickState
     Right
 }
 
-[RequireComponent(typeof(BomCount))]
 public class MinionCreate : MonoBehaviour {
 
     //-------------------------------------
@@ -29,10 +28,7 @@ public class MinionCreate : MonoBehaviour {
     public GameObject massParentPre;
 
     [Header("パンプキング")]
-    public GameObject pumpking;
-
-    [Header("ボムの最大数")]
-    public int maxBom;
+    public ThrowBom throwBom;
 
     //-------------------------------------
     // private
@@ -41,13 +37,9 @@ public class MinionCreate : MonoBehaviour {
     List<GameObject> pumpkinSp = new List<GameObject>(); //パンプキンImage
 
     GameObject pumpkinParent; //吹き出し(各パンプキンの親)オブジェクト
-    GameObject minionParent;
+    GameObject parentObj;
 
     MinionManager minionMar;
-
-    ThrowBom throwBom;
-
-    BomCount bomCount;
 
     float touchNowPosX; //現在のタッチポジション
     float startFlickX; //タッチした直後のポジション(タッチ直後にフリック判定にならないようにするための除外用変数)
@@ -66,10 +58,7 @@ public class MinionCreate : MonoBehaviour {
 
         pumpkinParent = transform.Find("PlaerManager/TouchPosObj").gameObject;
 
-        throwBom = pumpking.GetComponent<ThrowBom>();
-        bomCount = GetComponent<BomCount>();
-
-        for (int i = 0; i < bafferCount.Length; i++)
+        for(int i = 0; i < bafferCount.Length; i++)
         {
             pumpkinSp.Add(pumpkinParent.transform.GetChild(i).gameObject);
         }
@@ -88,7 +77,8 @@ public class MinionCreate : MonoBehaviour {
         //パンプ菌が生成できるようになったら(爆弾が地面に衝突してたら)
         if (minionMar != null && minionMar.IsMinionCreate)
         {
-            MinionsCreate(minionParent);
+            MinionsCreate(parentObj);
+            isCreateBom = true;
             minionMar.IsMinionCreate = false;
         }
     }
@@ -182,10 +172,7 @@ public class MinionCreate : MonoBehaviour {
     /// </summary>
     void CreatePos()
     {
-        int nowBomCount = bomCount.NowBomCount();
-
-        //爆弾を生成できるのは、ほかの爆弾がない時 かつ　爆弾の数が０でないときだけ
-        if (pumpking.transform.childCount != 0 || nowBomCount == 0) return;
+        if (isCreateBom == false) return;
 
         if (Input.GetButtonUp("Fire1"))
         {
@@ -198,18 +185,12 @@ public class MinionCreate : MonoBehaviour {
 
             Vector3 createPos = new Vector3(hit.point.x, 0, hit.point.z);
 
-            minionParent = Instantiate(massParentPre, createPos, Quaternion.identity);
+            parentObj = Instantiate(massParentPre, createPos, Quaternion.identity);
 
-            minionMar = minionParent.GetComponent<MinionManager>();
-
-            //次のボムのタイプを取得
-            BomType nextBom = bomCount.NextBomType();
+            minionMar = parentObj.GetComponent<MinionManager>();
 
             //パンプキングからパンプ菌を発射
-            throwBom.ThrowingBall(createPos,nextBom);
-
-            //ボムの数を減らす
-            bomCount.UseBom();
+            throwBom.ThrowingBall(createPos);
 
             //一回のみ生成
             isCreateBom = false;
