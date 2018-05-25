@@ -72,7 +72,6 @@ public class PotatoEnemy : BaseVegetable {
 
     void OnTriggerStay(Collider col)
     {
-        Debug.Log(NearTarget);
         if (IsDestroyEnemy(col))
         {
             Debug.Log("ok");

@@ -19,7 +19,7 @@ public class MinionCreate : MonoBehaviour {
     // public
     //-------------------------------------
 
-    [Header("パンプキンが増えるフリック数"),NamedArrayAttribute(new string[] {"二個目のパンプキン" , "三個目のパンプキン", "四個目のパンプキン", "五個目のパンプキン", "六個目のパンプキン", "七個目のパンプキン", "八個目のパンプキン", "九個目のパンプキン", "十個目のパンプキン" })]
+    [Header("パンプキンが増えるフリック数"),NamedArrayAttribute(new string[] {"二個目のパンプキン" , "四個目のパンプキン",  "八個目のパンプキン"})]
     public int[] bafferCount;
 
     [Header("パンプ菌のモデル")]
@@ -55,6 +55,7 @@ public class MinionCreate : MonoBehaviour {
 
     int flickCount; //フリックした回数
     int displayCount; //パンプキンを出す数
+    int flickIndex;
 
     bool isCreateBom = true; //パンプ菌爆弾を作れるかどうか
 
@@ -69,7 +70,7 @@ public class MinionCreate : MonoBehaviour {
         throwBom = pumpking.GetComponent<ThrowBom>();
         bomCount = GetComponent<BomCount>();
 
-        for (int i = 0; i < bafferCount.Length; i++)
+        for (int i = 0; i < pumpkinParent.transform.childCount; i++)
         {
             pumpkinSp.Add(pumpkinParent.transform.GetChild(i).gameObject);
         }
@@ -102,6 +103,7 @@ public class MinionCreate : MonoBehaviour {
         startFlickX = Input.mousePosition.x;
 
         flickCount = 0;
+        flickIndex = 0;
         displayCount = 0;
 
         flickState = FlickState.Filst;
@@ -171,10 +173,16 @@ public class MinionCreate : MonoBehaviour {
     /// <param name="count">表示するパンプキンの数</param>
     void DisplayPampking()
     {
-        if (displayCount == bafferCount.Length || flickCount != bafferCount[displayCount]) return;
+        Debug.Log(displayCount);
+        if (flickIndex == bafferCount.Length || flickCount != bafferCount[flickIndex]) return;
+
+        if (displayCount <= 0) displayCount = 1;
+        else if (displayCount >= 1) displayCount = displayCount * 2;
 
         pumpkinSp[displayCount].SetActive(true);
-        displayCount++;
+
+            flickIndex++;
+        
     }
 
     /// <summary>
@@ -192,7 +200,7 @@ public class MinionCreate : MonoBehaviour {
             //rayの生成
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit = new RaycastHit();
-
+            
             //rayと衝突していなかったら以降の処理をしない
             if (Physics.Raycast(ray, out hit) == false) return;
 
