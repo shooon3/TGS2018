@@ -26,11 +26,14 @@ public class PumpAI : BaseVegetable
     Vector3 parentPos;
 
     //デストロイするオブジェクトの変数
-    VirusDestoroy target;
+    BaseVegetable target;
+
+    Hole hole;
 
     float timer; //攻撃間隔を確認するための変数
 
-    bool isTargetAlive;
+    bool isEnemyCollision = false; //エネミーに当たった
+    bool isHoleCollision = false; //穴に当たった
 
     // Use this for initialization
     protected override void DoStart()
@@ -50,13 +53,20 @@ public class PumpAI : BaseVegetable
     // Update is called once per frame
     protected override void DoUpdate()
     {
-        Move();
+        if(IsDestroyEnemy())
+        {
+            Destroy(gameObject);
+        }
+
+        Debug.Log("ぱんぷ菌" + HP);
+
+        ActionState();
     }
 
-    void Move()
+    void ActionState()
     {
-        if (moveTarget == null) return; 
-        agent.destination = moveTarget.transform.position;
+        if (isEnemyCollision) Attack();
+        if (isHoleCollision) HoleInfection();
     }
 
     public override void Attack()
@@ -65,9 +75,18 @@ public class PumpAI : BaseVegetable
 
         if (timer <= 0.0f)
         {
-            Debug.Log("ok");
-            //target.AddDamage(NearTarget);
+            AddDamage(NearTarget);
             timer = attackInterver;
+        }
+    }
+
+    void HoleInfection()
+    {
+        if (hole != null)
+        {
+            hole.Infectious();
+
+            if (hole.Infection) Destroy(gameObject);
         }
     }
 
@@ -87,39 +106,39 @@ public class PumpAI : BaseVegetable
             float holeDis = Vector3.Distance(transform.position, nearHolePos);
             float enemyDis = Vector3.Distance(transform.position, nearEnemyPos);
 
-            if (holeDis <= enemyDis) moveTarget = nearHole;
-            else if (holeDis > enemyDis) moveTarget = nearEnemy;
+            if (holeDis <= enemyDis) NearTarget = nearHole;
+            else if (holeDis > enemyDis) NearTarget = nearEnemy;
         }
-        else moveTarget = nearHole;
+        else NearTarget = nearHole;
     }
 
     void OnTriggerEnter(Collider col)
     {
         //ターゲットにダメージを与える
-        target = col.GetComponent<VirusDestoroy>();
+        target = col.GetComponent<BaseVegetable>();
 
-        if (target != null)
-        {
-            NearTarget = target.gameObject;
-            Attack();
-        }
+        //ターゲットにHoleスクリプトがアタッチされていたら
+        hole = col.GetComponent<Hole>();
+
+        if (target != null) isEnemyCollision = true;
+        else if (hole != null) isHoleCollision = true;
     }
 
-    void OnTriggerStay(Collider col)
-    {
-        Debug.Log(NearTarget);
-        if (IsDestroyEnemy(col))
-        {
-            Debug.Log("ok");
-            Destroy(gameObject);
-        }
-    }
+    //void OnTriggerStay(Collider col)
+    //{
+    //    if (target != null)
+    //    {
+    //        Debug.Log("しらとり");
+    //        NearTarget = target.gameObject;
+    //        Attack();
+    //    }
 
-    bool IsDestroyEnemy(Collider col)
-    {
-        Hole hole = col.GetComponent<Hole>();
 
-        if (isTargetAlive == false && hole != null) return true;
+    //}
+
+    bool IsDestroyEnemy()
+    {
+        if (HP <= 0 || NearTarget == null) return true;
         else return false;
     }
 }
