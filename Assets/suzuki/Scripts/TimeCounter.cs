@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class TimeCounter : MonoBehaviour
 {
     bool fade;  //カウントフェード
+    bool clear; //クリア判定
 
     [SerializeField]
     Image image;                        //表示スプライト
@@ -16,13 +17,18 @@ public class TimeCounter : MonoBehaviour
     Text timeText;      //TIME表示
     float timer;        //経過時間
     float startTime;    //開始時間
+    int clearTime;      //クリア時間
 
     [SerializeField]
     Pose pose;  //ポーズスクリプト
 
+    [SerializeField]
+    Text clearText;
+
 	void Start ()
     {
         fade = false;
+        clear = false;
         timeText.gameObject.SetActive(false);
 
         //カウントダウン開始
@@ -48,18 +54,44 @@ public class TimeCounter : MonoBehaviour
         timer = Time.time - startTime;                  //経過時間を計算
         int minuteTime = Mathf.FloorToInt(timer) / 60;  //分を割り出す
 
-        //経過時間を表示
-        if(Mathf.FloorToInt(timer) - minuteTime * 60 < 10)
+        //クリアタイム記録
+        if (!clear)
         {
-            //秒数が0～9(1桁)の時
-            timeText.text = "Time\n" + minuteTime + ":0" + (Mathf.FloorToInt(timer) - minuteTime * 60);
+            if (clearText.gameObject.activeSelf)    //クリアテキストがアクティブ
+            {
+                //ステージクリア
+                clearTime = Mathf.FloorToInt(timer);    //クリアタイムを秒で記録
+                clear = true;
+
+                Debug.Log("クリアタイム " + clearTime / 60 + ":" + clearTime % 60);
+
+                //ポーズボタン機能停止
+                pose.GameClear();
+            }
+            else
+            {
+                //経過時間を表示
+                if (Mathf.FloorToInt(timer) - minuteTime * 60 < 10)
+                {
+                    //秒数が0～9(1桁)の時
+                    timeText.text = "Time\n" + minuteTime + ":0" + (Mathf.FloorToInt(timer) % 60);
+                }
+                else
+                {
+                    //秒数が10～59(2桁)の時
+                    timeText.text = "Time\n" + minuteTime + ":" + (Mathf.FloorToInt(timer) % 60);
+                }
+            }
         }
-        else
-        {
-            //秒数が10～59(2桁)の時
-            timeText.text = "Time\n" + minuteTime + ":" + (Mathf.FloorToInt(timer) - minuteTime * 60);
-        }
-        
+    }
+    
+    /// <summary>
+    /// クリアタイム(秒単位)
+    /// </summary>
+    /// <returns></returns>
+    public int GetClearTime()
+    {
+        return clearTime;
     }
 
     /// <summary>

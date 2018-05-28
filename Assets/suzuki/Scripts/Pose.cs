@@ -87,4 +87,18 @@ public class Pose : MonoBehaviour
         filterImage.gameObject.SetActive(false);
         Time.timeScale = 1;
     }
+
+    /// <summary>
+    /// クリア後処理
+    /// </summary>
+    public void GameClear()
+    {
+        //ポーズメニューのボタンたちを非表示
+        for (int i = 0; i < (filterImage.gameObject.transform.childCount); i++)
+        {
+            filterImage.gameObject.transform.GetChild(i).gameObject.SetActive(false);
+        }
+        filterImage.color = new Color(0, 0, 0, 0);  //フィルターの透明度を調整
+        filterImage.gameObject.SetActive(true);     //フィルターを非表示
+    }
 }
