@@ -17,7 +17,7 @@ public class Anim : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            animator.SetBool("TapPause", true);
+            animator.SetBool("PauseShot", true);
         }
     }
 }
