@@ -22,8 +22,11 @@ public class MinionCreate : MonoBehaviour {
     [Header("パンプキンが増えるフリック数"),NamedArrayAttribute(new string[] {"二個目のパンプキン" , "四個目のパンプキン",  "八個目のパンプキン"})]
     public int[] bafferCount;
 
-    [Header("パンプ菌のモデル")]
+    [Header("戦うパンプ菌")]
     public GameObject pumpkinPre;
+
+    [Header("追従するだけのパンプ菌")]
+    public GameObject displayPumpkinPre;
 
     [Header("パンプ菌集団の親オブジェクト")]
     public GameObject massParentPre;
@@ -229,15 +232,18 @@ public class MinionCreate : MonoBehaviour {
     /// <param name="parentObj"></param>
     void MinionsCreate(GameObject parentObj)
     {
-        for (int i = 0; i < displayCount + 1; i++)
+        Vector3 position = parentObj.transform.position;
+        Vector2 size = new Vector2(4.0f, 4.0f);
+
+        Instantiate(pumpkinPre, position, Quaternion.identity, parentObj.transform);
+
+        for (int i = 1; i < displayCount + 1; i++)
         {
-            Vector3 position = parentObj.transform.position;
-            Vector2 size = new Vector2(4.0f, 4.0f);
 
             float x = Random.Range(position.x - size.x / 2, position.x + size.x / 2);
             float z = Random.Range(position.z - size.y / 2, position.z + size.y / 2);
 
-            Instantiate(pumpkinPre, new Vector3(x, 0, z), Quaternion.identity, parentObj.transform);
+            Instantiate(displayPumpkinPre, new Vector3(x, 0, z), Quaternion.identity, parentObj.transform);
         }
 
         FlickInitialize();

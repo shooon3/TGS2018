@@ -20,6 +20,7 @@ public class BomManager : MonoBehaviour {
         MinionManager minionMar = col.GetComponent<MinionManager>();
         if(minionMar != null)
         {
+
             //オブジェクトを消す
             Destroy(gameObject,0.5f);
         }

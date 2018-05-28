@@ -876,8 +876,14 @@ Prefab:
     - target: {fileID: 114197603843563242, guid: fddc77c35582a21498bcbabda2a03a3d,
         type: 2}
       propertyPath: maxBom
-      value: 4
+      value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 114197603843563242, guid: fddc77c35582a21498bcbabda2a03a3d,
+        type: 2}
+      propertyPath: displayPumpkinPre
+      value: 
+      objectReference: {fileID: 1611317447155150, guid: 8ecdb7e33693ab443a922ef37c87839f,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fddc77c35582a21498bcbabda2a03a3d, type: 2}
   m_IsPrefabParent: 0

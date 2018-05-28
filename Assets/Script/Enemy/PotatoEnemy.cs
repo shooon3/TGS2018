@@ -18,6 +18,11 @@ public class PotatoEnemy : BaseVegetable
 
     bool isTargetAlive;
 
+    bool isReturnHole = false;
+
+    //１フレーム前のフラグ状況
+    bool isTargetAliveMemory;
+
     protected override void DoStart()
     {
         serchTarget = GetComponent<SerchNearObj>();
@@ -43,21 +48,25 @@ public class PotatoEnemy : BaseVegetable
         {
             AddDamage(target.gameObject);
             timer = attackInterver;
-            ; ;
         }
     }
 
     void SerchTarget()
     {
+
+        if(isTargetAlive && isReturnHole == true) NearTarget = serchTarget.serchTag(transform.position, "Minion");
+
         if (NearTarget != null) return;
 
         if (isTargetAlive)
         {
             NearTarget = serchTarget.serchTag(transform.position, "Minion");
+            isReturnHole = false;
         }
-        else
+        else if(isTargetAlive == false)
         {
             NearTarget = serchTarget.serchTag(transform.position, "Hole");
+            isReturnHole = true;
         }
     }
 

@@ -41,6 +41,7 @@ public class PumpAI : BaseVegetable
 
         serchTarget = GetComponent<SerchNearObj>();
         timer = attackInterver;
+
         //親のオブジェクトの位置を取得
         parentPos = transform.parent.transform.position;
 
@@ -53,11 +54,6 @@ public class PumpAI : BaseVegetable
     // Update is called once per frame
     protected override void DoUpdate()
     {
-        if (IsDestroyEnemy())
-        {
-            Destroy(gameObject);
-        }
-
         ActionState();
     }
 
@@ -94,7 +90,7 @@ public class PumpAI : BaseVegetable
             hole.Infectious();
 
             //畑が感染したらパンプ菌も消える
-            if (hole.Infection) Destroy(gameObject);
+            if (hole.Infection) Destroy(transform.root.gameObject);
         }
     }
 
@@ -129,11 +125,14 @@ public class PumpAI : BaseVegetable
 
     void OnTriggerEnter(Collider col)
     {
+        if (target != null || hole != null) return;
+
         //ターゲットにダメージを与える
         target = col.GetComponent<BaseVegetable>();
 
         //ターゲットにHoleスクリプトがアタッチされていたら
         hole = col.GetComponent<Hole>();
+
 
         if (target != null) isEnemyCollision = true;
         else if (hole != null) isHoleCollision = true;
@@ -143,7 +142,7 @@ public class PumpAI : BaseVegetable
     /// Enemyが死ぬかどうか
     /// </summary>
     /// <returns></returns>
-    bool IsDestroyEnemy()
+    public bool IsDestroyEnemy()
     {
         if (HP <= 0 || NearTarget == null) return true;
         else return false;

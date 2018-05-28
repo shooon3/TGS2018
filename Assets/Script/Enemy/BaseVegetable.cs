@@ -31,6 +31,8 @@ public abstract class BaseVegetable : MonoBehaviour {
 
     public abstract void Attack();
 
+    BaseVegetable targetVegetable;
+
     // Use this for initialization
     public void Start ()
     {
@@ -72,7 +74,14 @@ public abstract class BaseVegetable : MonoBehaviour {
     /// </summary>
     public void AddDamage(GameObject target)
     {
-        int targetHP = target.GetComponent<BaseVegetable>().HP;
+        if (target == null) return;
+
+        targetVegetable = target.GetComponent<BaseVegetable>();
+
+        if (targetVegetable == null) return;
+
+        int targetHP = targetVegetable.HP;
+
         targetHP -= POW;
 
         target.GetComponent<BaseVegetable>().HP = targetHP;
