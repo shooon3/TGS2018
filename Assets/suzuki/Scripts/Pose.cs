@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class Pose : MonoBehaviour
 {
+    bool game;
+
     [SerializeField]
     Image filterImage;  //フィルター
     [SerializeField]
@@ -13,25 +15,18 @@ public class Pose : MonoBehaviour
 
 	void Start ()
     {
-        //ポーズメニューのボタンたちを非表示
-        for (int i = 0; i < (filterImage.gameObject.transform.childCount); i++)
-        {
-            filterImage.gameObject.transform.GetChild(i).gameObject.SetActive(false);
-        }
-	}
+        game = false;
+        filterImage.gameObject.SetActive(false);
+        poseButton.interactable = false;
+    }
 
     /// <summary>
     /// ポーズ解放
     /// </summary>
     public void GameStart()
     {
-        //ポーズメニューのボタンたちを表示
-        for (int i = 0; i < (filterImage.gameObject.transform.childCount); i++)
-        {
-            filterImage.gameObject.transform.GetChild(i).gameObject.SetActive(true);
-        }
-        filterImage.color = new Color(0, 0, 0, 0.5f);   //フィルターの色と透明度を調整
-        filterImage.gameObject.SetActive(false);        //フィルターを非表示
+        game = true;
+        poseButton.interactable = true;
     }
 
     /// <summary>
@@ -39,14 +34,17 @@ public class Pose : MonoBehaviour
     /// </summary>
     public void OnClick()
     {
-        //ゲームを一時的に止める
-        Time.timeScale = 0;
+        if (game)
+        {
+            //ゲームを一時的に止める
+            Time.timeScale = 0;
 
-        //ボタンを無効化
-        poseButton.interactable = false;
+            //ボタンを無効化
+            poseButton.interactable = false;
 
-        //ポーズメニュー表示
-        filterImage.gameObject.SetActive(true);
+            //ポーズメニュー表示
+            filterImage.gameObject.SetActive(true);
+        }
     }
 
     /// <summary>
@@ -80,12 +78,15 @@ public class Pose : MonoBehaviour
     /// </summary>
     public void Reopening()
     {
-        //ボタンの無効化を解除
-        poseButton.interactable = true;
+        if (game)
+        {
+            //ボタンの無効化を解除
+            poseButton.interactable = true;
 
-        //ゲームを再開する
-        filterImage.gameObject.SetActive(false);
-        Time.timeScale = 1;
+            //ゲームを再開する
+            filterImage.gameObject.SetActive(false);
+            Time.timeScale = 1;
+        }
     }
 
     /// <summary>
