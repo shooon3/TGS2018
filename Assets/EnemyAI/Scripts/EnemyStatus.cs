@@ -10,6 +10,7 @@ public class EnemyStatus : MonoBehaviour
     private int damage = 0;
 
     int result;
+    internal Potato pc;
 
     // Use this for initialization
     void Start ()

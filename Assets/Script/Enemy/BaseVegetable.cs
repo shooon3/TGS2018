@@ -49,7 +49,7 @@ public abstract class BaseVegetable : MonoBehaviour {
     /// <summary>
     /// 移動処理
     /// </summary>
-    void Move()
+    void Move() //一番近くのターゲットがnullならば行動を行わない
     {
         if (NearTarget == null) return;
         Transform targetTransform = NearTarget.transform;

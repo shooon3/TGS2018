@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PotatoEnemy : BaseVegetable {
+public class PotatoEnemy : BaseEnemy {
 
     [Header("攻撃時間間隔")]
     public float attackInterver;
@@ -11,7 +11,7 @@ public class PotatoEnemy : BaseVegetable {
 
     SerchNearObj serchTarget;
 
-    VirusDestoroy target;
+    VirusDestoroy target;　//感染したら消す
 
     float timer; //攻撃間隔を確認するための変数
 
@@ -28,7 +28,7 @@ public class PotatoEnemy : BaseVegetable {
 
     protected override void DoUpdate()
     {
-        isTargetAlive = serchTarget.IsTargetAlive("Minion");
+        isTargetAlive = serchTarget.IsTargetAlive("Minion");　
 
         SerchTarget();
     }
@@ -45,17 +45,17 @@ public class PotatoEnemy : BaseVegetable {
         }
     }
 
-    void SerchTarget()
+    void SerchTarget() //ターゲット切り替え
     {
         if (NearTarget != null) return;
 
         if (isTargetAlive)
         {
-            NearTarget = serchTarget.serchTag(transform.position, "Minion");
+            NearTarget = serchTarget.serchTag(transform.position, "Minion");　//Minionが生きているかどうか
         }
         else
         {
-            NearTarget = serchTarget.serchTag(transform.position, "Hole");
+            NearTarget = serchTarget.serchTag(transform.position, "Hole"); //一番近くの穴に戻る
         }
     }
 
@@ -71,7 +71,7 @@ public class PotatoEnemy : BaseVegetable {
         }
     }
 
-    void OnTriggerStay(Collider col)
+    void OnTriggerStay(Collider col)　//StageにPlayerがいないときに畑に触れると穴に帰る
     {
         Debug.Log(NearTarget);
         if (IsDestroyEnemy(col))
@@ -81,7 +81,7 @@ public class PotatoEnemy : BaseVegetable {
         }
     }
 
-    bool IsDestroyEnemy(Collider col)
+    bool IsDestroyEnemy(Collider col) 
     {
         Hole hole = col.GetComponent<Hole>();
         

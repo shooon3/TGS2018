@@ -23,6 +23,5 @@ public class Materials : MonoBehaviour
     void Update()
     {
         renderer.material = mats[0];
-
     }
 }
