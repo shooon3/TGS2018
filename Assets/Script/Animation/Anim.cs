@@ -5,11 +5,12 @@ using UnityEngine;
 public class Anim : MonoBehaviour
 {
     public Animator animator;
+    public GameObject Black;
 
     // Use this for initialization
     void Start()
     {
-
+        Black.SetActive(false);
     }
 
     // Update is called once per frame
@@ -17,6 +18,7 @@ public class Anim : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            Black.SetActive(true);
             animator.SetBool("PauseShot", true);
         }
     }
