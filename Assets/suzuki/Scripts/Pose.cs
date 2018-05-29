@@ -78,15 +78,12 @@ public class Pose : MonoBehaviour
     /// </summary>
     public void Reopening()
     {
-        if (game)
-        {
-            //ボタンの無効化を解除
-            poseButton.interactable = true;
+        //ボタンの無効化を解除
+        poseButton.interactable = true;
 
-            //ゲームを再開する
-            filterImage.gameObject.SetActive(false);
-            Time.timeScale = 1;
-        }
+        //ゲームを再開する
+        filterImage.gameObject.SetActive(false);
+        Time.timeScale = 1;
     }
 
     /// <summary>
