@@ -37,6 +37,9 @@ public class MinionCreate : MonoBehaviour {
     [Header("ボムの最大数")]
     public int maxBom;
 
+    [Header("パンプキン生成時のエフェクト")]
+    public GameObject createEffect;
+
     //-------------------------------------
     // private
     //-------------------------------------
@@ -236,6 +239,8 @@ public class MinionCreate : MonoBehaviour {
         Vector2 size = new Vector2(4.0f, 4.0f);
 
         Instantiate(pumpkinPre, position, Quaternion.identity, parentObj.transform);
+
+        Instantiate(createEffect, position, Quaternion.identity);
 
         for (int i = 1; i < displayCount + 1; i++)
         {
