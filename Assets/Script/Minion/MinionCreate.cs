@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 /// <summary>
 /// フリックの左右
@@ -57,12 +58,12 @@ public class MinionCreate : MonoBehaviour {
 
     GameObject pumpkinParent; //吹き出し(各パンプキンの親)オブジェクト
     GameObject minionParent;
+    GameObject attackPumpkin; //攻撃するパンプキン
 
     MinionManager minionMar;
-
     ThrowBom throwBom;
-
     BomCount bomCount;
+    PlayerMove playerMove;
 
     float touchNowPosX; //現在のタッチポジション
     float startFlickX; //タッチした直後のポジション(タッチ直後にフリック判定にならないようにするための除外用変数)
@@ -73,18 +74,19 @@ public class MinionCreate : MonoBehaviour {
     int beforeCount;
     int flickIndex;
 
-    bool isCreateBom = true; //パンプ菌爆弾を作れるかどうか
-
     FlickState flickState; //フリックされた方向
     FlickState nextFlickState; //次にフリックする方向
 
     // Use this for initialization
     void Start () {
 
-        pumpkinParent = transform.Find("PlaerManager/TouchPosObj").gameObject;
+        pumpkinParent = transform.GetChild(0).gameObject;
+
+        pumpkinParent.SetActive(false);
 
         throwBom = pumpking.GetComponent<ThrowBom>();
         bomCount = GetComponent<BomCount>();
+        playerMove = GetComponent<PlayerMove>();
 
         pumpRender.sprite = pumpkinsSp[0];
 
@@ -93,6 +95,8 @@ public class MinionCreate : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (playerMove.IsStart != true) return;
 
         GetTouchPos();
         Flick();
@@ -135,10 +139,12 @@ public class MinionCreate : MonoBehaviour {
     {
         touchNowPosX = Input.mousePosition.x;
 
-        if (Input.GetButton("Fire1"))
+        if (playerMove.IsTouch)
         {
             FlickSide();
+            pumpkinParent.SetActive(true);
         }
+        if (!Input.GetButton("Fire1")) pumpkinParent.SetActive(false);
     }
 
     /// <summary>
@@ -186,7 +192,6 @@ public class MinionCreate : MonoBehaviour {
     /// <param name="count">表示するパンプキンの数</param>
     void DisplayPampking()
     {
-        Debug.Log(displayCount);
         if (flickIndex == bafferCount.Length || flickCount != bafferCount[flickIndex]) return;
 
 
@@ -206,10 +211,13 @@ public class MinionCreate : MonoBehaviour {
         int nowBomCount = bomCount.NowBomCount();
 
         //爆弾を生成できるのは、ほかの爆弾がない時 かつ　爆弾の数が０でないときだけ
-        if (pumpking.transform.childCount != 0 || nowBomCount == 0) return;
+        if (pumpking.transform.childCount != 0 || nowBomCount == 0 || playerMove.IsTouch != true) return;
+
 
         if (Input.GetButtonUp("Fire1"))
         {
+            pumpkinParent.SetActive(false);
+
             //rayの生成
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit = new RaycastHit();
@@ -233,9 +241,6 @@ public class MinionCreate : MonoBehaviour {
 
             //ボムの数を減らす
             bomCount.UseBom();
-
-            //一回のみ生成
-            isCreateBom = false;
         }
     }
 
@@ -248,8 +253,33 @@ public class MinionCreate : MonoBehaviour {
         Vector3 position = parentObj.transform.position;
         Vector2 size = new Vector2(4.0f, 4.0f);
 
-        GameObject attackPumpkin = Instantiate(pumpkinPre, position, Quaternion.identity, parentObj.transform);
+        //攻撃してくるパンプキンを生成
+        attackPumpkin = Instantiate(pumpkinPre, position, Quaternion.identity, parentObj.transform);
 
+        StatusSet();
+
+        //エフェクト生成
+        Instantiate(createEffect, position, Quaternion.identity);
+
+
+        //見た目だけのパンプキンを生成
+        for (int i = 1; i < displayCount; i++)
+        {
+
+            float x = Random.Range(position.x - size.x / 2, position.x + size.x / 2);
+            float z = Random.Range(position.z - size.y / 2, position.z + size.y / 2);
+
+            Instantiate(displayPumpkinPre, new Vector3(x, 0, z), Quaternion.identity, parentObj.transform);
+        }
+
+        FlickInitialize();
+    }
+
+    /// <summary>
+    /// 分裂の数に応じて、それぞれのステータスをセットする
+    /// </summary>
+    void StatusSet()
+    {
         PumpAI pumpAI = attackPumpkin.GetComponent<PumpAI>();
 
         switch (displayCount)
@@ -271,17 +301,5 @@ public class MinionCreate : MonoBehaviour {
                 break;
         }
 
-        Instantiate(createEffect, position, Quaternion.identity);
-
-        for (int i = 1; i < displayCount; i++)
-        {
-
-            float x = Random.Range(position.x - size.x / 2, position.x + size.x / 2);
-            float z = Random.Range(position.z - size.y / 2, position.z + size.y / 2);
-
-            Instantiate(displayPumpkinPre, new Vector3(x, 0, z), Quaternion.identity, parentObj.transform);
-        }
-
-        FlickInitialize();
     }
 }

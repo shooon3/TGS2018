@@ -25,10 +25,16 @@ public class TimeCounter : MonoBehaviour
     [SerializeField]
     Text clearText;
 
+    /// <summary>
+    /// ゲームはスタートしているかどうか
+    /// </summary>
+    public bool IsStart { get; set; }
+
 	void Start ()
     {
         fade = false;
         clear = false;
+        IsStart = false;
         timeText.gameObject.SetActive(false);
 
         //カウントダウン開始
@@ -125,6 +131,9 @@ public class TimeCounter : MonoBehaviour
         startTime = Time.time;                  //開始時間を設定
         timeText.gameObject.SetActive(true);    //経過時間を表示
         pose.GameStart();                       //ポーズボタンを有効化
+
+        IsStart = true;
+
         yield return new WaitForSeconds(1);
 
         //カウントの表示を消す
