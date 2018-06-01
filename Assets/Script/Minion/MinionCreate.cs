@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// フリックの左右
@@ -40,11 +41,19 @@ public class MinionCreate : MonoBehaviour {
     [Header("パンプキン生成時のエフェクト")]
     public GameObject createEffect;
 
+    [Header("パンプキン分裂画像"), NamedArrayAttribute(new string[] { "一個目のパンプキン","二個目のパンプキン", "四個目のパンプキン", "八個目のパンプキン" })]
+    public Sprite[] pumpkinsSp; //パンプキンImage
+
+    [Header("パンプキン吹き出し")]
+    public SpriteRenderer pumpRender;
+
+    [Header("パンプキン"), NamedArrayAttribute(new string[] { "一個目のパンプキン", "二個目のパンプキン", "四個目のパンプキン", "八個目のパンプキン" })]
+    public VegetableStatus[] status;
+
+
     //-------------------------------------
     // private
     //-------------------------------------
-
-    List<GameObject> pumpkinSp = new List<GameObject>(); //パンプキンImage
 
     GameObject pumpkinParent; //吹き出し(各パンプキンの親)オブジェクト
     GameObject minionParent;
@@ -61,6 +70,7 @@ public class MinionCreate : MonoBehaviour {
 
     int flickCount; //フリックした回数
     int displayCount; //パンプキンを出す数
+    int beforeCount;
     int flickIndex;
 
     bool isCreateBom = true; //パンプ菌爆弾を作れるかどうか
@@ -76,10 +86,7 @@ public class MinionCreate : MonoBehaviour {
         throwBom = pumpking.GetComponent<ThrowBom>();
         bomCount = GetComponent<BomCount>();
 
-        for (int i = 0; i < pumpkinParent.transform.childCount; i++)
-        {
-            pumpkinSp.Add(pumpkinParent.transform.GetChild(i).gameObject);
-        }
+        pumpRender.sprite = pumpkinsSp[0];
 
         FlickInitialize();
     }
@@ -110,7 +117,7 @@ public class MinionCreate : MonoBehaviour {
 
         flickCount = 0;
         flickIndex = 0;
-        displayCount = 0;
+        displayCount = 1;
 
         flickState = FlickState.Filst;
         nextFlickState = FlickState.Filst;
@@ -179,14 +186,15 @@ public class MinionCreate : MonoBehaviour {
     /// <param name="count">表示するパンプキンの数</param>
     void DisplayPampking()
     {
+        Debug.Log(displayCount);
         if (flickIndex == bafferCount.Length || flickCount != bafferCount[flickIndex]) return;
 
-        if (displayCount <= 0) displayCount = 1;
-        else if (displayCount >= 1) displayCount = displayCount * 2;
 
-        pumpkinSp[displayCount].SetActive(true);
+        if (displayCount >= 1) displayCount = displayCount * 2;
 
             flickIndex++;
+
+        pumpRender.sprite = pumpkinsSp[flickIndex];
         
     }
 
@@ -221,6 +229,8 @@ public class MinionCreate : MonoBehaviour {
             //パンプキングからパンプ菌を発射
             throwBom.ThrowingBall(createPos,nextBom);
 
+            pumpRender.sprite = pumpkinsSp[0];
+
             //ボムの数を減らす
             bomCount.UseBom();
 
@@ -238,11 +248,32 @@ public class MinionCreate : MonoBehaviour {
         Vector3 position = parentObj.transform.position;
         Vector2 size = new Vector2(4.0f, 4.0f);
 
-        Instantiate(pumpkinPre, position, Quaternion.identity, parentObj.transform);
+        GameObject attackPumpkin = Instantiate(pumpkinPre, position, Quaternion.identity, parentObj.transform);
+
+        PumpAI pumpAI = attackPumpkin.GetComponent<PumpAI>();
+
+        switch (displayCount)
+        {
+            case 1:
+                pumpAI.status = status[0];
+                break;
+
+            case 2:
+                pumpAI.status = status[1];
+                break;
+
+            case 4:
+                pumpAI.status = status[2];
+                break;
+
+            case 8:
+                pumpAI.status = status[3];
+                break;
+        }
 
         Instantiate(createEffect, position, Quaternion.identity);
 
-        for (int i = 1; i < displayCount + 1; i++)
+        for (int i = 1; i < displayCount; i++)
         {
 
             float x = Random.Range(position.x - size.x / 2, position.x + size.x / 2);

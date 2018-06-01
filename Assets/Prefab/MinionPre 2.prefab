@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackInterver: 1
-  status: {fileID: 11400000, guid: d1577a069608411448d588058dcd0328, type: 2}
+  status: {fileID: 11400000, guid: 79c10e2e5d12bcc49bc41531ca7293d9, type: 2}
 --- !u!114 &114596716553993064
 MonoBehaviour:
   m_ObjectHideFlags: 1
