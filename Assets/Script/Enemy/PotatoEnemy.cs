@@ -72,7 +72,7 @@ public class PotatoEnemy : BaseVegetable
 
     void OnTriggerEnter(Collider col)
     {
-
+        
     }
 
     void OnTriggerStay(Collider col)
