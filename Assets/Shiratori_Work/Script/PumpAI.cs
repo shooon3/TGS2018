@@ -1,14 +1,25 @@
-﻿using System.Collections;
+﻿/*
+ * PumpAIクラス
+ * 味方AIを制御するクラス
+ */
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PumpAI : BaseVegetable
 {
 
-    [Header("攻撃時間間隔")]
-    public float attackInterver;
+    //-----------------------------------------
+    // public
+    //-----------------------------------------
 
     public VegetableStatus status;
+
+    //-----------------------------------------
+    // private
+    //-----------------------------------------
 
     //近いターゲットを格納する変数
     SerchNearObj serchTarget;
@@ -30,70 +41,48 @@ public class PumpAI : BaseVegetable
 
     Hole hole;
 
-    float timer; //攻撃間隔を確認するための変数
+    //エネミーに当たった
+    bool isEnemyCollision = false;
 
-    bool isEnemyCollision = false; //エネミーに当たった
-    bool isHoleCollision = false; //穴に当たった
+    //穴に当たった
+    bool isHoleCollision = false;
 
-    // Use this for initialization
+    //-----------------------------------------
+    // 関数
+    //-----------------------------------------
+
     protected override void DoStart()
     {
-
-        serchTarget = GetComponent<SerchNearObj>();
-        timer = attackInterver;
-
-        //親のオブジェクトの位置を取得
-        parentPos = transform.parent.transform.position;
-
-        HP = status.hp;
-        POW = status.pow;
+        SetValue();
 
         SerchTarget();
     }
 
-    // Update is called once per frame
     protected override void DoUpdate()
     {
         ActionState();
     }
 
     /// <summary>
-    /// 感染と敵の攻撃処理を分ける
+    /// 値を初期化
     /// </summary>
-    void ActionState()
+    void SetValue()
     {
-        if (isEnemyCollision) Attack();
-        if (isHoleCollision) HoleInfection();
+        serchTarget = GetComponent<SerchNearObj>();
+
+        //親のオブジェクトの位置を取得
+        parentPos = transform.parent.transform.position;
+
+        HP = status.hp;
+        POW = status.pow;
+        attackInterval = status.attackInterval;
+
+        intervalTimer = attackInterval;
     }
 
     /// <summary>
-    /// 攻撃処理
+    /// ターゲットを取得
     /// </summary>
-    public override void Attack()
-    {
-        timer -= Time.deltaTime;
-
-        if (timer <= 0.0f)
-        {
-            AddDamage(NearTarget);
-            timer = attackInterver;
-        }
-    }
-
-    /// <summary>
-    /// 感染させる
-    /// </summary>
-    void HoleInfection()
-    {
-        if (hole != null)
-        {
-            hole.Infectious();
-
-            //畑が感染したらパンプ菌も消える
-            if (hole.Infection) Destroy(transform.root.gameObject);
-        }
-    }
-
     void SerchTarget()
     {
         //親のオブジェクトとHoleタグを探す
@@ -122,6 +111,41 @@ public class PumpAI : BaseVegetable
         //敵が存在していなかったら近い穴へ
         else NearTarget = nearHole;
     }
+
+    /// <summary>
+    /// 感染と敵の攻撃処理を分ける
+    /// </summary>
+    void ActionState()
+    {
+        if (isEnemyCollision) Attack();
+        if (isHoleCollision) HoleInfection();
+    }
+
+    /// <summary>
+    /// 攻撃処理
+    /// </summary>
+    protected override void Attack()
+    {
+        if(IsAttack())
+        {
+            AddDamage(NearTarget);
+        }
+    }
+
+    /// <summary>
+    /// 感染させる
+    /// </summary>
+    void HoleInfection()
+    {
+        if (hole != null)
+        {
+            hole.Infectious();
+
+            //畑が感染したらパンプ菌も消える
+            if (hole.Infection) Destroy(transform.root.gameObject);
+        }
+    }
+
 
     void OnTriggerEnter(Collider col)
     {

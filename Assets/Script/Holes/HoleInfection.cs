@@ -10,11 +10,8 @@ public class HoleInfection : MonoBehaviour {
 
     List<Transform> childLis = new List<Transform>();
 
-    public GameObject text;
-
 	// Use this for initialization
 	void Start () {
-        text.SetActive(false);
 
 		foreach(Transform child in transform)
         {
@@ -24,7 +21,7 @@ public class HoleInfection : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(AllInfection()) text.SetActive(true);
+
     }
 
     /// <summary>

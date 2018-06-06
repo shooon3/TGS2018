@@ -1,4 +1,12 @@
-﻿using System.Collections;
+﻿/*
+ * BaseVegetableクラス
+ * AIの基底クラス
+ * 
+ * すべてのAIはこのクラスを基底クラスとすること
+ * Start、Updateは抽象メソッドであるDoStart,DoUpdateで実装する
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -12,6 +20,9 @@ public abstract class BaseVegetable : MonoBehaviour {
 
     protected NavMeshAgent agent;
 
+    protected float attackInterval; //攻撃間隔
+    protected float intervalTimer; //タイマー
+
     //-----------------------------------------
     // プロパティ
     //-----------------------------------------
@@ -23,20 +34,25 @@ public abstract class BaseVegetable : MonoBehaviour {
     public int POW { get; protected set; }
 
     //-----------------------------------------
-    // 抽象クラス
+    // 抽象メソッド
     //-----------------------------------------
 
     protected abstract void DoStart();
+
     protected abstract void DoUpdate();
 
-    public abstract void Attack();
+    protected abstract void Attack();
 
-    BaseVegetable targetVegetable;
-
-    // Use this for initialization
+    //-----------------------------------------
+    // 関数
+    //-----------------------------------------
+    
     public void Start ()
     {
         agent = GetComponent<NavMeshAgent>();
+
+        //値を初期化
+        intervalTimer = attackInterval;
 
         DoStart();
 	}
@@ -76,7 +92,7 @@ public abstract class BaseVegetable : MonoBehaviour {
     {
         if (target == null) return;
 
-        targetVegetable = target.GetComponent<BaseVegetable>();
+        BaseVegetable targetVegetable = target.GetComponent<BaseVegetable>();
 
         if (targetVegetable == null) return;
 
@@ -85,5 +101,22 @@ public abstract class BaseVegetable : MonoBehaviour {
         targetHP -= POW;
 
         target.GetComponent<BaseVegetable>().HP = targetHP;
+    }
+
+    /// <summary>
+    /// 攻撃できるかどうか
+    /// </summary>
+    /// <returns></returns>
+    protected bool IsAttack()
+    {
+        intervalTimer -= Time.deltaTime;
+
+        if (intervalTimer <= 0.0f)
+        {
+            intervalTimer = attackInterval;
+            return true;
+        }
+
+        return false;
     }
 }
