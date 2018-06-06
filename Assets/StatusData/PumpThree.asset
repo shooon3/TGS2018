@@ -13,3 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 500
   pow: 750
+  attackInterval: 1

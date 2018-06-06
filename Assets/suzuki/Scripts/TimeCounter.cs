@@ -34,7 +34,7 @@ public class TimeCounter : MonoBehaviour
     {
         fade = false;
         clear = false;
-        IsStart = false;
+        IsStart = false; //変更
         timeText.gameObject.SetActive(false);
 
         //カウントダウン開始

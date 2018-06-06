@@ -51,6 +51,9 @@ public class MinionCreate : MonoBehaviour {
     [Header("パンプキン"), NamedArrayAttribute(new string[] { "一個目のパンプキン", "二個目のパンプキン", "四個目のパンプキン", "八個目のパンプキン" })]
     public VegetableStatus[] status;
 
+    [Header("カメラ")]
+    public CameraShake camShake;
+
 
     //-------------------------------------
     // private
@@ -225,7 +228,7 @@ public class MinionCreate : MonoBehaviour {
             //rayと衝突していなかったら以降の処理をしない
             if (Physics.Raycast(ray, out hit) == false) return;
 
-            Vector3 createPos = new Vector3(hit.point.x, 0, hit.point.z);
+            Vector3 createPos = new Vector3(hit.point.x, hit.point.y, hit.point.z);
 
             minionParent = Instantiate(massParentPre, createPos, Quaternion.identity);
 
@@ -253,13 +256,15 @@ public class MinionCreate : MonoBehaviour {
         Vector3 position = parentObj.transform.position;
         Vector2 size = new Vector2(4.0f, 4.0f);
 
+        camShake.DoShake();
+
         //攻撃してくるパンプキンを生成
         attackPumpkin = Instantiate(pumpkinPre, position, Quaternion.identity, parentObj.transform);
 
         StatusSet();
 
         //エフェクト生成
-        Instantiate(createEffect, position, Quaternion.identity);
+        Instantiate(createEffect, position, Quaternion.identity,minionParent.transform);
 
 
         //見た目だけのパンプキンを生成
@@ -269,7 +274,7 @@ public class MinionCreate : MonoBehaviour {
             float x = Random.Range(position.x - size.x / 2, position.x + size.x / 2);
             float z = Random.Range(position.z - size.y / 2, position.z + size.y / 2);
 
-            Instantiate(displayPumpkinPre, new Vector3(x, 0, z), Quaternion.identity, parentObj.transform);
+            Instantiate(displayPumpkinPre, new Vector3(x, position.y, z), Quaternion.identity, parentObj.transform);
         }
 
         FlickInitialize();
