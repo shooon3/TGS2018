@@ -56,37 +56,45 @@ public class TimeCounter : MonoBehaviour
             }
         }
 
-        //時間経過
-        timer = Time.time - startTime;                  //経過時間を計算
-        int minuteTime = Mathf.FloorToInt(timer) / 60;  //分を割り出す
-
         //クリアタイム記録
         if (!clear)
         {
+            //時間経過
+            timer = Time.time - startTime;                  //経過時間を計算
+            int minuteTime = Mathf.FloorToInt(timer) / 60;  //分を割り出す
+
+            //経過時間を表示
+            if (Mathf.FloorToInt(timer) - minuteTime * 60 < 10)
+            {
+                //秒数が0～9(1桁)の時
+                timeText.text = "Time\n" + minuteTime + ":0" + (Mathf.FloorToInt(timer) % 60);
+            }
+            else
+            {
+                //秒数が10～59(2桁)の時
+                timeText.text = "Time\n" + minuteTime + ":" + (Mathf.FloorToInt(timer) % 60);
+            }
+
             if (clearText.gameObject.activeSelf)    //クリアテキストがアクティブ
             {
                 //ステージクリア
                 clearTime = Mathf.FloorToInt(timer);    //クリアタイムを秒で記録
                 clear = true;
 
-                Debug.Log("クリアタイム " + clearTime / 60 + ":" + clearTime % 60);
-
-                //ポーズボタン機能停止
-                pose.GameClear();
-            }
-            else
-            {
-                //経過時間を表示
+                //ログにクリアタイムを表記
                 if (Mathf.FloorToInt(timer) - minuteTime * 60 < 10)
                 {
                     //秒数が0～9(1桁)の時
-                    timeText.text = "Time\n" + minuteTime + ":0" + (Mathf.FloorToInt(timer) % 60);
+                    Debug.Log("クリアタイム " + clearTime / 60 + ":0" + clearTime % 60);
                 }
                 else
                 {
                     //秒数が10～59(2桁)の時
-                    timeText.text = "Time\n" + minuteTime + ":" + (Mathf.FloorToInt(timer) % 60);
+                    Debug.Log("クリアタイム " + clearTime / 60 + ":" + clearTime % 60);
                 }
+
+                //ポーズボタン機能停止
+                pose.GameClear();
             }
         }
     }
