@@ -17,6 +17,8 @@ public class HoleManager : MonoBehaviour
     [SerializeField]
     float TimeLag = 0.2f;           //隣との時間差
     [SerializeField]
+    float EmergeTime = 0.1f;        //パンプきんの出現(消滅)ラグ
+    [SerializeField]
     float radius = 0.1f;            //判定範囲の大きさ
 
     [SerializeField]
@@ -86,6 +88,7 @@ public class HoleManager : MonoBehaviour
     /// <param name="hp"></param>
     public void Unification(Hole obj_hole, int hp)
     {
+        int num = 0;
         float f;
 
         if (!obj_hole.Infection)
@@ -100,11 +103,17 @@ public class HoleManager : MonoBehaviour
                 //徐々に色を変える(パターン1)
                 hatake.color = new Color(1, 1, 1, f);
 
-                //パンプきんを消滅(パターン2)
-                int i = Mathf.FloorToInt(f * 10 - 1);//-1,-1,0,0,1,1.....
-                if (i > -1 && !Lane.transform.GetChild(i).gameObject.activeSelf)
+                ////パンプきんを出現(パターン2)
+                //int i = Mathf.FloorToInt(f * 10 - 1);//-1,-1,0,0,1,1.....
+                //if (i > -1 && !Lane.transform.GetChild(i).gameObject.activeSelf)
+                //{
+                //    Lane.transform.GetChild(i).gameObject.SetActive(true);
+                //}
+
+                //パンプきんを出現(パターン3)
+                if (hp <= 0)
                 {
-                    Lane.transform.GetChild(i).gameObject.SetActive(true);
+                    StartCoroutine(Emerge());
                 }
             }
         }
@@ -120,16 +129,22 @@ public class HoleManager : MonoBehaviour
                 //徐々に元色に戻す(パターン1)
                 hatake.color = new Color(1, 1, 1, f);
 
-                //パンプきんを消滅(パターン2)
-                int i = Mathf.CeilToInt(f * 10);//10,10,9,9,8,8.....
-                if (i < 10 && Lane.transform.GetChild(i).gameObject.activeSelf)
+                ////パンプきんを消滅(パターン2)
+                //int i = Mathf.CeilToInt(f * 10);//10,10,9,9,8,8.....
+                //if (i < 10 && Lane.transform.GetChild(i).gameObject.activeSelf)
+                //{
+                //    Lane.transform.GetChild(i).gameObject.SetActive(false);
+                //}
+
+                //パンプきんを消滅(パターン3)
+                if (hp >= MaxHp)
                 {
-                    Lane.transform.GetChild(i).gameObject.SetActive(false);
+                    StartCoroutine(Disappear());
                 }
             }
         }
 
-        int num = 0;
+        num = 0;
         while (num < hole.Length)
         {
             //何個目の穴か検索
@@ -168,6 +183,24 @@ public class HoleManager : MonoBehaviour
                 hole[i].Invasion(f);
             }
             f += TimeLag;
+        }
+    }
+
+    IEnumerator Emerge()
+    {
+        for (int i = 0; i < Lane.transform.childCount; i++)
+        {
+            Lane.transform.GetChild(i).gameObject.SetActive(true);
+            yield return new WaitForSeconds(EmergeTime);
+        }
+    }
+
+    IEnumerator Disappear()
+    {
+        for (int i = Lane.transform.childCount - 1; i >= 0; i--)
+        {
+            Lane.transform.GetChild(i).gameObject.SetActive(false);
+            yield return new WaitForSeconds(EmergeTime);
         }
     }
 }

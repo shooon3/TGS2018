@@ -2256,6 +2256,7 @@ MonoBehaviour:
   flashTime: 0.1
   invincibleTime: 0.5
   TimeLag: 0.2
+  EmergeTime: 0.1
   radius: 0.1
   nextColor: {fileID: 2100000, guid: 8c84594634949404da450596556de049, type: 2}
   hatake: {fileID: 1248997995}
@@ -3083,6 +3084,7 @@ MonoBehaviour:
   flashTime: 0.1
   invincibleTime: 0.5
   TimeLag: 0.1
+  EmergeTime: 0.1
   radius: 0.1
   nextColor: {fileID: 2100000, guid: 8c84594634949404da450596556de049, type: 2}
   hatake: {fileID: 1291967055}
@@ -3448,6 +3450,7 @@ MonoBehaviour:
   flashTime: 0.1
   invincibleTime: 0.5
   TimeLag: 0.2
+  EmergeTime: 0.1
   radius: 0.1
   nextColor: {fileID: 2100000, guid: 8c84594634949404da450596556de049, type: 2}
   hatake: {fileID: 1869339869}
