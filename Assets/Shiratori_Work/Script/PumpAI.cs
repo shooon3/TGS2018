@@ -142,7 +142,7 @@ public class PumpAI : BaseVegetable
             hole.Infectious();
 
             //畑が感染したらパンプ菌も消える
-            if (hole.Infection) Destroy(transform.root.gameObject);
+            if (hole.Infection && hole.gameObject.tag == "Hole") Destroy(transform.root.gameObject);
         }
     }
 
