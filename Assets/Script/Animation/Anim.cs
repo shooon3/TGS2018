@@ -20,6 +20,18 @@ public class Anim : MonoBehaviour
         {
             Black.SetActive(true);
             animator.SetBool("PauseShot", true);
+            animator.SetBool("PauseCancel", false);
         }
+
+        if(Input.GetKeyDown(KeyCode.A))
+        {
+            animator.SetBool("PauseCancel", true);
+            animator.SetBool("PauseShot", false);
+            Invoke("BlackOff", 1.0f);
+        }
+    }
+    public void BlackOff()
+    {
+        Black.SetActive(false);
     }
 }
