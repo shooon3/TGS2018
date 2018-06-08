@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HoleManager : MonoBehaviour
 {
@@ -16,13 +17,17 @@ public class HoleManager : MonoBehaviour
     [SerializeField]
     float TimeLag = 0.2f;           //隣との時間差
     [SerializeField]
+    float EmergeTime = 0.1f;        //パンプきんの出現(消滅)ラグ
+    [SerializeField]
     float radius = 0.1f;            //判定範囲の大きさ
 
     [SerializeField]
     Material nextColor;     //変更色(仮)
 
     [SerializeField]
-    SpriteRenderer hatake;
+    Image hatake;
+    [SerializeField]
+    GameObject Lane;
     int OverallHP;
 
     public int MaxHP
@@ -68,7 +73,13 @@ public class HoleManager : MonoBehaviour
             hole[i] = transform.GetChild(i).GetComponent<Hole>();
             //hole[i].SetColider(radius);
         }
-	}
+
+        //パンプきんを非表示
+        for (int i = 0; i < 10; i++)
+        {
+            Lane.transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
 
     /// <summary>
     /// 演出の時間差を計算
@@ -78,6 +89,62 @@ public class HoleManager : MonoBehaviour
     public void Unification(Hole obj_hole, int hp)
     {
         int num = 0;
+        float f;
+
+        if (!obj_hole.Infection)
+        {
+            //感染率を可視化
+            if (OverallHP > hp)
+            {
+                OverallHP = hp;
+                float overallHP = OverallHP;
+                f = 1 - overallHP / MaxHP;
+
+                //徐々に色を変える(パターン1)
+                hatake.color = new Color(1, 1, 1, f);
+
+                ////パンプきんを出現(パターン2)
+                //int i = Mathf.FloorToInt(f * 10 - 1);//-1,-1,0,0,1,1.....
+                //if (i > -1 && !Lane.transform.GetChild(i).gameObject.activeSelf)
+                //{
+                //    Lane.transform.GetChild(i).gameObject.SetActive(true);
+                //}
+
+                //パンプきんを出現(パターン3)
+                if (hp <= 0)
+                {
+                    StartCoroutine(Emerge());
+                }
+            }
+        }
+        else
+        {
+            //除染率を可視化
+            if (OverallHP < hp)
+            {
+                OverallHP = hp;
+                float overallHP = OverallHP;
+                f = 1 - overallHP / MaxHP;
+
+                //徐々に元色に戻す(パターン1)
+                hatake.color = new Color(1, 1, 1, f);
+
+                ////パンプきんを消滅(パターン2)
+                //int i = Mathf.CeilToInt(f * 10);//10,10,9,9,8,8.....
+                //if (i < 10 && Lane.transform.GetChild(i).gameObject.activeSelf)
+                //{
+                //    Lane.transform.GetChild(i).gameObject.SetActive(false);
+                //}
+
+                //パンプきんを消滅(パターン3)
+                if (hp >= MaxHp)
+                {
+                    StartCoroutine(Disappear());
+                }
+            }
+        }
+
+        num = 0;
         while (num < hole.Length)
         {
             //何個目の穴か検索
@@ -89,7 +156,7 @@ public class HoleManager : MonoBehaviour
         }
 
         //同レーンの他の穴も
-        float f = 0;
+        f = 0;
         for (int i = num; i < hole.Length; i++)
         {
             //時間差を渡す(右方向)
@@ -117,28 +184,23 @@ public class HoleManager : MonoBehaviour
             }
             f += TimeLag;
         }
+    }
 
-        if (!obj_hole.Infection)
+    IEnumerator Emerge()
+    {
+        for (int i = 0; i < Lane.transform.childCount; i++)
         {
-            //感染率を可視化
-            if (OverallHP > hp)
-            {
-                OverallHP = hp;
-                float overallHP = OverallHP;
-                f = 1 - overallHP / MaxHP;
-                hatake.color = new Color(1, 1, 1, f);
-            }
+            Lane.transform.GetChild(i).gameObject.SetActive(true);
+            yield return new WaitForSeconds(EmergeTime);
         }
-        else
+    }
+
+    IEnumerator Disappear()
+    {
+        for (int i = Lane.transform.childCount - 1; i >= 0; i--)
         {
-            //除染率を可視化
-            if (OverallHP < hp)
-            {
-                OverallHP = hp;
-                float overallHP = OverallHP;
-                f = 1 - overallHP / MaxHP;
-                hatake.color = new Color(1, 1, 1, f);
-            }
+            Lane.transform.GetChild(i).gameObject.SetActive(false);
+            yield return new WaitForSeconds(EmergeTime);
         }
     }
 }

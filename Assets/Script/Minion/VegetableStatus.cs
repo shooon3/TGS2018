@@ -10,4 +10,7 @@ public class VegetableStatus : ScriptableObject {
 
     [Header("攻撃力")]
     public int pow;
+
+    [Header("攻撃間隔")]
+    public float attackInterval;
 }

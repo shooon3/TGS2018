@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 135328937333133724}
   - component: {fileID: 114881999464989352}
   m_Layer: 0
-  m_Name: BomPre
+  m_Name: DisplayBom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

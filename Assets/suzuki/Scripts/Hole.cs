@@ -237,6 +237,7 @@ public class Hole : MonoBehaviour
 
             //感染を可視化(仮)
             gameObject.GetComponent<Renderer>().material = nextColor;
+
         }
         else
         {
@@ -246,6 +247,20 @@ public class Hole : MonoBehaviour
 
             //除染を可視化(仮)
             gameObject.GetComponent<Renderer>().material = defaultColor;
+        }
+    }
+
+    public float time = 1;
+    void Update()
+    {
+        if (Infection==true)
+        {
+            time -= Time.deltaTime;
+            if(time<0)
+            {
+                time = 0;
+                this.tag = ("infHole");
+            }
         }
     }
 }

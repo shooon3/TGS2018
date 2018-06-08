@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerMove : MonoBehaviour {
 
@@ -8,6 +9,8 @@ public class PlayerMove : MonoBehaviour {
     // public
     //-------------------------------
 
+    [Header("タイムカウンター")]
+    public TimeCounter timeCount;
 
     //-------------------------------
     // private
@@ -17,7 +20,7 @@ public class PlayerMove : MonoBehaviour {
 
     Vector3 mousePos;
 
-    GameObject childObj; //子オブジェクト(吹き出し)
+    //GameObject childObj; //子オブジェクト(吹き出し)
 
     float move_x;
     float move_z;
@@ -25,17 +28,26 @@ public class PlayerMove : MonoBehaviour {
    [Header("移動スピードの調整"), Range(1, 20)]
     float speed;
 
+
+    /// <summary>
+    /// UI以外のところをタッチしているかどうか
+    /// </summary>
+    public bool IsTouch { get; private set; }
+
+    public bool IsStart { get; private set; }
+
     // Use this for initialization
     void Start () {
-        //hit = new RaycastHit();
-        childObj = transform.GetChild(0).gameObject;
 
-        //非表示
-        childObj.SetActive(false);
     }
 	
 	// Update is called once per frame
 	void Update () {
+
+        IsStart = timeCount.IsStart;
+
+        if (IsStart != true) return;
+
         RayCreate();
     }
 
@@ -44,6 +56,27 @@ public class PlayerMove : MonoBehaviour {
     /// </summary>
     void RayCreate()
     {
+
+        //タッチしたところがUIの上じゃなかったら判定しない
+#if UNITY_EDITOR
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            IsTouch = false;
+            return;
+        }
+#else
+        for (int i = 0; i < Input.touchCount; ++i)
+        {
+            Touch touch = Input.touches[i];
+            if (EventSystem.current.IsPointerOverGameObject(touch.fingerId))
+            {
+                IsTouch = false;
+                return;
+
+            }
+        }
+#endif
+
         if (Input.GetButton("Fire1"))
         {
             Move();
@@ -51,11 +84,8 @@ public class PlayerMove : MonoBehaviour {
             //rayの作成、タッチしたスクリーン座標をrayに変換
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            //押しているときは表示
-            childObj.SetActive(true);
+            IsTouch = true;
         }
-        //押していない間は非表示
-        else if (Input.GetButton("Fire1") == false) childObj.SetActive(false);
     }
 
     /// <summary>

@@ -1,12 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PotatoEnemy : BaseVegetable
 {
-
-    [Header("攻撃時間間隔")]
-    public float attackInterver;
 
     public VegetableStatus status;
 
@@ -18,14 +16,11 @@ public class PotatoEnemy : BaseVegetable
 
     bool isTargetAlive;
 
+    bool isReturnHole = false;
+
     protected override void DoStart()
     {
-        serchTarget = GetComponent<SerchNearObj>();
-        timer = attackInterver;
-
-        HP = status.hp;
-        POW = status.pow;
-
+        SetValue();
     }
 
     protected override void DoUpdate()
@@ -35,35 +30,51 @@ public class PotatoEnemy : BaseVegetable
         SerchTarget();
     }
 
-    public override void Attack()
+    /// <summary>
+    /// 値を初期化するメソッド
+    /// </summary>
+    void SetValue()
     {
-        timer -= Time.deltaTime;
+        serchTarget = GetComponent<SerchNearObj>();
 
-        if (timer <= 0.0f)
+        attackInterval = status.attackInterval;
+
+        HP = status.hp;
+        POW = status.pow;
+    }
+
+    /// <summary>
+    /// 攻撃処理を行うメソッド
+    /// </summary>
+    protected override void Attack()
+    {
+        if(IsAttack())
         {
-            AddDamage(target.gameObject);
-            timer = attackInterver;
-            ; ;
+            AddDamage(NearTarget);
         }
     }
 
+    /// <summary>
+    /// ターゲットを指定する
+    /// </summary>
     void SerchTarget()
     {
+
+        if(isTargetAlive && isReturnHole == true)
+            NearTarget = serchTarget.serchTag(transform.position, "Minion");
+
         if (NearTarget != null) return;
 
         if (isTargetAlive)
         {
             NearTarget = serchTarget.serchTag(transform.position, "Minion");
+            isReturnHole = false;
         }
-        else
+        else if(isTargetAlive == false)
         {
             NearTarget = serchTarget.serchTag(transform.position, "Hole");
+            isReturnHole = true;
         }
-    }
-
-    void OnTriggerEnter(Collider col)
-    {
-
     }
 
     void OnTriggerStay(Collider col)
