@@ -157,9 +157,13 @@ public class PumpAI : BaseVegetable
         //ターゲットにHoleスクリプトがアタッチされていたら
         hole = col.GetComponent<Hole>();
 
+        if (hole != null && hole.Infection == true) hole = null;
 
         if (target != null) isEnemyCollision = true;
-        else if (hole != null) isHoleCollision = true;
+        else if (hole != null)
+        {
+            isHoleCollision = true;
+        }
     }
 
     /// <summary>

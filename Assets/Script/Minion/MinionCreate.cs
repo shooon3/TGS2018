@@ -103,14 +103,24 @@ public class MinionCreate : MonoBehaviour {
 
         GetTouchPos();
         Flick();
-        DisplayPampking();
-        CreatePos();
 
+        if (minionMar == null)
+        {
+            CreatePos();
+            DisplayPampking();
+        }
+        else if(minionMar != null)
+        {
+            pumpRender.sprite = pumpkinsSp[4];
+        }
         //パンプ菌が生成できるようになったら(爆弾が地面に衝突してたら)
         if (minionMar != null && minionMar.IsMinionCreate)
         {
             MinionsCreate(minionParent);
+            pumpRender.sprite = pumpkinsSp[0];
             minionMar.IsMinionCreate = false;
+
+            minionMar = null;
         }
     }
 
@@ -197,7 +207,6 @@ public class MinionCreate : MonoBehaviour {
     {
         if (flickIndex == bafferCount.Length || flickCount != bafferCount[flickIndex]) return;
 
-
         if (displayCount >= 1) displayCount = displayCount * 2;
 
             flickIndex++;
@@ -214,7 +223,10 @@ public class MinionCreate : MonoBehaviour {
         int nowBomCount = bomCount.NowBomCount();
 
         //爆弾を生成できるのは、ほかの爆弾がない時 かつ　爆弾の数が０でないときだけ
-        if (pumpking.transform.childCount != 0 || nowBomCount == 0 || playerMove.IsTouch != true) return;
+        if (pumpking.transform.childCount != 0 || nowBomCount == 0 || playerMove.IsTouch != true)
+        {
+            return;
+        }
 
 
         if (Input.GetButtonUp("Fire1"))
@@ -224,9 +236,13 @@ public class MinionCreate : MonoBehaviour {
             //rayの生成
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit = new RaycastHit();
-            
+
             //rayと衝突していなかったら以降の処理をしない
-            if (Physics.Raycast(ray, out hit) == false) return;
+            if (Physics.Raycast(ray, out hit) == false)
+            {
+                FlickInitialize();
+                return;
+            }
 
             Vector3 createPos = new Vector3(hit.point.x, hit.point.y, hit.point.z);
 
@@ -239,8 +255,6 @@ public class MinionCreate : MonoBehaviour {
 
             //パンプキングからパンプ菌を発射
             throwBom.ThrowingBall(createPos,nextBom);
-
-            pumpRender.sprite = pumpkinsSp[0];
 
             //ボムの数を減らす
             bomCount.UseBom();
@@ -276,6 +290,7 @@ public class MinionCreate : MonoBehaviour {
 
             Instantiate(displayPumpkinPre, new Vector3(x, position.y, z), Quaternion.identity, parentObj.transform);
         }
+
 
         FlickInitialize();
     }
