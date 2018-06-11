@@ -832,6 +832,11 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 137622553}
+--- !u!1 &153936805 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1305692503174756, guid: 71ac6cc031bc0ce49bd8b480eb18f810,
+    type: 2}
+  m_PrefabInternal: {fileID: 1061969961}
 --- !u!1 &160258013
 GameObject:
   m_ObjectHideFlags: 0
@@ -2211,6 +2216,7 @@ GameObject:
   m_Component:
   - component: {fileID: 337633263}
   - component: {fileID: 337633264}
+  - component: {fileID: 337633265}
   m_Layer: 0
   m_Name: Holes
   m_TagString: Untagged
@@ -2247,6 +2253,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ecd114fb14b1744823a81d5727b7a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &337633265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 337633262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e708f20856d13794b8a69aded417942f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss: {fileID: 1305692503174756, guid: 71ac6cc031bc0ce49bd8b480eb18f810, type: 2}
+  createPos: {fileID: 1456243115}
 --- !u!1 &339279477
 GameObject:
   m_ObjectHideFlags: 0
@@ -4802,12 +4821,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bafferCount: 0a000000140000001e000000
   pumpkinPre: {fileID: 1119420090396028, guid: 0b07096e825a41943a1fa7721a2a5163, type: 2}
+  bossPumpkin: {fileID: 1135686898537288, guid: 1d5c841d3b7475e46aa149365fd7240f,
+    type: 2}
   displayPumpkinPre: {fileID: 1611317447155150, guid: 8ecdb7e33693ab443a922ef37c87839f,
     type: 2}
+  bossDisp: {fileID: 1998090088863800, guid: cbe4a729222bf724591929bebd5473ae, type: 2}
   massParentPre: {fileID: 1803381458231002, guid: 371030e263f4ef344b3ac27cf02ab544,
     type: 2}
   pumpking: {fileID: 1166238746}
-  maxBom: 20
+  maxBom: 50
   createEffect: {fileID: 1432069092846210, guid: d2a5f089eb9e96a40bdc5f71250ead40,
     type: 2}
   pumpkinsSp:
@@ -4874,6 +4896,7 @@ GameObject:
   m_Component:
   - component: {fileID: 889916330}
   - component: {fileID: 889916331}
+  - component: {fileID: 889916332}
   m_Layer: 0
   m_Name: Holes
   m_TagString: Untagged
@@ -4910,6 +4933,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ecd114fb14b1744823a81d5727b7a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &889916332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 889916329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e708f20856d13794b8a69aded417942f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss: {fileID: 153936805}
+  createPos: {fileID: 518731038}
 --- !u!1 &913769512
 GameObject:
   m_ObjectHideFlags: 0
@@ -6411,6 +6447,52 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1061420510}
+--- !u!1001 &1061969961
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4898043696089390, guid: 71ac6cc031bc0ce49bd8b480eb18f810, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4898043696089390, guid: 71ac6cc031bc0ce49bd8b480eb18f810, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 140
+      objectReference: {fileID: 0}
+    - target: {fileID: 4898043696089390, guid: 71ac6cc031bc0ce49bd8b480eb18f810, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 61.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4898043696089390, guid: 71ac6cc031bc0ce49bd8b480eb18f810, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4898043696089390, guid: 71ac6cc031bc0ce49bd8b480eb18f810, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0.9980919
+      objectReference: {fileID: 0}
+    - target: {fileID: 4898043696089390, guid: 71ac6cc031bc0ce49bd8b480eb18f810, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0.06174641
+      objectReference: {fileID: 0}
+    - target: {fileID: 4898043696089390, guid: 71ac6cc031bc0ce49bd8b480eb18f810, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4898043696089390, guid: 71ac6cc031bc0ce49bd8b480eb18f810, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305692503174756, guid: 71ac6cc031bc0ce49bd8b480eb18f810, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 71ac6cc031bc0ce49bd8b480eb18f810, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1082497238
 GameObject:
   m_ObjectHideFlags: 0
@@ -6646,8 +6728,8 @@ Camera:
   m_GameObject: {fileID: 1097635428}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.5441177, g: 0.3264706, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -6710,8 +6792,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd8e69545ff23404095564b4263b740e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shakeTime: 0.25
-  magunitude: 0.5
 --- !u!1001 &1097764840
 Prefab:
   m_ObjectHideFlags: 0
@@ -6836,11 +6916,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1369273197557718, guid: 6623fc26dbea69743b51f7ee1774bbab, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1775727064150186, guid: 6623fc26dbea69743b51f7ee1774bbab, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1690682941260054, guid: 6623fc26dbea69743b51f7ee1774bbab, type: 2}
       propertyPath: m_IsActive
@@ -6848,8 +6928,22 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1306041489097270, guid: 6623fc26dbea69743b51f7ee1774bbab, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1690682941260054, guid: 6623fc26dbea69743b51f7ee1774bbab, type: 2}
+      propertyPath: m_Name
+      value: ClearText
+      objectReference: {fileID: 0}
+    - target: {fileID: 114518627855066406, guid: 6623fc26dbea69743b51f7ee1774bbab,
+        type: 2}
+      propertyPath: clearText
+      value: 
+      objectReference: {fileID: 1229199001}
+    - target: {fileID: 114518627855066406, guid: 6623fc26dbea69743b51f7ee1774bbab,
+        type: 2}
+      propertyPath: boss
+      value: 
+      objectReference: {fileID: 153936805}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6623fc26dbea69743b51f7ee1774bbab, type: 2}
   m_IsPrefabParent: 0
@@ -7555,6 +7649,11 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1182264499}
+--- !u!1 &1229199001 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1690682941260054, guid: 6623fc26dbea69743b51f7ee1774bbab,
+    type: 2}
+  m_PrefabInternal: {fileID: 1097764840}
 --- !u!1 &1229294645
 GameObject:
   m_ObjectHideFlags: 0
@@ -12976,6 +13075,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1829040378}
   - component: {fileID: 1829040379}
+  - component: {fileID: 1829040380}
   m_Layer: 0
   m_Name: Holes
   m_TagString: Untagged
@@ -13012,6 +13112,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ecd114fb14b1744823a81d5727b7a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1829040380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1829040377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e708f20856d13794b8a69aded417942f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss: {fileID: 1305692503174756, guid: 71ac6cc031bc0ce49bd8b480eb18f810, type: 2}
+  createPos: {fileID: 1452319082}
 --- !u!1 &1835863414
 GameObject:
   m_ObjectHideFlags: 0
@@ -14691,6 +14804,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2069249627}
   - component: {fileID: 2069249628}
+  - component: {fileID: 2069249629}
   m_Layer: 0
   m_Name: Holes
   m_TagString: Untagged
@@ -14727,6 +14841,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ecd114fb14b1744823a81d5727b7a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2069249629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2069249626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e708f20856d13794b8a69aded417942f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss: {fileID: 1305692503174756, guid: 71ac6cc031bc0ce49bd8b480eb18f810, type: 2}
+  createPos: {fileID: 833296550}
 --- !u!1 &2083861718
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,8 +27,12 @@ public class MinionCreate : MonoBehaviour {
     [Header("戦うパンプ菌")]
     public GameObject pumpkinPre;
 
+    public GameObject bossPumpkin;
+
     [Header("追従するだけのパンプ菌")]
     public GameObject displayPumpkinPre;
+
+    public GameObject bossDisp;
 
     [Header("パンプ菌集団の親オブジェクト")]
     public GameObject massParentPre;
@@ -76,6 +80,8 @@ public class MinionCreate : MonoBehaviour {
     int displayCount; //パンプキンを出す数
     int beforeCount;
     int flickIndex;
+
+    bool isAttackBass;
 
     FlickState flickState; //フリックされた方向
     FlickState nextFlickState; //次にフリックする方向
@@ -244,6 +250,7 @@ public class MinionCreate : MonoBehaviour {
                 return;
             }
 
+
             Vector3 createPos = new Vector3(hit.point.x, hit.point.y, hit.point.z);
 
             minionParent = Instantiate(massParentPre, createPos, Quaternion.identity);
@@ -258,6 +265,14 @@ public class MinionCreate : MonoBehaviour {
 
             //ボムの数を減らす
             bomCount.UseBom();
+
+            BaseEnemyT bass = hit.transform.GetComponent<BaseEnemyT>();
+
+            if (bass != null)
+            {
+                isAttackBass = true;
+            }
+            else isAttackBass = false;
         }
     }
 
@@ -270,25 +285,49 @@ public class MinionCreate : MonoBehaviour {
         Vector3 position = parentObj.transform.position;
         Vector2 size = new Vector2(4.0f, 4.0f);
 
-        camShake.DoShake();
-
+        //揺らす
+        camShake.DoShake(0.25f,0.5f);
         //攻撃してくるパンプキンを生成
-        attackPumpkin = Instantiate(pumpkinPre, position, Quaternion.identity, parentObj.transform);
-
+        if (isAttackBass)
+        {
+            attackPumpkin = Instantiate(bossPumpkin, position, Quaternion.identity, parentObj.transform);
+        }
+        else
+        {
+            attackPumpkin = Instantiate(pumpkinPre, position, Quaternion.identity, parentObj.transform);
+        }
         StatusSet();
 
         //エフェクト生成
         Instantiate(createEffect, position, Quaternion.identity,minionParent.transform);
 
+        Vector3 vec = Vector3.zero;
+
+        float x = 0, y = 0, z = 0;
 
         //見た目だけのパンプキンを生成
         for (int i = 1; i < displayCount; i++)
         {
 
-            float x = Random.Range(position.x - size.x / 2, position.x + size.x / 2);
-            float z = Random.Range(position.z - size.y / 2, position.z + size.y / 2);
+            if (isAttackBass)
+            {
+                x = Random.Range(position.x - 1.0f, position.x + 1.0f);
+                y = Random.Range(position.y - 1.0f, position.y + 1.0f);
 
-            Instantiate(displayPumpkinPre, new Vector3(x, position.y, z), Quaternion.identity, parentObj.transform);
+
+                vec = new Vector3(position.x, y, position.z);
+
+                Instantiate(bossDisp, vec, Quaternion.identity, parentObj.transform);
+            }
+            else
+            {
+                x = Random.Range(position.x - size.x / 2, position.x + size.x / 2);
+                z = Random.Range(position.z - size.y / 2, position.z + size.y / 2);
+
+                vec = new Vector3(x, position.y, z);
+
+                Instantiate(displayPumpkinPre, vec, Quaternion.identity, parentObj.transform);
+            }
         }
 
 

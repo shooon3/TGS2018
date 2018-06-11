@@ -8,6 +8,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PumpType
+{
+    _bossAttack,
+    _attack
+}
+
 public class PumpAI : BaseVegetable
 {
 
@@ -15,14 +21,11 @@ public class PumpAI : BaseVegetable
     // public
     //-----------------------------------------
 
-    public VegetableStatus status;
 
+    public PumpType type;
     //-----------------------------------------
     // private
     //-----------------------------------------
-
-    //近いターゲットを格納する変数
-    SerchNearObj serchTarget;
 
     //近い穴の位置を格納する変数
     GameObject nearHole;
@@ -30,14 +33,13 @@ public class PumpAI : BaseVegetable
     //近い敵の位置を格納する変数
     GameObject nearEnemy;
 
-    //移動するポイント
-    GameObject moveTarget;
-
     //親の位置を取得する変数
     Vector3 parentPos;
 
     //デストロイするオブジェクトの変数
     BaseVegetable target;
+
+    BaseEnemyT boss;
 
     Hole hole;
 
@@ -47,46 +49,40 @@ public class PumpAI : BaseVegetable
     //穴に当たった
     bool isHoleCollision = false;
 
+    bool isHoleInfection = true;
+
     //-----------------------------------------
     // 関数
     //-----------------------------------------
 
     protected override void DoStart()
     {
-        SetValue();
 
+        parentPos = transform.position;
         SerchTarget();
     }
 
     protected override void DoUpdate()
     {
         ActionState();
-    }
 
-    /// <summary>
-    /// 値を初期化
-    /// </summary>
-    void SetValue()
-    {
-        serchTarget = GetComponent<SerchNearObj>();
+        if(type == PumpType._attack)Move();
 
-        //親のオブジェクトの位置を取得
-        parentPos = transform.parent.transform.position;
-
-        HP = status.hp;
-        POW = status.pow;
-        attackInterval = status.attackInterval;
-
-        intervalTimer = attackInterval;
+        Death();
     }
 
     /// <summary>
     /// ターゲットを取得
     /// </summary>
-    void SerchTarget()
+    protected override void SerchTarget()
     {
-        //親のオブジェクトとHoleタグを探す
-        nearHole = serchTarget.serchTag(parentPos, "Hole");
+        //while (isHoleInfection)
+        //{
+            //親のオブジェクトとHoleタグを探す
+            nearHole = serchTarget.serchTag(parentPos, "Hole");
+
+            isHoleInfection = nearHole.GetComponent<Hole>().Infection;
+        //}
 
         nearEnemy = serchTarget.serchTag(parentPos, "Enemy");
 
@@ -113,15 +109,6 @@ public class PumpAI : BaseVegetable
     }
 
     /// <summary>
-    /// 感染と敵の攻撃処理を分ける
-    /// </summary>
-    void ActionState()
-    {
-        if (isEnemyCollision) Attack();
-        if (isHoleCollision) HoleInfection();
-    }
-
-    /// <summary>
     /// 攻撃処理
     /// </summary>
     protected override void Attack()
@@ -130,6 +117,21 @@ public class PumpAI : BaseVegetable
         {
             AddDamage(NearTarget);
         }
+    }
+
+
+    protected override void Death()
+    {
+        if (IsDestroyEnemy()) Destroy(transform.root.gameObject);
+    }
+
+    /// <summary>
+    /// 感染と敵の攻撃処理を分ける
+    /// </summary>
+    void ActionState()
+    {
+        if (isEnemyCollision) Attack();
+        if (isHoleCollision) HoleInfection();
     }
 
     /// <summary>
@@ -142,28 +144,40 @@ public class PumpAI : BaseVegetable
             hole.Infectious();
 
             //畑が感染したらパンプ菌も消える
-            if (hole.Infection && hole.gameObject.tag == "Hole") Destroy(transform.root.gameObject);
+            if (hole.Infection && hole.gameObject.tag == "Hole")
+                Destroy(transform.root.gameObject);
         }
     }
 
-
     void OnTriggerEnter(Collider col)
     {
-        if (target != null || hole != null) return;
+        boss = col.GetComponent<BaseEnemyT>();
 
-        //ターゲットにダメージを与える
-        target = col.GetComponent<BaseVegetable>();
-
-        //ターゲットにHoleスクリプトがアタッチされていたら
-        hole = col.GetComponent<Hole>();
-
-        if (hole != null && hole.Infection == true) hole = null;
-
-        if (target != null) isEnemyCollision = true;
-        else if (hole != null)
+        if (boss != null)
         {
-            isHoleCollision = true;
+            transform.parent.transform.parent = col.transform;
+            isEnemyCollision = true;
+            Attack();
         }
+        else
+        {
+
+            if (target != null || hole != null) return;
+
+            //ターゲットにダメージを与える
+            target = col.GetComponent<BaseVegetable>();
+
+            //ターゲットにHoleスクリプトがアタッチされていたら
+            hole = col.GetComponent<Hole>();
+
+            if (hole != null && hole.Infection == true) hole = null;
+
+            if (target != null) isEnemyCollision = true;
+            else if (hole != null) isHoleCollision = true;
+
+            IsMove = true;
+        }
+        
     }
 
     /// <summary>

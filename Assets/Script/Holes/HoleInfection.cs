@@ -28,7 +28,7 @@ public class HoleInfection : MonoBehaviour {
     /// すべての穴が感染しているかどうか
     /// </summary>
     /// <returns></returns>
-    bool AllInfection()
+    public bool AllInfection()
     {
         for (int i = 0; i < childLis.Count; i++)
         {

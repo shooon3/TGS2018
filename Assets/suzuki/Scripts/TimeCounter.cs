@@ -23,7 +23,9 @@ public class TimeCounter : MonoBehaviour
     Pose pose;  //ポーズスクリプト
 
     [SerializeField]
-    Text clearText;
+    GameObject clearText;
+
+    public GameObject boss;
 
     /// <summary>
     /// ゲームはスタートしているかどうか
@@ -75,8 +77,9 @@ public class TimeCounter : MonoBehaviour
                 timeText.text = "Time\n" + minuteTime + ":" + (Mathf.FloorToInt(timer) % 60);
             }
 
-            if (clearText.gameObject.activeSelf)    //クリアテキストがアクティブ
+            if (boss == null)    //クリアテキストがアクティブ
             {
+                clearText.SetActive(true);
                 //ステージクリア
                 clearTime = Mathf.FloorToInt(timer);    //クリアタイムを秒で記録
                 clear = true;

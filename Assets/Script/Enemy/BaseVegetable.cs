@@ -15,23 +15,58 @@ using UnityEngine.AI;
 public abstract class BaseVegetable : MonoBehaviour {
 
     //-----------------------------------------
+    // private
+    //-----------------------------------------
+
+    bool isMove = true;
+
+    //-----------------------------------------
+    // public
+    //-----------------------------------------
+
+    public VegetableStatus status;
+
+    //-----------------------------------------
     // protected
     //-----------------------------------------
 
     protected NavMeshAgent agent;
 
+    protected SerchNearObj serchTarget;
+
     protected float attackInterval; //攻撃間隔
+
     protected float intervalTimer; //タイマー
+
+    protected Animator animator;
 
     //-----------------------------------------
     // プロパティ
     //-----------------------------------------
 
+    /// <summary>
+    /// 一番近いターゲット
+    /// </summary>
     public GameObject NearTarget { get; set; }
 
+    /// <summary>
+    /// 体力
+    /// </summary>
     public int HP { get; protected set; }
 
+    /// <summary>
+    /// 攻撃力
+    /// </summary>
     public int POW { get; protected set; }
+
+    /// <summary>
+    /// 移動できるかどうか
+    /// </summary>
+    public bool IsMove
+    {
+        get { return isMove; }
+        set { isMove = value; }
+    }
 
     //-----------------------------------------
     // 抽象メソッド
@@ -43,35 +78,58 @@ public abstract class BaseVegetable : MonoBehaviour {
 
     protected abstract void Attack();
 
+    protected abstract void SerchTarget();
+
+    protected abstract void Death();
+
     //-----------------------------------------
     // 関数
     //-----------------------------------------
-    
-    public void Start ()
-    {
-        agent = GetComponent<NavMeshAgent>();
 
-        //値を初期化
-        intervalTimer = attackInterval;
+    public void Start()
+    {
+        SetValue();
 
         DoStart();
 	}
 
     public void Update()
     {
-        Move();
-
+        //Move();
         DoUpdate();
+    }
+
+    /// <summary>
+    /// 値を初期化するメソッド
+    /// </summary>
+    void SetValue()
+    {
+        //コンポーネントを取得
+        agent = GetComponent<NavMeshAgent>();
+        serchTarget = GetComponent<SerchNearObj>();
+
+        //インターバルを取得
+        attackInterval = status.attackInterval;
+
+        //インターバル値を初期化
+        intervalTimer = attackInterval;
+
+        //HP,POW値をセット
+        HP = status.hp;
+        POW = status.pow;
+
+        //移動できる
+        IsMove = true;
     }
 
     /// <summary>
     /// 移動処理
     /// </summary>
-    void Move()
+    public void Move()
     {
-        if (NearTarget == null) return;
-        Transform targetTransform = NearTarget.transform;
+        if (IsMove == false || NearTarget == null || agent.enabled == false) return;
 
+        Transform targetTransform = NearTarget.transform;
         agent.SetDestination(targetTransform.position);
     }
 
@@ -79,7 +137,7 @@ public abstract class BaseVegetable : MonoBehaviour {
     /// 倒されたかどうか
     /// </summary>
     /// <returns></returns>
-    public bool IsDie()
+    public bool IsDeath()
     {
         if (HP <= 0) return true;
         return false;

@@ -5,10 +5,7 @@ using UnityEngine.EventSystems;
 
 public class PotatoEnemy : BaseVegetable
 {
-
-    public VegetableStatus status;
-
-    SerchNearObj serchTarget;
+    //public VegetableStatus status;
 
     PumpAI target;
 
@@ -20,27 +17,15 @@ public class PotatoEnemy : BaseVegetable
 
     protected override void DoStart()
     {
-        SetValue();
+        IsMove = true;
+        animator = transform.GetChild(0).GetComponent<Animator>();
     }
 
     protected override void DoUpdate()
     {
         isTargetAlive = serchTarget.IsTargetAlive("Minion");
-
+        Move();
         SerchTarget();
-    }
-
-    /// <summary>
-    /// 値を初期化するメソッド
-    /// </summary>
-    void SetValue()
-    {
-        serchTarget = GetComponent<SerchNearObj>();
-
-        attackInterval = status.attackInterval;
-
-        HP = status.hp;
-        POW = status.pow;
     }
 
     /// <summary>
@@ -48,18 +33,22 @@ public class PotatoEnemy : BaseVegetable
     /// </summary>
     protected override void Attack()
     {
-        if(IsAttack())
+        if (IsAttack())
         {
+            animator.SetTrigger("IsAttack");
             AddDamage(NearTarget);
+        }
+        else
+        {
+            animator.SetTrigger("IsMove");
         }
     }
 
     /// <summary>
     /// ターゲットを指定する
     /// </summary>
-    void SerchTarget()
+    protected override void SerchTarget()
     {
-
         if(isTargetAlive && isReturnHole == true)
             NearTarget = serchTarget.serchTag(transform.position, "Minion");
 
@@ -75,6 +64,11 @@ public class PotatoEnemy : BaseVegetable
             NearTarget = serchTarget.serchTag(transform.position, "Hole");
             isReturnHole = true;
         }
+    }
+
+    protected override void Death()
+    {
+        Destroy(gameObject);
     }
 
     void OnTriggerStay(Collider col)
@@ -95,7 +89,7 @@ public class PotatoEnemy : BaseVegetable
 
         if (IsDestroyEnemy(col))
         {
-            Destroy(gameObject);
+            Death();
         }
     }
 

@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class CameraShake : MonoBehaviour {
 
-    [Header("振動時間")]
-    public float shakeTime;
+    //[Header("振動時間")]
+    //public float shakeTime;
 
-    [Header("震度")]
-    public float magunitude;
+    //[Header("震度")]
+    //public float magunitude;
     /// <summary>
     /// カメラシェイク処理
     /// </summary>
-    public void DoShake()
+    public void DoShake(float shakeTime, float magnitude)
     {
-        StartCoroutine(CamShake(shakeTime,magunitude));
+        StartCoroutine(CamShake(shakeTime,magnitude));
     }
 
     IEnumerator CamShake(float shakeTime,float magnitude)

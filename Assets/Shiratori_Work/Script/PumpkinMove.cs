@@ -22,6 +22,10 @@ public class PumpkinMove : MonoBehaviour {
     //親の位置を取得する変数
     Vector3 parentPos;
 
+    bool isMove = false;
+
+    public PumpType type;
+
 	// Use this for initialization
 	void Start () {
 
@@ -39,6 +43,7 @@ public class PumpkinMove : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        if(moveTarget != null && type == PumpType._attack)
         agent.destination = moveTarget.transform.position;
     }
 
@@ -67,5 +72,20 @@ public class PumpkinMove : MonoBehaviour {
         }
         //いない場合は穴に行く
         else moveTarget = nearHole;
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        //BaseEnemyT boss = col.GetComponent<BaseEnemyT>();
+
+        //if (boss != null)
+        //{
+        //    agent.enabled = false;
+        //    isMove = false;
+        //}
+        //else
+        //{
+        //    isMove = true;
+        //}
     }
 }
