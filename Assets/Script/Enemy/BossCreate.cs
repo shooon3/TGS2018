@@ -24,7 +24,6 @@ public class BossCreate : MonoBehaviour {
 	void Update () {
 		if(holeInf.AllInfection() && isFirst)
         {
-            Debug.Log("ok");
             boss.SetActive(true);
             //Instantiate(boss,new Vector3(createPos.position.x,30,createPos.position.z),boss.transform.rotation);
             isFirst = false;

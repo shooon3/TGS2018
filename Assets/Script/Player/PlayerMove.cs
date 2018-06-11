@@ -36,6 +36,8 @@ public class PlayerMove : MonoBehaviour {
 
     public bool IsStart { get; private set; }
 
+    public bool IsClear { get; private set; }
+
     // Use this for initialization
     void Start () {
 
@@ -45,8 +47,9 @@ public class PlayerMove : MonoBehaviour {
 	void Update () {
 
         IsStart = timeCount.IsStart;
+        IsClear = timeCount.IsClear;
 
-        if (IsStart != true) return;
+        if (IsStart != true || IsClear != false) return;
 
         RayCreate();
     }

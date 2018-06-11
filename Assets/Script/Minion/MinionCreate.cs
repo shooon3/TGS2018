@@ -105,7 +105,7 @@ public class MinionCreate : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (playerMove.IsStart != true) return;
+        if (playerMove.IsStart != true || playerMove.IsClear != false) return;
 
         GetTouchPos();
         Flick();

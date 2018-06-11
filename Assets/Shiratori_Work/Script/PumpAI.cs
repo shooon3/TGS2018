@@ -3,7 +3,6 @@
  * 味方AIを制御するクラス
  */
 
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

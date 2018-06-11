@@ -32,6 +32,8 @@ public class TimeCounter : MonoBehaviour
     /// </summary>
     public bool IsStart { get; set; }
 
+    public bool IsClear { get; set; }
+
 	void Start ()
     {
         fade = false;
@@ -59,7 +61,7 @@ public class TimeCounter : MonoBehaviour
         }
 
         //クリアタイム記録
-        if (!clear)
+        if (!IsClear)
         {
             //時間経過
             timer = Time.time - startTime;                  //経過時間を計算
@@ -82,7 +84,7 @@ public class TimeCounter : MonoBehaviour
                 clearText.SetActive(true);
                 //ステージクリア
                 clearTime = Mathf.FloorToInt(timer);    //クリアタイムを秒で記録
-                clear = true;
+                IsClear = true;
 
                 //ログにクリアタイムを表記
                 if (Mathf.FloorToInt(timer) - minuteTime * 60 < 10)
