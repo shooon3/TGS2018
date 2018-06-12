@@ -330,7 +330,6 @@ public class MinionCreate : MonoBehaviour {
             }
         }
 
-
         FlickInitialize();
     }
 

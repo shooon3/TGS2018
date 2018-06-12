@@ -20,8 +20,8 @@ public class PumpAI : BaseVegetable
     // public
     //-----------------------------------------
 
-
     public PumpType type;
+
     //-----------------------------------------
     // private
     //-----------------------------------------
@@ -56,7 +56,7 @@ public class PumpAI : BaseVegetable
 
     protected override void DoStart()
     {
-
+        if (type == PumpType._attack) IsMove = true;
         parentPos = transform.position;
         SerchTarget();
     }
@@ -65,7 +65,10 @@ public class PumpAI : BaseVegetable
     {
         ActionState();
 
-        if(type == PumpType._attack)Move();
+        if (type == PumpType._attack)
+        {
+            Move();
+        }
 
         Death();
     }
@@ -158,11 +161,8 @@ public class PumpAI : BaseVegetable
             isEnemyCollision = true;
             Attack();
         }
-        else
+        else if(target == null && hole == null)
         {
-
-            if (target != null || hole != null) return;
-
             //ターゲットにダメージを与える
             target = col.GetComponent<BaseVegetable>();
 
@@ -171,10 +171,10 @@ public class PumpAI : BaseVegetable
 
             if (hole != null && hole.Infection == true) hole = null;
 
+            if (target != null || hole != null) agent.isStopped = true;
+
             if (target != null) isEnemyCollision = true;
             else if (hole != null) isHoleCollision = true;
-
-            IsMove = true;
         }
         
     }

@@ -138,7 +138,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1565356066768350}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 3, y: 2, z: 6.5}
@@ -154,7 +154,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4ccb990a7c91e840a28e83b28bfe92c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackInterver: 5
   status: {fileID: 11400000, guid: c2e2f89f7bdf52e45a3da16494eba64f, type: 2}
 --- !u!114 &114969520357728076
 MonoBehaviour:

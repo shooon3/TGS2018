@@ -54,6 +54,9 @@ public class PotatoEnemy : BaseVegetable
 
         if (NearTarget != null) return;
 
+        IsMove = true;
+        agent.isStopped = false;
+
         if (isTargetAlive)
         {
             NearTarget = serchTarget.serchTag(transform.position, "Minion");
@@ -82,6 +85,7 @@ public class PotatoEnemy : BaseVegetable
 
             if (target != null)
             {
+                agent.isStopped = true;
                 NearTarget = target.gameObject;
                 Attack();
             }

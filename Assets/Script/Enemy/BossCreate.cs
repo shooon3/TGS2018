@@ -16,7 +16,7 @@ public class BossCreate : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         boss.SetActive(false);
-        boss.transform.position = new Vector3(createPos.position.x, 30, createPos.position.z);
+        //boss.transform.position = new Vector3(createPos.position.x, 30, createPos.position.z);
         holeInf = GetComponent<HoleInfection>();
 	}
 	

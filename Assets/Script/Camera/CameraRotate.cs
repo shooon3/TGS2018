@@ -26,12 +26,12 @@ public class CameraRotate : MonoBehaviour {
 
     public void RightButton()
     {
-        camAngle.y += 90;
+        camAngle.y += 120;
     }
 
     public void LeftButton()
     {
-        camAngle.y -= 90;
+        camAngle.y -= 120;
     }
 
     void RotationCam()
