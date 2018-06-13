@@ -11,20 +11,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(SerchNearObj))]
+public enum AnimationType
+{
+    _move,
+    _attack,
+    _pop
+}
+
 public abstract class BaseVegetable : MonoBehaviour {
 
     //-----------------------------------------
     // private
     //-----------------------------------------
 
-    bool isMove = true;
+    AnimationType animType;
 
     //-----------------------------------------
     // public
     //-----------------------------------------
 
     public VegetableStatus status;
+
+    public int hp;
 
     //-----------------------------------------
     // protected
@@ -62,11 +70,10 @@ public abstract class BaseVegetable : MonoBehaviour {
     /// <summary>
     /// 移動できるかどうか
     /// </summary>
-    public bool IsMove
-    {
-        get { return isMove; }
-        set { isMove = value; }
-    }
+    public bool IsMove { get; set; }
+
+
+    protected bool IsStop { get; set; }
 
     //-----------------------------------------
     // 抽象メソッド
@@ -90,12 +97,18 @@ public abstract class BaseVegetable : MonoBehaviour {
     {
         SetValue();
 
+        hp = HP;
+
         DoStart();
 	}
 
     public void Update()
     {
-        //Move();
+        Move();
+        Stop();
+
+        hp = HP;
+
         DoUpdate();
     }
 
@@ -119,18 +132,36 @@ public abstract class BaseVegetable : MonoBehaviour {
         POW = status.pow;
 
         //移動できる
-        IsMove = true;
+        IsMove = false;
+        IsStop = false;
     }
 
     /// <summary>
     /// 移動処理
+    /// ※）移動する場所が変わるたびに１度呼ぶこと
     /// </summary>
-    public void Move()
+    void Move()
     {
         if (IsMove == false || NearTarget == null || agent.enabled == false) return;
 
+        if (agent.isStopped == true) agent.isStopped = false;
+
         Transform targetTransform = NearTarget.transform;
         agent.SetDestination(targetTransform.position);
+
+        IsMove = false;
+    }
+
+    /// <summary>
+    /// 移動停止処理
+    /// </summary>
+    void Stop()
+    {
+        if (IsStop == false || agent.enabled == false) return;
+
+        agent.isStopped = true;
+
+        IsStop = false;
     }
 
     /// <summary>
@@ -176,5 +207,26 @@ public abstract class BaseVegetable : MonoBehaviour {
         }
 
         return false;
+    }
+
+    /// <summary>
+    /// アニメーションをセット
+    /// </summary>
+    void SetAnimaton()
+    {
+        switch(animType)
+        {
+            case AnimationType._move:
+                animator.SetTrigger("isMove");
+                break;
+
+            case AnimationType._attack:
+                animator.SetTrigger("isAttack");
+                break;
+
+            case AnimationType._pop:
+
+                break;
+        }
     }
 }
