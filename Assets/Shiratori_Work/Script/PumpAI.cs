@@ -59,16 +59,17 @@ public class PumpAI : BaseVegetable
         if (type == PumpType._attack) IsMove = true;
         parentPos = transform.position;
         SerchTarget();
+
+        if (type == PumpType._attack)
+        {
+            IsMove = true;
+        }
     }
 
     protected override void DoUpdate()
     {
         ActionState();
 
-        if (type == PumpType._attack)
-        {
-            Move();
-        }
 
         Death();
     }
@@ -171,7 +172,7 @@ public class PumpAI : BaseVegetable
 
             if (hole != null && hole.Infection == true) hole = null;
 
-            if (target != null || hole != null) agent.isStopped = true;
+            if (target != null || hole != null) IsStop = true;
 
             if (target != null) isEnemyCollision = true;
             else if (hole != null) isHoleCollision = true;

@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Trap : MonoBehaviour
 {
+    [Header("敵")]
     public GameObject enemyPre;
 
-    public Transform spawnFarmPos;
+    //public GameObject farmEnemy;
+
+    public Transform[] spawnFarmPos;
 
     Renderer holeRenderer;
 
@@ -18,12 +21,21 @@ public class Trap : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Minion") && transform.childCount == 0)
+        if (other.gameObject.CompareTag("Minion"))
         {
-            GameObject enemy = Instantiate(enemyPre, spawnFarmPos.position, Quaternion.identity);
-            enemy.transform.parent = transform;
+            if(transform.childCount != 0) Destroy(transform.GetChild(0).gameObject);
 
-            enemy.GetComponent<BaseVegetable>().NearTarget = other.gameObject;
+            for (int i = 0; i < spawnFarmPos.Length; i++)
+            {
+                if (spawnFarmPos[i].childCount != 0)
+                {
+                    Destroy(spawnFarmPos[i].GetChild(0).gameObject);
+
+                    GameObject enemy = Instantiate(enemyPre, spawnFarmPos[i].position, Quaternion.identity);
+
+                    enemy.GetComponent<BaseVegetable>().NearTarget = other.gameObject;
+                }
+            }
             
         }
     }

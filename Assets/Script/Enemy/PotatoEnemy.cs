@@ -5,15 +5,13 @@ using UnityEngine.EventSystems;
 
 public class PotatoEnemy : BaseVegetable
 {
-    //public VegetableStatus status;
-
     PumpAI target;
-
-    float timer; //攻撃間隔を確認するための変数
 
     bool isTargetAlive;
 
     bool isReturnHole = false;
+
+    bool isPumpCol = false;
 
     protected override void DoStart()
     {
@@ -24,8 +22,9 @@ public class PotatoEnemy : BaseVegetable
     protected override void DoUpdate()
     {
         isTargetAlive = serchTarget.IsTargetAlive("Minion");
-        Move();
         SerchTarget();
+
+        if (isPumpCol) Attack();
     }
 
     /// <summary>
@@ -35,12 +34,7 @@ public class PotatoEnemy : BaseVegetable
     {
         if (IsAttack())
         {
-            animator.SetTrigger("IsAttack");
             AddDamage(NearTarget);
-        }
-        else
-        {
-            animator.SetTrigger("IsMove");
         }
     }
 
@@ -49,13 +43,17 @@ public class PotatoEnemy : BaseVegetable
     /// </summary>
     protected override void SerchTarget()
     {
-        if(isTargetAlive && isReturnHole == true)
+        //穴に戻ろうとしたタイミングで、敵が生成された場合、そちらをターゲットに指定
+        if (isTargetAlive && isReturnHole == true)
+        {
+            IsMove = true;
             NearTarget = serchTarget.serchTag(transform.position, "Minion");
+        }
 
         if (NearTarget != null) return;
 
+
         IsMove = true;
-        agent.isStopped = false;
 
         if (isTargetAlive)
         {
@@ -74,6 +72,13 @@ public class PotatoEnemy : BaseVegetable
         Destroy(gameObject);
     }
 
+    void OnTriggerEnter(Collider col)
+    {
+        target = col.transform.GetComponent<PumpAI>();
+
+        if (target != null) isPumpCol = true;
+    }
+
     void OnTriggerStay(Collider col)
     {
         Transform targetTransform = col.transform;
@@ -85,7 +90,7 @@ public class PotatoEnemy : BaseVegetable
 
             if (target != null)
             {
-                agent.isStopped = true;
+                IsStop = true;
                 NearTarget = target.gameObject;
                 Attack();
             }
