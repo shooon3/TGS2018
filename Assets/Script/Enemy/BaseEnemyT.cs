@@ -18,7 +18,7 @@ public class BaseEnemyT : BaseVegetable {
         if(fallObj.isFallStop == false)
         transform.Rotate(new Vector3(0, 90, 0) * Time.deltaTime, Space.World);
 
-        Death();
+        //Death();
     }
 
     protected override void Death()
