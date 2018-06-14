@@ -1,0 +1,180 @@
+fileFormatVersion: 2
+guid: 4c10ad416df7187499ab4bc97a9e8a6f
+timeCreated: 1528943825
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: saku00
+    100004: saku01
+    100006: saku02
+    100008: saku03
+    100010: saku04
+    100012: saku05
+    100014: saku06
+    100016: saku07
+    100018: saku08
+    100020: saku09
+    100022: saku10
+    100024: saku11
+    100026: saku12
+    100028: saku13
+    100030: saku14
+    100032: saku15
+    100034: saku16
+    100036: saku17
+    400000: //RootNode
+    400002: saku00
+    400004: saku01
+    400006: saku02
+    400008: saku03
+    400010: saku04
+    400012: saku05
+    400014: saku06
+    400016: saku07
+    400018: saku08
+    400020: saku09
+    400022: saku10
+    400024: saku11
+    400026: saku12
+    400028: saku13
+    400030: saku14
+    400032: saku15
+    400034: saku16
+    400036: saku17
+    2100000: No Name
+    2300000: saku00
+    2300002: saku01
+    2300004: saku02
+    2300006: saku03
+    2300008: saku04
+    2300010: saku05
+    2300012: saku06
+    2300014: saku07
+    2300016: saku08
+    2300018: saku09
+    2300020: saku10
+    2300022: saku11
+    2300024: saku12
+    2300026: saku13
+    2300028: saku14
+    2300030: saku15
+    2300032: saku16
+    2300034: saku17
+    3300000: saku00
+    3300002: saku01
+    3300004: saku02
+    3300006: saku03
+    3300008: saku04
+    3300010: saku05
+    3300012: saku06
+    3300014: saku07
+    3300016: saku08
+    3300018: saku09
+    3300020: saku10
+    3300022: saku11
+    3300024: saku12
+    3300026: saku13
+    3300028: saku14
+    3300030: saku15
+    3300032: saku16
+    3300034: saku17
+    4300000: saku01
+    4300002: saku02
+    4300004: saku03
+    4300006: saku04
+    4300008: saku05
+    4300010: saku06
+    4300012: saku07
+    4300014: saku08
+    4300016: saku00
+    4300018: saku10
+    4300020: saku11
+    4300022: saku12
+    4300024: saku13
+    4300026: saku14
+    4300028: saku15
+    4300030: saku16
+    4300032: saku17
+    4300034: saku09
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

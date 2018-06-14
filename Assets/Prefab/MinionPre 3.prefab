@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114474089399461386}
   m_Layer: 2
   m_Name: MinionPre 3
-  m_TagString: Minion
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152,4 +152,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   status: {fileID: 11400000, guid: 79c10e2e5d12bcc49bc41531ca7293d9, type: 2}
+  hp: 0
   type: 0

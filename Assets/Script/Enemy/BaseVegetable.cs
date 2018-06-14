@@ -83,10 +83,6 @@ public abstract class BaseVegetable : MonoBehaviour {
 
     protected abstract void DoUpdate();
 
-    protected abstract void Attack();
-
-    protected abstract void SerchTarget();
-
     protected abstract void Death();
 
     //-----------------------------------------
@@ -142,7 +138,7 @@ public abstract class BaseVegetable : MonoBehaviour {
     /// </summary>
     void Move()
     {
-        if (IsMove == false || NearTarget == null || agent.enabled == false) return;
+        if (IsMove == false || NearTarget == null || agent == null) return;
 
         if (agent.isStopped == true) agent.isStopped = false;
 
@@ -157,7 +153,7 @@ public abstract class BaseVegetable : MonoBehaviour {
     /// </summary>
     void Stop()
     {
-        if (IsStop == false || agent.enabled == false) return;
+        if (IsStop == false || agent == null) return;
 
         agent.isStopped = true;
 

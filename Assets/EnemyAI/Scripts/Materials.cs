@@ -13,16 +13,16 @@ public class Materials : MonoBehaviour
      public bool test;
 
     public Material[] mats;
-    private Renderer renderer;
+    private Renderer matRenderer;
 
     void Start()
     {
-        renderer = GetComponent<Renderer>();
+        matRenderer = GetComponent<Renderer>();
     }
 
     void Update()
     {
-        renderer.material = mats[0];
+        matRenderer.material = mats[0];
 
     }
 }

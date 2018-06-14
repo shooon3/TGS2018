@@ -71,6 +71,7 @@ public class MinionCreate : MonoBehaviour {
     ThrowBom throwBom;
     BomCount bomCount;
     PlayerMove playerMove;
+    BaseEnemyT boss;
 
     float touchNowPosX; //現在のタッチポジション
     float startFlickX; //タッチした直後のポジション(タッチ直後にフリック判定にならないようにするための除外用変数)
@@ -86,6 +87,10 @@ public class MinionCreate : MonoBehaviour {
     FlickState flickState; //フリックされた方向
     FlickState nextFlickState; //次にフリックする方向
 
+    //-------------------------------------
+    // 関数
+    //-------------------------------------
+
     // Use this for initialization
     void Start () {
 
@@ -96,8 +101,6 @@ public class MinionCreate : MonoBehaviour {
         throwBom = pumpking.GetComponent<ThrowBom>();
         bomCount = GetComponent<BomCount>();
         playerMove = GetComponent<PlayerMove>();
-
-        pumpRender.sprite = pumpkinsSp[0];
 
         FlickInitialize();
     }
@@ -141,6 +144,8 @@ public class MinionCreate : MonoBehaviour {
         flickCount = 0;
         flickIndex = 0;
         displayCount = 1;
+
+        pumpRender.sprite = pumpkinsSp[0];
 
         flickState = FlickState.Filst;
         nextFlickState = FlickState.Filst;
@@ -229,11 +234,8 @@ public class MinionCreate : MonoBehaviour {
         int nowBomCount = bomCount.NowBomCount();
 
         //爆弾を生成できるのは、ほかの爆弾がない時 かつ　爆弾の数が０でないときだけ
-        if (pumpking.transform.childCount != 0 || nowBomCount == 0 || playerMove.IsTouch != true)
-        {
-            return;
-        }
-
+        if (pumpking.transform.childCount != 0 || nowBomCount == 0 || playerMove.IsTouch != true) return;
+        
 
         if (Input.GetButtonUp("Fire1"))
         {
@@ -250,7 +252,6 @@ public class MinionCreate : MonoBehaviour {
                 return;
             }
 
-
             Vector3 createPos = new Vector3(hit.point.x, hit.point.y, hit.point.z);
 
             minionParent = Instantiate(massParentPre, createPos, Quaternion.identity);
@@ -266,9 +267,9 @@ public class MinionCreate : MonoBehaviour {
             //ボムの数を減らす
             bomCount.UseBom();
 
-            BaseEnemyT bass = hit.transform.GetComponent<BaseEnemyT>();
+            boss = hit.transform.GetComponent<BaseEnemyT>();
 
-            if (bass != null)
+            if (boss != null)
             {
                 isAttackBass = true;
             }
@@ -311,11 +312,11 @@ public class MinionCreate : MonoBehaviour {
 
             if (isAttackBass)
             {
-                x = Random.Range(position.x - 1.0f, position.x + 1.0f);
-                y = Random.Range(position.y - 1.0f, position.y + 1.0f);
+                x = Random.Range(position.x - size.x / 2, position.x + size.x / 2);
+                y = Random.Range(position.y - size.y / 2, position.y + size.y / 2);
 
 
-                vec = new Vector3(position.x, y, position.z);
+                vec = new Vector3(x, y, position.z);
 
                 Instantiate(bossDisp, vec, Quaternion.identity, parentObj.transform);
             }
@@ -329,6 +330,8 @@ public class MinionCreate : MonoBehaviour {
                 Instantiate(displayPumpkinPre, vec, Quaternion.identity, parentObj.transform);
             }
         }
+
+        if (boss != null) minionParent.transform.parent = boss.transform;
 
         FlickInitialize();
     }

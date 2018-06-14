@@ -77,7 +77,7 @@ public class PumpAI : BaseVegetable
     /// <summary>
     /// ターゲットを取得
     /// </summary>
-    protected override void SerchTarget()
+    void SerchTarget()
     {
         //while (isHoleInfection)
         //{
@@ -114,7 +114,7 @@ public class PumpAI : BaseVegetable
     /// <summary>
     /// 攻撃処理
     /// </summary>
-    protected override void Attack()
+    void Attack()
     {
         if(IsAttack())
         {
@@ -125,7 +125,7 @@ public class PumpAI : BaseVegetable
 
     protected override void Death()
     {
-        if (IsDestroyEnemy()) Destroy(transform.root.gameObject);
+        if (IsDestroyEnemy()) Destroy(transform.parent.gameObject);
     }
 
     /// <summary>
@@ -148,7 +148,7 @@ public class PumpAI : BaseVegetable
 
             //畑が感染したらパンプ菌も消える
             if (hole.Infection && hole.gameObject.tag == "Hole")
-                Destroy(transform.root.gameObject);
+                Destroy(transform.parent.gameObject);
         }
     }
 
@@ -158,7 +158,6 @@ public class PumpAI : BaseVegetable
 
         if (boss != null)
         {
-            transform.parent.transform.parent = col.transform;
             isEnemyCollision = true;
             Attack();
         }

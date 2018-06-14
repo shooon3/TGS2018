@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class PotatoEnemy : BaseVegetable
 {
-    PumpAI target;
+    BaseVegetable target;
 
     bool isTargetAlive;
 
@@ -30,7 +30,7 @@ public class PotatoEnemy : BaseVegetable
     /// <summary>
     /// 攻撃処理を行うメソッド
     /// </summary>
-    protected override void Attack()
+    void Attack()
     {
         if (IsAttack())
         {
@@ -41,7 +41,7 @@ public class PotatoEnemy : BaseVegetable
     /// <summary>
     /// ターゲットを指定する
     /// </summary>
-    protected override void SerchTarget()
+    void SerchTarget()
     {
         //穴に戻ろうとしたタイミングで、敵が生成された場合、そちらをターゲットに指定
         if (isTargetAlive && isReturnHole == true)
@@ -74,27 +74,34 @@ public class PotatoEnemy : BaseVegetable
 
     void OnTriggerEnter(Collider col)
     {
-        target = col.transform.GetComponent<PumpAI>();
+        target = col.transform.GetComponent<BaseVegetable>();
 
-        if (target != null) isPumpCol = true;
+        if (target != null && agent.isStopped == false)
+        {
+            NearTarget = target.gameObject;
+
+            IsStop = true;
+            isPumpCol = true;
+
+        }
     }
 
     void OnTriggerStay(Collider col)
     {
-        Transform targetTransform = col.transform;
+        //Transform targetTransform = col.transform;
 
-        if (targetTransform != null)
-        {
-            //ターゲットにダメージを与える
-            target = targetTransform.GetComponent<PumpAI>();
+        //if (targetTransform != null)
+        //{
+        //    //ターゲットにダメージを与える
+        //    target = targetTransform.GetComponent<PumpAI>();
 
-            if (target != null)
-            {
-                IsStop = true;
-                NearTarget = target.gameObject;
-                Attack();
-            }
-        }
+        //    if (target != null)
+        //    {
+        //        IsStop = true;
+        //        NearTarget = target.gameObject;
+        //        Attack();
+        //    }
+        //}
 
         if (IsDestroyEnemy(col))
         {
