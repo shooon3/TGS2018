@@ -21,16 +21,6 @@ public class BaseEnemyT : BaseVegetable {
         Death();
     }
 
-    protected override void Attack()
-    {
-
-    }
-
-    protected override void SerchTarget()
-    {
-
-    }
-
     protected override void Death()
     {
         if (IsDeath()) Destroy(gameObject);
