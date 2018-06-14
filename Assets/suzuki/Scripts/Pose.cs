@@ -70,7 +70,7 @@ public class Pose : MonoBehaviour
         Time.timeScale = 1;
 
         //ステージ選択へ戻る
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene((int)GameMode.Mode.SELECT);
     }
 
     /// <summary>
