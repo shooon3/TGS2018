@@ -62,6 +62,7 @@ public class Result : MonoBehaviour
                 if (number < rank.Length)
                 {
                     RankChecker();
+                    number++;
                 }
                 else
                 {
@@ -80,6 +81,7 @@ public class Result : MonoBehaviour
                     {
                         finish = true;
                     }
+                    number++;
                 }
                 else
                 {
@@ -87,7 +89,6 @@ public class Result : MonoBehaviour
                     finish = true;
                 }
             }
-            number++;
             interval = true;
 
         }
@@ -109,13 +110,6 @@ public class Result : MonoBehaviour
     /// </summary>
     void RankChecker()
     {
-        if (number < rank.Length)
-        {
-            rankText.text = RankStr[number];
-        }
-        else
-        {
-            rankText.text = "?";
-        }
+        rankText.text = RankStr[number];
     }
 }
