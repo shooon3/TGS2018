@@ -106,6 +106,8 @@ public abstract class BaseVegetable : MonoBehaviour {
         hp = HP;
 
         DoUpdate();
+
+        SetAnimaton();
     }
 
     /// <summary>
@@ -155,6 +157,7 @@ public abstract class BaseVegetable : MonoBehaviour {
     {
         if (IsStop == false || agent == null) return;
 
+
         agent.isStopped = true;
 
         IsStop = false;
@@ -176,6 +179,7 @@ public abstract class BaseVegetable : MonoBehaviour {
     public void AddDamage(GameObject target)
     {
         if (target == null) return;
+
 
         BaseVegetable targetVegetable = target.GetComponent<BaseVegetable>();
 
@@ -210,19 +214,25 @@ public abstract class BaseVegetable : MonoBehaviour {
     /// </summary>
     void SetAnimaton()
     {
-        switch(animType)
+        if (animator == null) return;
+
+        switch (animType)
         {
             case AnimationType._move:
-                animator.SetTrigger("isMove");
+                animator.SetTrigger("IsMove");
                 break;
 
             case AnimationType._attack:
-                animator.SetTrigger("isAttack");
+                animator.SetTrigger("IsAttack");
                 break;
 
             case AnimationType._pop:
 
                 break;
         }
+
+        if (agent != null && agent.enabled && agent.isStopped) animType = AnimationType._attack;
+        else animType = AnimationType._move;
+
     }
 }

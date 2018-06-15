@@ -126,7 +126,7 @@ public class MinionCreate : MonoBehaviour {
         if (minionMar != null && minionMar.IsMinionCreate)
         {
             MinionsCreate(minionParent);
-            pumpRender.sprite = pumpkinsSp[0];
+            StartCoroutine(DelaySpriteReset());
             minionMar.IsMinionCreate = false;
 
             minionMar = null;
@@ -145,10 +145,10 @@ public class MinionCreate : MonoBehaviour {
         flickIndex = 0;
         displayCount = 1;
 
-        pumpRender.sprite = pumpkinsSp[0];
-
         flickState = FlickState.Filst;
         nextFlickState = FlickState.Filst;
+
+        StartCoroutine(DelaySpriteReset());
 
         foreach (Transform obj in pumpkinParent.transform)
         {
@@ -362,5 +362,11 @@ public class MinionCreate : MonoBehaviour {
                 break;
         }
 
+    }
+
+    IEnumerator DelaySpriteReset()
+    {
+        yield return new WaitForSeconds(0.5f);
+        pumpRender.sprite = pumpkinsSp[0];
     }
 }

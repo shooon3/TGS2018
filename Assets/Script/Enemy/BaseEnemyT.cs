@@ -6,7 +6,7 @@ public class BaseEnemyT : BaseVegetable {
 
     FallObj fallObj;
 
-	protected override void DoStart()
+    protected override void DoStart()
     {
         IsMove = false;
 
@@ -15,10 +15,10 @@ public class BaseEnemyT : BaseVegetable {
 
     protected override void DoUpdate()
     {
-        if(fallObj.isFallStop == false)
-        transform.Rotate(new Vector3(0, 90, 0) * Time.deltaTime, Space.World);
+        //if(fallObj.isFallStop == false)
+        //transform.Rotate(new Vector3(0, 90, 0) * Time.deltaTime, Space.World);
 
-        //Death();
+        Death();
     }
 
     protected override void Death()

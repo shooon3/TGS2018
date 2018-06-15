@@ -15,16 +15,19 @@ public class PotatoEnemy : BaseVegetable
 
     protected override void DoStart()
     {
-        IsMove = true;
         animator = transform.GetChild(0).GetComponent<Animator>();
+        StartCoroutine(WaitAnimEnd("pop"));
     }
 
     protected override void DoUpdate()
     {
         isTargetAlive = serchTarget.IsTargetAlive("Minion");
         SerchTarget();
+        
 
         if (isPumpCol) Attack();
+
+        Death();
     }
 
     /// <summary>
@@ -69,7 +72,7 @@ public class PotatoEnemy : BaseVegetable
 
     protected override void Death()
     {
-        Destroy(gameObject);
+        if(HP <= 0) Destroy(gameObject);
     }
 
     void OnTriggerEnter(Collider col)
@@ -86,35 +89,21 @@ public class PotatoEnemy : BaseVegetable
         }
     }
 
-    void OnTriggerStay(Collider col)
+    IEnumerator WaitAnimEnd(string animName)
     {
-        //Transform targetTransform = col.transform;
 
-        //if (targetTransform != null)
-        //{
-        //    //ターゲットにダメージを与える
-        //    target = targetTransform.GetComponent<PumpAI>();
-
-        //    if (target != null)
-        //    {
-        //        IsStop = true;
-        //        NearTarget = target.gameObject;
-        //        Attack();
-        //    }
-        //}
-
-        if (IsDestroyEnemy(col))
+        while (!IsMove)
         {
-            Death();
+            AnimatorStateInfo nowState = animator.GetCurrentAnimatorStateInfo(0);
+            if (nowState.IsName(animName))
+            {
+                yield return new WaitForSeconds(2.5f);
+                IsMove = true;
+            }
+            else
+            {
+                yield return new WaitForSeconds(0.1f);
+            }
         }
-    }
-
-    bool IsDestroyEnemy(Collider col)
-    {
-        Hole hole = col.GetComponent<Hole>();
-
-        if (isTargetAlive == false && hole != null) return true;
-        else if (HP <= 0) return true;
-        else return false;
     }
 }

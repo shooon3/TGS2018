@@ -11,7 +11,7 @@ public class BaseBossEnemy : BaseVegetable {
 
     protected override void DoUpdate()
     {
-        Death();
+        //Death();
     }
 
     protected override void Death()

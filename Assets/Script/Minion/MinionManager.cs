@@ -35,6 +35,7 @@ public class MinionManager : MonoBehaviour {
             //菌の当たり判定を、一番最初に生成された菌に追従させる
             BoxCollider collider = transform.GetChild(0).gameObject.AddComponent<BoxCollider>();
             collider.isTrigger = true;
+            collider.size = new Vector3(7, 7, 7);
 
             //自分の当たり判定を削除する
             Destroy(GetComponent<BoxCollider>());
