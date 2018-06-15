@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Anim : MonoBehaviour
+public class PauseOnOff : MonoBehaviour
 {
-    public Animator animator;
+   public Animator animator;
     public GameObject Black;
 
     // Use this for initialization
