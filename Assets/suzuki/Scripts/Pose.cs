@@ -13,7 +13,9 @@ public class Pose : MonoBehaviour
     [SerializeField]
     Button poseButton;  //ボタン本体
 
-	void Start ()
+    public Animator animator;
+
+    void Start ()
     {
         game = false;
         filterImage.gameObject.SetActive(false);
@@ -44,6 +46,8 @@ public class Pose : MonoBehaviour
 
             //ポーズメニュー表示
             filterImage.gameObject.SetActive(true);
+            animator.SetBool("PauseShot", true);
+            animator.SetBool("PauseCancel", false);
         }
     }
 
