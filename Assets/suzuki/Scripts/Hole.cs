@@ -16,7 +16,7 @@ public class Hole : MonoBehaviour
     float invincibleTime;   //無敵時間
 
     [SerializeField]
-    //CapsuleCollider col;    //判定
+    SphereCollider col;    //判定
     Material nextColor;     //変更色(仮)
     Material defaultColor;  //変更色(仮)
 

@@ -60,6 +60,17 @@ public class ThrowBom : MonoBehaviour {
     }
 
     /// <summary>
+    /// ボムオブジェクトを取得
+    /// </summary>
+    /// <returns></returns>
+    public GameObject GetBomObj()
+    {
+        if (ball == null) return null;
+
+        return ball;
+    }
+
+    /// <summary>
     /// 標的に命中する射出速度の計算
     /// </summary>
     /// <param name="pointA">射出開始座標</param>

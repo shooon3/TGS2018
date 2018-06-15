@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4926786940359468}
   - component: {fileID: 33992368958321696}
   - component: {fileID: 23016505633656820}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BomModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 114177683276880380}
   - component: {fileID: 54561903785249914}
   - component: {fileID: 135401356827405164}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
