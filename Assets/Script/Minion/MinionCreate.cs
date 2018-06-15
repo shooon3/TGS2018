@@ -89,7 +89,10 @@ public class MinionCreate : MonoBehaviour {
     int beforeCount;
     int flickIndex;
 
+    int layerMask;
+
     bool isAttackBass;
+    bool delay = true;
 
     FlickState flickState; //フリックされた方向
     FlickState nextFlickState; //次にフリックする方向
@@ -116,6 +119,8 @@ public class MinionCreate : MonoBehaviour {
         playerMove = GetComponent<PlayerMove>();
 
         FlickInitialize();
+
+        layerMask = LayerMask.GetMask(new string[] { "Stage", "Boss" });
     }
 
     // Update is called once per frame
@@ -126,12 +131,17 @@ public class MinionCreate : MonoBehaviour {
         GetTouchPos();
         Flick();
 
-        //if (minionMar == null)
-        //{
-        CreatePos();
-        DisplayPampking();
+        if (delay == true)
+        {
+            CreatePos();
+            DisplayPampking();
 
-        //}
+            StartCoroutine(Delay());
+        }
+        if(delay == false)
+        {
+            pumpRender.sprite = pumpkinsSp[4];
+        }
         //else if (minionMar != null)
         //{
         //    pumpRender.sprite = pumpkinsSp[4];
@@ -286,13 +296,25 @@ public class MinionCreate : MonoBehaviour {
             RaycastHit hit = new RaycastHit();
 
             //rayと衝突していなかったら以降の処理をしない
-            if (Physics.Raycast(ray, out hit) == false)
+            if (Physics.Raycast(ray, out hit,layerMask) == false)
             {
                 FlickInitialize();
                 return;
             }
 
             Vector3 createPos = new Vector3(hit.point.x, hit.point.y, hit.point.z);
+
+            boss = hit.transform.GetComponent<BaseEnemyT>();
+
+            if (boss != null)
+            {
+                isAttackBass = true;
+            }
+            else
+            {
+                isAttackBass = false;
+                createPos = new Vector3(hit.point.x, -9.5f, hit.point.z);
+            }
 
             minionParent = Instantiate(massParentPre, createPos, Quaternion.identity);
 
@@ -322,15 +344,11 @@ public class MinionCreate : MonoBehaviour {
             //ボムの数を減らす
             bomCount.UseBom();
 
-            boss = hit.transform.GetComponent<BaseEnemyT>();
 
-            if (boss != null)
-            {
-                isAttackBass = true;
-            }
-            else isAttackBass = false;
 
             FlickInitialize();
+
+            delay = false;
         }
     }
 
@@ -391,6 +409,7 @@ public class MinionCreate : MonoBehaviour {
         if (boss != null) minionParent.transform.parent = boss.transform;
 
         //FlickInitialize();
+
     }
 
     /// <summary>
@@ -429,7 +448,10 @@ public class MinionCreate : MonoBehaviour {
 
     IEnumerator Delay()
     {
-        yield return new WaitForSeconds(0.5f);
-
+        if (delay == false)
+        {
+            yield return new WaitForSeconds(0.7f);
+            delay = true;
+        }
     }
 }

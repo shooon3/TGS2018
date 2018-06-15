@@ -1967,7 +1967,7 @@ GameObject:
   - component: {fileID: 153936806}
   - component: {fileID: 153936813}
   - component: {fileID: 153936812}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: Boss_Potato
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -2974,7 +2974,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 246208036}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: mee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4323,7 +4323,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 372845241}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: a4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5654,7 +5654,7 @@ GameObject:
   - component: {fileID: 508422723}
   - component: {fileID: 508422722}
   - component: {fileID: 508422720}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6084,7 +6084,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 541806170}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: me2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6188,7 +6188,7 @@ GameObject:
   m_Component:
   - component: {fileID: 567518162}
   - component: {fileID: 567518163}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: imo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6487,7 +6487,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 631856394}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: be
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6518,7 +6518,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 649165761}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: imo 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6730,7 +6730,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 695002462}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: me1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7158,7 +7158,7 @@ GameObject:
   - component: {fileID: 742289591}
   - component: {fileID: 742289589}
   - component: {fileID: 742289590}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7995,7 +7995,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 776425883}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: IK Chain003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8523,7 +8523,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 871865741}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: a1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8861,7 +8861,7 @@ MonoBehaviour:
     type: 2}
   pumpking: {fileID: 1166238746}
   maxBom: 50
-  createEffect: {fileID: 1432069092846210, guid: d2a5f089eb9e96a40bdc5f71250ead40,
+  createEffect: {fileID: 1091489021091904, guid: d2a5f089eb9e96a40bdc5f71250ead40,
     type: 2}
   pumpkinsSp:
   - {fileID: 21300000, guid: d9925a4510c315743ae0dc81d9e4eaa1, type: 3}
@@ -9172,7 +9172,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 924793910}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: b1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10324,7 +10324,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1058976813}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: a3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11920,7 +11920,7 @@ Prefab:
     - target: {fileID: 114270383118451430, guid: 35f4a8065845ede4095364c4b8b8c7dd,
         type: 2}
       propertyPath: throwingAngle
-      value: 40
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 135036153368560986, guid: 35f4a8065845ede4095364c4b8b8c7dd, type: 2}
@@ -13128,7 +13128,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1306298962}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: b2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13342,7 +13342,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1331722257}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: IK Chain001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17003,7 +17003,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1646420208}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: IK Chain002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18825,7 +18825,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1824791969}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: imoe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19623,7 +19623,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1907284335}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: a2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19904,7 +19904,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1938921223}
   - component: {fileID: 1938921224}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: jagaimo_walk02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21015,7 +21015,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2031575431}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: ae
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21431,7 +21431,7 @@ GameObject:
   - component: {fileID: 2086810530}
   - component: {fileID: 2086810529}
   - component: {fileID: 2086810527}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
