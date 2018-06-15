@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class HoleManager : MonoBehaviour
 {
+    [SerializeField]
+    bool Individual;    //true:個別, false:連携
+
     Hole[] hole;
     [SerializeField]
     int MaxHp = 1000;
@@ -24,6 +27,8 @@ public class HoleManager : MonoBehaviour
     [SerializeField]
     Material nextColor;     //変更色(仮)
 
+    [SerializeField]
+    Image hatake;
     [SerializeField]
     GameObject Lane;
     int OverallHP;
@@ -62,18 +67,18 @@ public class HoleManager : MonoBehaviour
     {
         //初期値
         OverallHP = MaxHp;
-        //hatake.color = new Color(1, 1, 1, 0);
+        hatake.color = new Color(1, 1, 1, 0);
 
         //子オブジェクトの穴を取得
         hole = new Hole[transform.childCount];
         for (int i = 0; i < hole.Length; i++)
         {
             hole[i] = transform.GetChild(i).GetComponent<Hole>();
-            //hole[i].SetColider(radius);
+            hole[i].SetColider(radius);
         }
 
         //パンプきんを非表示
-        for (int i = 0; i < Lane.transform.childCount; i++)
+        for (int i = 0; i < 10; i++)
         {
             Lane.transform.GetChild(i).gameObject.SetActive(false);
         }
@@ -89,55 +94,58 @@ public class HoleManager : MonoBehaviour
         int num = 0;
         float f;
 
-        if (!obj_hole.Infection)
+        if (!Individual)    //連携時のみ
         {
-            //感染率を可視化
-            if (OverallHP > hp)
+            if (!obj_hole.Infection)
             {
-                OverallHP = hp;
-                float overallHP = OverallHP;
-                f = 1 - overallHP / MaxHP;
-
-                //徐々に色を変える(パターン1)
-                //hatake.color = new Color(1, 1, 1, f);
-
-                ////パンプきんを出現(パターン2)
-                //int i = Mathf.FloorToInt(f * 10 - 1);//-1,-1,0,0,1,1.....
-                //if (i > -1 && !Lane.transform.GetChild(i).gameObject.activeSelf)
-                //{
-                //    Lane.transform.GetChild(i).gameObject.SetActive(true);
-                //}
-
-                //パンプきんを出現(パターン3)
-                if (hp <= 0)
+                //感染率を可視化
+                if (OverallHP > hp)
                 {
-                    StartCoroutine(Emerge());
+                    OverallHP = hp;
+                    float overallHP = OverallHP;
+                    f = 1 - overallHP / MaxHP;
+
+                    //徐々に色を変える(パターン1)
+                    hatake.color = new Color(1, 1, 1, f);
+
+                    ////パンプきんを出現(パターン2)
+                    //int i = Mathf.FloorToInt(f * 10 - 1);//-1,-1,0,0,1,1.....
+                    //if (i > -1 && !Lane.transform.GetChild(i).gameObject.activeSelf)
+                    //{
+                    //    Lane.transform.GetChild(i).gameObject.SetActive(true);
+                    //}
+
+                    //パンプきんを出現(パターン3)
+                    if (hp <= 0)
+                    {
+                        StartCoroutine(Emerge());
+                    }
                 }
             }
-        }
-        else
-        {
-            //除染率を可視化
-            if (OverallHP < hp)
+            else
             {
-                OverallHP = hp;
-                float overallHP = OverallHP;
-                f = 1 - overallHP / MaxHP;
-
-                //徐々に元色に戻す(パターン1)
-                //hatake.color = new Color(1, 1, 1, f);
-
-                ////パンプきんを消滅(パターン2)
-                //int i = Mathf.CeilToInt(f * 10);//10,10,9,9,8,8.....
-                //if (i < 10 && Lane.transform.GetChild(i).gameObject.activeSelf)
-                //{
-                //    Lane.transform.GetChild(i).gameObject.SetActive(false);
-                //}
-
-                //パンプきんを消滅(パターン3)
-                if (hp >= MaxHp)
+                //除染率を可視化
+                if (OverallHP < hp)
                 {
-                    StartCoroutine(Disappear());
+                    OverallHP = hp;
+                    float overallHP = OverallHP;
+                    f = 1 - overallHP / MaxHP;
+
+                    //徐々に元色に戻す(パターン1)
+                    hatake.color = new Color(1, 1, 1, f);
+
+                    ////パンプきんを消滅(パターン2)
+                    //int i = Mathf.CeilToInt(f * 10);//10,10,9,9,8,8.....
+                    //if (i < 10 && Lane.transform.GetChild(i).gameObject.activeSelf)
+                    //{
+                    //    Lane.transform.GetChild(i).gameObject.SetActive(false);
+                    //}
+
+                    //パンプきんを消滅(パターン3)
+                    if (hp >= MaxHp)
+                    {
+                        StartCoroutine(Disappear());
+                    }
                 }
             }
         }
@@ -153,34 +161,48 @@ public class HoleManager : MonoBehaviour
             num++;
         }
 
-        //同レーンの他の穴も
-        f = 0;
-        for (int i = num; i < hole.Length; i++)
+        if (Individual) //個別時
         {
-            //時間差を渡す(右方向)
             if (hp > 0 && MaxHp > hp)
             {
-                hole[i].Flash(f);
+                hole[num].Flash(flashTime);
             }
             else
             {
-                hole[i].Invasion(f);
+                hole[num].Invasion(0);
             }
-            f += TimeLag;
         }
-        f = TimeLag;
-        for (int i = num - 1; i >= 0; i--)
+        else    //連携時
         {
-            //時間差を渡す(左方向)
-            if (hp > 0 && MaxHp > hp)
+            //同レーンの他の穴も
+            f = 0;
+            for (int i = num; i < hole.Length; i++)
             {
-                hole[i].Flash(f);
+                //時間差を渡す(右方向)
+                if (hp > 0 && MaxHp > hp)
+                {
+                    hole[i].Flash(f);
+                }
+                else
+                {
+                    hole[i].Invasion(f);
+                }
+                f += TimeLag;
             }
-            else
+            f = TimeLag;
+            for (int i = num - 1; i >= 0; i--)
             {
-                hole[i].Invasion(f);
+                //時間差を渡す(左方向)
+                if (hp > 0 && MaxHp > hp)
+                {
+                    hole[i].Flash(f);
+                }
+                else
+                {
+                    hole[i].Invasion(f);
+                }
+                f += TimeLag;
             }
-            f += TimeLag;
         }
     }
 

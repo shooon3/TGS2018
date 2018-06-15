@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TimeCounter : MonoBehaviour
@@ -17,7 +18,7 @@ public class TimeCounter : MonoBehaviour
     Text timeText;      //TIME表示
     float timer;        //経過時間
     float startTime;    //開始時間
-    int clearTime;      //クリア時間
+    static int clearTime;      //クリア時間
 
     [SerializeField]
     Pose pose;  //ポーズスクリプト
@@ -100,6 +101,9 @@ public class TimeCounter : MonoBehaviour
 
                 //ポーズボタン機能停止
                 pose.GameClear();
+
+                //リザルトへ移動
+                StartCoroutine(GoResult());
             }
         }
     }
@@ -108,7 +112,7 @@ public class TimeCounter : MonoBehaviour
     /// クリアタイム(秒単位)
     /// </summary>
     /// <returns></returns>
-    public int GetClearTime()
+    public static int GetClearTime()
     {
         return clearTime;
     }
@@ -167,5 +171,16 @@ public class TimeCounter : MonoBehaviour
 
         //スプライトを表示する
         image.sprite = sprites[i];
+    }
+
+    /// <summary>
+    /// シーン遷移
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator GoResult()
+    {
+        yield return new WaitForSeconds(3);
+        Time.timeScale = 1;
+        SceneManager.LoadScene((int)GameMode.Mode.RESULT);
     }
 }
