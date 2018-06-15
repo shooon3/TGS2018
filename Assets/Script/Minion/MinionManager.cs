@@ -7,7 +7,7 @@ public class MinionManager : MonoBehaviour {
     /// <summary>
     /// 爆弾が地面に衝突したら、パンプ菌を生成する
     /// </summary>
-    public bool IsMinionCreate { get; set; }
+    //public bool IsMinionCreate { get; set; }
 
     //１回だけアタッチする
     bool isFirstAttach = true;
@@ -16,8 +16,8 @@ public class MinionManager : MonoBehaviour {
 
     PumpAI pumpAI;
 
-    //死んだかどうかを判定するフラグ
-    bool isDie;
+    ////死んだかどうかを判定するフラグ
+    //bool isDie;
 
 	// Use this for initialization
 	void Start () {
@@ -66,13 +66,13 @@ public class MinionManager : MonoBehaviour {
 
     }
 
-    void OnTriggerEnter(Collider col)
-    {
-        //衝突したオブジェクトがカボチャ爆弾だったら
-        BomManager bomMar = col.GetComponent<BomManager>();
-        if (bomMar == null) return;
+    //void OnTriggerEnter(Collider col)
+    //{
+    //    //衝突したオブジェクトがカボチャ爆弾だったら
+    //    BomManager bomMar = col.GetComponent<BomManager>();
+    //    if (bomMar == null) return;
 
-        IsMinionCreate = true;
-    }
+    //    IsMinionCreate = true;
+    //}
 
 }

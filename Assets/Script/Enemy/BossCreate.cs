@@ -7,7 +7,7 @@ public class BossCreate : MonoBehaviour {
 
     public GameObject boss;
 
-    public Transform createPos;
+    //public Transform createPos;
 
     HoleInfection holeInf;
 

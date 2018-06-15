@@ -190,7 +190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &4039142
 MeshRenderer:
@@ -669,7 +669,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &93672712
 MeshRenderer:
@@ -801,7 +801,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &97842986
 MeshRenderer:
@@ -994,7 +994,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &114531868
 MeshRenderer:
@@ -3359,7 +3359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &288200784
 MeshRenderer:
@@ -4555,7 +4555,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &428101857
 MeshRenderer:
@@ -4698,6 +4698,7 @@ GameObject:
   - component: {fileID: 429298295}
   - component: {fileID: 429298299}
   - component: {fileID: 429298294}
+  - component: {fileID: 429298300}
   m_Layer: 0
   m_Name: Hole (4)
   m_TagString: Hole
@@ -4729,7 +4730,7 @@ SphereCollider:
   m_GameObject: {fileID: 429298292}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
@@ -4764,7 +4765,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &429298297
 MeshRenderer:
@@ -4820,6 +4821,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7fbab741492bc4889f86dc4eb5f260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &429298300
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 429298292}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5000001
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0.0000005364418, y: 0.0000076293945, z: -0.0000005662441}
 --- !u!1 &444529975
 GameObject:
   m_ObjectHideFlags: 0
@@ -4939,6 +4953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Individual: 1
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -5186,7 +5201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &480818853
 MeshRenderer:
@@ -5350,6 +5365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Individual: 1
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -5435,7 +5451,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &495813796
 MeshRenderer:
@@ -6406,7 +6422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &625297961
 MeshRenderer:
@@ -6547,6 +6563,7 @@ GameObject:
   - component: {fileID: 664566011}
   - component: {fileID: 664566015}
   - component: {fileID: 664566010}
+  - component: {fileID: 664566016}
   m_Layer: 0
   m_Name: Hole (3)
   m_TagString: Hole
@@ -6578,7 +6595,7 @@ SphereCollider:
   m_GameObject: {fileID: 664566008}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
@@ -6613,7 +6630,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &664566013
 MeshRenderer:
@@ -6669,6 +6686,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7fbab741492bc4889f86dc4eb5f260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &664566016
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 664566008}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5000001
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0.00000005960464, y: 0.0000019073486, z: 0.0000003874302}
 --- !u!224 &691601987
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6870,7 +6900,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &712487996
 MeshRenderer:
@@ -7179,7 +7209,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
@@ -7623,6 +7653,7 @@ GameObject:
   - component: {fileID: 768660345}
   - component: {fileID: 768660349}
   - component: {fileID: 768660344}
+  - component: {fileID: 768660350}
   m_Layer: 0
   m_Name: Hole (2)
   m_TagString: Hole
@@ -7654,7 +7685,7 @@ SphereCollider:
   m_GameObject: {fileID: 768660342}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
@@ -7689,7 +7720,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &768660347
 MeshRenderer:
@@ -7745,6 +7776,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7fbab741492bc4889f86dc4eb5f260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &768660350
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 768660342}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5000001
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0.00000017881393, y: 0.0000038146973, z: -0.00000008940697}
 --- !u!1 &770867847
 GameObject:
   m_ObjectHideFlags: 0
@@ -8932,7 +8976,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 153936805}
-  createPos: {fileID: 0}
 --- !u!1001 &904354416
 Prefab:
   m_ObjectHideFlags: 0
@@ -9110,6 +9153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Individual: 1
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -9978,6 +10022,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Individual: 1
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -10316,6 +10361,7 @@ GameObject:
   - component: {fileID: 1060608852}
   - component: {fileID: 1060608856}
   - component: {fileID: 1060608851}
+  - component: {fileID: 1060608857}
   m_Layer: 0
   m_Name: Hole (4)
   m_TagString: Hole
@@ -10347,7 +10393,7 @@ SphereCollider:
   m_GameObject: {fileID: 1060608849}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
@@ -10381,7 +10427,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &1060608854
 MeshRenderer:
@@ -10437,6 +10483,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7fbab741492bc4889f86dc4eb5f260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &1060608857
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1060608849}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5000001
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0.000000059604645, y: 0.000005722046, z: -0.00000008940697}
 --- !u!1 &1066904577
 GameObject:
   m_ObjectHideFlags: 0
@@ -11209,7 +11268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &1114487994
 MeshRenderer:
@@ -11345,7 +11404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &1122885299
 MeshRenderer:
@@ -11549,7 +11608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &1145646141
 MeshRenderer:
@@ -12507,6 +12566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Individual: 1
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -12607,6 +12667,7 @@ GameObject:
   - component: {fileID: 1246858862}
   - component: {fileID: 1246858866}
   - component: {fileID: 1246858861}
+  - component: {fileID: 1246858867}
   m_Layer: 0
   m_Name: Hole
   m_TagString: Hole
@@ -12638,7 +12699,7 @@ SphereCollider:
   m_GameObject: {fileID: 1246858859}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
@@ -12672,7 +12733,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &1246858864
 MeshRenderer:
@@ -12728,6 +12789,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7fbab741492bc4889f86dc4eb5f260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &1246858867
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1246858859}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5000001
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0.00000029802322, y: 0.0000038146973, z: -0.00000008940697}
 --- !u!1 &1247696954
 GameObject:
   m_ObjectHideFlags: 0
@@ -13547,7 +13621,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &1363908953
 MeshRenderer:
@@ -13726,6 +13800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Individual: 1
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -14301,7 +14376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &1410892498
 MeshRenderer:
@@ -14372,6 +14447,7 @@ GameObject:
   - component: {fileID: 1414952476}
   - component: {fileID: 1414952480}
   - component: {fileID: 1414952475}
+  - component: {fileID: 1414952481}
   m_Layer: 0
   m_Name: Hole
   m_TagString: Hole
@@ -14403,7 +14479,7 @@ SphereCollider:
   m_GameObject: {fileID: 1414952473}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
@@ -14438,7 +14514,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &1414952478
 MeshRenderer:
@@ -14494,6 +14570,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7fbab741492bc4889f86dc4eb5f260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &1414952481
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1414952473}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5000002
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: -0.0000004172325, y: 0.0000038146973, z: -0.00000008940698}
 --- !u!1 &1434569172
 GameObject:
   m_ObjectHideFlags: 0
@@ -15591,7 +15680,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 153936805}
-  createPos: {fileID: 0}
 --- !u!114 &1517711115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15907,6 +15995,7 @@ GameObject:
   - component: {fileID: 1557385833}
   - component: {fileID: 1557385837}
   - component: {fileID: 1557385832}
+  - component: {fileID: 1557385838}
   m_Layer: 0
   m_Name: Hole (2)
   m_TagString: Hole
@@ -15938,7 +16027,7 @@ SphereCollider:
   m_GameObject: {fileID: 1557385830}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
@@ -15974,7 +16063,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &1557385835
 MeshRenderer:
@@ -16030,6 +16119,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7fbab741492bc4889f86dc4eb5f260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &1557385838
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1557385830}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5000002
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0.00000005960464, y: -0.0000038146973, z: 0.0000003874302}
 --- !u!1 &1565691009
 GameObject:
   m_ObjectHideFlags: 0
@@ -16263,7 +16365,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &1583634055
 MeshRenderer:
@@ -16615,6 +16717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Individual: 1
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -16755,6 +16858,7 @@ GameObject:
   - component: {fileID: 1644696866}
   - component: {fileID: 1644696870}
   - component: {fileID: 1644696865}
+  - component: {fileID: 1644696871}
   m_Layer: 0
   m_Name: Hole (2)
   m_TagString: Hole
@@ -16786,7 +16890,7 @@ SphereCollider:
   m_GameObject: {fileID: 1644696863}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
@@ -16821,7 +16925,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &1644696868
 MeshRenderer:
@@ -16877,6 +16981,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7fbab741492bc4889f86dc4eb5f260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &1644696871
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1644696863}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5000001
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: -0.00000017881393, y: 0.0000019073486, z: 0.0000003874302}
 --- !u!1 &1646420207
 GameObject:
   m_ObjectHideFlags: 0
@@ -16922,6 +17039,7 @@ GameObject:
   - component: {fileID: 1649606254}
   - component: {fileID: 1649606258}
   - component: {fileID: 1649606253}
+  - component: {fileID: 1649606259}
   m_Layer: 0
   m_Name: Hole (4)
   m_TagString: Hole
@@ -16953,7 +17071,7 @@ SphereCollider:
   m_GameObject: {fileID: 1649606251}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
@@ -16987,7 +17105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &1649606256
 MeshRenderer:
@@ -17043,6 +17161,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7fbab741492bc4889f86dc4eb5f260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &1649606259
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1649606251}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5000001
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0.00000029802322, y: 0, z: -0.00000032782555}
 --- !u!1 &1660931784
 GameObject:
   m_ObjectHideFlags: 0
@@ -17090,6 +17221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Individual: 1
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -17522,7 +17654,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &1697174829
 MeshRenderer:
@@ -18221,7 +18353,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &1781774280
 MeshRenderer:
@@ -18390,7 +18522,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 153936805}
-  createPos: {fileID: 0}
 --- !u!114 &1791235999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18875,7 +19006,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &1837093209
 MeshRenderer:
@@ -18946,6 +19077,7 @@ GameObject:
   - component: {fileID: 1867672603}
   - component: {fileID: 1867672607}
   - component: {fileID: 1867672602}
+  - component: {fileID: 1867672608}
   m_Layer: 0
   m_Name: Hole (3)
   m_TagString: Hole
@@ -18977,7 +19109,7 @@ SphereCollider:
   m_GameObject: {fileID: 1867672600}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
@@ -19012,7 +19144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &1867672605
 MeshRenderer:
@@ -19068,6 +19200,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7fbab741492bc4889f86dc4eb5f260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &1867672608
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1867672600}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5000001
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0.000000059604645, y: 0.0000038146973, z: 0.0000003874302}
 --- !u!1 &1892815309
 GameObject:
   m_ObjectHideFlags: 0
@@ -19144,7 +19289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &1892815314
 MeshRenderer:
@@ -19269,7 +19414,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &1894616866
 MeshRenderer:
@@ -20025,6 +20170,7 @@ GameObject:
   - component: {fileID: 1960811082}
   - component: {fileID: 1960811086}
   - component: {fileID: 1960811081}
+  - component: {fileID: 1960811087}
   m_Layer: 0
   m_Name: Hole
   m_TagString: Hole
@@ -20056,7 +20202,7 @@ SphereCollider:
   m_GameObject: {fileID: 1960811079}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
@@ -20090,7 +20236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &1960811084
 MeshRenderer:
@@ -20146,6 +20292,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7fbab741492bc4889f86dc4eb5f260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &1960811087
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1960811079}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5000001
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0.0000005364418, y: 0.0000019073486, z: -0.00000008940697}
 --- !u!1 &1963263395
 GameObject:
   m_ObjectHideFlags: 0
@@ -20390,7 +20549,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &1975392841
 MeshRenderer:
@@ -20726,7 +20885,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &2017908651
 MeshRenderer:
@@ -21025,6 +21184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Individual: 1
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -21139,7 +21299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &2074147809
 MeshRenderer:
@@ -21567,6 +21727,7 @@ GameObject:
   - component: {fileID: 2119274593}
   - component: {fileID: 2119274597}
   - component: {fileID: 2119274592}
+  - component: {fileID: 2119274598}
   m_Layer: 0
   m_Name: Hole (3)
   m_TagString: Hole
@@ -21598,7 +21759,7 @@ SphereCollider:
   m_GameObject: {fileID: 2119274590}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
@@ -21634,7 +21795,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invincible: 0
   hp: 0
-  nextColor: {fileID: 0}
+  col: {fileID: 0}
   time: 1
 --- !u!23 &2119274595
 MeshRenderer:
@@ -21690,6 +21851,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7fbab741492bc4889f86dc4eb5f260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &2119274598
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2119274590}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5000002
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: -0.000000059604645, y: -0.0000038146973, z: 0.0000003874302}
 --- !u!1 &2124928866
 GameObject:
   m_ObjectHideFlags: 0
