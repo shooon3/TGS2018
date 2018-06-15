@@ -83,7 +83,7 @@ public class Pose : MonoBehaviour
 
         //ゲームを再開する
         filterImage.gameObject.SetActive(false);
-        Time.timeScale = 1;
+        Time.timeScale = 10;
     }
 
     /// <summary>

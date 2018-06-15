@@ -12,6 +12,9 @@ public class Result : MonoBehaviour
     int ClearTime;  //クリアタイム
     int number;     //検索回数
     int count;      //ループ回数
+
+    [SerializeField]
+    int intervalTime;
     [SerializeField]
     int[] rank = { 90, 150, 210 };  //ランク時間割(秒)
     [SerializeField]
@@ -21,6 +24,8 @@ public class Result : MonoBehaviour
     Text timeText;  //時間表示テキスト
     [SerializeField]
     Text rankText;  //ランク表示テキスト
+    [SerializeField]
+    Button[] buttons = new Button[2];   //シーン移行用ボタン
 
 	void Start ()
     {
@@ -40,7 +45,18 @@ public class Result : MonoBehaviour
         //タイム加算表示
         if (time < ClearTime)
         {
-            time++;
+            //演出スキップ
+            if (Input.GetMouseButtonDown(0))
+            {
+                time = ClearTime;
+            }
+            //通常時
+            else
+            {
+                //タイム加算演出
+                time++;
+            }
+
             //タイムを「分:秒」に変換し表示
             if (time % 60 < 10)
             {
@@ -54,54 +70,62 @@ public class Result : MonoBehaviour
             }
         }
         //ランク表示
-        else if (!finish && !interval)
+        else if (!finish)
         {
-            //ループ演出
-            if (count < 10)
+            //演出スキップ
+            if (Input.GetMouseButtonDown(0))
             {
-                if (number < rank.Length)
+                for(int i = 0; i < rank.Length; i++)
                 {
-                    RankChecker();
-                    number++;
-                }
-                else
-                {
-                    rankText.text = "C";
-                    count++;
-                    number = 0;
-                }
-            }
-            //ランク確定
-            else
-            {
-                if (number < rank.Length)
-                {
-                    RankChecker();
-                    if (time < rank[number])
+                    if (time < rank[i])
                     {
-                        finish = true;
+                        rankText.text = RankStr[i];
+                        ResultFinish();
+                        break;
                     }
-                    number++;
-                }
-                else
-                {
-                    rankText.text = "C";
-                    finish = true;
                 }
             }
-            interval = true;
+            //通常時
+            else if(!interval)
+            {
+                //ループ演出
+                if (count < 10)
+                {
+                    //ランクを順に表示
+                    if (number < RankStr.Length)
+                    {
+                        RankChecker();
+                        number++;
+                    }
+                    //ループ
+                    else
+                    {
+                        count++;
+                        number = 0;
+                    }
+                }
+                //ランク確定
+                else
+                {
+                    RankChecker();
+                    if (number < rank.Length)
+                    {
+                        if (time < rank[number])
+                        {
+                            ResultFinish();
+                        }
+                        number++;
+                    }
+                    else
+                    {
+                        ResultFinish();
+                    }
+                }
+                interval = true;
 
-        }
-        //演出間隔
-        else
-        {
-            interval = false;
-        }
-
-        //セレクト?画面に戻る
-        if (finish && Input.GetMouseButtonDown(0))
-        {
-            SceneManager.LoadScene((int)GameMode.Mode.SELECT);
+                //演出間隔
+                StartCoroutine(SlotInterval(intervalTime));
+            }
         }
     }
 
@@ -110,6 +134,67 @@ public class Result : MonoBehaviour
     /// </summary>
     void RankChecker()
     {
-        rankText.text = RankStr[number];
+        if (number < RankStr.Length)
+        {
+            rankText.text = RankStr[number];
+        }
+        else
+        {
+            rankText.text = "圏外";
+        }
+    }
+
+    /// <summary>
+    /// frameごとに書き換える
+    /// </summary>
+    /// <param name="frame"></param>
+    /// <returns></returns>
+    IEnumerator SlotInterval(int frame)
+    {
+        //1フレーム待つ
+        while (frame > 0)
+        {
+            yield return null;
+            frame--;
+        }
+
+        interval = false;
+    }
+
+    /// <summary>
+    /// リザルト処理終了
+    /// </summary>
+    void ResultFinish()
+    {
+        finish = true;
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            //ボタンを表示する
+            buttons[i].gameObject.SetActive(true);
+        }
+    }
+
+    /// <summary>
+    /// リトライ
+    /// </summary>
+    public void Retry()
+    {
+        //ゲームを始める
+        if (finish)
+        {
+            SceneManager.LoadScene((int)GameMode.Mode.GAME);
+        }
+    }
+
+    /// <summary>
+    /// ゲーム終了
+    /// </summary>
+    public void End()
+    {
+        //セレクト?画面に戻る
+        if (finish)
+        {
+            SceneManager.LoadScene((int)GameMode.Mode.SELECT);
+        }
     }
 }
