@@ -2168,7 +2168,7 @@ MonoBehaviour:
   hp: 0
   holeRange: {fileID: 889916329}
   holeArray: []
-  childDestroyObj: {fileID: 0}
+  childDestroyObj: {fileID: 667559526}
 --- !u!135 &153936811
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5255,7 +5255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 1
+  Individual: 0
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -5666,7 +5666,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 1
+  Individual: 0
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -9407,7 +9407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 1
+  Individual: 0
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -10376,7 +10376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 1
+  Individual: 0
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -11068,6 +11068,10 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1083820335}
+--- !u!1 &1086929116 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100032, guid: 62c0716111e248b46b4d89ff73bb1407, type: 3}
+  m_PrefabInternal: {fileID: 1408324393}
 --- !u!4 &1089687934 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400046, guid: 34524dc528b6a4f44b3a169b5f36c8bb, type: 3}
@@ -13127,7 +13131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 1
+  Individual: 0
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -13700,9 +13704,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: {fileID: 11400000, guid: b6e34204e3a9523479e0cb478a683aea, type: 2}
   hp: 0
-  holeRange: {fileID: 889916329}
+  holeRange: {fileID: 1517711112}
   holeArray: []
-  childDestroyObj: {fileID: 0}
+  childDestroyObj: {fileID: 1086929116}
 --- !u!114 &1305817039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14503,7 +14507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 1
+  Individual: 0
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -17706,7 +17710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 1
+  Individual: 0
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -18246,7 +18250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 1
+  Individual: 0
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -22663,7 +22667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 1
+  Individual: 0
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
