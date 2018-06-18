@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4234519690737966}
   - component: {fileID: 212500517733346906}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 33992368958321696}
   - component: {fileID: 23016505633656820}
   - component: {fileID: 114682670965571066}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BomModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 114177683276880380}
   - component: {fileID: 54561903785249914}
   - component: {fileID: 135401356827405164}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bom
   m_TagString: Untagged
   m_Icon: {fileID: 0}

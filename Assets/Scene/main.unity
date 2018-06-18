@@ -13685,7 +13685,7 @@ GameObject:
   - component: {fileID: 1305817039}
   - component: {fileID: 1305817038}
   m_Layer: 12
-  m_Name: Boss_Potato (1)
+  m_Name: Boss_RedPepper
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23122,6 +23122,48 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2106039944}
+--- !u!1001 &2109869965
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4173935881947860, guid: b1d3a4c00bbb07347b42caa2e3dc76d7, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4173935881947860, guid: b1d3a4c00bbb07347b42caa2e3dc76d7, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4173935881947860, guid: b1d3a4c00bbb07347b42caa2e3dc76d7, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 19.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4173935881947860, guid: b1d3a4c00bbb07347b42caa2e3dc76d7, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4173935881947860, guid: b1d3a4c00bbb07347b42caa2e3dc76d7, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4173935881947860, guid: b1d3a4c00bbb07347b42caa2e3dc76d7, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4173935881947860, guid: b1d3a4c00bbb07347b42caa2e3dc76d7, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4173935881947860, guid: b1d3a4c00bbb07347b42caa2e3dc76d7, type: 2}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: b1d3a4c00bbb07347b42caa2e3dc76d7, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &2114565055
 GameObject:
   m_ObjectHideFlags: 0
