@@ -13,8 +13,8 @@ public class BtnMaster : MonoBehaviour
     public GameObject BlackMax;
     public GameObject yesBtn;
     public GameObject noBtn;
-    public GameObject ResBtn;
-    public GameObject TitleBtn;
+    public GameObject PauseMas;
+   
 
     void Start()
     {
@@ -28,8 +28,7 @@ public class BtnMaster : MonoBehaviour
         BlackMax.SetActive(true);
         yesBtn.SetActive(true);
         noBtn.SetActive(true);
-        ResBtn.SetActive(false);
-        TitleBtn.SetActive(false);
+        PauseMas.SetActive(false);
     }
 
     public void TitleBack1()
@@ -37,13 +36,7 @@ public class BtnMaster : MonoBehaviour
         BlackMax.SetActive(true);
         yesBtn.SetActive(true);
         noBtn.SetActive(true);
-        ResBtn.SetActive(false);
-        TitleBtn.SetActive(false);
-    }
-
-    public void Yes()
-    {
-        //SceneManager.LoadScene("");
+        PauseMas.SetActive(false);
     }
 
     public void No()
@@ -51,8 +44,7 @@ public class BtnMaster : MonoBehaviour
         BlackMax.SetActive(false);
         yesBtn.SetActive(false);
         noBtn.SetActive(false);
-        ResBtn.SetActive(true);
-        TitleBtn.SetActive(true);
+        PauseMas.SetActive(true);
     }
 
 }
