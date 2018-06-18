@@ -13,10 +13,8 @@ public class Pose : MonoBehaviour
     Image filterImage;  //フィルター
     [SerializeField]
     Button poseButton;  //ボタン本体
-    Button Left;
-    Button Right;
 
-    public Animator animator;
+    public Animator animator;//Pauseアニメーションを選択
 
     //各ボタン
     public GameObject LeftBtn;//左の畑へ

@@ -11,7 +11,7 @@ public class BomManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.Rotate(-5.0f, 0, 0, Space.World);
+
     }
 
     void OnTriggerEnter(Collider col)
