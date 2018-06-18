@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BossPumpKing : BaseVegetable {
 
@@ -11,7 +12,7 @@ public class BossPumpKing : BaseVegetable {
 
     protected override void DoUpdate()
     {
-
+        if (hp <= 0) SceneManager.LoadScene("GameOver");
     }
 
     protected override void Attack()

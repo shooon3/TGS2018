@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public enum BossActionState
 {
@@ -9,24 +10,38 @@ public enum BossActionState
     _infection,
 }
 
-public class BaseBossEnemy : BaseEnemy {
+public abstract class BaseBossEnemy : BaseEnemy {
 
     [Header("存在する畑")]
     public GameObject holeRange;
 
     public Hole[] holeArray;
 
+    public GameObject childDestroyObj;
+
+    protected IEnumerable<Hole> holeRightLis = new List<Hole>();
+    protected IEnumerable<Hole> holeLeftLis = new List<Hole>();
+
     CameraShake shakeCam;
 
     bool isFirst = true;
 
-    BossActionState state;
+    protected BossActionState state;
+
+    protected abstract void NormalAttack();
+
+    protected abstract void ShakeAttack();
+
+    protected abstract void Infection();
 
     protected override void DoStart()
     {
         base.DoStart();
 
         holeArray = holeRange.GetComponentsInChildren<Hole>();
+
+        holeRightLis = holeArray.OrderBy(x => x.name).Take(6);
+        holeLeftLis = holeArray.OrderByDescending(x => x.name).Take(6);
 
         shakeCam = Camera.main.GetComponent<CameraShake>();
     }
@@ -39,7 +54,25 @@ public class BaseBossEnemy : BaseEnemy {
 
         SerchTarget();
 
-        SerchHole();
+        AttackState();
+    }
+
+    void AttackState()
+    {
+        switch(state)
+        {
+            case BossActionState._normalAttack:
+                NormalAttack();
+                break;
+
+            case BossActionState._shakeAttack:
+                ShakeAttack();
+                break;
+
+            case BossActionState._infection:
+                Infection();
+                break;
+        }
     }
 
     /// <summary>
@@ -52,16 +85,6 @@ public class BaseBossEnemy : BaseEnemy {
             shakeCam.DoShake(2.0f, 2.0f);
             isFirst = false;
         }
-    }
-
-    protected virtual void SerchHole()
-    {
-        int holeRandNum = Random.Range(0, holeArray.Length);
-    }
-
-    void Infection ()
-    {
-
     }
 
     void OnTriggerEnter(Collider col)
