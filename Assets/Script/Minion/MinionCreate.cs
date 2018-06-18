@@ -78,7 +78,7 @@ public class MinionCreate : MonoBehaviour {
     ThrowBom throwBom;
     BomCount bomCount;
     PlayerMove playerMove;
-    BaseEnemyT boss;
+    BaseBossEnemy boss;
 
     float touchNowPosX; //現在のタッチポジション
     float startFlickX; //タッチした直後のポジション(タッチ直後にフリック判定にならないようにするための除外用変数)
@@ -91,15 +91,11 @@ public class MinionCreate : MonoBehaviour {
 
     int layerMask;
 
-    bool isAttackBass;
+    bool isBossAttack;
     bool delay = true;
 
     FlickState flickState; //フリックされた方向
     FlickState nextFlickState; //次にフリックする方向
-
-    //List<BomManager> bomMarLis = new List<BomManager>();
-    //List<int> displayLis = new List<int>();
-    //List<Vector3> createPosLis = new List<Vector3>();
 
     List<PumpCreateData> dataLis = new List<PumpCreateData>();
 
@@ -142,10 +138,6 @@ public class MinionCreate : MonoBehaviour {
         {
             pumpRender.sprite = pumpkinsSp[4];
         }
-        //else if (minionMar != null)
-        //{
-        //    pumpRender.sprite = pumpkinsSp[4];
-        //}
 
         if (dataLis.Count < 0) return;
 
@@ -154,32 +146,12 @@ public class MinionCreate : MonoBehaviour {
             //パンプ菌が生成できるようになったら(爆弾が地面に衝突してたら)
             if (dataLis[i].bomMar != null && dataLis[i].bomMar.IsCollision)
             {
-                MinionsCreate(dataLis[i].parentObj,dataLis[i].displayCount);
-                //StartCoroutine(DelaySpriteReset());
-                //bomMar.IsCollision = false;
-
-                //bomMar = null;
-
-                //bomMarLis[bomIndex - 1] = null;
-                //displayLis[bomIndex - 1] = 0;
-                //bomMarLis.Remove(bomMarLis[i]);
-                //displayLis.Remove(displayLis[i]);
-                //createPosLis.Remove(createPosLis[i]);
+                MinionsCreate(dataLis[i].parentObj,dataLis[i].displayCount,dataLis[i].bomMar.IsAttackBoss,dataLis[i].bomMar.ColBossObj);
 
                 dataLis.Remove(dataLis[i]);
                 continue;
             }
         }
-
-        //for(int i = 0; i < bomMarLis.Count; i++)
-        //{
-        //    if(bomMarLis[i] == null && displayLis[i] == 0)
-        //    {
-        //        bomMarLis.Remove(bomMarLis[i]);
-        //        displayLis.Remove(displayLis[i]);
-        //        continue;
-        //    }
-        //}
 
     }
 
@@ -284,7 +256,7 @@ public class MinionCreate : MonoBehaviour {
         int nowBomCount = bomCount.NowBomCount();
 
         //爆弾を生成できるのは、ほかの爆弾がない時 かつ　爆弾の数が０でないときだけ
-        if (/*pumpking.transform.childCount != 0 || */nowBomCount == 0 || playerMove.IsTouch != true) return;
+        if (nowBomCount == 0 || playerMove.IsTouch != true) return;
         
 
         if (Input.GetButtonUp("Fire1"))
@@ -304,20 +276,7 @@ public class MinionCreate : MonoBehaviour {
 
             Vector3 createPos = new Vector3(hit.point.x, hit.point.y, hit.point.z);
 
-            boss = hit.transform.GetComponent<BaseEnemyT>();
-
-            if (boss != null)
-            {
-                isAttackBass = true;
-            }
-            else
-            {
-                isAttackBass = false;
-                createPos = new Vector3(hit.point.x, -9.5f, hit.point.z);
-            }
-
             minionParent = Instantiate(massParentPre, createPos, Quaternion.identity);
-
 
             //次のボムのタイプを取得
             BomType nextBom = bomCount.NextBomType();
@@ -327,10 +286,6 @@ public class MinionCreate : MonoBehaviour {
 
             bomMar = throwBom.GetBomObj().GetComponent<BomManager>();
 
-            //bomMarLis.Add(bomMar);
-
-            //displayLis.Add(displayCount);
-
             PumpCreateData pumpData;
 
             pumpData.bomMar = bomMar;
@@ -339,12 +294,8 @@ public class MinionCreate : MonoBehaviour {
 
             dataLis.Add(pumpData);
 
-            //dataLis.Add()
-
             //ボムの数を減らす
             bomCount.UseBom();
-
-
 
             FlickInitialize();
 
@@ -356,7 +307,7 @@ public class MinionCreate : MonoBehaviour {
     /// パンプ菌を作る
     /// </summary>
     /// <param name="parentObj"></param>
-    void MinionsCreate(GameObject parentObj,int createPumpkin)
+    void MinionsCreate(GameObject parentObj,int createPumpkin,bool isBossAttack,GameObject bossObj)
     {
         Vector3 position = parentObj.transform.position;
         Vector2 size = new Vector2(4.0f, 4.0f);
@@ -364,15 +315,17 @@ public class MinionCreate : MonoBehaviour {
         //揺らす
         camShake.DoShake(0.25f,0.5f);
         //攻撃してくるパンプキンを生成
-        if (isAttackBass)
+        if (isBossAttack)
         {
             attackPumpkin = Instantiate(bossPumpkin, position, Quaternion.identity, parentObj.transform);
+
+            parentObj.transform.parent = bossObj.transform;
         }
         else
         {
             attackPumpkin = Instantiate(pumpkinPre, position, Quaternion.identity, parentObj.transform);
         }
-        StatusSet();
+        StatusSet(createPumpkin);
 
         //エフェクト生成
         Instantiate(createEffect, position, Quaternion.identity,parentObj.transform);
@@ -385,7 +338,7 @@ public class MinionCreate : MonoBehaviour {
         for (int i = 1; i < createPumpkin; i++)
         {
 
-            if (isAttackBass)
+            if (isBossAttack)
             {
                 x = Random.Range(position.x - size.x / 2, position.x + size.x / 2);
                 y = Random.Range(position.y - size.y / 2, position.y + size.y / 2);
@@ -394,19 +347,19 @@ public class MinionCreate : MonoBehaviour {
                 vec = new Vector3(x, y, position.z);
 
                 Instantiate(bossDisp, vec, Quaternion.identity, parentObj.transform);
+
             }
             else
             {
                 x = Random.Range(position.x - size.x / 2, position.x + size.x / 2);
                 z = Random.Range(position.z - size.y / 2, position.z + size.y / 2);
 
-                vec = new Vector3(x, position.y, z);
+                vec = new Vector3(x, -9.5f, z);
 
                 Instantiate(displayPumpkinPre, vec, Quaternion.identity, parentObj.transform);
             }
         }
 
-        if (boss != null) minionParent.transform.parent = boss.transform;
 
         //FlickInitialize();
 
@@ -415,7 +368,7 @@ public class MinionCreate : MonoBehaviour {
     /// <summary>
     /// 分裂の数に応じて、それぞれのステータスをセットする
     /// </summary>
-    void StatusSet()
+    void StatusSet(int displayCount)
     {
         PumpAI pumpAI = attackPumpkin.GetComponent<PumpAI>();
 
@@ -450,7 +403,7 @@ public class MinionCreate : MonoBehaviour {
     {
         if (delay == false)
         {
-            yield return new WaitForSeconds(0.7f);
+            yield return new WaitForSeconds(0.3f);
             delay = true;
         }
     }

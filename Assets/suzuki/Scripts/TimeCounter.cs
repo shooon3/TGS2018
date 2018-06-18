@@ -99,8 +99,8 @@ public class TimeCounter : MonoBehaviour
                     Debug.Log("クリアタイム " + clearTime / 60 + ":" + clearTime % 60);
                 }
 
-                //ポーズボタン機能停止
-                pose.GameClear();
+                ////ポーズボタン機能停止
+                //pose.GameClear();
 
                 //リザルトへ移動
                 StartCoroutine(GoResult());

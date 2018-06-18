@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PotatoEnemy : BaseVegetable
+public class PotatoEnemyT : BaseVegetable
 {
     BaseVegetable target;
 
@@ -16,7 +16,7 @@ public class PotatoEnemy : BaseVegetable
     protected override void DoStart()
     {
         animator = transform.GetChild(0).GetComponent<Animator>();
-        StartCoroutine(WaitAnimEnd("pop"));
+        StartCoroutine(WaitAnimEnd("pop",2.5f));
     }
 
     protected override void DoUpdate()
@@ -33,12 +33,12 @@ public class PotatoEnemy : BaseVegetable
     /// <summary>
     /// 攻撃処理を行うメソッド
     /// </summary>
-    void Attack()
+    protected override void Attack()
     {
-        if (IsAttack())
-        {
-            AddDamage(NearTarget);
-        }
+        //if (IsAttack())
+        //{
+        //    AddDamage(NearTarget);
+        //}
     }
 
     /// <summary>
@@ -77,11 +77,11 @@ public class PotatoEnemy : BaseVegetable
 
     void OnTriggerEnter(Collider col)
     {
-        target = col.transform.GetComponent<BaseVegetable>();
+        GameObject target = col.transform.GetComponent<BaseVegetable>().gameObject;
 
         if (target != null && agent.isStopped == false)
         {
-            NearTarget = target.gameObject;
+            NearTarget = target;
 
             IsStop = true;
             isPumpCol = true;
@@ -89,7 +89,7 @@ public class PotatoEnemy : BaseVegetable
         }
     }
 
-    IEnumerator WaitAnimEnd(string animName)
+    IEnumerator WaitAnimEnd(string animName,float waitTime)
     {
 
         while (!IsMove)
@@ -97,7 +97,7 @@ public class PotatoEnemy : BaseVegetable
             AnimatorStateInfo nowState = animator.GetCurrentAnimatorStateInfo(0);
             if (nowState.IsName(animName))
             {
-                yield return new WaitForSeconds(2.5f);
+                yield return new WaitForSeconds(waitTime);
                 IsMove = true;
             }
             else

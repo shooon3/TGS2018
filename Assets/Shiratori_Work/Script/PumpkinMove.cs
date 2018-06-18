@@ -7,20 +7,18 @@ public class PumpkinMove : MonoBehaviour {
 
     NavMeshAgent agent;
 
+    NavMeshAgent parentAgent;
+
     //SerchHolesスクリプトが取得した位置を取得するための変数
     SerchNearObj serchNearObj;
-
-    //近い穴の位置を格納する変数
-    GameObject nearHole;
-
-    //近い敵の位置を格納する変数
-    GameObject nearEnemy;
 
     //移動するポイント
     GameObject moveTarget;
 
     //親の位置を取得する変数
-    Vector3 parentPos;
+    GameObject leaderObj;
+
+    PumpAI ai;
 
     bool isMove = false;
 
@@ -29,49 +27,31 @@ public class PumpkinMove : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        agent = GetComponent<NavMeshAgent>();
-
-        //SerchHolesスクリプトを取得
-        serchNearObj = gameObject.GetComponentInParent<SerchNearObj>();
 
         //親のオブジェクトの位置を取得
-        parentPos = transform.parent.transform.position;
+        leaderObj = transform.parent.GetChild(0).gameObject;
 
         SerchMovePoint();
+        if (ai.type == PumpType._attack)
+        {
+            agent = GetComponent<NavMeshAgent>();
+            parentAgent = leaderObj.GetComponent<NavMeshAgent>();
+        }
+
     }
 
 	// Update is called once per frame
 	void Update () {
 
-        if(moveTarget != null && type == PumpType._attack)
-        agent.destination = moveTarget.transform.position;
+        if (moveTarget == null && type != PumpType._attack) return;
+
+        if (ai.type == PumpType._attack) agent.SetDestination(moveTarget.transform.position);
     }
 
-    /// <summary>
-    /// 移動する場所を決める
-    /// </summary>
     void SerchMovePoint()
     {
-        //親のオブジェクトとHoleタグを探す
-        nearHole = serchNearObj.serchTag(parentPos, "Hole");
-
-        nearEnemy = serchNearObj.serchTag(parentPos, "Enemy");
-
-        Vector3 nearHolePos = nearHole.transform.position;
-
-        //近くに敵がいた場合は穴と敵を比べて、近いほうに行く
-        if (nearEnemy != null)
-        {
-            Vector3 nearEnemyPos = nearEnemy.transform.position;
-
-            float holeDis = Vector3.Distance(transform.position, nearHolePos);
-            float enemyDis = Vector3.Distance(transform.position, nearEnemyPos);
-
-            if (holeDis <= enemyDis) moveTarget = nearHole;
-            else if (holeDis > enemyDis) moveTarget = nearEnemy;
-        }
-        //いない場合は穴に行く
-        else moveTarget = nearHole;
+        ai = leaderObj.GetComponent<PumpAI>();
+        moveTarget = ai.NearTarget;
     }
 
     void OnTriggerEnter(Collider col)

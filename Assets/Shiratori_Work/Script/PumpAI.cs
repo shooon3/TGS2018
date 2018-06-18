@@ -38,7 +38,7 @@ public class PumpAI : BaseVegetable
     //デストロイするオブジェクトの変数
     BaseVegetable target;
 
-    BaseEnemyT boss;
+    BaseBossEnemy boss;
 
     Hole hole;
 
@@ -114,9 +114,9 @@ public class PumpAI : BaseVegetable
     /// <summary>
     /// 攻撃処理
     /// </summary>
-    void Attack()
+    protected override void Attack()
     {
-        if(IsAttack())
+        if(IsAttackInterval() == false)
         {
             AddDamage(NearTarget);
         }
@@ -154,14 +154,14 @@ public class PumpAI : BaseVegetable
 
     void OnTriggerEnter(Collider col)
     {
-        boss = col.GetComponent<BaseEnemyT>();
+        boss = col.GetComponent<BaseBossEnemy>();
 
         if (boss != null)
         {
             isEnemyCollision = true;
             Attack();
         }
-        else if(target == null && hole == null)
+        else if (target == null && hole == null)
         {
             //ターゲットにダメージを与える
             target = col.GetComponent<BaseVegetable>();

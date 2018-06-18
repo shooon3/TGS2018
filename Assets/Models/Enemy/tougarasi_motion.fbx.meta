@@ -1,51 +1,67 @@
 fileFormatVersion: 2
-guid: 931203c5f8c920347aefe42be4fd3d2e
-timeCreated: 1528972344
+guid: 62c0716111e248b46b4d89ff73bb1407
+timeCreated: 1529051545
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: a1
-    100002: a2
-    100004: a3
-    100006: a4
-    100008: ae
-    100010: b1
-    100012: b2
+    100000: a01
+    100002: a02
+    100004: a03
+    100006: ae
+    100008: b01
+    100010: b02
+    100012: b03
     100014: be
-    100016: IK Chain001
-    100018: IK Chain002
-    100020: imo
-    100022: imo 1
-    100024: imoe
-    100026: //RootNode
-    100028: me1
-    100030: me2
-    100032: mee
-    400000: a1
-    400002: a2
-    400004: a3
-    400006: a4
-    400008: ae
-    400010: b1
-    400012: b2
+    100016: c01
+    100018: c02
+    100020: c03
+    100022: ce
+    100024: d01
+    100026: d02
+    100028: d03
+    100030: de
+    100032: dou
+    100034: head
+    100036: heade
+    100038: IK Chain001
+    100040: IK Chain002
+    100042: IK Chain003
+    100044: IK Chain004
+    100046: //RootNode
+    400000: a01
+    400002: a02
+    400004: a03
+    400006: ae
+    400008: b01
+    400010: b02
+    400012: b03
     400014: be
-    400016: IK Chain001
-    400018: IK Chain002
-    400020: imo
-    400022: imo 1
-    400024: imoe
-    400026: //RootNode
-    400028: me1
-    400030: me2
-    400032: mee
+    400016: c01
+    400018: c02
+    400020: c03
+    400022: ce
+    400024: d01
+    400026: d02
+    400028: d03
+    400030: de
+    400032: dou
+    400034: head
+    400036: heade
+    400038: IK Chain001
+    400040: IK Chain002
+    400042: IK Chain003
+    400044: IK Chain004
+    400046: //RootNode
     2100000: No Name
-    4300000: imo
-    7400000: jagaimo_motion
-    7400002: jagaimo_motion (1)
-    7400004: jagaimo_motion (2)
+    4300000: dou
+    7400000: tougarasi_motion
+    7400002: tougarasi_motion (1)
+    7400004: tougarasi_motion (2)
+    7400006: tougarasi_motion (3)
+    7400008: tougarasi_motion (4)
     9500000: //RootNode
-    13700000: imo
+    13700000: dou
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -74,10 +90,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: jagaimo_motion
-      takeName: jagaimo_motion
+      name: tougarasi_motion
+      takeName: tougarasi_motion
       firstFrame: 0
-      lastFrame: 70
+      lastFrame: 120
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -102,17 +118,17 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: jagaimo_motion (1)
-      takeName: jagaimo_motion
-      firstFrame: 90
-      lastFrame: 120
+      name: tougarasi_motion (1)
+      takeName: tougarasi_motion
+      firstFrame: 125
+      lastFrame: 132
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -130,10 +146,66 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: jagaimo_motion (2)
-      takeName: jagaimo_motion
-      firstFrame: 125
-      lastFrame: 183
+      name: tougarasi_motion (2)
+      takeName: tougarasi_motion
+      firstFrame: 132
+      lastFrame: 147
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: tougarasi_motion (3)
+      takeName: tougarasi_motion
+      firstFrame: 147
+      lastFrame: 152
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: tougarasi_motion (4)
+      takeName: tougarasi_motion
+      firstFrame: 157
+      lastFrame: 287
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

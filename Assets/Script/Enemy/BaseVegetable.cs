@@ -73,7 +73,7 @@ public abstract class BaseVegetable : MonoBehaviour {
     public bool IsMove { get; set; }
 
 
-    protected bool IsStop { get; set; }
+    public bool IsStop { get; set; }
 
     //-----------------------------------------
     // 抽象メソッド
@@ -84,6 +84,8 @@ public abstract class BaseVegetable : MonoBehaviour {
     protected abstract void DoUpdate();
 
     protected abstract void Death();
+
+    protected abstract void Attack();
 
     //-----------------------------------------
     // 関数
@@ -147,6 +149,7 @@ public abstract class BaseVegetable : MonoBehaviour {
         Transform targetTransform = NearTarget.transform;
         agent.SetDestination(targetTransform.position);
 
+
         IsMove = false;
     }
 
@@ -180,7 +183,6 @@ public abstract class BaseVegetable : MonoBehaviour {
     {
         if (target == null) return;
 
-
         BaseVegetable targetVegetable = target.GetComponent<BaseVegetable>();
 
         if (targetVegetable == null) return;
@@ -193,20 +195,20 @@ public abstract class BaseVegetable : MonoBehaviour {
     }
 
     /// <summary>
-    /// 攻撃できるかどうか
+    ///　攻撃インターバル中かどうか
     /// </summary>
     /// <returns></returns>
-    protected bool IsAttack()
+    protected bool IsAttackInterval()
     {
         intervalTimer -= Time.deltaTime;
 
         if (intervalTimer <= 0.0f)
         {
             intervalTimer = attackInterval;
-            return true;
+            return false;
         }
 
-        return false;
+        return true;
     }
 
     /// <summary>

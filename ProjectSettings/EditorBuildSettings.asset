@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/main.unity
     guid: eced2e96f491f9b439ad19618dff8c0e
-  - enabled: 0
+  - enabled: 1
     path: "Assets/suzuki/test_\u03B1.unity"
     guid: 9962b63d28db0964793fff5edf32a6a9
   - enabled: 1

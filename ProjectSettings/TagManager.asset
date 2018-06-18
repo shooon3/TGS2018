@@ -8,6 +8,7 @@ TagManager:
   - Hole
   - Minion
   - infHole
+  - Pumpking
   layers:
   - Default
   - TransparentFX

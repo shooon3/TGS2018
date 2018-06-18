@@ -5,9 +5,9 @@ using UnityEngine;
 public class MinionManager : MonoBehaviour {
 
     /// <summary>
-    /// 爆弾が地面に衝突したら、パンプ菌を生成する
+    /// ボスに当たったかどうか
     /// </summary>
-    //public bool IsMinionCreate { get; set; }
+    //public bool IsBossAttack { get; set; }
 
     //１回だけアタッチする
     bool isFirstAttach = true;
@@ -63,16 +63,6 @@ public class MinionManager : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-
     }
-
-    //void OnTriggerEnter(Collider col)
-    //{
-    //    //衝突したオブジェクトがカボチャ爆弾だったら
-    //    BomManager bomMar = col.GetComponent<BomManager>();
-    //    if (bomMar == null) return;
-
-    //    IsMinionCreate = true;
-    //}
 
 }
