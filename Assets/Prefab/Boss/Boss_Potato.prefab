@@ -67,11 +67,10 @@ GameObject:
   - component: {fileID: 4898043696089390}
   - component: {fileID: 54568724236716832}
   - component: {fileID: 135220719014866822}
-  - component: {fileID: 114041642520682022}
-  - component: {fileID: 114879787368284562}
   - component: {fileID: 114768660245482804}
   - component: {fileID: 195665041429446052}
   - component: {fileID: 114613048189709194}
+  - component: {fileID: 114406231145621948}
   m_Layer: 12
   m_Name: Boss_Potato
   m_TagString: Enemy
@@ -518,8 +517,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1305692503174756}
   m_LocalRotation: {x: -0, y: 0.9980919, z: 0.06174641, w: 0}
-  m_LocalPosition: {x: -0.35, y: 8, z: 60.3}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalPosition: {x: -0.35, y: 6.7, z: 91.8}
+  m_LocalScale: {x: 14, y: 14, z: 14}
   m_Children:
   - {fileID: 4041477585567762}
   m_Father: {fileID: 0}
@@ -574,7 +573,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114041642520682022
+--- !u!114 &114406231145621948
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -582,10 +581,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1305692503174756}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cde71b325cec3fd4da650a0d4818b1b5, type: 3}
+  m_Script: {fileID: 11500000, guid: 07cabd25498b49c45848d86be98290cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFirst: 1
+  status: {fileID: 11400000, guid: b6e34204e3a9523479e0cb478a683aea, type: 2}
+  hp: 0
+  holeRange: {fileID: 0}
+  holeArray: []
+  childDestroyObj: {fileID: 1400516508746388}
 --- !u!114 &114613048189709194
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -609,19 +612,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47e110370eab4b44697f58278c774b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114879787368284562
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1305692503174756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c72d1bbb7c02d6a45acfb09f3c3ee0a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  status: {fileID: 11400000, guid: b6e34204e3a9523479e0cb478a683aea, type: 2}
-  hp: 0
 --- !u!135 &135220719014866822
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -632,8 +622,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.57
-  m_Center: {x: 0, y: 0.18, z: -0.59}
+  m_Radius: 2.35
+  m_Center: {x: 0, y: 0.18, z: 0.18}
 --- !u!137 &137562463585645444
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -701,7 +691,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 2
+  m_Speed: 0.1
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

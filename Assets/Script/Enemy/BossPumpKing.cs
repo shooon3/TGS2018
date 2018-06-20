@@ -12,7 +12,7 @@ public class BossPumpKing : BaseVegetable {
 
     protected override void DoUpdate()
     {
-        if (hp <= 0) SceneManager.LoadScene("GameOver");
+        //if (hp <= 0) SceneManager.LoadScene("GameOver");
     }
 
     protected override void Attack()

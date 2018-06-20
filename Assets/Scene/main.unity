@@ -2101,7 +2101,7 @@ GameObject:
   - component: {fileID: 153936809}
   m_Layer: 12
   m_Name: Boss_Potato
-  m_TagString: Enemy
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2129,7 +2129,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 0.1
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -2156,7 +2156,8 @@ MonoBehaviour:
 --- !u!114 &153936809
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 114406231145621948, guid: 71ac6cc031bc0ce49bd8b480eb18f810,
+    type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 153936805}
   m_Enabled: 1
@@ -2169,6 +2170,7 @@ MonoBehaviour:
   holeRange: {fileID: 889916329}
   holeArray: []
   childDestroyObj: {fileID: 667559526}
+  pumpking: {fileID: 1166238746}
 --- !u!135 &153936811
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2177,11 +2179,11 @@ SphereCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 153936805}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2.35
-  m_Center: {x: 0, y: 0.18, z: -0.59}
+  m_Radius: 1.2
+  m_Center: {x: 0.37, y: 0.54, z: -0.12}
 --- !u!54 &153936812
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2205,13 +2207,13 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 153936805}
-  m_LocalRotation: {x: -0, y: 0.9980919, z: 0.06174641, w: 0}
-  m_LocalPosition: {x: -0.35, y: 6.7, z: 91.8}
-  m_LocalScale: {x: 14, y: 14, z: 14}
+  m_LocalRotation: {x: 0.0000000037252903, y: 0.99809194, z: 0.06174643, w: 0.000000014901161}
+  m_LocalPosition: {x: -0.35000116, y: 6.700001, z: 91.8}
+  m_LocalScale: {x: 14.000014, y: 14, z: 14.000016}
   m_Children:
   - {fileID: 1972528710}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: -7.0800004, y: 180.00002, z: 0}
 --- !u!1001 &158579981
 Prefab:
@@ -5255,7 +5257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 0
+  Individual: 1
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -5666,7 +5668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 0
+  Individual: 1
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -9080,7 +9082,7 @@ MonoBehaviour:
   massParentPre: {fileID: 1803381458231002, guid: 371030e263f4ef344b3ac27cf02ab544,
     type: 2}
   pumpking: {fileID: 1166238746}
-  maxBom: 100
+  maxBom: 500
   createEffect: {fileID: 1091489021091904, guid: d2a5f089eb9e96a40bdc5f71250ead40,
     type: 2}
   pumpkinsSp:
@@ -9407,7 +9409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 0
+  Individual: 1
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -10376,7 +10378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 0
+  Individual: 1
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -12336,7 +12338,7 @@ Prefab:
     - target: {fileID: 114270383118451430, guid: 35f4a8065845ede4095364c4b8b8c7dd,
         type: 2}
       propertyPath: throwingAngle
-      value: 25
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 4387689665385792, guid: 35f4a8065845ede4095364c4b8b8c7dd, type: 2}
       propertyPath: m_LocalScale.x
@@ -13131,7 +13133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 0
+  Individual: 1
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -13686,7 +13688,7 @@ GameObject:
   - component: {fileID: 1305817038}
   m_Layer: 12
   m_Name: Boss_RedPepper
-  m_TagString: Enemy
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13707,6 +13709,7 @@ MonoBehaviour:
   holeRange: {fileID: 1517711112}
   holeArray: []
   childDestroyObj: {fileID: 1086929116}
+  pumpking: {fileID: 1166238746}
 --- !u!114 &1305817039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13796,7 +13799,7 @@ Transform:
   m_Children:
   - {fileID: 607218440}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: -7.0800004, y: 180.00002, z: 0}
 --- !u!1 &1322981357
 GameObject:
@@ -14507,7 +14510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 0
+  Individual: 1
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -17710,7 +17713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 0
+  Individual: 1
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -18250,7 +18253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 0
+  Individual: 1
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -21861,9 +21864,9 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1972528709}
-  m_LocalRotation: {x: -0.0351972, y: -0.13129221, z: -0.019525388, w: 0.99052626}
-  m_LocalPosition: {x: 0.05, y: -1.93, z: -0.47}
-  m_LocalScale: {x: 0.9706187, y: 0.9706184, z: 0.97061855}
+  m_LocalRotation: {x: -0.03519719, y: -0.13129221, z: -0.019525392, w: 0.99052626}
+  m_LocalPosition: {x: 0.04999984, y: -1.9299996, z: -0.4699996}
+  m_LocalScale: {x: 0.9706179, y: 0.9706182, z: 0.9706179}
   m_Children:
   - {fileID: 292570595}
   - {fileID: 1115781917}
@@ -22667,7 +22670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 0
+  Individual: 1
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -23122,48 +23125,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2106039944}
---- !u!1001 &2109869965
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4173935881947860, guid: b1d3a4c00bbb07347b42caa2e3dc76d7, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4173935881947860, guid: b1d3a4c00bbb07347b42caa2e3dc76d7, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 4173935881947860, guid: b1d3a4c00bbb07347b42caa2e3dc76d7, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 19.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4173935881947860, guid: b1d3a4c00bbb07347b42caa2e3dc76d7, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4173935881947860, guid: b1d3a4c00bbb07347b42caa2e3dc76d7, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4173935881947860, guid: b1d3a4c00bbb07347b42caa2e3dc76d7, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4173935881947860, guid: b1d3a4c00bbb07347b42caa2e3dc76d7, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4173935881947860, guid: b1d3a4c00bbb07347b42caa2e3dc76d7, type: 2}
-      propertyPath: m_RootOrder
-      value: 11
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b1d3a4c00bbb07347b42caa2e3dc76d7, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &2114565055
 GameObject:
   m_ObjectHideFlags: 0

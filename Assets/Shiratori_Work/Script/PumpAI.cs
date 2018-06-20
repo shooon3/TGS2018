@@ -56,20 +56,22 @@ public class PumpAI : BaseVegetable
 
     protected override void DoStart()
     {
-        if (type == PumpType._attack) IsMove = true;
         parentPos = transform.position;
-        SerchTarget();
 
         if (type == PumpType._attack)
         {
             IsMove = true;
+            SerchTarget();
+        }
+        else
+        {
+            NearTarget = serchTarget.serchTag(parentPos, "Boss");
         }
     }
 
     protected override void DoUpdate()
     {
         ActionState();
-
 
         Death();
     }
@@ -122,7 +124,6 @@ public class PumpAI : BaseVegetable
         }
     }
 
-
     protected override void Death()
     {
         if (IsDestroyEnemy()) Destroy(transform.parent.gameObject);
@@ -154,12 +155,15 @@ public class PumpAI : BaseVegetable
 
     void OnTriggerEnter(Collider col)
     {
-        boss = col.GetComponent<BaseBossEnemy>();
-
-        if (boss != null)
+        if (type == PumpType._bossAttack)
         {
-            isEnemyCollision = true;
-            Attack();
+            boss = col.GetComponent<BaseBossEnemy>();
+
+            if (boss != null)
+            {
+                isEnemyCollision = true;
+                Attack();
+            }
         }
         else if (target == null && hole == null)
         {
@@ -176,7 +180,6 @@ public class PumpAI : BaseVegetable
             if (target != null) isEnemyCollision = true;
             else if (hole != null) isHoleCollision = true;
         }
-        
     }
 
     /// <summary>

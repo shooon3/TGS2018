@@ -56,7 +56,7 @@ public class ThrowBom : MonoBehaviour {
 
         // 射出
         Rigidbody rid = ball.GetComponent<Rigidbody>();
-        rid.AddForce(velocity * rid.mass, ForceMode.Impulse);
+        rid.AddForce(velocity * rid.mass , ForceMode.Impulse);
     }
 
     /// <summary>
@@ -88,7 +88,7 @@ public class ThrowBom : MonoBehaviour {
         float y = pointA.y - pointB.y;
 
         // 斜方投射の公式を初速度について解く
-        float speed = Mathf.Sqrt(-Physics.gravity.y * Mathf.Pow(x, 2) / (2 * Mathf.Pow(Mathf.Cos(rad), 2) * (x * Mathf.Tan(rad) + y)));
+        float speed = Mathf.Sqrt(-Physics.gravity.y  * Mathf.Pow(x, 2) / (2 * Mathf.Pow(Mathf.Cos(rad), 2) * (x * Mathf.Tan(rad) + y)));
 
         if (float.IsNaN(speed))
         {

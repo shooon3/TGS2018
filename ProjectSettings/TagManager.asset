@@ -9,6 +9,7 @@ TagManager:
   - Minion
   - infHole
   - Pumpking
+  - Boss
   layers:
   - Default
   - TransparentFX

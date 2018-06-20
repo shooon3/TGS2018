@@ -112,7 +112,7 @@ public class BaseEnemy : BaseVegetable {
         if (target != null && agent.isStopped == false)
         {
             NearTarget = target.gameObject;
-
+             
             IsStop = true;
             isAttack = true;
         }
