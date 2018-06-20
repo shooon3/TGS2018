@@ -5257,7 +5257,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 1
+  state: 2
+  manager: []
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -5668,7 +5669,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 1
+  state: 2
+  manager: []
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -9409,7 +9411,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 1
+  state: 2
+  manager: []
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -10378,7 +10381,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 1
+  state: 2
+  manager: []
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -13133,7 +13137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 1
+  state: 2
+  manager: []
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -14510,7 +14515,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 1
+  state: 2
+  manager: []
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -17713,7 +17719,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 1
+  state: 2
+  manager: []
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -18253,7 +18260,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 1
+  state: 2
+  manager: []
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -22670,7 +22678,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 1
+  state: 2
+  manager: []
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1

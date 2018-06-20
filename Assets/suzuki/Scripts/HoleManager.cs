@@ -31,8 +31,8 @@ public class HoleManager : MonoBehaviour
     [SerializeField]
     Material nextColor;     //変更色(仮)
 
-    [SerializeField]
-    Image hatake;
+    //[SerializeField]
+    //Image hatake;
     [SerializeField]
     GameObject Lane;
     int OverallHP;
@@ -71,13 +71,13 @@ public class HoleManager : MonoBehaviour
     {
         //初期値
         OverallHP = MaxHp;
-        hatake.color = new Color(1, 1, 1, 0);
+        //hatake.color = new Color(1, 1, 1, 0);
 
         //全HoleManagerを取得
-        manager = new HoleManager[transform.root.childCount];
+        manager = new HoleManager[transform.parent.childCount];
         for(int i = 0; i < manager.Length; i++)
         {
-            manager[i] = transform.root.GetChild(i).GetComponent<HoleManager>();
+            manager[i] = transform.parent.GetChild(i).GetComponent<HoleManager>();
         }
 
         //何列目か検索
@@ -97,7 +97,7 @@ public class HoleManager : MonoBehaviour
         for (int i = 0; i < hole.Length; i++)
         {
             hole[i] = transform.GetChild(i).GetComponent<Hole>();
-            hole[i].SetColider(radius);
+            //hole[i].SetColider(radius);
         }
 
         //パンプきんを非表示
