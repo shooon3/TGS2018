@@ -55,21 +55,29 @@ public class Hole : MonoBehaviour
     //}
 
     /// <summary>
-    /// 被ダメージ・を可視化
+    /// 被ダメージ・回復を可視化
     /// </summary>
     /// <param name="f"></param>
-    public void Flash(float f)
+    /// <param name="b"></param>
+    public void Flash(float f, bool b)
     {
-        StartCoroutine(FlashCoroutine(f));
+        if (b == Infection)
+        {
+            StartCoroutine(FlashCoroutine(f));
+        }
     }
 
     /// <summary>
     /// 同レーンの穴も感染状態にする
     /// </summary>
     /// <param name="f"></param>
-    public void Invasion(float f)
+    /// <param name="b"></param>
+    public void Invasion(float f, bool b)
     {
-        StartCoroutine(Chain(f));
+        if (b == Infection)
+        {
+            StartCoroutine(Chain(f));
+        }
     }
 
     ///// <summary>
@@ -228,7 +236,6 @@ public class Hole : MonoBehaviour
     IEnumerator Chain(float f)
     {
         //fは時差
-
         if (!Infection)
         {
             Infection = true;

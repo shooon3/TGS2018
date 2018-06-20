@@ -492,27 +492,27 @@ Prefab:
     - target: {fileID: 224472338964824024, guid: e4f5e2aa35c014b46915e7f84372f276,
         type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 224337501949235430, guid: e4f5e2aa35c014b46915e7f84372f276,
         type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 224625298188204402, guid: e4f5e2aa35c014b46915e7f84372f276,
         type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 224305791100874224, guid: e4f5e2aa35c014b46915e7f84372f276,
         type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 224524216919284878, guid: e4f5e2aa35c014b46915e7f84372f276,
         type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 224998341110318770, guid: e4f5e2aa35c014b46915e7f84372f276,
         type: 2}
@@ -531,7 +531,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1551527827584288, guid: e4f5e2aa35c014b46915e7f84372f276, type: 2}
       propertyPath: m_Name
-      value: Canvas(UI)
+      value: Canvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e4f5e2aa35c014b46915e7f84372f276, type: 2}
@@ -1114,7 +1114,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 523005694}
+      - m_Target: {fileID: 1867910590}
         m_MethodName: Infectious
         m_Mode: 1
         m_Arguments:
@@ -2251,7 +2251,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 0
+  state: 2
+  manager: []
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -3080,7 +3081,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 1
+  state: 2
+  manager: []
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -3447,7 +3449,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 1
+  state: 2
+  manager: []
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
