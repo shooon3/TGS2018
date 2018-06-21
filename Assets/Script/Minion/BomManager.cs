@@ -16,9 +16,10 @@ public class BomManager : MonoBehaviour {
     /// </summary>
     public GameObject ColBossObj { get; set; }
 
-	// Use this for initialization
-	void Start () {
-		
+    // Use this for initialization
+    void Start ()
+    {
+       
 	}
 	
 	// Update is called once per frame
@@ -39,7 +40,9 @@ public class BomManager : MonoBehaviour {
         }
 
         //オブジェクトを消す
-        Destroy(gameObject, 0.5f);
+        Destroy(gameObject,0.2f);
+        Destroy(GameObject.Find("Shadow(Clone)"));
 
     }
+    
 }

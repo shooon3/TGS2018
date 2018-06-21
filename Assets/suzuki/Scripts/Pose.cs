@@ -104,7 +104,7 @@ public class Pose : MonoBehaviour
             Time.timeScale = 1;
 
             //ステージ選択へ戻る
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene("title");
         }
     }
 
@@ -194,7 +194,6 @@ public class Pose : MonoBehaviour
         BlackMax.SetActive(true);
         yesBtn.SetActive(true);
         noBtn.SetActive(true);
-        //PauseMas.SetActive(false);
         Top.SetActive(false);
         TopChain.SetActive(false);
         Under.SetActive(false);
@@ -208,7 +207,6 @@ public class Pose : MonoBehaviour
         BlackMax.SetActive(false);
         yesBtn.SetActive(false);
         noBtn.SetActive(false);
-        //PauseMas.SetActive(true);
         Top.SetActive(true);
         TopChain.SetActive(true);
         Under.SetActive(true);

@@ -8,10 +8,14 @@ public class ThrowBom : MonoBehaviour {
     [Header("射出するオブジェクトをここに割り当てる")]
     public GameObject throwingObject;
 
+    [Header("ボムに追従する影オブジェクトをここに割り当てる")]
+    public GameObject shadowObject;
+
     [Header("射出する角度"), Range(0F, 90F)]
     public float throwingAngle;
 
     GameObject ball;
+    GameObject InsShadow;
 
     void Start()
     {
@@ -38,6 +42,7 @@ public class ThrowBom : MonoBehaviour {
         {
             // Ballオブジェクトの生成
             ball = Instantiate(throwingObject, transformPos, Quaternion.identity);
+            InsShadow = Instantiate(shadowObject);
         }
         //スペシャルボムの生成
         else if(type == BomType.special)
@@ -47,6 +52,7 @@ public class ThrowBom : MonoBehaviour {
 
         //ボムをキングの子オブジェクトで管理
         ball.transform.parent = transform;
+        InsShadow.transform.parent = transform;
 
         // 射出角度
         float angle = throwingAngle;
@@ -69,6 +75,17 @@ public class ThrowBom : MonoBehaviour {
 
         return ball;
     }
+
+    ///// <summary>
+    ///// 影オブジェクトを取得
+    ///// </summary>
+    ///// <returns></returns>
+    //public GameObject GetShadowObj()
+    //{
+    //    if (InsShadow == null) return null;
+
+    //    return InsShadow;
+    //}
 
     /// <summary>
     /// 標的に命中する射出速度の計算

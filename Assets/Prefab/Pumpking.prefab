@@ -20,12 +20,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4387689665385792}
   - component: {fileID: 33127060061886558}
-  - component: {fileID: 135036153368560986}
   - component: {fileID: 23921167435450684}
   - component: {fileID: 114270383118451430}
+  - component: {fileID: 65263154160519672}
+  - component: {fileID: 114475045675578588}
   m_Layer: 2
   m_Name: Pumpking
-  m_TagString: Untagged
+  m_TagString: Minion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,8 +38,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1934930515205590}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 27, y: 27, z: 27}
+  m_LocalPosition: {x: 0, y: 8.5, z: 0}
+  m_LocalScale: {x: 45, y: 45, z: 45}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -49,7 +50,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1934930515205590}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -84,6 +85,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1934930515205590}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &65263154160519672
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1934930515205590}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3, y: 1, z: 1.3}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114270383118451430
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -97,16 +110,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   throwingObject: {fileID: 1087801250912234, guid: b1d3a4c00bbb07347b42caa2e3dc76d7,
     type: 2}
-  throwingAngle: 20
---- !u!135 &135036153368560986
-SphereCollider:
+  shadowObject: {fileID: 1208403503632882, guid: 356cfae50d3c5924482ae8b4f725af70,
+    type: 2}
+  throwingAngle: 40
+--- !u!114 &114475045675578588
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1934930515205590}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.25
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a72ad3bbc0db85d46b0a58697c7a763c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  status: {fileID: 11400000, guid: 34ac15be9185e0f4990641adc67f4a7e, type: 2}
+  hp: 0
