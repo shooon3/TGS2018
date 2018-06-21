@@ -41,7 +41,7 @@ public class BomManager : MonoBehaviour {
 
         //オブジェクトを消す
         Destroy(gameObject,0.2f);
-        Destroy(GameObject.Find("Shadow(Clone)"),0.2f);
+        Destroy(GameObject.Find("Shadow(Clone)"));
 
     }
     

@@ -48,10 +48,10 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1686519846228640}
   serializedVersion: 5
-  lengthInSec: 13
+  lengthInSec: 1
   simulationSpeed: 3
   stopAction: 0
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -101,7 +101,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1303756556
+  randomSeed: -793694638
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -545,7 +545,7 @@ ParticleSystem:
     serializedVersion: 5
     enabled: 1
     type: 4
-    angle: 25
+    angle: 42.803387
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1

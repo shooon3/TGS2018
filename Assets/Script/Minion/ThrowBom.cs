@@ -76,16 +76,16 @@ public class ThrowBom : MonoBehaviour {
         return ball;
     }
 
-    /// <summary>
-    /// 影オブジェクトを取得
-    /// </summary>
-    /// <returns></returns>
-    public GameObject GetShadowObj()
-    {
-        if (InsShadow == null) return null;
+    ///// <summary>
+    ///// 影オブジェクトを取得
+    ///// </summary>
+    ///// <returns></returns>
+    //public GameObject GetShadowObj()
+    //{
+    //    if (InsShadow == null) return null;
 
-        return InsShadow;
-    }
+    //    return InsShadow;
+    //}
 
     /// <summary>
     /// 標的に命中する射出速度の計算
