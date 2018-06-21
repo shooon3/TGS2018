@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 54402365331052220}
   - component: {fileID: 114977221457563906}
   - component: {fileID: 114416042971712662}
-  m_Layer: 9
+  m_Layer: 2
   m_Name: MinionPre 2
   m_TagString: Minion
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 4829003505772836}
   - component: {fileID: 33016305080392836}
   - component: {fileID: 23877462834571112}
-  m_Layer: 9
+  m_Layer: 2
   m_Name: MinionPre 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

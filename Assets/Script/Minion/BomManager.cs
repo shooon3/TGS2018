@@ -31,7 +31,7 @@ public class BomManager : MonoBehaviour {
     {
         IsCollision = true;
 
-        BaseBossEnemy boss = col.GetComponent<BaseBossEnemy>();
+        SetParent boss = col.GetComponent<SetParent>();
 
         if (boss != null)
         {

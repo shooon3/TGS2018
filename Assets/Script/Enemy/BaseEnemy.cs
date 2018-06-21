@@ -62,7 +62,7 @@ public class BaseEnemy : BaseVegetable {
 
         IsMove = true;
 
-        if(isTargetAlive)
+        if (isTargetAlive)
         {
             NearTarget = serchTarget.serchTag(transform.position, "Minion");
         }
@@ -91,6 +91,9 @@ public class BaseEnemy : BaseVegetable {
         }
     }
 
+    /// <summary>
+    /// 攻撃対象のほうを向く
+    /// </summary>
     void AttackRotation()
     {
         if (IsStop == false && NearTarget == null) return;

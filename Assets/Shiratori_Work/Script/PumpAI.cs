@@ -38,8 +38,6 @@ public class PumpAI : BaseVegetable
     //デストロイするオブジェクトの変数
     BaseVegetable target;
 
-    BaseBossEnemy boss;
-
     Hole hole;
 
     //エネミーに当たった
@@ -81,13 +79,10 @@ public class PumpAI : BaseVegetable
     /// </summary>
     void SerchTarget()
     {
-        //while (isHoleInfection)
-        //{
-            //親のオブジェクトとHoleタグを探す
-            nearHole = serchTarget.serchTag(parentPos, "Hole");
+        //親のオブジェクトとHoleタグを探す
+        nearHole = serchTarget.serchTag(parentPos, "Hole");
 
-            isHoleInfection = nearHole.GetComponent<Hole>().Infection;
-        //}
+        isHoleInfection = nearHole.GetComponent<Hole>().Infection;
 
         nearEnemy = serchTarget.serchTag(parentPos, "Enemy");
 
@@ -157,7 +152,7 @@ public class PumpAI : BaseVegetable
     {
         if (type == PumpType._bossAttack)
         {
-            boss = col.GetComponent<BaseBossEnemy>();
+            SetParent boss = col.GetComponent<SetParent>();
 
             if (boss != null)
             {
@@ -167,6 +162,10 @@ public class PumpAI : BaseVegetable
         }
         else if (target == null && hole == null)
         {
+            BaseBossEnemy bossEnemy = col.GetComponent<BaseBossEnemy>();
+
+            if (bossEnemy != null) return; 
+
             //ターゲットにダメージを与える
             target = col.GetComponent<BaseVegetable>();
 

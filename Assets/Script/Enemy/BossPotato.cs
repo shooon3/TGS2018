@@ -5,114 +5,60 @@ using System.Linq;
 
 public class BossPotato : BaseBossEnemy {
 
-    IEnumerable<Hole> holeLis = new List<Hole>();
-
-    bool isRightHole = false;
-    bool isFirstDegerming = false;
+    List<Hole> hole_RightLis = new List<Hole>();
+    List<Hole> hole_MiddleRighLis = new List<Hole>();
+    List<Hole> hole_MiddleLeftLis = new List<Hole>();
+    List<Hole> hole_LeftLis = new List<Hole>();
 
     protected override void DoStart()
     {
         base.DoStart();
-
-        //IsMove = true;
     }
 
     protected override void DoUpdate()
     {
         base.DoUpdate();
 
-        ActionState();
+        StartShake(2.5f);
+
+        MovePointChange();
     }
 
-    void ActionState()
+    protected override void KillVirus_RangeSet()
     {
-        if (HPPercent >= 60)
-        {
-            AttackStateSet();
-            isFirstDegerming = true;
-        }
-        else if (59 <= HPPercent && IsAllDegerming(isRightHole) == false)
-        {
-            InfectionStateSet();
-        }
-        else if(IsAllDegerming(isRightHole))
-        {
-            AttackStateSet();
-            isFirstDegerming = true;
-        }
-        else if(29 <= HPPercent && IsAllDegerming(isRightHole) == false)
-        {
-            InfectionStateSet();
-        }
-        else if(IsAllDegerming(isRightHole))
-        {
-            AttackStateSet();
-        }
+        holeArray = holeRange.GetComponentsInChildren<Hole>();
+
+        hole_RightLis = holeArray.OrderBy(x => x.name).Skip(0).Take(3).ToList<Hole>();
+        hole_MiddleRighLis = holeArray.OrderBy(x => x.name).Skip(3).Take(3).ToList<Hole>();
+        hole_MiddleLeftLis = holeArray.OrderBy(x => x.name).Skip(6).Take(3).ToList<Hole>();
+        hole_LeftLis = holeArray.OrderBy(x => x.name).Skip(9).Take(3).ToList<Hole>();
     }
 
-    void AttackStateSet()
+    protected override bool IsKillVirus()
     {
-        int rand = Random.Range(0, 10);
-        int childNum = childDestroyObj.transform.childCount;
-
-        if (rand == 0 && childNum > 1) state = BossActionState._shakeAttack;
-    }
-
-    void InfectionStateSet()
-    {
-        if (IsAllDegerming(isRightHole) && isFirstDegerming)
+        switch (type)
         {
-            isFirstDegerming = false;
-            isRightHole = true;
-            state = BossActionState._move;
+            case KillVirusHoleType._left:
+                hole_NowLis = hole_LeftLis;
+                if (IsHoleKillVirus()) type = KillVirusHoleType._right;
+                return IsHoleKillVirus();
+
+            case KillVirusHoleType._right:
+                hole_NowLis = hole_RightLis;
+                if (IsHoleKillVirus()) type = KillVirusHoleType._leftMiddle;
+                return IsHoleKillVirus();
+
+            case KillVirusHoleType._leftMiddle:
+                hole_NowLis = hole_MiddleLeftLis;
+                if (IsHoleKillVirus()) type = KillVirusHoleType._rightMiddle;
+                return IsHoleKillVirus();
+
+            case KillVirusHoleType._rightMiddle:
+                hole_NowLis = hole_MiddleRighLis;
+                if (IsHoleKillVirus()) type = KillVirusHoleType._left;
+                return IsHoleKillVirus();
         }
-        else
-        {
-            state = BossActionState._infection;
-        }
+        return false;
     }
 
-    /// <summary>
-    /// すべて除菌できたかどうか
-    /// </summary>
-    /// <param name="isRight"></param>
-    /// <returns></returns>
-    bool IsAllDegerming(bool isRight)
-    {
-        if (isRight) holeLis = holeRightLis;
-        else holeLis = holeLeftLis;
-
-        foreach (Hole hole in holeLis)
-        {
-            if (hole.Infection != false) return false;
-        }
-
-        return true;
-    }
-
-    protected override void NormalAttack()
-    {
-        if (isAttack) Attack();
-    }
-
-    protected override void ShakeAttack()
-    {
-        int childNum = childDestroyObj.transform.childCount;
-
-        if (childNum <= 30) return;
-
-        for(int i = 1; i < childNum; i++)
-        {
-            Destroy(childDestroyObj.transform.GetChild(i).gameObject);
-        }
-    }
-
-    protected override void Infection()
-    {
-        foreach (Hole hole in holeLis)
-        {
-            hole.Decontamination();
-        }
-
-    }
 }

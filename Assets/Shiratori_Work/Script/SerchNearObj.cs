@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SerchNearObj : MonoBehaviour
 {
+    public int AliveCount { get; set; }
     // Use this for initialization
     void Start()
     {
@@ -13,6 +14,7 @@ public class SerchNearObj : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
     }
 
     public GameObject serchTag(Vector3 nowPos, string tagName)
@@ -21,6 +23,8 @@ public class SerchNearObj : MonoBehaviour
         float nearDis = 0; //最も近いオブジェクトの距離
 
         GameObject targetObj = null;
+
+        AliveCount = GameObject.FindGameObjectsWithTag(tagName).Length;
 
         //タグ指定されたオブジェクトを配列で取得
         foreach (GameObject obs in GameObject.FindGameObjectsWithTag(tagName))

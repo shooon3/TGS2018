@@ -15,7 +15,7 @@ public enum AnimationType
 {
     _move,
     _attack,
-    _pop
+    _killVirus
 }
 
 public abstract class BaseVegetable : MonoBehaviour {
@@ -24,7 +24,6 @@ public abstract class BaseVegetable : MonoBehaviour {
     // private
     //-----------------------------------------
 
-    AnimationType animType;
 
     //-----------------------------------------
     // public
@@ -47,6 +46,8 @@ public abstract class BaseVegetable : MonoBehaviour {
     protected float intervalTimer; //タイマー
 
     protected Animator animator;
+
+    protected AnimationType animType;
 
     //-----------------------------------------
     // プロパティ
@@ -214,7 +215,7 @@ public abstract class BaseVegetable : MonoBehaviour {
     /// <summary>
     /// アニメーションをセット
     /// </summary>
-    void SetAnimaton()
+    protected virtual void SetAnimaton()
     {
         if (animator == null) return;
 
@@ -226,10 +227,6 @@ public abstract class BaseVegetable : MonoBehaviour {
 
             case AnimationType._attack:
                 animator.SetTrigger("IsAttack");
-                break;
-
-            case AnimationType._pop:
-
                 break;
         }
 
