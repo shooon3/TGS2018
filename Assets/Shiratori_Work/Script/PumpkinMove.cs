@@ -20,7 +20,7 @@ public class PumpkinMove : MonoBehaviour {
 
     PumpAI ai;
 
-    bool isMove = false;
+    //bool isMove = false;
 
     public PumpType type;
 
@@ -45,7 +45,13 @@ public class PumpkinMove : MonoBehaviour {
 
         if (moveTarget == null && type != PumpType._attack) return;
 
-        if (ai.type == PumpType._attack) agent.SetDestination(moveTarget.transform.position);
+        if (ai.type == PumpType._attack)
+        {
+            agent.SetDestination(moveTarget.transform.position);
+
+            if (ai.IsMove) agent.isStopped = false;
+            else if (ai.IsStop) agent.isStopped = true;
+        }
     }
 
     void SerchMovePoint()

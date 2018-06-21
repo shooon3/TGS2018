@@ -1,91 +1,153 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public enum BossActionState
+public enum ActionState
 {
-    _move = 0,
-    _shakeAttack,
-    _bossAttack,
-    _infection,
+    _attack = 0,
+    _killVirus,
+    _move
+}
+
+public enum KillVirusHoleType
+{
+    _right = 0,
+    _left,
+    _rightMiddle,
+    _leftMiddle
 }
 
 public abstract class BaseBossEnemy : BaseEnemy {
 
-    [Header("存在する畑")]
+    //-----------------------------------------
+    // public
+    //-----------------------------------------
+
+    [Header("パンプキング")]
+    public GameObject pumpking;
     public GameObject holeRange;
 
-    public Hole[] holeArray;
+    //-----------------------------------------
+    // protected
+    //-----------------------------------------
 
-    public GameObject childDestroyObj;
+    protected ActionState state;
+    protected KillVirusHoleType type;
 
-    public GameObject pumpking;
+    protected Hole[] holeArray;
 
-    protected IEnumerable<Hole> holeRightLis = new List<Hole>();
-    protected IEnumerable<Hole> holeLeftLis = new List<Hole>();
+    protected List<Hole> hole_NowLis = new List<Hole>();
 
-    protected BossActionState state;
-
-    /// <summary>
-    /// 現在のHPの割合
-    /// </summary>
-    protected float HPPercent { get; private set; }
+    //-----------------------------------------
+    // private
+    //-----------------------------------------
 
     CameraShake shakeCam;
 
     bool isFirst = true;
 
-    float maxHP;
+    bool isCanKillVirus = false;
 
+    //-----------------------------------------
+    // 抽象メソッド
+    //-----------------------------------------
+   
+   /// <summary>
+   /// １度で殺菌できる範囲を決めるメソッド
+   /// </summary>
+    protected abstract void KillVirus_RangeSet();
 
-    protected abstract void NormalAttack();
+    /// <summary>
+    /// 殺菌できたかどうかを調べるメソッド
+    /// </summary>
+    /// <returns></returns>
+    protected abstract bool IsKillVirus();
 
-    protected abstract void ShakeAttack();
-
-    protected abstract void Infection();
+    //-----------------------------------------
+    // 関数
+    //-----------------------------------------
 
     protected override void DoStart()
     {
         base.DoStart();
 
-        holeArray = holeRange.GetComponentsInChildren<Hole>();
-
-        holeRightLis = holeArray.OrderBy(x => x.name).Take(6);
-        holeLeftLis = holeArray.OrderByDescending(x => x.name).Take(6);
-
-        shakeCam = Camera.main.GetComponent<CameraShake>();
+        KillVirus_RangeSet();
 
         NearTarget = pumpking;
 
-        maxHP = HP;
+        shakeCam = Camera.main.GetComponent<CameraShake>();
     }
 
     protected override void DoUpdate()
     {
         base.DoUpdate();
 
-        StartShake(2.5f);
-
-        //SerchTarget();
-
-        AttackState();
-
-        HPPercent = (float)HP / maxHP * 100;
+        ActionStateSet();
     }
 
-    void AttackState()
+    protected virtual void MovePointChange()
     {
-        switch(state)
+        if (state == ActionState._attack && NearTarget != pumpking)
         {
-            case BossActionState._shakeAttack:
-                ShakeAttack();
-                break;
-
-            case BossActionState._infection:
-                Infection();
-                break;
+            NearTarget = pumpking;
+            IsMove = true;
         }
+        else if (state == ActionState._killVirus && NearTarget != hole_NowLis[1].gameObject)
+        {
+            NearTarget = hole_NowLis[1].gameObject;
+            isAttack = false;
+            IsMove = true;
+        }
+    }
+
+    /// <summary>
+    /// ボスの挙動
+    /// </summary>
+    void ActionStateSet()
+    {
+        int random = Random.Range(0, 100);
+
+        if (random == 0 || state == ActionState._killVirus)
+        {
+            state = ActionState._killVirus;
+
+            if (isCanKillVirus) KillBacteria();
+            if (IsKillVirus())
+            {
+                state = ActionState._attack;
+                isCanKillVirus = false;
+            }
+        }
+        else if (random != 0 && state == ActionState._attack)
+        {
+            if (isAttack) Attack();
+        }
+    }
+
+    /// <summary>
+    /// 殺菌
+    /// </summary>
+    /// <param name="hole_Lis"></param>
+    protected void KillBacteria()
+    {
+        foreach (Hole hole in hole_NowLis)
+        {
+            hole.Decontamination();
+        }
+    }
+
+    /// <summary>
+    /// 殺菌できていたらtrue
+    /// </summary>
+    /// <param name="hole_Lis"></param>
+    /// <returns></returns>
+    protected bool IsHoleKillVirus()
+    {
+        foreach (Hole hole in hole_NowLis)
+        {
+            if (hole.Infection != false) return false;
+        }
+        return true;
     }
 
     /// <summary>
@@ -99,21 +161,58 @@ public abstract class BaseBossEnemy : BaseEnemy {
             isFirst = false;
 
             StartCoroutine(WaitAnimEnd("pop", time));
-
         }
     }
 
     void OnTriggerEnter(Collider col)
     {
-
-        BossPumpKing target = col.transform.GetComponent<BossPumpKing>();
-
-        if (target == null) return;
-
-        if (agent.isStopped == false)
+        if (state == ActionState._attack)
         {
-            IsStop = true;
-            isAttack = true;
+            BossPumpKing target = col.transform.GetComponent<BossPumpKing>();
+
+            if (target == null) return;
+
+            if (agent.isStopped == false)
+            {
+                IsStop = true;
+                isAttack = true;
+            }
         }
+        else if(state == ActionState._killVirus)
+        {
+            Hole hole = col.transform.GetComponent<Hole>();
+
+            if (hole == null || hole.gameObject != NearTarget) return;
+
+            if(agent.isStopped == false)
+            {
+                IsStop = true;
+                isCanKillVirus = true;
+            }
+        }
+    }
+
+    protected override void SetAnimaton()
+    {
+        if (animator == null) return;
+
+        switch(animType)
+        {
+            case AnimationType._move:
+                animator.SetTrigger("IsMove");
+                break;
+
+            case AnimationType._attack:
+                animator.SetTrigger("IsAttack");
+                break;
+
+            case AnimationType._killVirus:
+                animator.SetTrigger("IsKillVirus");
+                break;
+        }
+
+        if (isAttack) animType = AnimationType._attack;
+        else if (isCanKillVirus) animType = AnimationType._killVirus;
+        else animType = AnimationType._move;
     }
 }

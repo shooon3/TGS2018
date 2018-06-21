@@ -25,6 +25,8 @@ public class Hole : MonoBehaviour
     //感染
     public bool Infection { get; private set; }
 
+    public bool IsKillBacteria { get; private set; }
+
 	void Start ()
     {
         //親ブジェクトのHoleManagerを取得
@@ -148,6 +150,7 @@ public class Hole : MonoBehaviour
                 {
                     //感染をHoleManagerに伝える
                     manager.Unification(gameObject.GetComponent<Hole>(), hp);
+                    Infection = true;
                 }
                 else//通常
                 {
@@ -177,6 +180,7 @@ public class Hole : MonoBehaviour
                 {
                     //除染完了をHoleManagerに伝える
                     manager.Unification(gameObject.GetComponent<Hole>(), hp);
+                    Infection = false;
                 }
                 else//通常
                 {
