@@ -2169,6 +2169,7 @@ MonoBehaviour:
   holeRange: {fileID: 889916329}
   holeArray: []
   childDestroyObj: {fileID: 667559526}
+  pumpking: {fileID: 0}
 --- !u!135 &153936811
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5255,7 +5256,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 0
+  state: 0
+  manager: []
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -5666,7 +5668,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 0
+  state: 0
+  manager: []
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -9084,10 +9087,10 @@ MonoBehaviour:
   createEffect: {fileID: 1377246701298990, guid: b5f4d11403f20204db7353bcc86b56fc,
     type: 2}
   pumpkinsSp:
-  - {fileID: 21300000, guid: d9925a4510c315743ae0dc81d9e4eaa1, type: 3}
-  - {fileID: 21300002, guid: d9925a4510c315743ae0dc81d9e4eaa1, type: 3}
-  - {fileID: 21300004, guid: d9925a4510c315743ae0dc81d9e4eaa1, type: 3}
-  - {fileID: 21300006, guid: d9925a4510c315743ae0dc81d9e4eaa1, type: 3}
+  - {fileID: 21300000, guid: 9098bbe9b1febef47a5eb6dec0fd93e1, type: 3}
+  - {fileID: 21300002, guid: 9098bbe9b1febef47a5eb6dec0fd93e1, type: 3}
+  - {fileID: 21300004, guid: 9098bbe9b1febef47a5eb6dec0fd93e1, type: 3}
+  - {fileID: 21300006, guid: 9098bbe9b1febef47a5eb6dec0fd93e1, type: 3}
   - {fileID: 21300000, guid: efe7d344b075af449ac105301a677793, type: 3}
   pumpRender: {fileID: 968818131}
   status:
@@ -9407,7 +9410,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 0
+  state: 0
+  manager: []
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -10376,7 +10380,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 0
+  state: 0
+  manager: []
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -13093,7 +13098,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 0
+  state: 0
+  manager: []
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -13669,6 +13675,7 @@ MonoBehaviour:
   holeRange: {fileID: 1517711112}
   holeArray: []
   childDestroyObj: {fileID: 1086929116}
+  pumpking: {fileID: 0}
 --- !u!114 &1305817039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14469,7 +14476,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 0
+  state: 0
+  manager: []
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -17672,7 +17680,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 0
+  state: 0
+  manager: []
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -18212,7 +18221,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 0
+  state: 0
+  manager: []
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
@@ -22629,7 +22639,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa9a4d4bd4e2124a8a8d5571496c0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Individual: 0
+  state: 0
+  manager: []
   MaxHp: 1000
   decreaseHP: 50
   flashTime: 0.1
