@@ -26,7 +26,11 @@ public class TimeCounter : MonoBehaviour
     [SerializeField]
     GameObject clearText;
 
-    public GameObject boss;
+    public GameObject gameOverText;
+
+    public HoleInfection Hole;
+
+    public BossPumpKing pumpking;
 
     /// <summary>
     /// ゲームはスタートしているかどうか
@@ -34,6 +38,14 @@ public class TimeCounter : MonoBehaviour
     public bool IsStart { get; set; }
 
     public bool IsClear { get; set; }
+
+    public bool IsGameOver { get; set; }
+
+    public float Timer
+    {
+        get { return timer; }
+        set { timer = value; }
+    }
 
 	void Start ()
     {
@@ -62,7 +74,7 @@ public class TimeCounter : MonoBehaviour
         }
 
         //クリアタイム記録
-        if (!IsClear)
+        if (!IsClear || !IsGameOver)
         {
             //時間経過
             timer = Time.time - startTime;                  //経過時間を計算
@@ -80,7 +92,9 @@ public class TimeCounter : MonoBehaviour
                 timeText.text = "Time\n" + minuteTime + ":" + (Mathf.FloorToInt(timer) % 60);
             }
 
-            if (boss == null)    //クリアテキストがアクティブ
+
+            //クリア処理
+            if (Hole.enabled && Hole.AllInfection())    //クリアテキストがアクティブ
             {
                 clearText.SetActive(true);
                 //ステージクリア
@@ -99,8 +113,22 @@ public class TimeCounter : MonoBehaviour
                     Debug.Log("クリアタイム " + clearTime / 60 + ":" + clearTime % 60);
                 }
 
-                ////ポーズボタン機能停止
-                //pose.GameClear();
+                //ポーズボタン機能停止
+                pose.GameClear();
+
+                //リザルトへ移動
+                StartCoroutine(GoResult());
+            }
+
+            //ゲームオーバー処理
+            if(pumpking.HP <= 0)
+            {
+                IsGameOver = true;
+
+                gameOverText.SetActive(true);
+
+                //ポーズボタン機能停止
+                pose.GameClear();
 
                 //リザルトへ移動
                 StartCoroutine(GoResult());

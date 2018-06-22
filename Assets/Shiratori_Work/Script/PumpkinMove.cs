@@ -18,6 +18,8 @@ public class PumpkinMove : MonoBehaviour {
     //親の位置を取得する変数
     GameObject leaderObj;
 
+    Animator animator;
+
     PumpAI ai;
 
     //bool isMove = false;
@@ -30,6 +32,8 @@ public class PumpkinMove : MonoBehaviour {
 
         //親のオブジェクトの位置を取得
         leaderObj = transform.parent.GetChild(0).gameObject;
+
+        animator = transform.GetChild(0).GetComponent<Animator>();
 
         SerchMovePoint();
         if (ai.type == PumpType._attack)
@@ -60,18 +64,22 @@ public class PumpkinMove : MonoBehaviour {
         moveTarget = ai.NearTarget;
     }
 
-    void OnTriggerEnter(Collider col)
+    void SetAnimaton()
     {
-        //BaseEnemyT boss = col.GetComponent<BaseEnemyT>();
+        if (animator == null) return;
 
-        //if (boss != null)
-        //{
-        //    agent.enabled = false;
-        //    isMove = false;
-        //}
-        //else
-        //{
-        //    isMove = true;
-        //}
+        switch (ai.animType)
+        {
+            case AnimationType._move:
+                animator.SetTrigger("IsMove");
+                break;
+
+            case AnimationType._attack:
+                animator.SetTrigger("IsAttack");
+                break;
+        }
+
+        if (agent != null && agent.enabled && agent.isStopped) ai.animType = AnimationType._attack;
+        else ai.animType = AnimationType._move;
     }
 }

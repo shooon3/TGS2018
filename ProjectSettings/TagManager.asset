@@ -10,6 +10,7 @@ TagManager:
   - infHole
   - Pumpking
   - Boss
+  - ObjParent
   layers:
   - Default
   - TransparentFX

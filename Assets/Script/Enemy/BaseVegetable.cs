@@ -33,6 +33,9 @@ public abstract class BaseVegetable : MonoBehaviour {
 
     public int hp;
 
+    [System.NonSerialized]
+    public AnimationType animType;
+
     //-----------------------------------------
     // protected
     //-----------------------------------------
@@ -47,7 +50,6 @@ public abstract class BaseVegetable : MonoBehaviour {
 
     protected Animator animator;
 
-    protected AnimationType animType;
 
     //-----------------------------------------
     // プロパティ
@@ -111,6 +113,9 @@ public abstract class BaseVegetable : MonoBehaviour {
         DoUpdate();
 
         SetAnimaton();
+
+        AttackRotation();
+
     }
 
     /// <summary>
@@ -149,7 +154,6 @@ public abstract class BaseVegetable : MonoBehaviour {
 
         Transform targetTransform = NearTarget.transform;
         agent.SetDestination(targetTransform.position);
-
 
         IsMove = false;
     }
@@ -230,8 +234,29 @@ public abstract class BaseVegetable : MonoBehaviour {
                 break;
         }
 
-        if (agent != null && agent.enabled && agent.isStopped) animType = AnimationType._attack;
-        else animType = AnimationType._move;
+        if (agent != null && agent.enabled && agent.isStopped)
+        {
+            animType = AnimationType._attack;
+        }
+        else
+        {
+            animType = AnimationType._move;
+        }
+    }
 
+    /// <summary>
+    /// 攻撃対象のほうを向く
+    /// </summary>
+    void AttackRotation()
+    {
+        if (IsStop == false && NearTarget == null) return;
+
+        Vector3 targetRotate = NearTarget.transform.position - transform.position;
+
+        targetRotate = new Vector3(targetRotate.x, 0, targetRotate.z);
+
+        Quaternion rotation = Quaternion.LookRotation(targetRotate);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 0.1f);
     }
 }

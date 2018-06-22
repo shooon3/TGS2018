@@ -47,7 +47,7 @@ public class MinionCreate : MonoBehaviour {
     [Header("パンプキング")]
     public GameObject pumpking;
 
-    [Header("ボムの最大数")]
+    [Header("ボムの最初の数")]
     public int maxBom;
 
     [Header("パンプキン生成時のエフェクト")]
@@ -327,8 +327,10 @@ public class MinionCreate : MonoBehaviour {
         }
         StatusSet(createPumpkin);
 
+        Vector3 effectOffset = new Vector3(position.x, position.y + 4.0f, position.z);
+
         //エフェクト生成
-        Instantiate(createEffect, position, Quaternion.identity,parentObj.transform);
+        Instantiate(createEffect, effectOffset, Quaternion.identity,parentObj.transform);
 
         Vector3 vec = Vector3.zero;
 
@@ -359,10 +361,7 @@ public class MinionCreate : MonoBehaviour {
                 Instantiate(displayPumpkinPre, vec, Quaternion.identity, parentObj.transform);
             }
         }
-
-
         //FlickInitialize();
-
     }
 
     /// <summary>

@@ -25,18 +25,19 @@ public class BomCount : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
         maxBomNum = GetComponent<MinionCreate>().maxBom;
 
-        for(int i = 0; i < maxBomNum; i++)
+        for (int i = 0; i < maxBomNum; i++)
         {
             bomList.Add(BomType.normal);
         }
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+
+    }
 
     /// <summary>
     /// ボムを増やす

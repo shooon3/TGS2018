@@ -33,7 +33,6 @@ public class BaseEnemy : BaseVegetable {
 
     protected override void DoUpdate()
     {
-        AttackRotation();
         Death();
     }
 
@@ -42,7 +41,10 @@ public class BaseEnemy : BaseVegetable {
     /// </summary>
     protected override void Death()
     {
-        if (IsDeath()) Destroy(gameObject);
+        if (IsDeath())
+        {
+            Destroy(gameObject);
+        }
     }
 
     /// <summary>
@@ -90,23 +92,6 @@ public class BaseEnemy : BaseVegetable {
             }
         }
     }
-
-    /// <summary>
-    /// 攻撃対象のほうを向く
-    /// </summary>
-    void AttackRotation()
-    {
-        if (IsStop == false && NearTarget == null) return;
-
-        Vector3 targetRotate = NearTarget.transform.position - transform.position;
-
-        targetRotate = new Vector3(targetRotate.x, 0, targetRotate.z);
-
-        Quaternion rotation = Quaternion.LookRotation(targetRotate);
-
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 0.1f);
-    }
-
 
     void OnTriggerEnter(Collider col)
     {

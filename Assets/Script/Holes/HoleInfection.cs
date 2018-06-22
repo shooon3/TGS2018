@@ -10,6 +10,7 @@ public class HoleInfection : MonoBehaviour {
 
     List<Transform> childLis = new List<Transform>();
 
+
 	// Use this for initialization
 	void Start () {
 
@@ -17,19 +18,7 @@ public class HoleInfection : MonoBehaviour {
         {
             childLis.Add(child);
         }
-	}
-	
-	// Update is called once per frame
-	void Update () {
 
-    }
-
-    /// <summary>
-    /// すべての穴が感染しているかどうか
-    /// </summary>
-    /// <returns></returns>
-    public bool AllInfection()
-    {
         for (int i = 0; i < childLis.Count; i++)
         {
             foreach (Transform child in childLis[i].transform)
@@ -39,11 +28,40 @@ public class HoleInfection : MonoBehaviour {
                 if (hole != null) holeLis.Add(hole);
             }
         }
+    }
+	
+	// Update is called once per frame
+	void Update () {
+    }
 
+    /// <summary>
+    /// すべての穴が感染しているかどうか
+    /// </summary>
+    /// <returns></returns>
+    public bool AllInfection()
+    {
         for(int i = 0; i < holeLis.Count; i++)
         {
-            if (holeLis[i].Infection == false) return false;
+            if (holeLis[i].Infection == false)
+            {
+                return false;
+            }
         }
         return true;
+    }
+
+    public float InfectionCount()
+    {
+        float temp = 0;
+
+        for (int i = 0; i < holeLis.Count; i++)
+        {
+            if (holeLis[i].Infection)
+            {
+                temp++;
+            }
+        }
+
+        return temp;
     }
 }

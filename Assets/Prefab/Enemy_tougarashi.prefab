@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 4291155962225626}
   m_Layer: 0
   m_Name: head
-  m_TagString: Untagged
+  m_TagString: ObjParent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1049,7 +1049,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1400113256
+  randomSeed: -626619509
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -4410,7 +4410,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1164570395
+  randomSeed: 568297718
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7771,7 +7771,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1509101775
+  randomSeed: -1358486359
   InitialModule:
     serializedVersion: 3
     enabled: 1

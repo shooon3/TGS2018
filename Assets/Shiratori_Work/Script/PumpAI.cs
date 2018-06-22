@@ -22,6 +22,8 @@ public class PumpAI : BaseVegetable
 
     public PumpType type;
 
+    public GameObject attackEffect;
+
     //-----------------------------------------
     // private
     //-----------------------------------------
@@ -31,6 +33,8 @@ public class PumpAI : BaseVegetable
 
     //近い敵の位置を格納する変数
     GameObject nearEnemy;
+
+    GameObject effect;
 
     //親の位置を取得する変数
     Vector3 parentPos;
@@ -48,6 +52,8 @@ public class PumpAI : BaseVegetable
 
     bool isHoleInfection = true;
 
+    bool isCreateEffect = true;
+
     //-----------------------------------------
     // 関数
     //-----------------------------------------
@@ -55,6 +61,10 @@ public class PumpAI : BaseVegetable
     protected override void DoStart()
     {
         parentPos = transform.position;
+
+        animator = transform.GetChild(0).GetComponent<Animator>();
+
+        effect = attackEffect;
 
         if (type == PumpType._attack)
         {
@@ -72,6 +82,8 @@ public class PumpAI : BaseVegetable
         ActionState();
 
         Death();
+
+        EffectSet();
     }
 
     /// <summary>
@@ -129,7 +141,11 @@ public class PumpAI : BaseVegetable
     /// </summary>
     void ActionState()
     {
-        if (isEnemyCollision) Attack();
+        if (isEnemyCollision)
+        {
+            Attack();
+            //GameObject parentObj = NearTarget.transform.FindGameObjectWithTag("parentObj");
+        }
         if (isHoleCollision) HoleInfection();
     }
 
@@ -145,6 +161,23 @@ public class PumpAI : BaseVegetable
             //畑が感染したらパンプ菌も消える
             if (hole.Infection && hole.gameObject.tag == "Hole")
                 Destroy(transform.parent.gameObject);
+        }
+    }
+
+    void EffectSet()
+    {
+
+        if (animType == AnimationType._attack && isCreateEffect)
+        {
+            Vector3 offset = new Vector3(transform.position.x + 1.0f, transform.position.y + 3.0f, transform.position.z + 2.0f);
+            effect = Instantiate(attackEffect, offset, Quaternion.identity,transform);
+            isCreateEffect = false;
+
+        }
+        else if(animType == AnimationType._move && isCreateEffect == false)
+        {
+            Destroy(effect);
+            isCreateEffect = true;
         }
     }
 
@@ -189,5 +222,24 @@ public class PumpAI : BaseVegetable
     {
         if (HP <= 0 || NearTarget == null) return true;
         else return false;
+    }
+
+    protected override void SetAnimaton()
+    {
+        if (animator == null) return;
+
+        switch (animType)
+        {
+            case AnimationType._move:
+                animator.SetTrigger("IsMove");
+                break;
+
+            case AnimationType._attack:
+                animator.SetTrigger("IsAttack");
+                break;
+        }
+
+        if (agent != null && agent.enabled && agent.isStopped) animType = AnimationType._attack;
+        else animType = AnimationType._move;
     }
 }

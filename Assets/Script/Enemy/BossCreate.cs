@@ -2,31 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class BossCreate : MonoBehaviour {
 
     public GameObject boss;
 
-    //public Transform createPos;
-
-    HoleInfection holeInf;
+    Hole[] holes;
 
     bool isFirst = true; //１回だけ生成
+
+    HoleInfection infection;
+
+    public float InfectPercent { get; set; }
 
 	// Use this for initialization
 	void Start () {
         boss.SetActive(false);
-        //boss.transform.position = new Vector3(createPos.position.x, 30, createPos.position.z);
-        holeInf = GetComponent<HoleInfection>();
+
+        holes = transform.GetComponentsInChildren<Hole>();
+
+        infection = GetComponent<HoleInfection>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(holeInf.AllInfection() && isFirst)
+       if(infection.InfectionCount() >= 6)
         {
             boss.SetActive(true);
-            //Instantiate(boss,new Vector3(createPos.position.x,30,createPos.position.z),boss.transform.rotation);
-            isFirst = false;
         }
 	}
 }
