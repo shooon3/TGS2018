@@ -33,8 +33,8 @@ public class HoleManager : MonoBehaviour
 
     //[SerializeField]
     //Image hatake;
-    [SerializeField]
-    GameObject Lane;
+    //[SerializeField]
+    //GameObject Lane;
     int OverallHP;
 
     public int MaxHP
@@ -100,11 +100,11 @@ public class HoleManager : MonoBehaviour
             //hole[i].SetColider(radius);
         }
 
-        //パンプきんを非表示
-        for (int i = 0; i < Lane.transform.childCount; i++)
-        {
-            Lane.transform.GetChild(i).gameObject.SetActive(false);
-        }
+        ////パンプきんを非表示
+        //for (int i = 0; i < Lane.transform.childCount; i++)
+        //{
+        //    Lane.transform.GetChild(i).gameObject.SetActive(false);
+        //}
     }
 
     /// <summary>
@@ -258,7 +258,7 @@ public class HoleManager : MonoBehaviour
                     case InfectiousState.LINE:
                         if (hp <= 0)
                         {
-                            StartCoroutine(Emerge());
+                            //StartCoroutine(Emerge());
                         }
                         break;
 
@@ -276,7 +276,7 @@ public class HoleManager : MonoBehaviour
 
                             if (i == hole.Length - 1)
                             {
-                                StartCoroutine(Emerge());
+                                //StartCoroutine(Emerge());
                             }
                         }
                         break;
@@ -305,46 +305,46 @@ public class HoleManager : MonoBehaviour
                 //パンプきんを消滅(パターン3)
                 if (hp >= MaxHp)
                 {
-                    for(int i = 0; i < manager.Length; i++)
-                    {
-                        manager[i].Recovery();
-                    }
+                    //for(int i = 0; i < manager.Length; i++)
+                    //{
+                    //    manager[i].Recovery();
+                    //}
                 }
             }
         }
     }
 
-    /// <summary>
-    /// 消滅中継用
-    /// </summary>
-    public void Recovery()
-    {
-        StartCoroutine(Disappear());
-    }
+    ///// <summary>
+    ///// 消滅中継用
+    ///// </summary>
+    //public void Recovery()
+    //{
+    //    StartCoroutine(Disappear());
+    //}
 
-    /// <summary>
-    /// ミニかぼちゃ出現
-    /// </summary>
-    /// <returns></returns>
-    IEnumerator Emerge()
-    {
-        for (int i = 0; i < Lane.transform.childCount; i++)
-        {
-            Lane.transform.GetChild(i).gameObject.SetActive(true);
-            yield return new WaitForSeconds(EmergeTime);
-        }
-    }
+    ///// <summary>
+    ///// ミニかぼちゃ出現
+    ///// </summary>
+    ///// <returns></returns>
+    //IEnumerator Emerge()
+    //{
+    //    for (int i = 0; i < Lane.transform.childCount; i++)
+    //    {
+    //        Lane.transform.GetChild(i).gameObject.SetActive(true);
+    //        yield return new WaitForSeconds(EmergeTime);
+    //    }
+    //}
 
-    /// <summary>
-    /// ミニかぼちゃ消滅
-    /// </summary>
-    /// <returns></returns>
-    IEnumerator Disappear()
-    {
-        for (int i = Lane.transform.childCount - 1; i >= 0; i--)
-        {
-            Lane.transform.GetChild(i).gameObject.SetActive(false);
-            yield return new WaitForSeconds(EmergeTime);
-        }
-    }
+    ///// <summary>
+    ///// ミニかぼちゃ消滅
+    ///// </summary>
+    ///// <returns></returns>
+    //IEnumerator Disappear()
+    //{
+    //    for (int i = Lane.transform.childCount - 1; i >= 0; i--)
+    //    {
+    //        Lane.transform.GetChild(i).gameObject.SetActive(false);
+    //        yield return new WaitForSeconds(EmergeTime);
+    //    }
+    //}
 }

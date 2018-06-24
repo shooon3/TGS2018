@@ -273,5 +273,9 @@ public class Hole : MonoBehaviour
                 this.tag = ("infHole");
             }
         }
+        else
+        {
+            this.tag = ("Hole");
+        }
     }
 }

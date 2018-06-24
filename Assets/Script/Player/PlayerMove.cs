@@ -49,6 +49,9 @@ public class PlayerMove : MonoBehaviour {
         IsStart = timeCount.IsStart;
         IsClear = timeCount.IsClear;
 
+        GameObject front = Camera.main.gameObject;
+        transform.LookAt(front.transform.position);
+
         if (IsStart != true || IsClear != false) return;
 
         RayCreate();

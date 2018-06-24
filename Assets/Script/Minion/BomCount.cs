@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// ボムのタイプ
@@ -19,6 +20,10 @@ public class BomCount : MonoBehaviour {
 
     public List<BomType> bomList = new List<BomType>();
 
+    public Text bombCountText;
+
+    const int ConvertionConstant = 65248;
+
     BomType bomType;
 
     int maxBomNum; //最大ボム数
@@ -36,7 +41,7 @@ public class BomCount : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        bombCountText.text = ConvertToFullWidth(NowBomCount().ToString());
     }
 
     /// <summary>
@@ -71,5 +76,17 @@ public class BomCount : MonoBehaviour {
     public int NowBomCount()
     {
         return bomList.Count;
+    }
+
+    public string ConvertToFullWidth(string halfWidthStr)
+    {
+        string fullWidthStr = null;
+
+        for (int i = 0; i < halfWidthStr.Length; i++)
+        {
+            fullWidthStr += (char)(halfWidthStr[i] + ConvertionConstant);
+        }
+
+        return fullWidthStr;
     }
 }

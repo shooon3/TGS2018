@@ -27,9 +27,12 @@ public class BossCreate : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-       if(infection.InfectionCount() >= 6)
+
+       if(isFirst && infection.InfectionCount() >= 6)
         {
             boss.SetActive(true);
+
+            isFirst = false;
         }
 	}
 }

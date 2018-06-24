@@ -7,23 +7,32 @@ public class Trap : MonoBehaviour
     [Header("敵")]
     public GameObject enemyPre;
 
-    //public GameObject farmEnemy;
+    Hole hole;
 
     public Transform[] spawnFarmPos;
 
     Renderer holeRenderer;
 
+    Transform parent;
+
     void Start()
     {
         holeRenderer = GetComponent<Renderer>();
+        hole = GetComponent<Hole>();
         holeRenderer.material = Resources.Load("Material/Hole01") as Material;
+
+        parent = transform.parent.parent.parent.GetChild(4);
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Minion"))
+        if (other.gameObject.CompareTag("Minion") && hole.Infection == false)
         {
-            if(transform.childCount != 0) Destroy(transform.GetChild(0).gameObject);
+            BaseEnemy enemyCol = other.GetComponent<BaseEnemy>();
+
+            if (enemyCol != null) return;
+
+            if (transform.childCount != 0) Destroy(transform.GetChild(0).gameObject);
 
             for (int i = 0; i < spawnFarmPos.Length; i++)
             {
@@ -32,6 +41,7 @@ public class Trap : MonoBehaviour
                     Destroy(spawnFarmPos[i].GetChild(0).gameObject);
 
                     GameObject enemy = Instantiate(enemyPre, spawnFarmPos[i].position, Quaternion.identity);
+                    enemy.transform.parent = parent;
 
                     enemy.GetComponent<BaseVegetable>().NearTarget = other.gameObject;
                 }

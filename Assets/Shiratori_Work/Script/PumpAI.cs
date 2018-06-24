@@ -24,6 +24,8 @@ public class PumpAI : BaseVegetable
 
     public GameObject attackEffect;
 
+    public GameObject deadEffect;
+
     //-----------------------------------------
     // private
     //-----------------------------------------
@@ -44,13 +46,15 @@ public class PumpAI : BaseVegetable
 
     Hole hole;
 
+    Camera cam;
+
     //エネミーに当たった
     bool isEnemyCollision = false;
 
     //穴に当たった
     bool isHoleCollision = false;
 
-    bool isHoleInfection = true;
+    //bool isHoleInfection = true;
 
     bool isCreateEffect = true;
 
@@ -70,10 +74,14 @@ public class PumpAI : BaseVegetable
         {
             IsMove = true;
             SerchTarget();
+            transform.position = new Vector3(transform.position.x, -9.5f, transform.position.z);
         }
         else
         {
             NearTarget = serchTarget.serchTag(parentPos, "Boss");
+
+            float distance = Vector3.Distance(transform.position, NearTarget.transform.position);
+            if (distance >= 7.5f) transform.position = NearTarget.transform.position; 
         }
     }
 
@@ -83,7 +91,20 @@ public class PumpAI : BaseVegetable
 
         Death();
 
-        EffectSet();
+        if (type == PumpType._attack)
+        {
+            if (NearTarget != null && NearTarget.tag != "Hole" && NearTarget.tag != "Enemy")
+            {
+                SerchTarget();
+            }
+        }
+        else if (type == PumpType._bossAttack)
+        {
+            if (NearTarget != null)
+            {
+                Attack();
+            }
+        }
     }
 
     /// <summary>
@@ -91,19 +112,28 @@ public class PumpAI : BaseVegetable
     /// </summary>
     void SerchTarget()
     {
+        Transform holeTransform = transform.parent.parent.parent.GetChild(0);
+        Transform enemyTransform = transform.parent.parent.parent.GetChild(4);
+
         //親のオブジェクトとHoleタグを探す
-        nearHole = serchTarget.serchTag(parentPos, "Hole");
+        nearHole = serchTarget.serchChildTag(parentPos, holeTransform, "Hole",true);
+        
+        nearEnemy = serchTarget.serchChildTag(parentPos,enemyTransform, "Enemy");
 
-        isHoleInfection = nearHole.GetComponent<Hole>().Infection;
-
-        nearEnemy = serchTarget.serchTag(parentPos, "Enemy");
-
-        //近い穴の距離を取得
-        Vector3 nearHolePos = nearHole.transform.position;
-
-        //敵が存在していたら
-        if (nearEnemy != null)
+        //敵が存在していなかったら
+        if (nearHole != null && nearEnemy == null)
         {
+            //近い穴の距離を取得
+            Vector3 nearHolePos = nearHole.transform.position;
+
+            NearTarget = nearHole;
+        }
+        //敵が存在していたら
+        if (nearHole != null && nearEnemy != null)
+        {
+            //近い穴の距離を取得
+            Vector3 nearHolePos = nearHole.transform.position;
+
             //敵の位置を取得
             Vector3 nearEnemyPos = nearEnemy.transform.position;
 
@@ -116,8 +146,7 @@ public class PumpAI : BaseVegetable
             if (holeDis <= enemyDis) NearTarget = nearHole;
             else if (holeDis > enemyDis) NearTarget = nearEnemy;
         }
-        //敵が存在していなかったら近い穴へ
-        else NearTarget = nearHole;
+        else if (nearEnemy == null && nearHole == null) Destroy(gameObject, 2.5f);
     }
 
     /// <summary>
@@ -133,7 +162,16 @@ public class PumpAI : BaseVegetable
 
     protected override void Death()
     {
-        if (IsDestroyEnemy()) Destroy(transform.parent.gameObject);
+        if (IsDestroyEnemy())
+        {
+            Vector3 vec = new Vector3(transform.position.x, transform.position.y + 20.0f, transform.position.z);
+            Instantiate(deadEffect, vec, Quaternion.identity);
+            Destroy(transform.parent.gameObject);
+        }
+        else if(IsInfection())
+        {
+            Destroy(transform.parent.gameObject);
+        }
     }
 
     /// <summary>
@@ -141,12 +179,18 @@ public class PumpAI : BaseVegetable
     /// </summary>
     void ActionState()
     {
+        if (isEnemyCollision == false && isHoleCollision == false) return;
+
+        EffectSet();
+
         if (isEnemyCollision)
         {
             Attack();
-            //GameObject parentObj = NearTarget.transform.FindGameObjectWithTag("parentObj");
         }
-        if (isHoleCollision) HoleInfection();
+        if (isHoleCollision)
+        {
+            HoleInfection();
+        }
     }
 
     /// <summary>
@@ -166,13 +210,18 @@ public class PumpAI : BaseVegetable
 
     void EffectSet()
     {
-
-        if (animType == AnimationType._attack && isCreateEffect)
+        if (isEnemyCollision && isCreateEffect)
         {
             Vector3 offset = new Vector3(transform.position.x + 1.0f, transform.position.y + 3.0f, transform.position.z + 2.0f);
             effect = Instantiate(attackEffect, offset, Quaternion.identity,transform);
             isCreateEffect = false;
 
+        }
+        else if(isHoleCollision && isCreateEffect)
+        {
+            Vector3 offset = new Vector3(transform.position.x + 1.0f, transform.position.y + 3.0f, transform.position.z + 2.0f);
+            effect = Instantiate(attackEffect, offset, Quaternion.identity, transform);
+            isCreateEffect = false;
         }
         else if(animType == AnimationType._move && isCreateEffect == false)
         {
@@ -183,34 +232,28 @@ public class PumpAI : BaseVegetable
 
     void OnTriggerEnter(Collider col)
     {
-        if (type == PumpType._bossAttack)
-        {
-            SetParent boss = col.GetComponent<SetParent>();
 
-            if (boss != null)
+        if (type == PumpType._attack)
+        {
+            if (target == null && hole == null)
             {
-                isEnemyCollision = true;
-                Attack();
+                BaseBossEnemy bossEnemy = col.GetComponent<BaseBossEnemy>();
+
+                if (bossEnemy != null) return;
+
+                //ターゲットにダメージを与える
+                target = col.GetComponent<BaseVegetable>();
+
+                //ターゲットにHoleスクリプトがアタッチされていたら
+                hole = col.GetComponent<Hole>();
+
+                if (hole != null && hole.Infection == true) hole = null;
+
+                if (target != null || hole != null) IsStop = true;
+
+                if (target != null) isEnemyCollision = true;
+                else if (hole != null && hole.tag == "Hole") isHoleCollision = true;
             }
-        }
-        else if (target == null && hole == null)
-        {
-            BaseBossEnemy bossEnemy = col.GetComponent<BaseBossEnemy>();
-
-            if (bossEnemy != null) return; 
-
-            //ターゲットにダメージを与える
-            target = col.GetComponent<BaseVegetable>();
-
-            //ターゲットにHoleスクリプトがアタッチされていたら
-            hole = col.GetComponent<Hole>();
-
-            if (hole != null && hole.Infection == true) hole = null;
-
-            if (target != null || hole != null) IsStop = true;
-
-            if (target != null) isEnemyCollision = true;
-            else if (hole != null) isHoleCollision = true;
         }
     }
 
@@ -220,7 +263,13 @@ public class PumpAI : BaseVegetable
     /// <returns></returns>
     public bool IsDestroyEnemy()
     {
-        if (HP <= 0 || NearTarget == null) return true;
+        if (HP <= 0) return true;
+        else return false;
+    }
+
+    public bool IsInfection()
+    {
+        if (NearTarget == null) return true;
         else return false;
     }
 
@@ -239,7 +288,7 @@ public class PumpAI : BaseVegetable
                 break;
         }
 
-        if (agent != null && agent.enabled && agent.isStopped) animType = AnimationType._attack;
+        if (type == PumpType._attack && agent != null && agent.enabled && agent.isStopped == true) animType = AnimationType._attack;
         else animType = AnimationType._move;
     }
 }

@@ -25,6 +25,7 @@ public class BossPumpKing : BaseVegetable {
 
     protected override void DoUpdate()
     {
+        if (HP <= 0) return;
         if (IsDamage())
         {
             imageAnim.SetBool("IsDamage", true);

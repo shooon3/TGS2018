@@ -53,6 +53,9 @@ public class MinionCreate : MonoBehaviour {
     [Header("パンプキン生成時のエフェクト")]
     public GameObject createEffect;
 
+    [Header("畑の親オブジェクトを指定"),NamedArrayAttribute(new string[] {"じゃがいも畑","だいこん畑","とうらがらし畑" })]
+    public Transform[] HoleSort;
+
     [Header("パンプキン分裂画像"), NamedArrayAttribute(new string[] { "一個目のパンプキン","二個目のパンプキン", "四個目のパンプキン", "八個目のパンプキン" })]
     public Sprite[] pumpkinsSp; //パンプキンImage
 
@@ -73,12 +76,14 @@ public class MinionCreate : MonoBehaviour {
     GameObject pumpkinParent; //吹き出し(各パンプキンの親)オブジェクト
     GameObject minionParent;
     GameObject attackPumpkin; //攻撃するパンプキン
+    Transform holeType;
 
     BomManager bomMar;
     ThrowBom throwBom;
     BomCount bomCount;
     PlayerMove playerMove;
     BaseBossEnemy boss;
+    Camera cam;
 
     float touchNowPosX; //現在のタッチポジション
     float startFlickX; //タッチした直後のポジション(タッチ直後にフリック判定にならないようにするための除外用変数)
@@ -113,6 +118,7 @@ public class MinionCreate : MonoBehaviour {
         throwBom = pumpking.GetComponent<ThrowBom>();
         bomCount = GetComponent<BomCount>();
         playerMove = GetComponent<PlayerMove>();
+        cam = Camera.main;
 
         FlickInitialize();
 
@@ -249,6 +255,29 @@ public class MinionCreate : MonoBehaviour {
     }
 
     /// <summary>
+    /// それぞれの畑をセット
+    /// </summary>
+    void HoleParentSet()
+    {
+        HoleType type = cam.GetComponent<CameraRotate>().HoleType;
+
+        switch (type)
+        {
+            case HoleType._potato:
+                holeType = HoleSort[0];
+                break;
+
+            case HoleType._radish:
+                holeType = HoleSort[1];
+                break;
+
+            case HoleType._pepper:
+                holeType = HoleSort[2];
+                break;
+        }
+    }
+
+    /// <summary>
     /// パンプ菌を生成する場所を取得
     /// </summary>
     void CreatePos()
@@ -276,7 +305,10 @@ public class MinionCreate : MonoBehaviour {
 
             Vector3 createPos = new Vector3(hit.point.x, hit.point.y, hit.point.z);
 
+            HoleParentSet();
+
             minionParent = Instantiate(massParentPre, createPos, Quaternion.identity);
+            minionParent.transform.SetParent(holeType, true);
 
             //次のボムのタイプを取得
             BomType nextBom = bomCount.NextBomType();

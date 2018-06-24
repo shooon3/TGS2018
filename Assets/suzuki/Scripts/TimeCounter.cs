@@ -96,7 +96,7 @@ public class TimeCounter : MonoBehaviour
             //クリア処理
             if (Hole.enabled && Hole.AllInfection())    //クリアテキストがアクティブ
             {
-                clearText.SetActive(true);
+                //clearText.SetActive(true);
                 //ステージクリア
                 clearTime = Mathf.FloorToInt(timer);    //クリアタイムを秒で記録
                 IsClear = true;
@@ -174,7 +174,7 @@ public class TimeCounter : MonoBehaviour
         //ゲームスタート
         Indicate(0);
         startTime = Time.time;                  //開始時間を設定
-        timeText.gameObject.SetActive(true);    //経過時間を表示
+        //timeText.gameObject.SetActive(true);    //経過時間を表示
         pose.GameStart();                       //ポーズボタンを有効化
 
         IsStart = true;

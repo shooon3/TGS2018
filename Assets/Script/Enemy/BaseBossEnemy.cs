@@ -85,6 +85,17 @@ public abstract class BaseBossEnemy : BaseEnemy {
         ActionStateSet();
     }
 
+    /// <summary>
+    /// 死亡処理
+    /// </summary>
+    protected override void Death()
+    {
+        if (IsDeath())
+        {
+            Destroy(gameObject);
+        }
+    }
+
     protected virtual void MovePointChange()
     {
         if (state == ActionState._attack && NearTarget != pumpking)
@@ -118,7 +129,7 @@ public abstract class BaseBossEnemy : BaseEnemy {
                 isCanKillVirus = false;
             }
         }
-        else if (random != 0 && state == ActionState._attack)
+        else if (random != 0 || state == ActionState._attack)
         {
             if (isAttack) Attack();
         }

@@ -11,6 +11,11 @@ using UnityEngine;
 
 public class BaseEnemy : BaseVegetable {
 
+    //-----------------------------------------
+    // public
+    //-----------------------------------------
+
+    public GameObject InfectionEnemy;
 
     //-----------------------------------------
     // protected
@@ -22,6 +27,8 @@ public class BaseEnemy : BaseVegetable {
     //攻撃できる状態かどうか
     protected bool isAttack = false;
 
+    Transform pumpkinTransform;
+
     //-----------------------------------------
     // 関数
     //-----------------------------------------
@@ -29,11 +36,15 @@ public class BaseEnemy : BaseVegetable {
     protected override void DoStart()
     {
         animator = transform.GetChild(0).GetComponent<Animator>();
+
+        pumpkinTransform = transform.parent.parent.GetChild(5);
     }
 
     protected override void DoUpdate()
     {
         Death();
+
+        if (NearTarget == null) isAttack = false;
     }
 
     /// <summary>
@@ -43,6 +54,7 @@ public class BaseEnemy : BaseVegetable {
     {
         if (IsDeath())
         {
+            Instantiate(InfectionEnemy,transform.position,transform.rotation, pumpkinTransform);
             Destroy(gameObject);
         }
     }
@@ -66,6 +78,8 @@ public class BaseEnemy : BaseVegetable {
 
         if (isTargetAlive)
         {
+            //NearTarget = serchTarget.serchChildTag(transform.position, pumpkinTransform, "Minion",true);
+
             NearTarget = serchTarget.serchTag(transform.position, "Minion");
         }
     }
@@ -78,13 +92,18 @@ public class BaseEnemy : BaseVegetable {
     /// <returns></returns>
     protected IEnumerator WaitAnimEnd(string animName, float waitTime = 0)
     {
-        while (!IsMove)
+        if (agent == null || agent.enabled == false) yield break;
+
+        IsStop = true;
+
+        while (isAnimFirst)
         {
             AnimatorStateInfo nowState = animator.GetCurrentAnimatorStateInfo(0);
             if (nowState.IsName(animName))
             {
                 yield return new WaitForSeconds(waitTime);
                 IsMove = true;
+                isAnimFirst = false;
             }
             else
             {

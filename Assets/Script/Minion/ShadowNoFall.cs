@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShadowNoFall : MonoBehaviour
 {
     // ターゲットオブジェクトの Transform を格納する変数
-    public Transform target;
+    Transform target;
     GameObject bombObj;
     // ターゲットオブジェクトの座標からオフセットする値
     public float offsetZ;
@@ -26,6 +26,8 @@ public class ShadowNoFall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (bombObj == null) return;
+
         target = bombObj.transform;
         // オブジェクトの座標を変数 pos に格納
         Vector3 pos = transform.position;

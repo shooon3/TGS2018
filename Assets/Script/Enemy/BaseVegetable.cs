@@ -15,7 +15,8 @@ public enum AnimationType
 {
     _move,
     _attack,
-    _killVirus
+    _killVirus,
+    _idle
 }
 
 public abstract class BaseVegetable : MonoBehaviour {
@@ -24,6 +25,7 @@ public abstract class BaseVegetable : MonoBehaviour {
     // private
     //-----------------------------------------
 
+    float animWaitTimer;
 
     //-----------------------------------------
     // public
@@ -49,6 +51,8 @@ public abstract class BaseVegetable : MonoBehaviour {
     protected float intervalTimer; //タイマー
 
     protected Animator animator;
+
+    protected bool isAnimFirst = true;
 
 
     //-----------------------------------------
@@ -101,7 +105,10 @@ public abstract class BaseVegetable : MonoBehaviour {
         hp = HP;
 
         DoStart();
-	}
+
+        isAnimFirst = true;
+        //IsStop = true;
+    }
 
     public void Update()
     {
@@ -115,6 +122,12 @@ public abstract class BaseVegetable : MonoBehaviour {
         SetAnimaton();
 
         AttackRotation();
+
+        if (NearTarget != null && agent != null && agent.enabled)
+        {
+            Transform targetTransform = NearTarget.transform;
+            agent.SetDestination(targetTransform.position);
+        }
 
     }
 
@@ -148,14 +161,16 @@ public abstract class BaseVegetable : MonoBehaviour {
     /// </summary>
     void Move()
     {
-        if (IsMove == false || NearTarget == null || agent == null) return;
+        if (IsMove == false || NearTarget == null || agent == null || agent.enabled == false) return;
 
         if (agent.isStopped == true) agent.isStopped = false;
 
-        Transform targetTransform = NearTarget.transform;
-        agent.SetDestination(targetTransform.position);
+        if (agent != null && agent.enabled)
+        {
 
-        IsMove = false;
+            //agent.SetDestination(targetTransform.position);
+            IsMove = false;
+        }
     }
 
     /// <summary>
@@ -163,8 +178,7 @@ public abstract class BaseVegetable : MonoBehaviour {
     /// </summary>
     void Stop()
     {
-        if (IsStop == false || agent == null) return;
-
+        if (IsStop == false || agent == null || agent.enabled == false) return;
 
         agent.isStopped = true;
 
@@ -234,13 +248,28 @@ public abstract class BaseVegetable : MonoBehaviour {
                 break;
         }
 
-        if (agent != null && agent.enabled && agent.isStopped)
+        AnimDealy();
+
+    }
+
+    void AnimDealy()
+    {
+        animWaitTimer += Time.deltaTime;
+
+        if (animWaitTimer >= 0.3f)
         {
-            animType = AnimationType._attack;
-        }
-        else
-        {
-            animType = AnimationType._move;
+            if (agent != null && agent.enabled && agent.isStopped && isAnimFirst == false)
+            {
+
+                animType = AnimationType._attack;
+
+            }
+            else
+            {
+                animType = AnimationType._move;
+            }
+
+            animWaitTimer = 0;
         }
     }
 
@@ -249,7 +278,9 @@ public abstract class BaseVegetable : MonoBehaviour {
     /// </summary>
     void AttackRotation()
     {
-        if (IsStop == false && NearTarget == null) return;
+        if (NearTarget == null && IsStop == false) return;
+
+        if (NearTarget == null) return;
 
         Vector3 targetRotate = NearTarget.transform.position - transform.position;
 

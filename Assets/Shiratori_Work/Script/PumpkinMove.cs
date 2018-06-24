@@ -29,7 +29,6 @@ public class PumpkinMove : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-
         //親のオブジェクトの位置を取得
         leaderObj = transform.parent.GetChild(0).gameObject;
 
