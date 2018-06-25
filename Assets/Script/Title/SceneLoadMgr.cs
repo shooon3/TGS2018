@@ -54,7 +54,7 @@ public class SceneLoadMgr : MonoBehaviour {
     {
         if (SplashScreen.isFinished)
         {
-            if((Input.GetButtonDown("Fire1") && type == SceneType._titleMovie && isFirst == false) 
+            if((Input.GetButtonDown("Fire1") && isFirst == false) 
                 || IsWaitTimer(25.0f))
             {
                 StartCoroutine(Delay());
@@ -66,7 +66,7 @@ public class SceneLoadMgr : MonoBehaviour {
 
     void TitleScene()
     {
-        if(Input.GetButtonDown("Fire1") && type == SceneType._title && isFirst == false)
+        if(Input.GetButtonDown("Fire1") && isFirst == false)
         {
             StartCoroutine(Delay());
             type = SceneType._main;
