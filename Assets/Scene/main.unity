@@ -9941,6 +9941,30 @@ Prefab:
       propertyPath: m_SortingOrder
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 114197603843563242, guid: fddc77c35582a21498bcbabda2a03a3d,
+        type: 2}
+      propertyPath: pumpkinsSp.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 9db608895ba64494ea546859fd3063a6,
+        type: 3}
+    - target: {fileID: 114197603843563242, guid: fddc77c35582a21498bcbabda2a03a3d,
+        type: 2}
+      propertyPath: pumpkinsSp.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300002, guid: 9db608895ba64494ea546859fd3063a6,
+        type: 3}
+    - target: {fileID: 114197603843563242, guid: fddc77c35582a21498bcbabda2a03a3d,
+        type: 2}
+      propertyPath: pumpkinsSp.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300004, guid: 9db608895ba64494ea546859fd3063a6,
+        type: 3}
+    - target: {fileID: 114197603843563242, guid: fddc77c35582a21498bcbabda2a03a3d,
+        type: 2}
+      propertyPath: pumpkinsSp.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300006, guid: 9db608895ba64494ea546859fd3063a6,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fddc77c35582a21498bcbabda2a03a3d, type: 2}
   m_IsPrefabParent: 0
