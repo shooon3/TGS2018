@@ -895,6 +895,7 @@ MonoBehaviour:
   InfectionEnemy: {fileID: 1343472780148222, guid: 1efea2518523bc64987a7986b195b3b3,
     type: 2}
   AttackRange: 20
+  particle: {fileID: 198751910999370162}
 --- !u!114 &114301233131533692
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1003,7 +1004,7 @@ ParticleSystem:
   stopAction: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -1051,7 +1052,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -626619509
+  randomSeed: 549897231
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -4364,7 +4365,7 @@ ParticleSystem:
   stopAction: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -4412,7 +4413,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 568297718
+  randomSeed: 1398421566
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7725,9 +7726,9 @@ ParticleSystem:
   stopAction: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
-  autoRandomSeed: 1
+  autoRandomSeed: 0
   useRigidbodyForVelocity: 1
   startDelay:
     serializedVersion: 2

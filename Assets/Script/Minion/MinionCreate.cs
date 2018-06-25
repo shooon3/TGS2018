@@ -140,7 +140,7 @@ public class MinionCreate : MonoBehaviour {
 
             StartCoroutine(Delay());
         }
-        if(delay == false)
+        if (bomCount.NowBomCount() == 0)
         {
             pumpRender.sprite = pumpkinsSp[4];
         }

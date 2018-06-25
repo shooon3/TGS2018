@@ -50,6 +50,9 @@ public class InfectionPotato : BaseEnemy {
             IsMove = true;
         }
 
+        if (agent != null && agent.enabled && agent.isStopped == false &&
+            effect != null) Destroy(effect);
+
         if (isAttack)
         {
             Attack();

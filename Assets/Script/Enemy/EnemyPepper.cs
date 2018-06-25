@@ -14,6 +14,8 @@ public class EnemyPepper : BaseEnemy {
     [Range(20,50)]
     public int AttackRange = 20;
 
+    public ParticleSystem particle;
+
     protected override void DoStart()
     {
         base.DoStart();
@@ -31,6 +33,18 @@ public class EnemyPepper : BaseEnemy {
 
         if (isAttack) Attack();
     }
+    /// <summary>
+    /// 攻撃処理
+    /// </summary>
+    protected override void Attack()
+    {
+        if (IsAttackInterval() == false)
+        {
+            particle.Play();
+            AddDamage(NearTarget);
+        }
+    }
+
 
     /// <summary>
     /// ターゲットとの距離を取得
