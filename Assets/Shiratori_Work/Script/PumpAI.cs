@@ -24,6 +24,8 @@ public class PumpAI : BaseVegetable
 
     public GameObject attackEffect;
 
+    public GameObject infectionEffect;
+
     public GameObject deadEffect;
 
     //-----------------------------------------
@@ -146,7 +148,7 @@ public class PumpAI : BaseVegetable
             if (holeDis <= enemyDis) NearTarget = nearHole;
             else if (holeDis > enemyDis) NearTarget = nearEnemy;
         }
-        else if (nearEnemy == null && nearHole == null) Destroy(gameObject, 2.5f);
+        else if (nearEnemy == null && nearHole == null) Destroy(transform.parent.gameObject);
     }
 
     /// <summary>
@@ -219,8 +221,8 @@ public class PumpAI : BaseVegetable
         }
         else if(isHoleCollision && isCreateEffect)
         {
-            Vector3 offset = new Vector3(transform.position.x + 1.0f, transform.position.y + 3.0f, transform.position.z + 2.0f);
-            effect = Instantiate(attackEffect, offset, Quaternion.identity, transform);
+            Vector3 offset = new Vector3(transform.position.x, transform.position.y + 5.0f, transform.position.z);
+            effect = Instantiate(infectionEffect, offset, Quaternion.identity, transform);
             isCreateEffect = false;
         }
         else if(animType == AnimationType._move && isCreateEffect == false)
@@ -232,7 +234,6 @@ public class PumpAI : BaseVegetable
 
     void OnTriggerEnter(Collider col)
     {
-
         if (type == PumpType._attack)
         {
             if (target == null && hole == null)
@@ -270,7 +271,11 @@ public class PumpAI : BaseVegetable
     public bool IsInfection()
     {
         if (NearTarget == null) return true;
-        else return false;
+
+        Hole nearHole = NearTarget.GetComponent<Hole>();
+        if (nearHole != null && nearHole.Infection) return true; 
+
+        return false;
     }
 
     protected override void SetAnimaton()

@@ -18,7 +18,15 @@ public class TimeCounter : MonoBehaviour
     Text timeText;      //TIME表示
     float timer;        //経過時間
     float startTime;    //開始時間
+
     static int clearTime;      //クリア時間
+
+    int index = 0;
+
+    [Header("操作説明")]
+    public Image operationImg;
+    [Header("操作説明画像")]
+    public Sprite[] operationSp;
 
     [SerializeField]
     Pose pose;  //ポーズスクリプト
@@ -151,7 +159,25 @@ public class TimeCounter : MonoBehaviour
     /// <returns></returns>
     IEnumerator StartCount()
     {
-        yield return new WaitForSeconds(1);
+
+        yield return new WaitForSeconds(1.0f);
+
+        operationImg.sprite = operationSp[0]; 
+        operationImg.gameObject.SetActive(true);
+
+        while(index+1 != operationSp.Length)
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                index++;
+                operationImg.sprite = operationSp[index];
+            }
+            yield return null;
+        }
+
+        yield return new WaitWhile(() => index + 1 != operationSp.Length);
+
+        operationImg.gameObject.SetActive(false);
 
         //カウント3
         Indicate(3);

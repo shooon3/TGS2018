@@ -11,5 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c70e59ec39667254d9df111a1202ce8e, type: 3}
   m_Name: Radish
   m_EditorClassIdentifier: 
-  hp: 0
-  pow: 0
+  hp: 4000
+  pow: 100
+  attackInterval: 0.5

@@ -10,7 +10,7 @@ public class FallObj : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        shake = Camera.main.gameObject.GetComponent<CameraShake>();
+        shake = Camera.main.GetComponent<CameraShake>();
 	}
 	
 	// Update is called once per frame

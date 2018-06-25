@@ -12,6 +12,8 @@ public class ShadowNoFall : MonoBehaviour
 
     ThrowBom throwBom;
 
+    Vector3 pos;
+
     // Use this for initialization
     void Start()
     {
@@ -26,7 +28,11 @@ public class ShadowNoFall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (bombObj == null) return;
+        if (bombObj == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
 
         target = bombObj.transform;
         // オブジェクトの座標を変数 pos に格納

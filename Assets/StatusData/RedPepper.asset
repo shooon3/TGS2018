@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c70e59ec39667254d9df111a1202ce8e, type: 3}
   m_Name: RedPepper
   m_EditorClassIdentifier: 
-  hp: 1000
-  pow: 1000
+  hp: 3000
+  pow: 2000
   attackInterval: 5
