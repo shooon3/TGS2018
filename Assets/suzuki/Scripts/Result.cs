@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Result : MonoBehaviour
 {
+    bool start;
     bool interval;  //処理を一時停止
     bool finish;    //演出処理終了
     int time;       //表示しているTIMEの値
@@ -21,6 +22,8 @@ public class Result : MonoBehaviour
     string[] RankStr = { "S", "A", "B", "C" };
 
     [SerializeField]
+    Image resultImage;
+    [SerializeField]
     Text timeText;  //時間表示テキスト
     [SerializeField]
     Text rankText;  //ランク表示テキスト
@@ -30,6 +33,7 @@ public class Result : MonoBehaviour
 	void Start ()
     {
         //初期値
+        start = false;
         interval = false;
         finish = false;
         time = 0;
@@ -38,95 +42,107 @@ public class Result : MonoBehaviour
 
         //クリアタイムを取得(秒単位)
         ClearTime = TimeCounter.GetClearTime();
+
+        StartCoroutine(Standby());
     }
 
     void Update()
     {
-        //タイム加算表示
-        if (time < ClearTime)
+        if (start)
         {
-            //演出スキップ
-            if (Input.GetMouseButtonDown(0))
+            //タイム加算表示
+            if (time < ClearTime)
             {
-                time = ClearTime;
-            }
-            //通常時
-            else
-            {
-                //タイム加算演出
-                time++;
-            }
-
-            //タイムを「分:秒」に変換し表示
-            if (time % 60 < 10)
-            {
-                //秒数が0～9(1桁)の時
-                timeText.text = time / 60 + ":0" + time % 60;
-            }
-            else
-            {
-                //秒数が10～59(2桁)の時
-                timeText.text = time / 60 + ":" + time % 60;
-            }
-        }
-        //ランク表示
-        else if (!finish)
-        {
-            //演出スキップ
-            if (Input.GetMouseButtonDown(0))
-            {
-                for(int i = 0; i < rank.Length; i++)
+                //演出スキップ
+                if (Input.GetMouseButtonDown(0))
                 {
-                    if (time < rank[i])
-                    {
-                        rankText.text = RankStr[i];
-                        ResultFinish();
-                        break;
-                    }
+                    time = ClearTime;
                 }
-            }
-            //通常時
-            else if(!interval)
-            {
-                //ループ演出
-                if (count < 10)
-                {
-                    //ランクを順に表示
-                    if (number < RankStr.Length)
-                    {
-                        RankChecker();
-                        number++;
-                    }
-                    //ループ
-                    else
-                    {
-                        count++;
-                        number = 0;
-                    }
-                }
-                //ランク確定
+                //通常時
                 else
                 {
-                    RankChecker();
-                    if (number < rank.Length)
+                    //タイム加算演出
+                    time++;
+                }
+
+                //タイムを「分:秒」に変換し表示
+                if (time % 60 < 10)
+                {
+                    //秒数が0～9(1桁)の時
+                    timeText.text = time / 60 + ":0" + time % 60;
+                }
+                else
+                {
+                    //秒数が10～59(2桁)の時
+                    timeText.text = time / 60 + ":" + time % 60;
+                }
+            }
+            //ランク表示
+            else if (!finish)
+            {
+                //演出スキップ
+                if (Input.GetMouseButtonDown(0))
+                {
+                    for (int i = 0; i < rank.Length; i++)
                     {
-                        if (time < rank[number])
+                        if (time < rank[i])
+                        {
+                            rankText.text = RankStr[i];
+                            ResultFinish();
+                            break;
+                        }
+                    }
+                }
+                //通常時
+                else if (!interval)
+                {
+                    //ループ演出
+                    if (count < 10)
+                    {
+                        //ランクを順に表示
+                        if (number < RankStr.Length)
+                        {
+                            RankChecker();
+                            number++;
+                        }
+                        //ループ
+                        else
+                        {
+                            count++;
+                            number = 0;
+                        }
+                    }
+                    //ランク確定
+                    else
+                    {
+                        RankChecker();
+                        if (number < rank.Length)
+                        {
+                            if (time < rank[number])
+                            {
+                                ResultFinish();
+                            }
+                            number++;
+                        }
+                        else
                         {
                             ResultFinish();
                         }
-                        number++;
                     }
-                    else
-                    {
-                        ResultFinish();
-                    }
-                }
-                interval = true;
+                    interval = true;
 
-                //演出間隔
-                StartCoroutine(SlotInterval(intervalTime));
+                    //演出間隔
+                    StartCoroutine(SlotInterval(intervalTime));
+                }
             }
         }
+    }
+
+    IEnumerator Standby()
+    {
+        yield return new WaitForSeconds(5);
+        resultImage.gameObject.SetActive(true);
+        start = true;
     }
 
     /// <summary>
