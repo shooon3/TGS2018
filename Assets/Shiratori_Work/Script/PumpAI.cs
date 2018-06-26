@@ -168,6 +168,7 @@ public class PumpAI : BaseVegetable
         {
             Vector3 vec = new Vector3(transform.position.x, transform.position.y + 20.0f, transform.position.z);
             Instantiate(deadEffect, vec, Quaternion.identity);
+            AudioManager.Instance.PlaySE("PumpkinDead");
             Destroy(transform.parent.gameObject);
         }
         else if(IsInfection())

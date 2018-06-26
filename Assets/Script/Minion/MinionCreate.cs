@@ -307,6 +307,8 @@ public class MinionCreate : MonoBehaviour {
 
             HoleParentSet();
 
+            AudioManager.Instance.PlaySE("Throw");
+
             minionParent = Instantiate(massParentPre, createPos, Quaternion.identity);
             minionParent.transform.SetParent(holeType, true);
 
@@ -346,6 +348,8 @@ public class MinionCreate : MonoBehaviour {
 
         //揺らす
         camShake.DoShake(0.25f,0.5f);
+
+        AudioManager.Instance.PlaySE("Bomb");
         //攻撃してくるパンプキンを生成
         if (isBossAttack)
         {

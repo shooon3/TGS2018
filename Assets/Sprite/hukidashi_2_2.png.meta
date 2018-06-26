@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 9db608895ba64494ea546859fd3063a6
-timeCreated: 1529904075
+guid: 4bc703c0876e8f24cb1b7e1d22295316
+timeCreated: 1529913432
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -98,10 +98,10 @@ TextureImporter:
       name: hukidashi_2_2_0
       rect:
         serializedVersion: 2
-        x: 108
-        y: 1184
-        width: 870
-        height: 766
+        x: 98
+        y: 1173
+        width: 893
+        height: 787
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,10 +112,10 @@ TextureImporter:
       name: hukidashi_2_2_1
       rect:
         serializedVersion: 2
-        x: 1109
-        y: 1184
-        width: 870
-        height: 766
+        x: 1101
+        y: 1175
+        width: 886
+        height: 783
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -126,10 +126,10 @@ TextureImporter:
       name: hukidashi_2_2_2
       rect:
         serializedVersion: 2
-        x: 104
-        y: 204
-        width: 872
-        height: 768
+        x: 91
+        y: 203
+        width: 891
+        height: 775
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,10 +140,10 @@ TextureImporter:
       name: hukidashi_2_2_3
       rect:
         serializedVersion: 2
-        x: 1108
-        y: 204
-        width: 871
-        height: 768
+        x: 1099
+        y: 193
+        width: 893
+        height: 790
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

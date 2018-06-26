@@ -37,7 +37,7 @@ public class CameraRotate : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-
+        AudioManager.Instance.PlayBGM("gameBGM");
         camAngle = transform.localEulerAngles;
 
     }

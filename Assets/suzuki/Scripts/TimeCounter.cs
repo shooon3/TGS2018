@@ -129,7 +129,7 @@ public class TimeCounter : MonoBehaviour
             }
 
             //ゲームオーバー処理
-            if(pumpking.HP <= 0)
+            if(pumpking.HP <= 0 && IsGameOver == false)
             {
                 IsGameOver = true;
 
@@ -139,7 +139,7 @@ public class TimeCounter : MonoBehaviour
                 pose.GameClear();
 
                 //リザルトへ移動
-                StartCoroutine(GoResult());
+                StartCoroutine(GoGameOver());
             }
         }
     }
@@ -236,5 +236,16 @@ public class TimeCounter : MonoBehaviour
         yield return new WaitForSeconds(3);
         Time.timeScale = 1;
         SceneManager.LoadScene((int)GameMode.Mode.RESULT);
+    }
+
+    /// <summary>
+    /// シーン遷移
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator GoGameOver()
+    {
+        yield return new WaitForSeconds(3);
+        Time.timeScale = 1;
+        FadeManager.Instance.LoadSpriteScene("gameOver", 2.5f, false);
     }
 }

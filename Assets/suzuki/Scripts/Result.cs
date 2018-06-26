@@ -179,11 +179,12 @@ public class Result : MonoBehaviour
     /// </summary>
     public void Retry()
     {
-        //ゲームを始める
-        if (finish)
-        {
-            SceneManager.LoadScene((int)GameMode.Mode.GAME);
-        }
+        FadeManager.Instance.LoadScene("main", 1.5f, false);
+        ////ゲームを始める
+        //if (finish)
+        //{
+        //    SceneManager.LoadScene((int)GameMode.Mode.GAME);
+        //}
     }
 
     /// <summary>
@@ -191,10 +192,10 @@ public class Result : MonoBehaviour
     /// </summary>
     public void End()
     {
-        //セレクト?画面に戻る
-        if (finish)
-        {
-            SceneManager.LoadScene((int)GameMode.Mode.SELECT);
-        }
+        ////セレクト?画面に戻る
+        //if (finish)
+        //{
+        //    SceneManager.LoadScene((int)GameMode.Mode.SELECT);
+        //}
     }
 }
