@@ -19473,8 +19473,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 901647328}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.9955301, y: -29.599998, z: -12.027703}
-  m_LocalScale: {x: 321.43103, y: 13.0776825, z: 321.4308}
+  m_LocalPosition: {x: -2.9955301, y: -16, z: -3.9}
+  m_LocalScale: {x: 406.24002, y: 53.486187, z: 406.23975}
   m_Children: []
   m_Father: {fileID: 644122173}
   m_RootOrder: 9
@@ -22285,6 +22285,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   crealText: {fileID: 1264129860}
+  button:
+  - {fileID: 740284777}
+  - {fileID: 802474302}
   holeInf:
   - {fileID: 889916331}
   - {fileID: 188692965}
