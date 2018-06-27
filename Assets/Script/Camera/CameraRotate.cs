@@ -21,6 +21,9 @@ public class CameraRotate : MonoBehaviour {
 
     public Text crealText;
 
+    [Header("ボタン"),NamedArrayAttribute(new string[] {"右のボタン","左のボタン" })]
+    public Button[] button;
+
     public HoleType HoleType { get; private set; }
 
     [Header("畑"), NamedArrayAttribute(new string[] {"じゃがいも","だいこん","とうがらし" })]
@@ -50,6 +53,7 @@ public class CameraRotate : MonoBehaviour {
         InfectionCheck();
         HoleTypeSet();
 
+        HoleCamButton();
     }
 
     public void RightButton()
@@ -88,6 +92,8 @@ public class CameraRotate : MonoBehaviour {
             crealText.text = "じゃがいも畑を制圧した！";
             crealText.gameObject.SetActive(true);
 
+            ButtonDisplay(true);
+
             StartCoroutine(WaitTime());
         }
         else if(holeInf[1].AllInfection() && holeInfectionCount == 1)
@@ -96,13 +102,41 @@ public class CameraRotate : MonoBehaviour {
             crealText.text = "だいこん畑を制圧した！";
             crealText.gameObject.SetActive(true);
 
+            ButtonDisplay(true);
+
             StartCoroutine(WaitTime());
         }
         else if(holeInf[2].AllInfection() && holeInfectionCount == 2)
         {
             crealText.text = "すべての畑を制圧した！";
             crealText.gameObject.SetActive(true);
+
+            ButtonDisplay(true);
         }
+    }
+
+    /// <summary>
+    /// ゲーム中は表示を消す
+    /// </summary>
+    void HoleCamButton()
+    {
+        for(int i = 0; i < holeInf.Length; i++)
+        {
+            if(holeInfectionCount == i && (int)HoleType == i && !holeInf[i].AllInfection())
+            {
+                ButtonDisplay(false);
+            }
+        }
+    }
+
+    /// <summary>
+    /// ボタン二つの表示と非表示
+    /// </summary>
+    /// <param name="isDisplay"></param>
+    void ButtonDisplay(bool isDisplay)
+    {
+        button[0].gameObject.SetActive(isDisplay);
+        button[1].gameObject.SetActive(isDisplay);
     }
 
     IEnumerator WaitTime()
