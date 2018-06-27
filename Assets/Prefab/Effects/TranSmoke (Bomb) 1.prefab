@@ -172,7 +172,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 595796053
+  randomSeed: 1641424348
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3561,7 +3561,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 200
-  m_Sprite: {fileID: 21300000, guid: 24356294cab59f54eb84501fb7b94aab, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5683efb917a6bb64b88e36aa1c2a8710, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
