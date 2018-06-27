@@ -16,16 +16,25 @@ public class EnemyPepper : BaseEnemy {
 
     public ParticleSystem particle;
 
+    bool isPepperAnimFirst = true;
+    PepperAnimEffect animEffect;
+
     protected override void DoStart()
     {
         base.DoStart();
 
+        particle.Stop();
+
         StartCoroutine(WaitAnimEnd("pop", 2.5f));
+
+        animEffect = transform.GetChild(0).GetComponent<PepperAnimEffect>();
     }
 
     protected override void DoUpdate()
     {
         base.DoUpdate();
+
+        EffectPlay();
 
         SerchTarget();
 
@@ -40,11 +49,23 @@ public class EnemyPepper : BaseEnemy {
     {
         if (IsAttackInterval() == false)
         {
-            particle.Play();
             AddDamage(NearTarget);
         }
     }
 
+    void EffectPlay()
+    {
+        if (animEffect.IsAnimAttackStart && isPepperAnimFirst)
+        {
+            particle.Play();
+            isPepperAnimFirst = false;
+        }
+        else if (animEffect.IsAnimAttackEnd && isPepperAnimFirst == false)
+        {
+            particle.Stop();
+            isPepperAnimFirst = true;
+        }
+    }
 
     /// <summary>
     /// ターゲットとの距離を取得

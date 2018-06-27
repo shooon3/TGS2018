@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c70e59ec39667254d9df111a1202ce8e, type: 3}
   m_Name: BossPotato
   m_EditorClassIdentifier: 
-  hp: 100000
-  pow: 500
+  hp: 1000
+  pow: 50
   attackInterval: 1

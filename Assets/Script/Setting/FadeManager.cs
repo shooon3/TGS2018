@@ -107,7 +107,6 @@ public class FadeManager : MonoBehaviour
 
         while (async.progress < 0.9f)
         {
-            Debug.Log(async.progress);
             yield return new WaitForEndOfFrame();
         }
 
@@ -155,7 +154,6 @@ public class FadeManager : MonoBehaviour
 
         while (async.progress < 0.9f)
         {
-            Debug.Log(async.progress);
             yield return new WaitForEndOfFrame();
         }
 

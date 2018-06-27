@@ -9,13 +9,7 @@ public enum ActionState
     _move
 }
 
-public enum KillVirusHoleType
-{
-    _right = 0,
-    _left,
-    _rightMiddle,
-    _leftMiddle
-}
+
 
 public abstract class BaseBossEnemy : BaseEnemy {
 
@@ -32,9 +26,8 @@ public abstract class BaseBossEnemy : BaseEnemy {
     //-----------------------------------------
 
     protected ActionState state;
-    protected KillVirusHoleType type;
 
-    protected Hole[] holeArray;
+    protected List<Hole> holeArray = new List<Hole>();
 
     protected List<Hole> hole_NowLis = new List<Hole>();
 

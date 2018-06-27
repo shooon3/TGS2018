@@ -131,6 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4311067224882214}
   - component: {fileID: 95523200271407962}
+  - component: {fileID: 114461380820342564}
   m_Layer: 0
   m_Name: tougarasi_motion
   m_TagString: Untagged
@@ -905,6 +906,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47e110370eab4b44697f58278c774b9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114461380820342564
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1210947935577472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7758983b82e6ac046962720d7e51a4dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!137 &137017227693663440

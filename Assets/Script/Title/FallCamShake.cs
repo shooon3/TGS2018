@@ -9,6 +9,7 @@ public class FallCamShake : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         camShake = Camera.main.GetComponent<CameraShake>();
+        AudioManager.Instance.PlayBGM("titileMovie");
 	}
 	
 	// Update is called once per frame
@@ -19,5 +20,6 @@ public class FallCamShake : MonoBehaviour {
     void OnTriggerEnter(Collider col)
     {
         camShake.DoShake(1.5f, 0.5f);
+        AudioManager.Instance.FadeOutBGM(0.5f);
     }
 }

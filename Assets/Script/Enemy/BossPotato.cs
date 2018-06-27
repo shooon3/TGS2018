@@ -5,6 +5,16 @@ using System.Linq;
 
 public class BossPotato : BaseBossEnemy {
 
+    public enum KillVirusHoleType
+    {
+        _right = 0,
+        _left,
+        _rightMiddle,
+        _leftMiddle
+    }
+
+    KillVirusHoleType type;
+
     List<Hole> hole_RightLis = new List<Hole>();
     List<Hole> hole_MiddleRighLis = new List<Hole>();
     List<Hole> hole_MiddleLeftLis = new List<Hole>();
@@ -26,7 +36,7 @@ public class BossPotato : BaseBossEnemy {
 
     protected override void KillVirus_RangeSet()
     {
-        holeArray = holeRange.GetComponentsInChildren<Hole>();
+        holeArray = holeRange.GetComponentsInChildren<Hole>().ToList<Hole>();
 
         hole_RightLis = holeArray.OrderBy(x => x.name).Skip(0).Take(3).ToList<Hole>();
         hole_MiddleRighLis = holeArray.OrderBy(x => x.name).Skip(3).Take(3).ToList<Hole>();

@@ -159,8 +159,13 @@ public class TimeCounter : MonoBehaviour
     /// <returns></returns>
     IEnumerator StartCount()
     {
+#if UNITY_EDITOR
 
-        yield return new WaitForSeconds(1.0f);
+#else
+        FadeReceiveEvent fadeEvent = FindObjectOfType<FadeReceiveEvent>();
+
+        yield return new WaitWhile( () => !fadeEvent.IsAnimEnd);
+#endif
 
         operationImg.sprite = operationSp[0]; 
         operationImg.gameObject.SetActive(true);

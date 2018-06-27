@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: RedPepper
   m_EditorClassIdentifier: 
   hp: 3000
-  pow: 2000
+  pow: 200
   attackInterval: 5

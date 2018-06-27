@@ -39,7 +39,6 @@ public class BombCountPlus : MonoBehaviour {
     {
         if (!hole.Infection) return;
 
-
         if (isCreate)
         {
             pumpObj = Instantiate(createMgr.BombDisplay, transform.position, createMgr.BombDisplay.transform.rotation);
