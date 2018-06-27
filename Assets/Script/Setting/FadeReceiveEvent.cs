@@ -9,7 +9,6 @@ public class FadeReceiveEvent : MonoBehaviour {
 
     public void End()
     {
-        Debug.Log("ok");
         IsAnimEnd = true;
     }
 }

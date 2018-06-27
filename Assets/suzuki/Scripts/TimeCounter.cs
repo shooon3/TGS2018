@@ -251,6 +251,6 @@ public class TimeCounter : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         Time.timeScale = 1;
-        FadeManager.Instance.LoadSpriteScene("gameOver", 2.5f, false);
+        FadeManager.Instance.LoadSpriteScene("gameOver", 0, false);
     }
 }
