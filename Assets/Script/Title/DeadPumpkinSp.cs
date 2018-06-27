@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DeadPumpkinSp : MonoBehaviour {
 
-    const int CREATE_RANGE_X = 180;
+    const int CREATE_RANGE_X = 90;
     const int CREATE_RANGE_Y = 60;
     const int CREATE_RANGE_Z = 40;
 
@@ -27,7 +27,7 @@ public class DeadPumpkinSp : MonoBehaviour {
     void Timer()
     {
         timer += Time.deltaTime;
-        if(timer >= 0.1f)
+        if(timer >= 1.0f)
         {
             int random_x = Random.Range(-CREATE_RANGE_X, CREATE_RANGE_X);
             int random_y = Random.Range(0, CREATE_RANGE_Y);
