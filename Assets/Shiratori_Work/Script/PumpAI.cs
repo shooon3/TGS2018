@@ -28,6 +28,8 @@ public class PumpAI : BaseVegetable
 
     public GameObject deadEffect;
 
+    public GameObject near;
+
     //-----------------------------------------
     // private
     //-----------------------------------------
@@ -92,6 +94,8 @@ public class PumpAI : BaseVegetable
         ActionState();
 
         Death();
+
+        near = NearTarget;
 
         if (type == PumpType._attack)
         {
@@ -253,8 +257,16 @@ public class PumpAI : BaseVegetable
 
                 if (target != null || hole != null) IsStop = true;
 
-                if (target != null) isEnemyCollision = true;
-                else if (hole != null && hole.tag == "Hole") isHoleCollision = true;
+                if (target != null)
+                {
+                    isEnemyCollision = true;
+                    NearTarget = target.gameObject;
+                }
+                else if (hole != null && hole.tag == "Hole")
+                {
+                    isHoleCollision = true;
+                    NearTarget = hole.gameObject;
+                }
             }
         }
     }

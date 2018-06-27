@@ -84,6 +84,7 @@ public class MinionCreate : MonoBehaviour {
     PlayerMove playerMove;
     BaseBossEnemy boss;
     Camera cam;
+    Animator pumpkingAnimator;
 
     float touchNowPosX; //現在のタッチポジション
     float startFlickX; //タッチした直後のポジション(タッチ直後にフリック判定にならないようにするための除外用変数)
@@ -112,6 +113,8 @@ public class MinionCreate : MonoBehaviour {
     void Start () {
 
         pumpkinParent = transform.GetChild(0).gameObject;
+
+        pumpkingAnimator = pumpking.transform.GetChild(0).GetComponent<Animator>();
 
         pumpkinParent.SetActive(false);
 
@@ -302,6 +305,8 @@ public class MinionCreate : MonoBehaviour {
                 FlickInitialize();
                 return;
             }
+
+            pumpkingAnimator.SetTrigger("IsThrow");
 
             Vector3 createPos = new Vector3(hit.point.x, hit.point.y, hit.point.z);
 

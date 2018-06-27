@@ -11,6 +11,9 @@ public class ThrowBom : MonoBehaviour {
     [Header("ボムに追従する影オブジェクトをここに割り当てる")]
     public GameObject shadowObject;
 
+    [Header("ボム発射位置")]
+    public GameObject bullet;
+
     [Header("射出する角度"), Range(0F, 90F)]
     public float throwingAngle;
 
@@ -35,7 +38,7 @@ public class ThrowBom : MonoBehaviour {
         if (throwingObject == null) return;
 
         
-        Vector3 transformPos = transform.position;
+        Vector3 transformPos = bullet.transform.position;
 
         //ノーマルボムの生成
         if (type == BomType.normal)
@@ -58,7 +61,7 @@ public class ThrowBom : MonoBehaviour {
         float angle = throwingAngle;
 
         // 射出速度を算出
-        Vector3 velocity = CalculateVelocity(this.transform.position, targetPosition, angle);
+        Vector3 velocity = CalculateVelocity(bullet.transform.position, targetPosition, angle);
 
         // 射出
         Rigidbody rid = ball.GetComponent<Rigidbody>();
