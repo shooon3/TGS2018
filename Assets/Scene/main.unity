@@ -22543,13 +22543,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f949606585228944a9c8c7ea5f085253, type: 3}
   - {fileID: 21300000, guid: ce179cb32a8e86248a4b0d8c217522c6, type: 3}
   timeText: {fileID: 669275623}
+  pose: {fileID: 2136190747}
+  clearText: {fileID: 1264129857}
   operationImg: {fileID: 1499492671}
   operationSp:
   - {fileID: 21300000, guid: c35395eb3b462024d837afd1f2177847, type: 3}
   - {fileID: 21300000, guid: fa0dd71ca4f681b4e96f842326d9dcea, type: 3}
   - {fileID: 21300000, guid: fa0dd71ca4f681b4e96f842326d9dcea, type: 3}
-  pose: {fileID: 2136190747}
-  clearText: {fileID: 1264129857}
   gameOverImg: {fileID: 666312489}
   gameoverSp: {fileID: 21300000, guid: d4be1073920a1bb499551e70522eee5b, type: 3}
   Hole: {fileID: 1517711115}
