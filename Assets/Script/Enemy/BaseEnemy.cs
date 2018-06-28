@@ -37,7 +37,7 @@ public class BaseEnemy : BaseVegetable {
     {
         animator = transform.GetChild(0).GetComponent<Animator>();
 
-        pumpkinTransform = transform.parent.parent.Find("PotatoPumpkin");
+        pumpkinTransform = transform.parent.parent.Find("EnemyParent");
     }
 
     protected override void DoUpdate()

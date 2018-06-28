@@ -26,6 +26,8 @@ public class PumpkinMove : MonoBehaviour {
 
     public PumpType type;
 
+    AnimationType animType;
+
 	// Use this for initialization
 	void Start () {
 
@@ -35,6 +37,7 @@ public class PumpkinMove : MonoBehaviour {
         animator = transform.GetChild(0).GetComponent<Animator>();
 
         SerchMovePoint();
+
         if (ai.type == PumpType._attack)
         {
             agent = GetComponent<NavMeshAgent>();
@@ -50,10 +53,12 @@ public class PumpkinMove : MonoBehaviour {
 
         if (ai.type == PumpType._attack)
         {
+            SetAnimaton();
+
             agent.SetDestination(moveTarget.transform.position);
 
-            if (ai.IsMove) agent.isStopped = false;
-            else if (ai.IsStop) agent.isStopped = true;
+            if (parentAgent.isStopped == false) agent.isStopped = false;
+            else if (parentAgent.isStopped) agent.isStopped = true;
         }
     }
 
@@ -67,7 +72,7 @@ public class PumpkinMove : MonoBehaviour {
     {
         if (animator == null) return;
 
-        switch (ai.animType)
+        switch (animType)
         {
             case AnimationType._move:
                 animator.SetTrigger("IsMove");
@@ -78,7 +83,7 @@ public class PumpkinMove : MonoBehaviour {
                 break;
         }
 
-        if (agent != null && agent.enabled && agent.isStopped) ai.animType = AnimationType._attack;
-        else ai.animType = AnimationType._move;
+        if (agent != null && agent.enabled && agent.isStopped) animType = AnimationType._attack;
+        else animType = AnimationType._move;
     }
 }

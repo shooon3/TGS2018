@@ -13,13 +13,12 @@ public enum HoleType
 
 public class CameraRotate : MonoBehaviour {
 
-    Vector3 camAngle;
-
     public float speed;
 
-    int type;
+    public Image clearImg;
 
-    public Text crealText;
+    [Header("クリアのスプライト"),NamedArrayAttribute(new string[] {"じゃがいも畑制圧","だいこん畑制圧","とうがらし畑制圧","すべての畑を制圧" })]
+    public Sprite[] clearSp;
 
     [Header("ボタン"),NamedArrayAttribute(new string[] {"右のボタン","左のボタン" })]
     public Button[] button;
@@ -31,11 +30,17 @@ public class CameraRotate : MonoBehaviour {
 
     public TimeCounter counter;
 
+    bool isFirst = true;
+
     int holeInfectionCount = 0;
 
     int typeIndex;
 
+    int type;
+
     HoleType rightType, leftType;
+
+    Vector3 camAngle;
 
 	// Use this for initialization
 	void Start ()
@@ -86,32 +91,50 @@ public class CameraRotate : MonoBehaviour {
 
     void InfectionCheck()
     {
-        if (holeInf[0].AllInfection() && holeInfectionCount == 0)
+        //if (holeInf[0].AllInfection() && holeInfectionCount == 0)
+        //{
+        //    holeInfectionCount++;
+        //    clearImg.sprite = clearSp[0];
+        //    clearImg.gameObject.SetActive(true);
+
+        //    ButtonDisplay(true);
+
+        //    StartCoroutine(WaitTime());
+        //}
+        //else if(holeInf[1].AllInfection() && holeInfectionCount == 1)
+        //{
+        //    holeInfectionCount++;
+        //    clearImg.sprite = clearSp[1];
+        //    clearImg.gameObject.SetActive(true);
+
+        //    ButtonDisplay(true);
+
+        //    StartCoroutine(WaitTime());
+        //}
+        //else if(holeInf[2].AllInfection() && holeInfectionCount == 2)
+        //{
+        //    clearImg.sprite = clearSp[2];
+        //    clearImg.gameObject.SetActive(true);
+
+        //    ButtonDisplay(true);
+
+        //    StartCoroutine(WaitTime(true));
+        //}
+
+        for(int i = 0; i < holeInf.Length; i++)
         {
-            holeInfectionCount++;
-            crealText.text = "じゃがいも畑を制圧した！";
-            crealText.gameObject.SetActive(true);
+            if(holeInf[i].AllInfection() && holeInfectionCount == i)
+            {
+                holeInfectionCount++;
+                clearImg.sprite = clearSp[i];
+                clearImg.gameObject.SetActive(true);
 
-            ButtonDisplay(true);
+                ButtonDisplay(true);
 
-            StartCoroutine(WaitTime());
-        }
-        else if(holeInf[1].AllInfection() && holeInfectionCount == 1)
-        {
-            holeInfectionCount++;
-            crealText.text = "だいこん畑を制圧した！";
-            crealText.gameObject.SetActive(true);
+                isFirst = true;
 
-            ButtonDisplay(true);
-
-            StartCoroutine(WaitTime());
-        }
-        else if(holeInf[2].AllInfection() && holeInfectionCount == 2)
-        {
-            crealText.text = "すべての畑を制圧した！";
-            crealText.gameObject.SetActive(true);
-
-            ButtonDisplay(true);
+                StartCoroutine(WaitTime());
+            }
         }
     }
 
@@ -122,9 +145,11 @@ public class CameraRotate : MonoBehaviour {
     {
         for(int i = 0; i < holeInf.Length; i++)
         {
-            if(holeInfectionCount == i && (int)HoleType == i && !holeInf[i].AllInfection())
+            if(holeInfectionCount == i && (int)HoleType == i && !holeInf[i].AllInfection() && isFirst)
             {
+                StartCoroutine(counter.StartCount());
                 ButtonDisplay(false);
+                isFirst = false;
             }
         }
     }
@@ -139,14 +164,23 @@ public class CameraRotate : MonoBehaviour {
         button[1].gameObject.SetActive(isDisplay);
     }
 
-    IEnumerator WaitTime()
+    /// <summary>
+    /// 待機
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator WaitTime(bool isFinish = false)
     {
         counter.IsStart = false;
 
         yield return new WaitForSeconds(3.0f);
 
         counter.IsStart = true;
-        crealText.gameObject.SetActive(false);
+        clearImg.gameObject.SetActive(false);
+
+        if (isFinish == false) yield break;
+
+        clearImg.sprite = clearSp[3];
+        clearImg.gameObject.SetActive(true);
     }
 
     void HoleTypeSet()

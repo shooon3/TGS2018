@@ -27,7 +27,9 @@ public class Result : MonoBehaviour
     [SerializeField]
     Button[] buttons = new Button[2];   //シーン移行用ボタン
 
-	void Start ()
+    const int ConvertionConstant = 65248;
+
+    void Start ()
     {
         //初期値
         interval = false;
@@ -61,12 +63,12 @@ public class Result : MonoBehaviour
             if (time % 60 < 10)
             {
                 //秒数が0～9(1桁)の時
-                timeText.text = time / 60 + ":0" + time % 60;
+                timeText.text = ConvertToFullWidth(time / 60 + ":0" + time % 60);
             }
             else
             {
                 //秒数が10～59(2桁)の時
-                timeText.text = time / 60 + ":" + time % 60;
+                timeText.text = ConvertToFullWidth(time / 60 + ":" + time % 60);
             }
         }
         //ランク表示
@@ -192,10 +194,23 @@ public class Result : MonoBehaviour
     /// </summary>
     public void End()
     {
+        FadeManager.Instance.LoadScene("title", 1.5f, false);
         ////セレクト?画面に戻る
         //if (finish)
         //{
         //    SceneManager.LoadScene((int)GameMode.Mode.SELECT);
         //}
+    }
+
+    public string ConvertToFullWidth(string halfWidthStr)
+    {
+        string fullWidthStr = null;
+
+        for (int i = 0; i < halfWidthStr.Length; i++)
+        {
+            fullWidthStr += (char)(halfWidthStr[i] + ConvertionConstant);
+        }
+
+        return fullWidthStr;
     }
 }
