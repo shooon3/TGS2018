@@ -9,44 +9,44 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1878620686041064}
+  m_RootGameObject: {fileID: 1915663412514626}
   m_IsPrefabParent: 1
---- !u!1 &1878620686041064
+--- !u!1 &1915663412514626
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4121612891940194}
-  - component: {fileID: 33044619031332652}
-  - component: {fileID: 23640246993192156}
-  m_Layer: 2
-  m_Name: BomDisplay
+  - component: {fileID: 4857266561870922}
+  - component: {fileID: 33166186474905316}
+  - component: {fileID: 23929740373132688}
+  m_Layer: 0
+  m_Name: BomDisplay 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4121612891940194
+--- !u!4 &4857266561870922
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1878620686041064}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: 14.9, y: -11.656, z: 58.3}
+  m_GameObject: {fileID: 1915663412514626}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 15.53, y: -11.656, z: 58.6}
   m_LocalScale: {x: 1.6000011, y: 1.600001, z: 1.600001}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
---- !u!23 &23640246993192156
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!23 &23929740373132688
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1878620686041064}
+  m_GameObject: {fileID: 1915663412514626}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -75,10 +75,10 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33044619031332652
+--- !u!33 &33166186474905316
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1878620686041064}
-  m_Mesh: {fileID: 4300000, guid: 1dabd2571b9c06140b9d3ffac044f151, type: 3}
+  m_GameObject: {fileID: 1915663412514626}
+  m_Mesh: {fileID: 4300000, guid: d0d2a105d4e477f48a56855bc5ad822c, type: 3}

@@ -8,6 +8,7 @@ public class TimeCounter : MonoBehaviour
 {
     bool fade;  //カウントフェード
     bool clear; //クリア判定
+    bool isFirst = true;
 
     [SerializeField]
     Image image;                        //表示スプライト
@@ -23,10 +24,6 @@ public class TimeCounter : MonoBehaviour
 
     int index = 0;
 
-    [Header("操作説明")]
-    public Image operationImg;
-    [Header("操作説明画像")]
-    public Sprite[] operationSp;
 
     [SerializeField]
     Pose pose;  //ポーズスクリプト
@@ -34,7 +31,17 @@ public class TimeCounter : MonoBehaviour
     [SerializeField]
     GameObject clearText;
 
-    public GameObject gameOverText;
+    [Header("操作説明")]
+    public Image operationImg;
+
+    [Header("操作説明画像")]
+    public Sprite[] operationSp;
+
+    [Header("ゲームオーバー表示用Image")]
+    public Image gameOverImg;
+
+    [Header("ゲームオーバースプライト")]
+    public Sprite gameoverSp;
 
     public HoleInfection Hole;
 
@@ -62,8 +69,8 @@ public class TimeCounter : MonoBehaviour
         IsStart = false; //変更
         timeText.gameObject.SetActive(false);
 
-        //カウントダウン開始
-        StartCoroutine(StartCount());
+        ////カウントダウン開始
+        //StartCoroutine(StartCount());
 	}
 	
 	void Update ()
@@ -133,7 +140,8 @@ public class TimeCounter : MonoBehaviour
             {
                 IsGameOver = true;
 
-                gameOverText.SetActive(true);
+                gameOverImg.sprite = gameoverSp;
+                gameOverImg.gameObject.SetActive(true);
 
                 //ポーズボタン機能停止
                 pose.GameClear();
@@ -157,32 +165,15 @@ public class TimeCounter : MonoBehaviour
     /// カウントダウン
     /// </summary>
     /// <returns></returns>
-    IEnumerator StartCount()
+    public IEnumerator StartCount()
     {
-#if UNITY_EDITOR
 
-#else
-        FadeReceiveEvent fadeEvent = FindObjectOfType<FadeReceiveEvent>();
-
-        yield return new WaitWhile( () => !fadeEvent.IsAnimEnd);
-#endif
-
-        operationImg.sprite = operationSp[0]; 
-        operationImg.gameObject.SetActive(true);
-
-        while(index+1 != operationSp.Length)
+        if(isFirst)
         {
-            if (Input.GetButtonDown("Fire1"))
-            {
-                index++;
-                operationImg.sprite = operationSp[index];
-            }
-            yield return null;
+            StartCoroutine(FirstOperation());
         }
 
-        yield return new WaitWhile(() => index + 1 != operationSp.Length);
-
-        operationImg.gameObject.SetActive(false);
+        yield return new WaitWhile(() => isFirst);
 
         //カウント3
         Indicate(3);
@@ -214,6 +205,40 @@ public class TimeCounter : MonoBehaviour
 
         //カウントの表示を消す
         image.color = new Color(1, 1, 1, 0);
+    }
+
+    /// <summary>
+    /// ゲーム開始時の説明
+    /// </summary>
+    IEnumerator FirstOperation()
+    {
+#if UNITY_EDITOR
+
+#else
+        FadeReceiveEvent fadeEvent = FindObjectOfType<FadeReceiveEvent>();
+
+        yield return new WaitWhile( () => !fadeEvent.IsAnimEnd);
+#endif
+
+        operationImg.sprite = operationSp[0];
+        operationImg.gameObject.SetActive(true);
+
+        while (index + 1 != operationSp.Length)
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                index++;
+                operationImg.sprite = operationSp[index];
+            }
+            yield return null;
+        }
+
+        yield return new WaitWhile(() => index + 1 != operationSp.Length);
+
+        isFirst = false;
+
+        operationImg.gameObject.SetActive(false);
+
     }
 
     /// <summary>
@@ -251,6 +276,6 @@ public class TimeCounter : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         Time.timeScale = 1;
-        FadeManager.Instance.LoadSpriteScene("gameOver", 0, false);
+        FadeManager.Instance.LoadSpriteScene("gameOver", 0.5f, false);
     }
 }
