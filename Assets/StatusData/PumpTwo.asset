@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: PumpTwo
   m_EditorClassIdentifier: 
   hp: 200
-  pow: 50
+  pow: 10
   attackInterval: 1

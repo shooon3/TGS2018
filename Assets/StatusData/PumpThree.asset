@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: PumpThree
   m_EditorClassIdentifier: 
   hp: 100
-  pow: 75
+  pow: 30
   attackInterval: 1

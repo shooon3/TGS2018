@@ -1,24 +1,16 @@
 fileFormatVersion: 2
-guid: b67e3dca5689b0e409c5da135a08371d
-timeCreated: 1530161869
+guid: d82e6d19cd8064d4681d3232839a47ed
+timeCreated: 1530164519
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
-    100002: hatake_kanban
-    100004: i
     400000: //RootNode
-    400002: hatake_kanban
-    400004: i
     2100000: 'Material #3'
-    2100002: 'Material #2'
-    2300000: hatake_kanban
-    2300002: i
-    3300000: hatake_kanban
-    3300002: i
-    4300000: hatake_kanban
-    4300002: i
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Box054
   externalObjects: {}
   materials:
     importMaterials: 1

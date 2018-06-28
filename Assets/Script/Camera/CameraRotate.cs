@@ -30,6 +30,9 @@ public class CameraRotate : MonoBehaviour {
 
     public TimeCounter counter;
 
+    [Header("パンプキング")]
+    public GameObject pumpking;
+
     bool isFirst = true;
 
     int holeInfectionCount = 0;
@@ -69,6 +72,8 @@ public class CameraRotate : MonoBehaviour {
 
         camAngle.y += 120;
 
+        
+
         type++;
     }
 
@@ -87,40 +92,11 @@ public class CameraRotate : MonoBehaviour {
     {
         float step = speed * Time.deltaTime;
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(camAngle.x, camAngle.y, camAngle.z), step);
+        pumpking.transform.rotation = Quaternion.Slerp(pumpking.transform.rotation, Quaternion.Euler(pumpking.transform.position.x, camAngle.y, pumpking.transform.position.z), step);
     }
 
     void InfectionCheck()
     {
-        //if (holeInf[0].AllInfection() && holeInfectionCount == 0)
-        //{
-        //    holeInfectionCount++;
-        //    clearImg.sprite = clearSp[0];
-        //    clearImg.gameObject.SetActive(true);
-
-        //    ButtonDisplay(true);
-
-        //    StartCoroutine(WaitTime());
-        //}
-        //else if(holeInf[1].AllInfection() && holeInfectionCount == 1)
-        //{
-        //    holeInfectionCount++;
-        //    clearImg.sprite = clearSp[1];
-        //    clearImg.gameObject.SetActive(true);
-
-        //    ButtonDisplay(true);
-
-        //    StartCoroutine(WaitTime());
-        //}
-        //else if(holeInf[2].AllInfection() && holeInfectionCount == 2)
-        //{
-        //    clearImg.sprite = clearSp[2];
-        //    clearImg.gameObject.SetActive(true);
-
-        //    ButtonDisplay(true);
-
-        //    StartCoroutine(WaitTime(true));
-        //}
-
         for(int i = 0; i < holeInf.Length; i++)
         {
             if(holeInf[i].AllInfection() && holeInfectionCount == i)

@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: b67e3dca5689b0e409c5da135a08371d
-timeCreated: 1530161869
+guid: d15a1bdaf15b5ef41950cf4b4920d974
+timeCreated: 1530164576
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: hatake_kanban
+    100000: hatake_kanban
+    100002: //RootNode
     100004: i
-    400000: //RootNode
-    400002: hatake_kanban
+    400000: hatake_kanban
+    400002: //RootNode
     400004: i
     2100000: 'Material #3'
     2100002: 'Material #2'
