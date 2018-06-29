@@ -22,6 +22,8 @@ public class BomCount : MonoBehaviour {
 
     public Text bombCountText;
 
+    public TimeCounter counter;
+
     const int ConvertionConstant = 65248;
 
     BomType bomType;
@@ -49,6 +51,7 @@ public class BomCount : MonoBehaviour {
     /// </summary>
     public void AddBom(BomType type)
     {
+        if (counter.IsStart == false) return;
         bomList.Add(type);
     }
 

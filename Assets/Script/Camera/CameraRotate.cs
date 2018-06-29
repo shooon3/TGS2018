@@ -23,6 +23,9 @@ public class CameraRotate : MonoBehaviour {
     [Header("ボタン"),NamedArrayAttribute(new string[] {"右のボタン","左のボタン" })]
     public Button[] button;
 
+    [Header("ボタンのスプライト"),NamedArrayAttribute(new string[] {"じゃがいも","だいこん","とうがらし" })]
+    public Sprite[] buttonSp;
+
     public HoleType HoleType { get; private set; }
 
     [Header("畑"), NamedArrayAttribute(new string[] {"じゃがいも","だいこん","とうがらし" })]
@@ -62,6 +65,41 @@ public class CameraRotate : MonoBehaviour {
         HoleTypeSet();
 
         HoleCamButton();
+
+        ButtonSpChange();
+    }
+
+    void ButtonSpChange()
+    {
+        switch(rightType)
+        {
+            case HoleType._potato:
+                button[0].image.sprite = buttonSp[0];
+                break;
+
+            case HoleType._radish:
+                button[0].image.sprite = buttonSp[1];
+                break;
+
+            case HoleType._pepper:
+                button[0].image.sprite = buttonSp[2];
+                break;
+        }
+
+        switch (leftType)
+        {
+            case HoleType._potato:
+                button[1].image.sprite = buttonSp[0];
+                break;
+
+            case HoleType._radish:
+                button[1].image.sprite = buttonSp[1];
+                break;
+
+            case HoleType._pepper:
+                button[1].image.sprite = buttonSp[2];
+                break;
+        }
     }
 
     public void RightButton()
@@ -110,6 +148,8 @@ public class CameraRotate : MonoBehaviour {
                 isFirst = true;
 
                 StartCoroutine(WaitTime());
+
+                counter.IsStart = false;
             }
         }
     }
@@ -146,11 +186,8 @@ public class CameraRotate : MonoBehaviour {
     /// <returns></returns>
     IEnumerator WaitTime(bool isFinish = false)
     {
-        counter.IsStart = false;
-
         yield return new WaitForSeconds(3.0f);
 
-        counter.IsStart = true;
         clearImg.gameObject.SetActive(false);
 
         if (isFinish == false) yield break;
