@@ -566,7 +566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 286f9edc997bca945a95fb0b4c42767d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  status: {fileID: 11400000, guid: bb4d4fa8d21167c45941c414a0c6f791, type: 2}
+  status: {fileID: 11400000, guid: 27d9facbe60bbe448aed01d5dceff610, type: 2}
   hp: 0
   InfectionEnemy: {fileID: 0}
   attackEffect: {fileID: 1333032243977184, guid: 3ddc8a961c76a4c458de57de98376745,

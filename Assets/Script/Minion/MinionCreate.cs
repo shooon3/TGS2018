@@ -148,6 +148,10 @@ public class MinionCreate : MonoBehaviour {
         {
             pumpRender.sprite = pumpkinsSp[4];
         }
+        else
+        {
+            pumpRender.sprite = pumpkinsSp[flickIndex];
+        }
 
         if (dataLis.Count < 0) return;
 
@@ -161,6 +165,11 @@ public class MinionCreate : MonoBehaviour {
                 dataLis.Remove(dataLis[i]);
                 continue;
             }
+        }
+
+        if(Input.GetButtonUp("Fire1"))
+        {
+            FlickInitialize();
         }
 
     }
@@ -222,6 +231,8 @@ public class MinionCreate : MonoBehaviour {
     /// </summary>
     void Flick()
     {
+        if (bomCount.NowBomCount() == 0) return;
+
         switch (flickState)
         {
             case FlickState.Right:
@@ -296,10 +307,14 @@ public class MinionCreate : MonoBehaviour {
         {
             pumpkinParent.SetActive(false);
 
-            //rayの生成
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit = new RaycastHit();
 
+            //#if UNITY_EDITOR
+            //            //rayの生成
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //#else
+            //Ray ray = Camera.main.ScreenPointToRay(Input.touches[0].position);
+//#endif
+            RaycastHit hit;
             //rayと衝突していなかったら以降の処理をしない
             if (Physics.Raycast(ray, out hit,layerMask) == false)
             {
@@ -367,6 +382,7 @@ public class MinionCreate : MonoBehaviour {
         {
             attackPumpkin = Instantiate(pumpkinPre, position, Quaternion.identity, parentObj.transform);
         }
+
         StatusSet(createPumpkin);
 
         Vector3 effectOffset = new Vector3(position.x, position.y + 4.0f, position.z);
@@ -381,7 +397,6 @@ public class MinionCreate : MonoBehaviour {
         //見た目だけのパンプキンを生成
         for (int i = 1; i < createPumpkin; i++)
         {
-
             if (isBossAttack)
             {
                 x = Random.Range(position.x - size.x / 2, position.x + size.x / 2);

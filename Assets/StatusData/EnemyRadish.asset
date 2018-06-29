@@ -9,8 +9,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c70e59ec39667254d9df111a1202ce8e, type: 3}
-  m_Name: RedPepper
+  m_Name: EnemyRadish
   m_EditorClassIdentifier: 
-  hp: 3000
-  pow: 200
-  attackInterval: 5
+  hp: 400
+  pow: 30
+  attackInterval: 0.5

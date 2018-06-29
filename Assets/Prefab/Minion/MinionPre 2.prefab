@@ -1288,7 +1288,8 @@ MonoBehaviour:
     type: 2}
   infectionEffect: {fileID: 1686519846228640, guid: 075a5a54831888f4e8d70b1000e437a3,
     type: 2}
-  deadEffect: {fileID: 1754556744414556, guid: 457ed7d2c6a01e24997c74e21e74a408, type: 2}
+  deadEffect: {fileID: 1655894821066018, guid: eb1bdcb288622334eb156f0580fbcef8, type: 2}
+  near: {fileID: 0}
 --- !u!114 &114977221457563906
 MonoBehaviour:
   m_ObjectHideFlags: 1

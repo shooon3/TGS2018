@@ -53,13 +53,11 @@ public class CameraRotate : MonoBehaviour {
     {
         AudioManager.Instance.PlayBGM("gameBGM");
         camAngle = transform.localEulerAngles;
-
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-
         RotationCam();
         InfectionCheck();
         HoleTypeSet();
@@ -110,8 +108,6 @@ public class CameraRotate : MonoBehaviour {
 
         camAngle.y += 120;
 
-        
-
         type++;
     }
 
@@ -147,7 +143,8 @@ public class CameraRotate : MonoBehaviour {
 
                 isFirst = true;
 
-                StartCoroutine(WaitTime());
+                if (i != holeInf.Length - 1) StartCoroutine(WaitTime());
+                else StartCoroutine(WaitTime(true));
 
                 counter.IsStart = false;
             }
@@ -159,13 +156,15 @@ public class CameraRotate : MonoBehaviour {
     /// </summary>
     void HoleCamButton()
     {
-        for(int i = 0; i < holeInf.Length; i++)
+        for (int i = 0; i < holeInf.Length; i++)
         {
-            if(holeInfectionCount == i && (int)HoleType == i && !holeInf[i].AllInfection() && isFirst)
+            if (holeInfectionCount == i && (int)HoleType == i && !holeInf[i].AllInfection() && isFirst)
             {
+
                 StartCoroutine(counter.StartCount());
-                ButtonDisplay(false);
                 isFirst = false;
+                ButtonDisplay(false);
+
             }
         }
     }
@@ -176,7 +175,7 @@ public class CameraRotate : MonoBehaviour {
     /// <param name="isDisplay"></param>
     void ButtonDisplay(bool isDisplay)
     {
-        button[0].gameObject.SetActive(isDisplay);
+        if (HoleType != HoleType._potato) button[0].gameObject.SetActive(isDisplay);
         button[1].gameObject.SetActive(isDisplay);
     }
 

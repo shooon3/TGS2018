@@ -16,7 +16,7 @@ public class Pose : MonoBehaviour
 
     public Animator animator;//Pauseアニメーションを選択
 
-    //各ボタン
+    ////各ボタン
     public GameObject LeftBtn;//左の畑へ
     public GameObject RightBtn;//右の畑へ
 
@@ -74,8 +74,8 @@ public class Pose : MonoBehaviour
             filterImage.gameObject.SetActive(true);
             animator.SetBool("PauseShot", true);
             animator.SetBool("PauseCancel", false);
-            
-            //畑の移動ボタン表示Off
+
+            ////畑の移動ボタン表示Off
             LeftBtn.SetActive(false);
             RightBtn.SetActive(false);
 
@@ -141,8 +141,8 @@ public class Pose : MonoBehaviour
     {
         //ボタンの無効化を解除
         poseButton.interactable = true;
-        LeftBtn.SetActive(true);
-        RightBtn.SetActive(true);
+        //LeftBtn.SetActive(true);
+        //RightBtn.SetActive(true);
 
         //タイムスケールを無視する
         animator.updateMode = AnimatorUpdateMode.UnscaledTime;

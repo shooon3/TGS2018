@@ -902,7 +902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f3760545b5a604ea4140ef92132a7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  status: {fileID: 11400000, guid: ad893ed4815631f4391805e92e3f1640, type: 2}
+  status: {fileID: 11400000, guid: fe44e4b1af4197e42ac5dbe7f7491f49, type: 2}
   hp: 0
   InfectionEnemy: {fileID: 0}
   deadEffect: {fileID: 1754556744414556, guid: 457ed7d2c6a01e24997c74e21e74a408, type: 2}

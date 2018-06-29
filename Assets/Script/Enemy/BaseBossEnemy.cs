@@ -90,6 +90,8 @@ public abstract class BaseBossEnemy : BaseEnemy {
             Vector3 vec = new Vector3(transform.position.x, transform.position.y + 20.0f, transform.position.z);
             Instantiate(deadEffect, vec, Quaternion.identity);
 
+            AudioManager.Instance.PlaySE("PumpkinDead");
+
             Destroy(gameObject);
         }
     }
@@ -166,8 +168,10 @@ public abstract class BaseBossEnemy : BaseEnemy {
     {
         if (isFirst)
         {
-            shakeCam.DoShake(2.0f, 2.0f);
+            shakeCam.DoShake(3.0f, 2.0f);
             isFirst = false;
+
+            AudioManager.Instance.PlaySE("BossPOP");
 
             StartCoroutine(WaitAnimEnd("pop", time));
         }

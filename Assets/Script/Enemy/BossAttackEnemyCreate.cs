@@ -46,7 +46,7 @@ public class BossAttackEnemyCreate : MonoBehaviour {
 
         time += Time.deltaTime;
 
-        int maxCycle = 30;
+        int maxCycle = 20;
         int minCycle = 5;
 
         if (bombCount.NowBomCount() == 0)

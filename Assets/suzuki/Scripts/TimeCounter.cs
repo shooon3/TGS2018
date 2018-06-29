@@ -265,7 +265,8 @@ public class TimeCounter : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         Time.timeScale = 1;
-        SceneManager.LoadScene((int)GameMode.Mode.RESULT);
+        //SceneManager.LoadScene((int)GameMode.Mode.RESULT);
+        FadeManager.Instance.LoadSpriteScene("Result", 1.0f, false);
     }
 
     /// <summary>
@@ -276,6 +277,6 @@ public class TimeCounter : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         Time.timeScale = 1;
-        FadeManager.Instance.LoadSpriteScene("gameOver", 0.5f, false);
+        FadeManager.Instance.LoadSpriteScene("gameOver", 1.0f, false);
     }
 }

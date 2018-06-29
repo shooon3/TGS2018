@@ -1297,7 +1297,8 @@ MonoBehaviour:
   attackEffect: {fileID: 1238013672440822, guid: 37fde065ba422bd4d829e97418bd90d9,
     type: 2}
   infectionEffect: {fileID: 0}
-  deadEffect: {fileID: 1754556744414556, guid: 457ed7d2c6a01e24997c74e21e74a408, type: 2}
+  deadEffect: {fileID: 1655894821066018, guid: eb1bdcb288622334eb156f0580fbcef8, type: 2}
+  near: {fileID: 0}
 --- !u!137 &137953875133417442
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
