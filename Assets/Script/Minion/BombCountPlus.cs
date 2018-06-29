@@ -19,6 +19,8 @@ public class BombCountPlus : MonoBehaviour {
     GameObject pumpObj;
     GameObject plusEffect;
 
+    TimeCounter counter;
+
     float startTime;
     float createTimer;
     float diff;
@@ -30,6 +32,7 @@ public class BombCountPlus : MonoBehaviour {
         hole = GetComponent<Hole>();
 
         bomCount = FindObjectOfType<BomCount>();
+        counter = FindObjectOfType<TimeCounter>();
 
         createMgr = transform.parent.parent.GetComponent<CreateManager>();
     }
@@ -37,7 +40,7 @@ public class BombCountPlus : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (!hole.Infection) return;
+        if (!hole.Infection || counter.IsStart == false) return;
 
         if (isCreate)
         {

@@ -95,6 +95,8 @@ public class PumpAI : BaseVegetable
 
         Death();
 
+        NearTargetDis();
+
         near = NearTarget;
 
         if (type == PumpType._attack)
@@ -110,6 +112,18 @@ public class PumpAI : BaseVegetable
             {
                 Attack();
             }
+        }
+    }
+
+    void NearTargetDis()
+    {
+        if (NearTarget == null) return;
+
+        float dis = Vector3.Distance(transform.position, NearTarget.transform.position);
+
+        if(dis >= 10 && agent != null && agent.enabled && agent.isStopped)
+        {
+            agent.isStopped = false;
         }
     }
 
@@ -145,6 +159,7 @@ public class PumpAI : BaseVegetable
 
             //穴と自分の距離を測る
             float holeDis = Vector3.Distance(transform.position, nearHolePos);
+
             //敵と自分の距離をはかる
             float enemyDis = Vector3.Distance(transform.position, nearEnemyPos);
 

@@ -36,7 +36,7 @@ public class PumpkinMove : MonoBehaviour {
 
         animator = transform.GetChild(0).GetComponent<Animator>();
 
-        SerchMovePoint();
+        ai = leaderObj.GetComponent<PumpAI>();
 
         if (ai.type == PumpType._attack)
         {
@@ -54,6 +54,7 @@ public class PumpkinMove : MonoBehaviour {
         if (ai.type == PumpType._attack)
         {
             SetAnimaton();
+            SerchMovePoint();
 
             agent.SetDestination(moveTarget.transform.position);
 
@@ -64,7 +65,6 @@ public class PumpkinMove : MonoBehaviour {
 
     void SerchMovePoint()
     {
-        ai = leaderObj.GetComponent<PumpAI>();
         moveTarget = ai.NearTarget;
     }
 

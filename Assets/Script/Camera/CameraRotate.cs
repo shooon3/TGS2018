@@ -23,12 +23,18 @@ public class CameraRotate : MonoBehaviour {
     [Header("ボタン"),NamedArrayAttribute(new string[] {"右のボタン","左のボタン" })]
     public Button[] button;
 
+    [Header("ボタンのスプライト"),NamedArrayAttribute(new string[] {"じゃがいも","だいこん","とうがらし" })]
+    public Sprite[] buttonSp;
+
     public HoleType HoleType { get; private set; }
 
     [Header("畑"), NamedArrayAttribute(new string[] {"じゃがいも","だいこん","とうがらし" })]
     public HoleInfection[] holeInf;
 
     public TimeCounter counter;
+
+    [Header("パンプキング")]
+    public GameObject pumpking;
 
     bool isFirst = true;
 
@@ -59,6 +65,41 @@ public class CameraRotate : MonoBehaviour {
         HoleTypeSet();
 
         HoleCamButton();
+
+        ButtonSpChange();
+    }
+
+    void ButtonSpChange()
+    {
+        switch(rightType)
+        {
+            case HoleType._potato:
+                button[0].image.sprite = buttonSp[0];
+                break;
+
+            case HoleType._radish:
+                button[0].image.sprite = buttonSp[1];
+                break;
+
+            case HoleType._pepper:
+                button[0].image.sprite = buttonSp[2];
+                break;
+        }
+
+        switch (leftType)
+        {
+            case HoleType._potato:
+                button[1].image.sprite = buttonSp[0];
+                break;
+
+            case HoleType._radish:
+                button[1].image.sprite = buttonSp[1];
+                break;
+
+            case HoleType._pepper:
+                button[1].image.sprite = buttonSp[2];
+                break;
+        }
     }
 
     public void RightButton()
@@ -68,6 +109,8 @@ public class CameraRotate : MonoBehaviour {
         if (holeInfectionCount == 1 && rightType == HoleType._pepper) return;
 
         camAngle.y += 120;
+
+        
 
         type++;
     }
@@ -87,40 +130,11 @@ public class CameraRotate : MonoBehaviour {
     {
         float step = speed * Time.deltaTime;
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(camAngle.x, camAngle.y, camAngle.z), step);
+        pumpking.transform.rotation = Quaternion.Slerp(pumpking.transform.rotation, Quaternion.Euler(pumpking.transform.position.x, camAngle.y, pumpking.transform.position.z), step);
     }
 
     void InfectionCheck()
     {
-        //if (holeInf[0].AllInfection() && holeInfectionCount == 0)
-        //{
-        //    holeInfectionCount++;
-        //    clearImg.sprite = clearSp[0];
-        //    clearImg.gameObject.SetActive(true);
-
-        //    ButtonDisplay(true);
-
-        //    StartCoroutine(WaitTime());
-        //}
-        //else if(holeInf[1].AllInfection() && holeInfectionCount == 1)
-        //{
-        //    holeInfectionCount++;
-        //    clearImg.sprite = clearSp[1];
-        //    clearImg.gameObject.SetActive(true);
-
-        //    ButtonDisplay(true);
-
-        //    StartCoroutine(WaitTime());
-        //}
-        //else if(holeInf[2].AllInfection() && holeInfectionCount == 2)
-        //{
-        //    clearImg.sprite = clearSp[2];
-        //    clearImg.gameObject.SetActive(true);
-
-        //    ButtonDisplay(true);
-
-        //    StartCoroutine(WaitTime(true));
-        //}
-
         for(int i = 0; i < holeInf.Length; i++)
         {
             if(holeInf[i].AllInfection() && holeInfectionCount == i)
@@ -134,6 +148,8 @@ public class CameraRotate : MonoBehaviour {
                 isFirst = true;
 
                 StartCoroutine(WaitTime());
+
+                counter.IsStart = false;
             }
         }
     }
@@ -170,11 +186,8 @@ public class CameraRotate : MonoBehaviour {
     /// <returns></returns>
     IEnumerator WaitTime(bool isFinish = false)
     {
-        counter.IsStart = false;
-
         yield return new WaitForSeconds(3.0f);
 
-        counter.IsStart = true;
         clearImg.gameObject.SetActive(false);
 
         if (isFinish == false) yield break;

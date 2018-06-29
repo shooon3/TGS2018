@@ -596,6 +596,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: {fileID: 11400000, guid: c2e2f89f7bdf52e45a3da16494eba64f, type: 2}
   hp: 0
+  InfectionEnemy: {fileID: 1343472780148222, guid: 1efea2518523bc64987a7986b195b3b3,
+    type: 2}
 --- !u!135 &135681093278359866
 SphereCollider:
   m_ObjectHideFlags: 1

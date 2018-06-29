@@ -21,6 +21,8 @@ public abstract class BaseBossEnemy : BaseEnemy {
     public GameObject pumpking;
     public GameObject holeRange;
 
+    public GameObject deadEffect;
+
     //-----------------------------------------
     // protected
     //-----------------------------------------
@@ -85,6 +87,9 @@ public abstract class BaseBossEnemy : BaseEnemy {
     {
         if (IsDeath())
         {
+            Vector3 vec = new Vector3(transform.position.x, transform.position.y + 20.0f, transform.position.z);
+            Instantiate(deadEffect, vec, Quaternion.identity);
+
             Destroy(gameObject);
         }
     }

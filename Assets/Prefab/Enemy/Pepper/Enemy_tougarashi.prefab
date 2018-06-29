@@ -893,7 +893,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: {fileID: 11400000, guid: ad893ed4815631f4391805e92e3f1640, type: 2}
   hp: 0
-  InfectionEnemy: {fileID: 1343472780148222, guid: 1efea2518523bc64987a7986b195b3b3,
+  InfectionEnemy: {fileID: 1779549499687348, guid: 3bc46a40f5618154bb5a2041ac291d80,
     type: 2}
   AttackRange: 20
   particle: {fileID: 198751910999370162}

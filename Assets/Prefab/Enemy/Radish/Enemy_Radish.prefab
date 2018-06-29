@@ -568,7 +568,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: {fileID: 11400000, guid: c2e2f89f7bdf52e45a3da16494eba64f, type: 2}
   hp: 0
-  InfectionEnemy: {fileID: 1343472780148222, guid: 1efea2518523bc64987a7986b195b3b3,
+  InfectionEnemy: {fileID: 1072412460488188, guid: 59de00f7275cd4a49a2535dd1bfeb504,
     type: 2}
 --- !u!114 &114868805248490762
 MonoBehaviour:
