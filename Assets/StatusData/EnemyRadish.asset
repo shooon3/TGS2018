@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: EnemyRadish
   m_EditorClassIdentifier: 
   hp: 400
-  pow: 30
+  pow: 60
   attackInterval: 0.5

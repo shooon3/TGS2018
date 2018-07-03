@@ -599,7 +599,7 @@ MonoBehaviour:
   InfectionEnemy: {fileID: 0}
   attackEffect: {fileID: 1333032243977184, guid: 3ddc8a961c76a4c458de57de98376745,
     type: 2}
-  deadEffect: {fileID: 1754556744414556, guid: 457ed7d2c6a01e24997c74e21e74a408, type: 2}
+  deadEffect: {fileID: 1655894821066018, guid: eb1bdcb288622334eb156f0580fbcef8, type: 2}
 --- !u!135 &135456478698051494
 SphereCollider:
   m_ObjectHideFlags: 1

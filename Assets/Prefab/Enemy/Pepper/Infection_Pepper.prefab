@@ -905,7 +905,7 @@ MonoBehaviour:
   status: {fileID: 11400000, guid: fe44e4b1af4197e42ac5dbe7f7491f49, type: 2}
   hp: 0
   InfectionEnemy: {fileID: 0}
-  deadEffect: {fileID: 1754556744414556, guid: 457ed7d2c6a01e24997c74e21e74a408, type: 2}
+  deadEffect: {fileID: 1655894821066018, guid: eb1bdcb288622334eb156f0580fbcef8, type: 2}
   AttackRange: 20
   particle: {fileID: 198267312276752310}
 --- !u!114 &114986892176600212

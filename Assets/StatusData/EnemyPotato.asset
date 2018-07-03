@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: EnemyPotato
   m_EditorClassIdentifier: 
   hp: 250
-  pow: 20
+  pow: 50
   attackInterval: 1

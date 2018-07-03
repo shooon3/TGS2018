@@ -76,8 +76,8 @@ public class Pose : MonoBehaviour
             animator.SetBool("PauseCancel", false);
 
             ////畑の移動ボタン表示Off
-            LeftBtn.SetActive(false);
-            RightBtn.SetActive(false);
+            //LeftBtn.SetActive(false);
+            //RightBtn.SetActive(false);
 
             //タイムスケールを無視する
             animator.updateMode = AnimatorUpdateMode.UnscaledTime;

@@ -18,6 +18,9 @@ public class BossAttackEnemyCreate : MonoBehaviour {
 
     public HoleType type;
 
+    [Header("Maxの出現時間"),Range(10,30)]
+    public float createTime = 30;
+
     List<Transform> createPos = new List<Transform>();
 
     bool isCreate = false;
@@ -46,9 +49,10 @@ public class BossAttackEnemyCreate : MonoBehaviour {
 
         time += Time.deltaTime;
 
-        int maxCycle = 20;
-        int minCycle = 5;
+        int minCycle = 3;
 
+        //ゲームオーバー条件を追加
+        //ボムの数が０かつ、一つも感染した穴がなかったら
         if (bombCount.NowBomCount() == 0)
         {
             gameOverTime += Time.deltaTime;
@@ -57,11 +61,11 @@ public class BossAttackEnemyCreate : MonoBehaviour {
 
         if (gameOverTime > 10 && infection.IsAllKillVirus())
         {
-            createCycle = 5;
+            createCycle = minCycle;
         }
         else
         {
-            createCycle = Mathf.Max(maxCycle - bombCount.NowBomCount() * 0.5f, minCycle);
+            createCycle = Mathf.Max(createTime - (bombCount.NowBomCount() * 0.5f), minCycle);
         }
 
         if (time > createCycle)

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: EnemyPepper
   m_EditorClassIdentifier: 
   hp: 150
-  pow: 50
+  pow: 80
   attackInterval: 5

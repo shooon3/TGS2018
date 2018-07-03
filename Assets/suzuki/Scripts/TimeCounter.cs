@@ -109,7 +109,7 @@ public class TimeCounter : MonoBehaviour
 
 
             //クリア処理
-            if (Hole.enabled && Hole.AllInfection())    //クリアテキストがアクティブ
+            if (Hole.enabled && Hole.AllInfection() && IsClear == false)    //クリアテキストがアクティブ
             {
                 //clearText.SetActive(true);
                 //ステージクリア

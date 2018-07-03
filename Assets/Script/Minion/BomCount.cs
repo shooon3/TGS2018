@@ -63,6 +63,14 @@ public class BomCount : MonoBehaviour {
         bomList.RemoveAt(0);
     }
 
+    public void ClearAddBomb()
+    {
+        for (int i = 0; bomList.Count < 16; i++)
+        {
+            bomList.Add(BomType.normal);
+        }
+    }
+
     /// <summary>
     /// 次のボムの種類
     /// </summary>

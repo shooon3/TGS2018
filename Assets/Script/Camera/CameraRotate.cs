@@ -36,6 +36,8 @@ public class CameraRotate : MonoBehaviour {
     [Header("パンプキング")]
     public GameObject pumpking;
 
+    public BomCount count;
+
     bool isFirst = true;
 
     int holeInfectionCount = 0;
@@ -136,6 +138,9 @@ public class CameraRotate : MonoBehaviour {
             if(holeInf[i].AllInfection() && holeInfectionCount == i)
             {
                 holeInfectionCount++;
+
+                count.ClearAddBomb();
+
                 clearImg.sprite = clearSp[i];
                 clearImg.gameObject.SetActive(true);
 
@@ -160,7 +165,6 @@ public class CameraRotate : MonoBehaviour {
         {
             if (holeInfectionCount == i && (int)HoleType == i && !holeInf[i].AllInfection() && isFirst)
             {
-
                 StartCoroutine(counter.StartCount());
                 isFirst = false;
                 ButtonDisplay(false);
