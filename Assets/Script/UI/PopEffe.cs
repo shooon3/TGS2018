@@ -11,7 +11,7 @@ public class PopEffe : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        StartCoroutine(Pop);
+        StartCoroutine("Pop");
         a.SetActive(false);
         b.SetActive(false);
         c.SetActive(false);
