@@ -25,6 +25,8 @@ public class PlusSprite : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+
 		timer += Time.deltaTime;
 
         if (timer >= 0.7f)
