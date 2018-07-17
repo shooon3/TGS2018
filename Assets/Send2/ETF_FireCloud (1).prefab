@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4527835698333322}
   - component: {fileID: 198890838022839302}
+  - component: {fileID: 114865289372903168}
   - component: {fileID: 199937344326653394}
   m_Layer: 0
   m_Name: ETF_FireCloud (1)
@@ -34,13 +35,24 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1626837155538290}
-  m_LocalRotation: {x: -0.7071069, y: 0, z: 0, w: 0.70710677}
+  m_LocalRotation: {x: -0.7071069, y: -0, z: -0, w: 0.70710677}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.33333334, y: 0.3333335, z: 0.3333335}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114865289372903168
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1626837155538290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8129c577e7cf0746988704d49c95fe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198890838022839302
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -48,12 +60,12 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1626837155538290}
   serializedVersion: 5
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -101,14 +113,14 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 476905527
+  randomSeed: -211751689
   InitialModule:
     serializedVersion: 3
     enabled: 1
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 0.5
       minScalar: 2
       maxCurve:
         serializedVersion: 2
@@ -240,9 +252,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     startSize:
       serializedVersion: 2
-      minMaxState: 3
+      minMaxState: 0
       scalar: 3
-      minScalar: 1
+      minScalar: 3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -269,7 +281,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeY:
       serializedVersion: 2
-      minMaxState: 3
+      minMaxState: 0
       scalar: 1
       minScalar: 0
       maxCurve:
@@ -310,7 +322,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 3
+      minMaxState: 0
       scalar: 1
       minScalar: 0
       maxCurve:
@@ -752,7 +764,7 @@ ParticleSystem:
       cycleCount: 1
       repeatInterval: 0.01
     - serializedVersion: 2
-      time: 0.5
+      time: 0.0001
       countCurve:
         serializedVersion: 2
         minMaxState: 3
@@ -1063,18 +1075,18 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.9098039, g: 0.7372549, b: 0, a: 0}
-        key1: {r: 1, g: 0.69411767, b: 0, a: 1}
-        key2: {r: 0.8235294, g: 0.30980393, b: 0, a: 1}
-        key3: {r: 0.53333336, g: 0, b: 0, a: 0}
-        key4: {r: 0.11764706, g: 0, b: 0, a: 0}
+        key0: {r: 0.11764706, g: 0, b: 0, a: 0}
+        key1: {r: 0.53333336, g: 0, b: 0, a: 1}
+        key2: {r: 0.99264705, g: 0.400743, b: 0.043793235, a: 1}
+        key3: {r: 1, g: 0.21323532, b: 0.21323532, a: 0}
+        key4: {r: 1, g: 0, b: 0.64137936, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
-        ctime1: 8096
+        ctime1: 7710
         ctime2: 21588
-        ctime3: 41634
+        ctime3: 43562
         ctime4: 65535
         ctime5: 0
         ctime6: 0
