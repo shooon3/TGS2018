@@ -28,7 +28,6 @@ public class PumpAI : BaseVegetable
 
     public GameObject deadEffect;
 
-    public GameObject near;
 
     //-----------------------------------------
     // private
@@ -96,8 +95,6 @@ public class PumpAI : BaseVegetable
         Death();
 
         NearTargetDis();
-
-        near = NearTarget;
 
         if (type == PumpType._attack)
         {

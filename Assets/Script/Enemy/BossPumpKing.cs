@@ -29,7 +29,7 @@ public class BossPumpKing : BaseVegetable {
         if (IsDamage())
         {
             imageAnim.SetBool("IsDamage", true);
-            shakeCam.DoShake(0.5f, 0.5f);
+            //shakeCam.DoShake(0.5f, 0.5f);
         }
         else imageAnim.SetBool("IsDamage", false);
     }
