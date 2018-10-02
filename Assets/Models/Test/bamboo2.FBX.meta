@@ -1,0 +1,176 @@
+fileFormatVersion: 2
+guid: e2a912b459cbf5d49b9071b8ae3b8cf6
+timeCreated: 1538471092
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: bamboo01
+    100002: bamboo02
+    100004: bamboo03
+    100006: bamboo04
+    100008: bamboo05
+    100010: bamboo06
+    100012: bamboo07
+    100014: bamboo08
+    100016: bamboo17
+    100018: //RootNode
+    100020: himo007
+    100022: himo008
+    100024: himo01
+    100026: himo02
+    100028: himo03
+    100030: himo04
+    100032: himo05
+    100034: himo06
+    400000: bamboo01
+    400002: bamboo02
+    400004: bamboo03
+    400006: bamboo04
+    400008: bamboo05
+    400010: bamboo06
+    400012: bamboo07
+    400014: bamboo08
+    400016: bamboo17
+    400018: //RootNode
+    400020: himo007
+    400022: himo008
+    400024: himo01
+    400026: himo02
+    400028: himo03
+    400030: himo04
+    400032: himo05
+    400034: himo06
+    2100000: 'Material #5'
+    2100002: 'Material #4'
+    2300000: bamboo01
+    2300002: bamboo02
+    2300004: bamboo03
+    2300006: bamboo04
+    2300008: bamboo05
+    2300010: bamboo06
+    2300012: bamboo07
+    2300014: bamboo08
+    2300016: bamboo17
+    2300018: himo007
+    2300020: himo008
+    2300022: himo01
+    2300024: himo02
+    2300026: himo03
+    2300028: himo04
+    2300030: himo05
+    2300032: himo06
+    3300000: bamboo01
+    3300002: bamboo02
+    3300004: bamboo03
+    3300006: bamboo04
+    3300008: bamboo05
+    3300010: bamboo06
+    3300012: bamboo07
+    3300014: bamboo08
+    3300016: bamboo17
+    3300018: himo007
+    3300020: himo008
+    3300022: himo01
+    3300024: himo02
+    3300026: himo03
+    3300028: himo04
+    3300030: himo05
+    3300032: himo06
+    4300000: bamboo01
+    4300002: bamboo02
+    4300004: bamboo03
+    4300006: bamboo04
+    4300008: bamboo05
+    4300010: bamboo06
+    4300012: bamboo07
+    4300014: bamboo08
+    4300016: bamboo17
+    4300018: himo01
+    4300020: himo02
+    4300022: himo03
+    4300024: himo04
+    4300026: himo05
+    4300028: himo06
+    4300030: himo007
+    4300032: himo008
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
