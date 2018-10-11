@@ -145,7 +145,7 @@ public class Pose : MonoBehaviour
         //RightBtn.SetActive(true);
 
         //タイムスケールを無視する
-        animator.updateMode = AnimatorUpdateMode.UnscaledTime;
+        //animator.updateMode = AnimatorUpdateMode.UnscaledTime;
 
         //Pauseメニュー撤退
         animator.SetBool("PauseCancel", true);
