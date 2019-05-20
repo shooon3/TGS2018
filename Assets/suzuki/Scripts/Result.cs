@@ -16,7 +16,7 @@ public class Result : MonoBehaviour
     [SerializeField]
     int intervalTime;
     [SerializeField]
-    int[] rank = { 90, 150, 210 };  //ランク時間割(秒)
+    int[] rank = { 60, 90, 150 };  //ランク時間割(秒)
     [SerializeField]
     string[] RankStr = { "S", "A", "B", "C" };
 

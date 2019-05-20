@@ -96,6 +96,9 @@ public abstract class BaseBossEnemy : BaseEnemy {
         }
     }
 
+    /// <summary>
+    /// 動く目的地を変更する
+    /// </summary>
     protected virtual void MovePointChange()
     {
         if (state == ActionState._attack && NearTarget != pumpking)
@@ -166,6 +169,7 @@ public abstract class BaseBossEnemy : BaseEnemy {
     /// </summary>
     protected void StartShake(float time = 0)
     {
+        //一番最初のみ演出
         if (isFirst)
         {
             shakeCam.DoShake(3.0f, 2.0f);
@@ -205,6 +209,9 @@ public abstract class BaseBossEnemy : BaseEnemy {
         }
     }
 
+    /// <summary>
+    /// アニメーションを設定
+    /// </summary>
     protected override void SetAnimaton()
     {
         if (animator == null) return;

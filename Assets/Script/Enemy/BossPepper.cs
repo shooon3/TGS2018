@@ -90,6 +90,10 @@ public class BossPepper : BaseBossEnemy {
     {
         if (NearTarget == null) return;
 
+        Hole checkHole = NearTarget.GetComponent<Hole>();
+
+        if (checkHole != null) return;
+
         Vector3 pos = transform.position;
         Vector3 targetPos = NearTarget.transform.position;
 

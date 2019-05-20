@@ -42,6 +42,7 @@ public class EnemyPepper : BaseEnemy {
 
         if (isAttack) Attack();
     }
+
     /// <summary>
     /// 攻撃処理
     /// </summary>
@@ -53,6 +54,9 @@ public class EnemyPepper : BaseEnemy {
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     void EffectPlay()
     {
         if (animEffect.IsAnimAttackStart && isPepperAnimFirst)

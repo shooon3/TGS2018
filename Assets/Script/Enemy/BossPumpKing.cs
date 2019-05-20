@@ -8,6 +8,8 @@ public class BossPumpKing : BaseVegetable {
 
     public Image damageImage;
 
+    public Image hpBar;
+
     CameraShake shakeCam;
 
     Animator imageAnim;
@@ -26,6 +28,9 @@ public class BossPumpKing : BaseVegetable {
     protected override void DoUpdate()
     {
         if (HP <= 0) return;
+
+        hpBar.fillAmount = (float)HP / (float)status.hp;
+
         if (IsDamage())
         {
             imageAnim.SetBool("IsDamage", true);

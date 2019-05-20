@@ -79,8 +79,6 @@ public class BaseEnemy : BaseVegetable {
 
         if (isTargetAlive)
         {
-            //NearTarget = serchTarget.serchChildTag(transform.position, pumpkinTransform, "Minion",true);
-
             NearTarget = serchTarget.serchTag(transform.position, "Minion");
         }
     }

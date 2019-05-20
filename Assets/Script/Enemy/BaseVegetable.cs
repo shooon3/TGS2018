@@ -107,7 +107,6 @@ public abstract class BaseVegetable : MonoBehaviour {
         DoStart();
 
         isAnimFirst = true;
-        //IsStop = true;
     }
 
     public void Update()
@@ -167,8 +166,6 @@ public abstract class BaseVegetable : MonoBehaviour {
 
         if (agent != null && agent.enabled)
         {
-
-            //agent.SetDestination(targetTransform.position);
             IsMove = false;
         }
     }

@@ -92,7 +92,7 @@ public class TimeCounter : MonoBehaviour
         if (!IsClear || !IsGameOver)
         {
             //時間経過
-            timer = Time.time - startTime;                  //経過時間を計算
+            if(IsStart) timer += Time.deltaTime;                  //経過時間を計算
             int minuteTime = Mathf.FloorToInt(timer) / 60;  //分を割り出す
 
             //経過時間を表示

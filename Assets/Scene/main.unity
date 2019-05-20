@@ -398,7 +398,7 @@ RectTransform:
   m_LocalScale: {x: 1.0000023, y: 1.0000023, z: 1.0000023}
   m_Children: []
   m_Father: {fileID: 1708684665}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1572,7 +1572,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.44
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
 --- !u!114 &94583643
 MonoBehaviour:
@@ -2486,7 +2486,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1708684665}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4312,7 +4312,7 @@ RectTransform:
   m_Children:
   - {fileID: 1280509232}
   m_Father: {fileID: 1708684665}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -8298,7 +8298,7 @@ Transform:
   - {fileID: 1276780592}
   - {fileID: 56628508}
   m_Father: {fileID: 1708684665}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &264297509
 Animator:
@@ -8379,6 +8379,74 @@ Transform:
   m_Father: {fileID: 1468691504}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &271655923
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 271655924}
+  - component: {fileID: 271655926}
+  - component: {fileID: 271655925}
+  m_Layer: 5
+  m_Name: Image (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &271655924
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 271655923}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.70681095, y: 0.29297295, z: 0.57121646}
+  m_Children: []
+  m_Father: {fileID: 1148923404}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 13.449303, y: -16.400238}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &271655925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 271655923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: d9493fed0f452784c82cf262e78409c8, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 0
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &271655926
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 271655923}
 --- !u!1 &273921817
 GameObject:
   m_ObjectHideFlags: 0
@@ -8440,7 +8508,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.45
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
 --- !u!114 &273921821
 MonoBehaviour:
@@ -10493,7 +10561,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.52
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
 --- !u!114 &395480036
 MonoBehaviour:
@@ -12439,7 +12507,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.46
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
 --- !u!114 &489349824
 MonoBehaviour:
@@ -12619,7 +12687,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.45
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
 --- !u!114 &499903537
 MonoBehaviour:
@@ -12860,7 +12928,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.52
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
 --- !u!114 &507088961
 MonoBehaviour:
@@ -13621,6 +13689,11 @@ Prefab:
       propertyPath: m_Radius
       value: 0.83
       objectReference: {fileID: 0}
+    - target: {fileID: 114475045675578588, guid: 35f4a8065845ede4095364c4b8b8c7dd,
+        type: 2}
+      propertyPath: hpBar
+      value: 
+      objectReference: {fileID: 271655925}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35f4a8065845ede4095364c4b8b8c7dd, type: 2}
   m_IsPrefabParent: 0
@@ -15066,7 +15139,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4786502385099000, guid: 61a53687abf5ccf4c91a984b6b33357f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -307.4
+      value: -286
       objectReference: {fileID: 0}
     - target: {fileID: 4786502385099000, guid: 61a53687abf5ccf4c91a984b6b33357f, type: 2}
       propertyPath: m_LocalPosition.z
@@ -15091,6 +15164,14 @@ Prefab:
     - target: {fileID: 4786502385099000, guid: 61a53687abf5ccf4c91a984b6b33357f, type: 2}
       propertyPath: m_RootOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4693145817295362, guid: 61a53687abf5ccf4c91a984b6b33357f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 418.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4121025724275940, guid: 61a53687abf5ccf4c91a984b6b33357f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 419
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 61a53687abf5ccf4c91a984b6b33357f, type: 2}
@@ -15653,7 +15734,7 @@ RectTransform:
   m_LocalScale: {x: 10.09112, y: 4.749807, z: 1}
   m_Children: []
   m_Father: {fileID: 1708684665}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -15673,7 +15754,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -16578,7 +16659,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.45
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
 --- !u!114 &708199173
 MonoBehaviour:
@@ -17124,11 +17205,11 @@ RectTransform:
   m_LocalScale: {x: 2, y: 5, z: 0.9999932}
   m_Children: []
   m_Father: {fileID: 1708684665}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 280, y: -311}
+  m_AnchoredPosition: {x: 280, y: -245}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &745722854
@@ -18105,11 +18186,11 @@ RectTransform:
   m_LocalScale: {x: 2, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 1708684665}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -280, y: -311}
+  m_AnchoredPosition: {x: -280, y: -245}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &803934056
@@ -18418,7 +18499,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.46
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
 --- !u!114 &831528457
 MonoBehaviour:
@@ -23370,7 +23451,7 @@ MonoBehaviour:
   infectionImage: {fileID: 1099608394133204, guid: 21f8a78ae8fffa8479d51a36f34bca6a,
     type: 2}
   infImgarentPos: {fileID: 1275974953}
-  createTime: 20
+  createTime: 15
 --- !u!114 &930749085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23686,7 +23767,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.52
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
 --- !u!114 &942414947
 MonoBehaviour:
@@ -23932,7 +24013,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.52
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
 --- !u!114 &944448056
 MonoBehaviour:
@@ -24299,7 +24380,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.52
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
 --- !u!114 &974046297
 MonoBehaviour:
@@ -25465,7 +25546,7 @@ RectTransform:
   m_LocalScale: {x: 2, y: 1, z: 0.99999386}
   m_Children: []
   m_Father: {fileID: 1708684665}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: -0.13700001, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -26841,6 +26922,75 @@ Transform:
   m_Father: {fileID: 1722383122}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1148923403
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1148923404}
+  - component: {fileID: 1148923406}
+  - component: {fileID: 1148923405}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1148923404
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1148923403}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2.1906538, y: 0.74665713, z: 0.21471955}
+  m_Children:
+  - {fileID: 271655924}
+  m_Father: {fileID: 1708684665}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5984927}
+  m_AnchoredPosition: {x: -2, y: -352}
+  m_SizeDelta: {x: 100, y: 29}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1148923405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1148923403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300002, guid: d9493fed0f452784c82cf262e78409c8, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &1148923406
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1148923403}
 --- !u!1 &1154011506
 GameObject:
   m_ObjectHideFlags: 0
@@ -27419,7 +27569,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.44
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
 --- !u!114 &1180833838
 MonoBehaviour:
@@ -27629,7 +27779,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1708684665}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -28149,7 +28299,7 @@ RectTransform:
   m_LocalScale: {x: 14.690413, y: 5.1137595, z: 5.1137595}
   m_Children: []
   m_Father: {fileID: 1708684665}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -28904,7 +29054,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.52
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
 --- !u!114 &1259426088
 MonoBehaviour:
@@ -29054,7 +29204,7 @@ RectTransform:
   m_LocalScale: {x: 1.0000023, y: 1.0000023, z: 1.0000023}
   m_Children: []
   m_Father: {fileID: 1708684665}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -29090,7 +29240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -30082,7 +30232,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.52
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
 --- !u!114 &1286353351
 MonoBehaviour:
@@ -30633,7 +30783,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.52
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
 --- !u!114 &1313134244
 MonoBehaviour:
@@ -31744,7 +31894,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.46
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
 --- !u!114 &1374628529
 MonoBehaviour:
@@ -32824,7 +32974,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.52
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
 --- !u!114 &1449101909
 MonoBehaviour:
@@ -33186,7 +33336,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.52
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
 --- !u!114 &1475778926
 MonoBehaviour:
@@ -33613,7 +33763,7 @@ RectTransform:
   m_LocalScale: {x: 11.89637, y: 7.236355, z: 7.236355}
   m_Children: []
   m_Father: {fileID: 1708684665}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -36157,7 +36307,7 @@ RectTransform:
   m_LocalScale: {x: 1.2, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1708684665}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -36445,7 +36595,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.44
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
 --- !u!114 &1655686136
 MonoBehaviour:
@@ -36595,7 +36745,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.52
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
 --- !u!114 &1656383364
 MonoBehaviour:
@@ -36902,7 +37052,7 @@ RectTransform:
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1708684665}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -37543,6 +37693,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 669275625}
+  - {fileID: 1148923404}
   - {fileID: 230671442}
   - {fileID: 154061833}
   - {fileID: 1649795115}
@@ -42496,7 +42647,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.45
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
 --- !u!114 &1790566111
 MonoBehaviour:
@@ -43528,7 +43679,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.44
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
 --- !u!114 &1858783963
 MonoBehaviour:
@@ -45422,7 +45573,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.46
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
 --- !u!114 &1977116887
 MonoBehaviour:
@@ -45880,7 +46031,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.52
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000014901161}
 --- !u!114 &1988559988
 MonoBehaviour:
@@ -48633,7 +48784,7 @@ RectTransform:
   - {fileID: 1775819985}
   - {fileID: 151668509}
   m_Father: {fileID: 1708684665}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
