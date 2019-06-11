@@ -33,8 +33,6 @@ public abstract class BaseVegetable : MonoBehaviour {
 
     public VegetableStatus status;
 
-    public int hp;
-
     [System.NonSerialized]
     public AnimationType animType;
 
@@ -80,6 +78,9 @@ public abstract class BaseVegetable : MonoBehaviour {
     public bool IsMove { get; set; }
 
 
+    /// <summary>
+    /// 止まるかどうか
+    /// </summary>
     public bool IsStop { get; set; }
 
     //-----------------------------------------
@@ -102,8 +103,6 @@ public abstract class BaseVegetable : MonoBehaviour {
     {
         SetValue();
 
-        hp = HP;
-
         DoStart();
 
         isAnimFirst = true;
@@ -114,16 +113,14 @@ public abstract class BaseVegetable : MonoBehaviour {
         Move();
         Stop();
 
-        hp = HP;
-
         DoUpdate();
 
         SetAnimaton();
-
         AttackRotation();
 
         if (NearTarget != null && agent != null && agent.enabled)
         {
+            // 移動処理
             Transform targetTransform = NearTarget.transform;
             agent.SetDestination(targetTransform.position);
         }
@@ -161,13 +158,10 @@ public abstract class BaseVegetable : MonoBehaviour {
     void Move()
     {
         if (IsMove == false || NearTarget == null || agent == null || agent.enabled == false) return;
-
         if (agent.isStopped == true) agent.isStopped = false;
 
-        if (agent != null && agent.enabled)
-        {
-            IsMove = false;
-        }
+        if (agent != null && agent.enabled) IsMove = false;
+
     }
 
     /// <summary>
@@ -197,16 +191,20 @@ public abstract class BaseVegetable : MonoBehaviour {
     /// </summary>
     public void AddDamage(GameObject target)
     {
+        // 渡された引数がnullであれば処理しない
         if (target == null) return;
 
+        // 相手がいなければ処理しない
         BaseVegetable targetVegetable = target.GetComponent<BaseVegetable>();
-
         if (targetVegetable == null) return;
 
+        // 相手のHPを取得
         int targetHP = targetVegetable.HP;
 
+        // 相手のHPを減らす
         targetHP -= POW;
 
+        // 反映する
         target.GetComponent<BaseVegetable>().HP = targetHP;
     }
 
@@ -218,6 +216,7 @@ public abstract class BaseVegetable : MonoBehaviour {
     {
         intervalTimer -= Time.deltaTime;
 
+        // 攻撃にもインターバルを付ける
         if (intervalTimer <= 0.0f)
         {
             intervalTimer = attackInterval;
@@ -249,17 +248,20 @@ public abstract class BaseVegetable : MonoBehaviour {
 
     }
 
+    /// <summary>
+    /// アニメーションを遅らせる
+    /// </summary>
     void AnimDealy()
     {
+        // 遅延用タイマー
         animWaitTimer += Time.deltaTime;
 
+        // すぐにアニメーションを切り替えないようにする
         if (animWaitTimer >= 0.3f)
         {
             if (agent != null && agent.enabled && agent.isStopped && isAnimFirst == false)
             {
-
                 animType = AnimationType._attack;
-
             }
             else
             {
@@ -277,14 +279,13 @@ public abstract class BaseVegetable : MonoBehaviour {
     {
         if (NearTarget == null && IsStop == false) return;
 
-        if (NearTarget == null) return;
-
+        // ターゲットとの位置を取得
         Vector3 targetRotate = NearTarget.transform.position - transform.position;
-
+        // y軸回転はなし
         targetRotate = new Vector3(targetRotate.x, 0, targetRotate.z);
 
+        // なめらかに回転
         Quaternion rotation = Quaternion.LookRotation(targetRotate);
-
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 0.1f);
     }
 }

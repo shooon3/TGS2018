@@ -22,13 +22,15 @@ public class BaseEnemy : BaseVegetable {
     // protected
     //-----------------------------------------
 
-    //ターゲットが生きているかどうか
-    protected bool isTargetAlive = true;
-
     //攻撃できる状態かどうか
     protected bool isAttack = false;
 
-    Transform pumpkinTransform;
+    //-----------------------------------------
+    // private
+    //-----------------------------------------
+
+    // Enemyを管理するオブジェクト
+    Transform EnemyTransform;
 
     //-----------------------------------------
     // 関数
@@ -38,13 +40,15 @@ public class BaseEnemy : BaseVegetable {
     {
         animator = transform.GetChild(0).GetComponent<Animator>();
 
-        pumpkinTransform = transform.parent.parent.Find("EnemyParent");
+        EnemyTransform = transform.parent.parent.Find("EnemyParent");
     }
 
     protected override void DoUpdate()
     {
+        // 死んだときの処理
         Death();
 
+        // 近くにターゲットがいなければ、攻撃しない
         if (NearTarget == null) isAttack = false;
     }
 
@@ -55,7 +59,9 @@ public class BaseEnemy : BaseVegetable {
     {
         if (IsDeath())
         {
-            Instantiate(InfectionEnemy,transform.position,transform.rotation, pumpkinTransform);
+            // 倒された時、感染した敵を生成する
+            Instantiate(InfectionEnemy,transform.position,transform.rotation, EnemyTransform);
+            // 現在のオブジェクトは削除
             Destroy(gameObject);
         }
     }
@@ -73,14 +79,13 @@ public class BaseEnemy : BaseVegetable {
     /// </summary>
     protected virtual void SerchTarget()
     {
+        // 設定したオブジェクトがnullでなければ処理をしない
         if (NearTarget != null) return;
 
         IsMove = true;
 
-        if (isTargetAlive)
-        {
-            NearTarget = serchTarget.serchTag(transform.position, "Minion");
-        }
+        // 近い敵
+        NearTarget = serchTarget.serchTag(transform.position, "Minion");
     }
 
     /// <summary>
@@ -95,11 +100,15 @@ public class BaseEnemy : BaseVegetable {
 
         IsStop = true;
 
+        // 最初の登場アニメーションが終わるまで、行動をさせない
         while (isAnimFirst)
         {
             AnimatorStateInfo nowState = animator.GetCurrentAnimatorStateInfo(0);
+
+            // 現在のAnimatorStateがanimNameの引数で渡したものかどうか
             if (nowState.IsName(animName))
             {
+                // アニメーションが終わったので、行動を許可
                 yield return new WaitForSeconds(waitTime);
                 IsMove = true;
                 isAnimFirst = false;
@@ -114,11 +123,11 @@ public class BaseEnemy : BaseVegetable {
     void OnTriggerEnter(Collider col)
     {
         BaseVegetable target = col.transform.GetComponent<BaseVegetable>();
-
         if (target != null && agent.isStopped == false)
         {
             NearTarget = target.gameObject;
              
+            // 何かと当たったら、攻撃を開始する
             IsStop = true;
             isAttack = true;
         }

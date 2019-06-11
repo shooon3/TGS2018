@@ -1,8 +1,6 @@
 ﻿/*
  * EnemyPepperクラス
  * とうがらしのAIクラス
- * 
- * ぺっぱーくん
  */
 
 using System.Collections;
@@ -11,14 +9,29 @@ using UnityEngine;
 
 public class EnemyPepper : BaseEnemy {
 
-    [Range(20,50)]
+    //-----------------------------------------
+    // public
+    //-----------------------------------------
+
+    [Range(20,50),Header("遠距離攻撃")]
     public int AttackRange = 20;
 
+    [Header("エフェクト")]
     public ParticleSystem particle;
 
+    //-----------------------------------------
+    // private
+    //-----------------------------------------
+
+    // 一度だけアニメーションを再生
     bool isPepperAnimFirst = true;
+
     PepperAnimEffect animEffect;
 
+
+    //-----------------------------------------
+    // 関数
+    //-----------------------------------------
     protected override void DoStart()
     {
         base.DoStart();
@@ -55,7 +68,7 @@ public class EnemyPepper : BaseEnemy {
     }
 
     /// <summary>
-    /// 
+    /// 攻撃時に攻撃エフェクトを出す
     /// </summary>
     void EffectPlay()
     {
@@ -81,8 +94,11 @@ public class EnemyPepper : BaseEnemy {
         Vector3 pos = transform.position;
         Vector3 targetPos = NearTarget.transform.position;
 
+        // 自分とターゲットの距離を測る
         float dis = Vector3.Distance(pos, targetPos);
 
+
+        // 距離が一定距離以内であれば攻撃開始
         if(dis <= AttackRange)
         {
             IsStop = true;

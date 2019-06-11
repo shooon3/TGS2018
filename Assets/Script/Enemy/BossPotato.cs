@@ -5,7 +5,10 @@ using System.Linq;
 
 public class BossPotato : BaseBossEnemy {
 
-    public enum KillVirusHoleType
+    //-----------------------------------------
+    // 列挙体
+    //-----------------------------------------
+    enum KillVirusHoleType
     {
         _right = 0,
         _left,
@@ -15,10 +18,18 @@ public class BossPotato : BaseBossEnemy {
 
     KillVirusHoleType type;
 
+    //-----------------------------------------
+    // private
+    //-----------------------------------------
+
     List<Hole> hole_RightLis = new List<Hole>();
     List<Hole> hole_MiddleRighLis = new List<Hole>();
     List<Hole> hole_MiddleLeftLis = new List<Hole>();
     List<Hole> hole_LeftLis = new List<Hole>();
+
+    //-----------------------------------------
+    // 関数
+    //-----------------------------------------
 
     protected override void DoStart()
     {
@@ -34,8 +45,12 @@ public class BossPotato : BaseBossEnemy {
         MovePointChange();
     }
 
+    /// <summary>
+    /// 一気に殺菌させる範囲を決める
+    /// </summary>
     protected override void KillVirus_RangeSet()
     {
+        // 全ての畑をリストに追加
         holeArray = holeRange.GetComponentsInChildren<Hole>().ToList<Hole>();
 
         hole_RightLis = holeArray.OrderBy(x => x.name).Skip(0).Take(3).ToList<Hole>();
@@ -44,6 +59,10 @@ public class BossPotato : BaseBossEnemy {
         hole_LeftLis = holeArray.OrderBy(x => x.name).Skip(9).Take(3).ToList<Hole>();
     }
 
+    /// <summary>
+    /// 殺菌するための畑を変更する
+    /// </summary>
+    /// <returns>殺菌されていたらtrue、されていなければ殺菌を続ける</returns>
     protected override bool IsKillVirus()
     {
         switch (type)

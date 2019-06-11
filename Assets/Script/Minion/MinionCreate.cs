@@ -135,7 +135,7 @@ public class MinionCreate : MonoBehaviour {
         if (playerMove.IsStart != true || playerMove.IsClear != false) return;
 
         GetTouchPos();
-        Flick();
+        if(Input.GetButton("Fire1")) Flick();
 
         if (delay == true)
         {

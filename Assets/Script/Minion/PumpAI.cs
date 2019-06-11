@@ -20,15 +20,13 @@ public class PumpAI : BaseVegetable
     // public
     //-----------------------------------------
 
+    // ボスに攻撃しているか、それ以外か
     public PumpType type;
 
+    // エフェクト
     public GameObject attackEffect;
-
     public GameObject infectionEffect;
-
     public GameObject deadEffect;
-
-    public GameObject near;
 
     //-----------------------------------------
     // private
@@ -48,8 +46,10 @@ public class PumpAI : BaseVegetable
     //デストロイするオブジェクトの変数
     BaseVegetable target;
 
+    // 穴
     Hole hole;
 
+    // カメラ
     Camera cam;
 
     //エネミーに当たった
@@ -57,8 +57,6 @@ public class PumpAI : BaseVegetable
 
     //穴に当たった
     bool isHoleCollision = false;
-
-    //bool isHoleInfection = true;
 
     bool isCreateEffect = true;
 
@@ -97,7 +95,7 @@ public class PumpAI : BaseVegetable
 
         NearTargetDis();
 
-        near = NearTarget;
+        Debug.Log(animType);
 
         if (type == PumpType._attack)
         {
@@ -115,14 +113,21 @@ public class PumpAI : BaseVegetable
         }
     }
 
+    /// <summary>
+    /// ターゲットとの距離を測る
+    /// </summary>
     void NearTargetDis()
     {
+        // ターゲットがいなければ処理をしない
         if (NearTarget == null) return;
 
+        // 距離の算出
         float dis = Vector3.Distance(transform.position, NearTarget.transform.position);
 
+        // 一定距離以内であれば
         if(dis >= 10 && agent != null && agent.enabled && agent.isStopped)
         {
+            // 移動を止める
             agent.isStopped = false;
         }
     }
@@ -132,12 +137,14 @@ public class PumpAI : BaseVegetable
     /// </summary>
     void SerchTarget()
     {
+        // キャッシュ
         Transform holeTransform = transform.parent.parent.parent.GetChild(0);
         Transform enemyTransform = transform.parent.parent.parent.GetChild(4);
 
         //親のオブジェクトとHoleタグを探す
         nearHole = serchTarget.serchChildTag(parentPos, holeTransform, "Hole",true);
         
+        // 近くの敵を探す
         nearEnemy = serchTarget.serchChildTag(parentPos,enemyTransform, "Enemy");
 
         //敵が存在していなかったら
@@ -167,6 +174,7 @@ public class PumpAI : BaseVegetable
             if (holeDis <= enemyDis) NearTarget = nearHole;
             else if (holeDis > enemyDis) NearTarget = nearEnemy;
         }
+        // 両方ともnullであれば、パンプ菌を消す
         else if (nearEnemy == null && nearHole == null) Destroy(transform.parent.gameObject);
     }
 
@@ -181,17 +189,28 @@ public class PumpAI : BaseVegetable
         }
     }
 
+    /// <summary>
+    /// 感染後・戦闘後のパンプ菌を消す処理
+    /// </summary>
     protected override void Death()
     {
+        // ターゲットとなる敵を倒すことが出来たら
         if (IsDestroyEnemy())
         {
+            // 今までいた位置に、感染した野菜を出現させる
             Vector3 vec = new Vector3(transform.position.x, transform.position.y + 20.0f, transform.position.z);
             Instantiate(deadEffect, vec, Quaternion.identity);
+
+            // パンプ菌が死んだ音を出しておく
             AudioManager.Instance.PlaySE("PumpkinDead");
+
+            // パンプ菌を消す
             Destroy(transform.parent.gameObject);
         }
+        // 感染が終わったら
         else if(IsInfection())
         {
+            // パンプ菌を消す
             Destroy(transform.parent.gameObject);
         }
     }
@@ -201,18 +220,16 @@ public class PumpAI : BaseVegetable
     /// </summary>
     void ActionState()
     {
+        // 敵にも、畑にもあたっていなかったら処理をしない
         if (isEnemyCollision == false && isHoleCollision == false) return;
 
         EffectSet();
 
-        if (isEnemyCollision)
-        {
-            Attack();
-        }
-        if (isHoleCollision)
-        {
-            HoleInfection();
-        }
+        // 敵と当たっていたら攻撃
+        if (isEnemyCollision) Attack();
+        // 畑と当たっていたら感染
+        if (isHoleCollision) HoleInfection();
+        
     }
 
     /// <summary>
@@ -230,23 +247,31 @@ public class PumpAI : BaseVegetable
         }
     }
 
+    /// <summary>
+    /// エフェクトを管理
+    /// </summary>
     void EffectSet()
     {
+        // 敵に当たっている状態でエフェクトが作られていなければ
         if (isEnemyCollision && isCreateEffect)
         {
+            // offsetの位置にエフェクトを生成する
             Vector3 offset = new Vector3(transform.position.x + 1.0f, transform.position.y + 3.0f, transform.position.z + 2.0f);
             effect = Instantiate(attackEffect, offset, Quaternion.identity,transform);
             isCreateEffect = false;
 
         }
+        // 穴に当たっている状態でエフェクトが作られていなければ
         else if(isHoleCollision && isCreateEffect)
         {
             Vector3 offset = new Vector3(transform.position.x, transform.position.y + 5.0f, transform.position.z);
             effect = Instantiate(infectionEffect, offset, Quaternion.identity, transform);
             isCreateEffect = false;
         }
+        // エフェクトが一度でも作られており、感染や敵との戦闘が終わっていたら
         else if(animType == AnimationType._move && isCreateEffect == false)
         {
+            // エフェクトを削除
             Destroy(effect);
             isCreateEffect = true;
         }
@@ -258,27 +283,31 @@ public class PumpAI : BaseVegetable
         {
             if (target == null && hole == null)
             {
+                // 当たったオブジェクトがボス野菜であれば、以下の処理はしない
                 BaseBossEnemy bossEnemy = col.GetComponent<BaseBossEnemy>();
-
                 if (bossEnemy != null) return;
 
                 //ターゲットにダメージを与える
                 target = col.GetComponent<BaseVegetable>();
 
-                //ターゲットにHoleスクリプトがアタッチされていたら
+                //ターゲットにHoleスクリプトがアタッチされており、感染が終わっていたら
                 hole = col.GetComponent<Hole>();
-
                 if (hole != null && hole.Infection == true) hole = null;
 
+                // ターゲットがnullでなければ、移動を停止
                 if (target != null || hole != null) IsStop = true;
 
+                // ターゲットがいる場合
                 if (target != null)
                 {
+                    // 当たったやつを攻撃
                     isEnemyCollision = true;
                     NearTarget = target.gameObject;
                 }
+                // 畑がnullでなければ
                 else if (hole != null && hole.tag == "Hole")
                 {
+                    // 当たった畑を感染させる
                     isHoleCollision = true;
                     NearTarget = hole.gameObject;
                 }
@@ -296,6 +325,10 @@ public class PumpAI : BaseVegetable
         else return false;
     }
 
+    /// <summary>
+    /// ターゲットとなる畑が感染できたかどうか
+    /// </summary>
+    /// <returns></returns>
     public bool IsInfection()
     {
         if (NearTarget == null) return true;
@@ -306,6 +339,9 @@ public class PumpAI : BaseVegetable
         return false;
     }
 
+    /// <summary>
+    /// アニメーションを管理
+    /// </summary>
     protected override void SetAnimaton()
     {
         if (animator == null) return;

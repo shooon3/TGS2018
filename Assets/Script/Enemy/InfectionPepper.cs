@@ -19,7 +19,6 @@ public class InfectionPepper : BaseEnemy {
 
     Hole nearTargetHole;
 
-    //GameObject effect;
 
     //近い穴の位置を格納する変数
     GameObject nearHole;
@@ -55,13 +54,9 @@ public class InfectionPepper : BaseEnemy {
         if (NearTarget == null)
         {
             isAttack = false;
-            //Destroy(effect);
             animType = AnimationType._move;
             IsMove = true;
         }
-
-        //if (agent != null && agent.enabled && agent.isStopped == false &&
-        //    effect != null) Destroy(effect);
 
         EffectPlay();
 
@@ -74,15 +69,7 @@ public class InfectionPepper : BaseEnemy {
     protected override void Attack()
     {
         if (IsAttackInterval() != false) return;
-
-        //if (effect == null)
-        //{
-        //    Vector3 offset = new Vector3(transform.position.x + 1.0f, transform.position.y + 3.0f, transform.position.z + 2.0f);
-        //    effect = Instantiate(attackEffect, offset, Quaternion.identity, transform);
-        //}
-
         AddDamage(NearTarget);
-
     }
 
     protected override void SerchTarget()
@@ -108,7 +95,6 @@ public class InfectionPepper : BaseEnemy {
         else if (nearEnemy == null && NearTarget == null)
         {
             StartCoroutine(Delay());
-            //if (effect != null) Destroy(effect);
         }
 
     }
@@ -120,7 +106,6 @@ public class InfectionPepper : BaseEnemy {
         int random = Random.Range(0, holeLis.Count);
 
         NearTarget = holeLis[random].gameObject;
-
     }
 
     protected override void Death()

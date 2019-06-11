@@ -5,10 +5,29 @@ using System.Linq;
 
 public class BossPepper : BaseBossEnemy {
 
+    //-----------------------------------------
+    // 列挙体
+    //-----------------------------------------
+    enum KillVirusHoleType
+    {
+        _right = 0,
+        _left,
+    }
+
+    KillVirusHoleType type;
+
+    //-----------------------------------------
+    // public
+    //-----------------------------------------
+
     [Range(20, 50)]
     public int AttackRange = 20;
 
     public ParticleSystem particle;
+
+    //-----------------------------------------
+    // private
+    //-----------------------------------------
 
     List<Hole> hole_RightLis = new List<Hole>();
     List<Hole> hole_LeftLis = new List<Hole>();
@@ -16,13 +35,10 @@ public class BossPepper : BaseBossEnemy {
     PepperAnimEffect animEffect;
 
     bool isPepperAnimFirst = true;
-    public enum KillVirusHoleType
-    {
-        _right = 0,
-        _left,
-    }
 
-    KillVirusHoleType type;
+    //-----------------------------------------
+    // 関数
+    //-----------------------------------------
 
     protected override void DoStart()
     {
@@ -35,7 +51,7 @@ public class BossPepper : BaseBossEnemy {
     {
         base.DoUpdate();
 
-        StartShake(2.5f);
+        StartShake(4.0f);
 
         TargetDistance();
 
@@ -44,14 +60,21 @@ public class BossPepper : BaseBossEnemy {
         EffectPlay();
     }
 
+    /// <summary>
+    /// 一気に殺菌させる範囲を決める
+    /// </summary>
     protected override void KillVirus_RangeSet()
     {
-        holeArray = holeRange.GetComponentsInChildren<Hole>().ToList<Hole>();
+        holeArray = holeRange.GetComponentsInChildren<Hole>().ToList();
 
-        hole_RightLis = holeArray.OrderBy(x => x.name).Skip(0).Take(6).ToList<Hole>();
-        hole_LeftLis = holeArray.OrderBy(x => x.name).Skip(6).Take(6).ToList<Hole>();
+        hole_RightLis = holeArray.OrderBy(x => x.name).Skip(0).Take(6).ToList();
+        hole_LeftLis = holeArray.OrderBy(x => x.name).Skip(6).Take(6).ToList();
     }
 
+    /// <summary>
+    /// 殺菌するための畑を変更する
+    /// </summary>
+    /// <returns>殺菌されていたらtrue、されていなければ殺菌を続ける</returns>
     protected override bool IsKillVirus()
     {
         switch (type)
@@ -69,6 +92,9 @@ public class BossPepper : BaseBossEnemy {
         return false;
     }
 
+    /// <summary>
+    /// 攻撃時のエフェクトを再生
+    /// </summary>
     void EffectPlay()
     {
         if (animEffect.IsAnimAttackStart && isPepperAnimFirst)
@@ -88,19 +114,20 @@ public class BossPepper : BaseBossEnemy {
     /// </summary>
     void TargetDistance()
     {
+        // ターゲットがいなければ処理しない
         if (NearTarget == null) return;
-
         Hole checkHole = NearTarget.GetComponent<Hole>();
-
         if (checkHole != null) return;
 
+        // 自分と相手の距離を取得
         Vector3 pos = transform.position;
         Vector3 targetPos = NearTarget.transform.position;
-
         float dis = Vector3.Distance(pos, targetPos);
 
+        // 距離が一定いないであれば
         if (dis <= AttackRange)
         {
+            // 移動を停止、攻撃
             IsStop = true;
             isAttack = true;
         }

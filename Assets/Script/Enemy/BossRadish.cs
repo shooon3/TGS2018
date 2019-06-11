@@ -6,7 +6,10 @@ using System.Linq;
 
 public class BossRadish : BaseBossEnemy {
 
-    public enum KillVirusHoleType
+    //-----------------------------------------
+    // 列挙体
+    //-----------------------------------------
+    enum KillVirusHoleType
     {
         _front = 0,
         _middle,
@@ -15,9 +18,17 @@ public class BossRadish : BaseBossEnemy {
 
     KillVirusHoleType type;
 
+    //-----------------------------------------
+    // private
+    //-----------------------------------------
+
     List<Hole> hole_FrontLis = new List<Hole>();
     List<Hole> hole_Middle = new List<Hole>();
     List<Hole> hole_Back = new List<Hole>();
+
+    //-----------------------------------------
+    // 関数
+    //-----------------------------------------
 
     protected override void DoStart()
     {
@@ -33,6 +44,9 @@ public class BossRadish : BaseBossEnemy {
         MovePointChange();
     }
 
+    /// <summary>
+    /// 一気に殺菌させる範囲を決める
+    /// </summary>
     protected override void KillVirus_RangeSet()
     {
         holeArray = holeRange.GetComponentsInChildren<Hole>().ToList<Hole>();
@@ -42,6 +56,10 @@ public class BossRadish : BaseBossEnemy {
         hole_Back = holeArray.GetRange(8, 4);
     }
 
+    /// <summary>
+    /// 殺菌するための畑を変更する
+    /// </summary>
+    /// <returns>殺菌されていたらtrue、されていなければ殺菌を続ける</returns>
     protected override bool IsKillVirus()
     {
         switch (type)

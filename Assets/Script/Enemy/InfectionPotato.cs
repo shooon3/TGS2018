@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class InfectionPotato : BaseEnemy {
 
+    //-----------------------------------------
+    // public
+    //-----------------------------------------
+
     public GameObject attackEffect;
 
     public GameObject deadEffect;
+
+    //-----------------------------------------
+    // private
+    //-----------------------------------------
 
     List<Hole> holeLis = new List<Hole>();
 
@@ -24,15 +32,18 @@ public class InfectionPotato : BaseEnemy {
 
     float time;
 
+    //-----------------------------------------
+    // 関数
+    //-----------------------------------------
+
     protected override void DoStart()
     {
         base.DoStart();
 
-
         StartCoroutine(WaitAnimEnd("pop", 2.5f));
 
+        // 全ての畑をholeLisに追加
         Transform holesTransform = transform.parent.parent.GetChild(0);
-
         holeLis.AddRange(holesTransform.GetComponentsInChildren<Hole>());
     }
 
@@ -59,22 +70,31 @@ public class InfectionPotato : BaseEnemy {
         }
     }
 
+    /// <summary>
+    /// 攻撃
+    /// </summary>
     protected override void Attack()
     {
         if (IsAttackInterval() != false) return;
 
+        // エフェクトを作れていなければ、エフェクトを生成する
         if (effect == null)
         {
             Vector3 offset = new Vector3(transform.position.x + 1.0f, transform.position.y + 3.0f, transform.position.z + 2.0f);
             effect = Instantiate(attackEffect, offset, Quaternion.identity, transform);
         }
 
+        // ダメージを与える
         AddDamage(NearTarget);
 
     }
 
+    /// <summary>
+    /// ターゲットを探す
+    /// </summary>
     protected override void SerchTarget()
     {
+        // ターゲットがnullでなければ
         if (NearTarget != null)
         {
             nearTargetHole = NearTarget.GetComponent<Hole>();
@@ -92,18 +112,6 @@ public class InfectionPotato : BaseEnemy {
             NearTarget = nearEnemy;
 
             IsMove = true;
-
-            ////敵の位置を取得
-            //Vector3 nearEnemyPos = nearEnemy.transform.position;
-
-            ////穴と自分の距離を測る
-            //float holeDis = Vector3.Distance(transform.position, nearHolePos);
-            ////敵と自分の距離をはかる
-            //float enemyDis = Vector3.Distance(transform.position, nearEnemyPos);
-
-            ////二つを比べて近いほうをNearTarget(攻撃対象)とする
-            //if (holeDis <= enemyDis) NearTarget = nearHole;
-            //else if (holeDis > enemyDis) NearTarget = nearEnemy;
         }
         else if (nearEnemy == null && NearTarget == null)
         {
@@ -113,6 +121,10 @@ public class InfectionPotato : BaseEnemy {
         
     }
 
+    /// <summary>
+    /// 目的地となる畑を設定する
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Delay()
     {
         yield return new WaitForSeconds(0.2f);
@@ -123,6 +135,9 @@ public class InfectionPotato : BaseEnemy {
 
     }
 
+    /// <summary>
+    /// 死亡処理
+    /// </summary>
     protected override void Death()
     {
         if (IsDeath())
@@ -132,6 +147,7 @@ public class InfectionPotato : BaseEnemy {
             Destroy(gameObject);
         }
     }
+
     void OnTriggerEnter(Collider col)
     {
         BaseBossEnemy boss = col.transform.GetComponent<BaseBossEnemy>();
